@@ -56,6 +56,37 @@ class Database:
     def upgrade_database(self, old_version, new_version):
         try:
             print('Upgrading database from {} to {}'.format(old_version, new_version))
+            if old_version < 2:
+                # Upgrade to version 2 database
+                query = '''create table main.npc
+(
+    id           integer
+        constraint npc_pk
+            primary key autoincrement,
+    formal_name  TEXT,
+    common_name  TEXT,
+    description  TEXT,
+    strength     integer,
+    dexterity    integer,
+    constitution integer,
+    intelligence integer,
+    wisdom       integer,
+    charisma     integer
+);''''
+                self.cursor.execute(query)
+                query = '''create table main.npc_languages
+(
+    id       integer
+        constraint npc_languages_pk
+            primary key autoincrement,
+    npc_id   integer
+        constraint npc_languages_npc_id_fk
+            references main.npc,
+    language TEXT
+);'''
+                self.cursor.execute(query)
+
+            # Mark the new database version
             data = {'old_version': old_version, 'new_version': new_version}
             query = 'update main.db_version set version = :new_version where version = :old_version;'
             self.cursor.execute(query, data)
