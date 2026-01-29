@@ -151,7 +151,7 @@ class CreatureBarn:
     def parse(self, text: str) -> dict:
         r = {field: "" for field in OUTPUT_FIELDS}
         text = re.sub(r"\r\n", "\n", text)
-        text = re.sub(r"\n+", "\n", t000000000000000000000000000000000000000000000000000000000000000000000000000000000000ext)
+        text = re.sub(r"\n+", "\n", text)
 
         # --- NAME ---
         name_match = re.match(r"^(.+)", text)
