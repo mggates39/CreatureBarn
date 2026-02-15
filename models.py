@@ -17,9 +17,6 @@ class Creature(Base):
     char_class = Column(String)
     initiative = Column(String)
     perception_modifier = Column(String)
-    aura_type = Column(String)
-    aura_radius = Column(String)
-    aura_save = Column(String)
     base_armor_class = Column(Integer)
     touch_armor_class = Column(Integer)
     flat_footed_armor_class = Column(Integer)
@@ -55,8 +52,9 @@ class Creature(Base):
     content = Column(String)
 
     # Relationships (one-to-many)
-    ac_modifiers = relationship("CreatureACModifiers", back_populates="creature", cascade="all, delete-orphan")
     senses = relationship("CreatureSenses", back_populates="creature", cascade="all, delete-orphan")
+    auras = relationship("CreatureAuras", back_populates="creature", cascade="all, delete-orphan")
+    ac_modifiers = relationship("CreatureACModifiers", back_populates="creature", cascade="all, delete-orphan")
     dr_modifiers = relationship("CreatureDamageReductionModifiers", back_populates="creature", cascade="all, delete-orphan")
     sr_modifiers = relationship("CreatureSpellResistenceModifiers", back_populates="creature", cascade="all, delete-orphan")
     weaknesses = relationship("CreatureWeaknesses", back_populates="creature", cascade="all, delete-orphan")
@@ -86,6 +84,20 @@ class CreatureSenses(Base):
 
     # Relationships
     creature = relationship('Creature', back_populates='senses')
+
+
+class CreatureAuras(Base):
+    __tablename__ = 'creature_auras'
+    id = Column(Integer, primary_key=True)
+    aura = Column(String)
+    radius = Column(String)
+    save_role = Column(String)
+
+    # Foreign key to Creatures
+    creature_id = Column(Integer, ForeignKey('creatures.id'))
+
+    # Relationships
+    creature = relationship('Creature', back_populates='auras')
 
 
 class CreatureACModifiers(Base):

@@ -1,7 +1,7 @@
 # create_tables.py
 # Create all tables in the database
 from database import engine, Base
-from models import (Creature, CreatureSenses, CreatureACModifiers, CreatureDamageReductionModifiers,
+from models import (Creature, CreatureSenses, CreatureAuras, CreatureACModifiers, CreatureDamageReductionModifiers,
                     CreatureSpellResistenceModifiers, CreatureWeaknesses, CreatureImmuneModifiers,
                     CreatureDefenseAbilities, CreatureSpeedModifiers, CreatureMeleeAttacks,
                     CreatureRangedAttacks, CreatureSpecialAttacks, CreatureSpellLikeAbilities,
