@@ -7,8 +7,7 @@ import tkinter as tk
 from tkinter import filedialog
 from pathlib import Path
 import re
-import database
-from database import Database
+
 
 OUTPUT_FIELDS = [
     "Name",
@@ -121,6 +120,7 @@ class CreatureBarn:
         menu = tk.Menu(root)
         fm = tk.Menu(menu, tearoff=0)
         fm.add_command(label="Open and Parse", command=self.load)
+        fm.add_command(label="Parse", command=self.parse_screen)
         fm.add_command(label="Exit", command=root.quit)
         menu.add_cascade(label="File", menu=fm)
         dbm = tk.Menu(menu, tearoff=0)
@@ -128,11 +128,9 @@ class CreatureBarn:
         dbm.add_command(label="Manage Creatures")
         dbm.add_command(label="Manage NPCs")
         dbm.add_separator()
-        dbm.add_command(label="Init Database", command=self.db_init)
+        dbm.add_command(label="Init Database")
         menu.add_cascade(label="Database", menu=dbm)
         root.config(menu=menu)
-
-        self.database = Database('creature_barn.db')
 
     def load(self):
         path = filedialog.askopenfilename(filetypes=[("Text Files", "*.txt")])
@@ -143,11 +141,12 @@ class CreatureBarn:
         self.text.delete("1.0", tk.END)
         self.text.insert(tk.END, render(parsed))
 
-    def db_init(self):
-        # Connect to SQLite Database and test the connection
-        self.database.open_database()
-        self.database.test_database()
-        self.database.close_database()
+    def parse_screen(self) -> dict:
+        text = self.text.get("1.0", tk.END)
+        parsed = self.parse(text)
+        self.text.delete("1.0", tk.END)
+        self.text.insert(tk.END, render(parsed))
+
     def parse(self, text: str) -> dict:
         r = {field: "" for field in OUTPUT_FIELDS}
         text = re.sub(r"\r\n", "\n", text)
