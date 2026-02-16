@@ -130,7 +130,39 @@ class CreatureBarn:
         dbm.add_separator()
         dbm.add_command(label="Init Database")
         menu.add_cascade(label="Database", menu=dbm)
+        help_menu = tk.Menu(menu, tearoff=0)
+        help_menu.add_command(label="About", command=self.show_about_dialog)
+        menu.add_cascade(label="Help", menu=help_menu)
         root.config(menu=menu)
+
+    # Function to display the "About" dialog box
+    def show_about_dialog(self):
+        """Creates and displays a custom about dialog with specified dimensions."""
+
+        # Create the Toplevel window
+        about_box = tk.Toplevel(self.root)
+        about_box.title("About Creature Barn")
+
+        # Specify the width and height (e.g., 300x200 pixels)
+        about_box.geometry("500x360")
+
+        # Make the window non-resizable
+        about_box.resizable(False, False)
+
+        # Center the dialog over the parent window (optional, but good practice)
+        # about_box.transient(root) # Makes the dialog box a transient window of the root window
+        # about_box.grab_set()     # Makes the dialog modal (forces user interaction)
+
+        # Add content (e.g., Labels, Buttons)
+        # Use a Message widget for multi-line text that wraps properly
+        message_text = "This is simple creature barn to manage creature and NPC definitions.\n\nVersion 1.0"
+        about_message = tk.Message(about_box, text=message_text, justify=tk.CENTER,
+                                   width=400)  # width in character units
+        about_message.pack(pady=20, padx=10)
+
+        # Add an OK button to close the dialog
+        ok_button = tk.Button(about_box, text="OK", command=about_box.destroy)
+        ok_button.pack(pady=10)
 
     def load(self):
         path = filedialog.askopenfilename(filetypes=[("Text Files", "*.txt")])
