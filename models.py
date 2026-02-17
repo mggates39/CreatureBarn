@@ -75,6 +75,9 @@ class Creature(Base):
     special_qualities = relationship("CreatureSpecialQualities", back_populates="creature", cascade="all, delete-orphan")
     special_abilities = relationship("CreatureSpecialAbilities", back_populates="creature", cascade="all, delete-orphan")
 
+    def __repr__(self):
+        return f"Creature(id={self.id}, name='{self.name}', challenge_rating={self.challenge_rating} )"
+
 
 class CreatureSenses(Base):
     __tablename__ = 'creature_senses'
