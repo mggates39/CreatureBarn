@@ -7,6 +7,7 @@ import tkinter as tk
 from tkinter import filedialog
 from pathlib import Path
 import re
+from forms.creatures import CreatureForm
 
 
 OUTPUT_FIELDS = [
@@ -113,6 +114,8 @@ def _capture_multiline(section_text: str, field_name: str) -> str:
 class CreatureBarn:
     def __init__(self, root):
         self.root = root
+        self.newWindow = None
+        self.app = None
         self.root.title("Creature Stat Block Parser")
         self.text = tk.Text(root, wrap="word", width=120, height=45)
         self.text.pack(expand=True, fill="both")
@@ -125,7 +128,7 @@ class CreatureBarn:
         menu.add_cascade(label="File", menu=fm)
         dbm = tk.Menu(menu, tearoff=0)
         dbm.add_command(label="Manage Spells")
-        dbm.add_command(label="Manage Creatures")
+        dbm.add_command(label="Manage Creatures", command=self.add_creature)
         dbm.add_command(label="Manage NPCs")
         dbm.add_separator()
         dbm.add_command(label="Init Database")
@@ -163,6 +166,12 @@ class CreatureBarn:
         # Add an OK button to close the dialog
         ok_button = tk.Button(about_box, text="OK", command=about_box.destroy)
         ok_button.pack(pady=10)
+
+    def add_creature(self):
+        print('Button A is pressed!')
+
+        self.newWindow = tk.Toplevel(self.root)
+        self.app = CreatureForm(self.newWindow)
 
     def load(self):
         path = filedialog.askopenfilename(filetypes=[("Text Files", "*.txt")])

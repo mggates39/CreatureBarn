@@ -6,7 +6,8 @@ class Creature(Base):
     """ Creature record"""
     __tablename__ = 'creatures'
     id = Column(Integer, primary_key=True)
-    name = Column(String)
+    formal_name = Column(String)
+    common_name = Column(String)
     challenge_rating = Column(String)
     experience_points = Column(String)
     alignment = Column(String)
@@ -76,7 +77,7 @@ class Creature(Base):
     special_abilities = relationship("CreatureSpecialAbilities", back_populates="creature", cascade="all, delete-orphan")
 
     def __repr__(self):
-        return f"Creature(id={self.id}, name='{self.name}', challenge_rating={self.challenge_rating} )"
+        return f"Creature(id={self.id}, formal_name='{self.formal_name}', common_name='{self.common_name}', challenge_rating={self.challenge_rating} )"
 
 
 class CreatureSenses(Base):
