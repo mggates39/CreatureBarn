@@ -35,17 +35,17 @@ class CreatureForm:
         ttk.Label(mainframe, text="Formal Name").grid(row=1, column=0, sticky=W)
         self.formal_name = StringVar()
         formal_name_entry = ttk.Entry(mainframe, width=50, textvariable=self.formal_name)
-        formal_name_entry.grid(row=1, column=1, columnspan=4, sticky=W)
+        formal_name_entry.grid(row=1, column=1, columnspan=3, sticky=W)
 
         ttk.Label(mainframe, text="Common Name").grid(row=2, column=0, sticky=W)
         self.common_name = StringVar()
         common_name_entry = ttk.Entry(mainframe, width=50, textvariable=self.common_name)
-        common_name_entry.grid(row=2, column=1, columnspan=4, sticky=W)
+        common_name_entry.grid(row=2, column=1, columnspan=3, sticky=W)
 
-        ttk.Label(mainframe, text="CR").grid(row=2, column=5, sticky=W)
+        ttk.Label(mainframe, text="CR").grid(row=2, column=4, sticky=W)
         self.challenge_rating = StringVar()
         challenge_rating_entry = ttk.Entry(mainframe, width=6, textvariable=self.challenge_rating)
-        challenge_rating_entry.grid(row=2, column=6, sticky=W)
+        challenge_rating_entry.grid(row=2, column=5, sticky=W)
 
         ttk.Label(mainframe, text="XP").grid(row=3, column=0, sticky=W)
         self.experience_points = StringVar()
@@ -129,7 +129,7 @@ class CreatureForm:
         ttk.Label(mainframe, text="SR").grid(row=19, column=0, sticky=W)
         self.spell_resistence = StringVar()
         spell_resistence_entry = ttk.Entry(mainframe, width=16, textvariable=self.spell_resistence)
-        spell_resistence_entry.grid(row=7, column=3, sticky=W)
+        spell_resistence_entry.grid(row=19, column=3, sticky=W)
 
         ttk.Label(mainframe, text="feet").grid(row=20, column=0, sticky=W)
         ttk.Label(mainframe, text="feet").grid(row=21, column=0, sticky=W)
@@ -139,7 +139,7 @@ class CreatureForm:
         ttk.Label(mainframe, text="feet").grid(row=25, column=0, sticky=W)
         ttk.Label(mainframe, text="feet").grid(row=26, column=0, sticky=W)
 
-        ttk.Button(mainframe, text='load', command=lambda: self.on_load(2)).grid(row=27, column=0, sticky=W)
+        ttk.Button(mainframe, text='load', command=lambda: self.on_load(1)).grid(row=27, column=0, sticky=W)
 
         root.columnconfigure(0, weight=1)
         root.rowconfigure(0, weight=1)
