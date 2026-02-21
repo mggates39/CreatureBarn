@@ -129,7 +129,7 @@ class CreatureForm:
         ttk.Label(mainframe, text="SR").grid(row=19, column=0, sticky=W)
         self.spell_resistence = StringVar()
         spell_resistence_entry = ttk.Entry(mainframe, width=16, textvariable=self.spell_resistence)
-        spell_resistence_entry.grid(row=19, column=3, sticky=W)
+        spell_resistence_entry.grid(row=19, column=1, sticky=W)
 
         ttk.Label(mainframe, text="feet").grid(row=20, column=0, sticky=W)
         ttk.Label(mainframe, text="feet").grid(row=21, column=0, sticky=W)
@@ -137,7 +137,10 @@ class CreatureForm:
         ttk.Label(mainframe, text="feet").grid(row=23, column=0, sticky=W)
         ttk.Label(mainframe, text="feet").grid(row=24, column=0, sticky=W)
         ttk.Label(mainframe, text="feet").grid(row=25, column=0, sticky=W)
-        ttk.Label(mainframe, text="feet").grid(row=26, column=0, sticky=W)
+        ttk.Label(mainframe, text="Languages").grid(row=26, column=0, sticky=NW)
+        self.language_entry = Text(mainframe, width=30, height=1)
+        self.language_entry.grid(row=26, column=1, columnspan=3, sticky=W)
+
 
         ttk.Button(mainframe, text='load', command=lambda: self.on_load(1)).grid(row=27, column=0, sticky=W)
 
@@ -166,6 +169,12 @@ class CreatureForm:
             self.challenge_rating.set(getattr(self.creature, 'level'))
             self.initiative.set(getattr(self.creature, 'initiative'))
             self.challenge_rating.set(getattr(self.creature, 'perception_modifier'))
+            self.language_entry.delete("1.0", END)
+            self.language_entry['height'] = len(self.creature.languages)
+
+            for language in self.creature.languages:
+                self.language_entry.insert(END, getattr(language, 'language') + "\n")
+
 
         except ValueError:
             pass
