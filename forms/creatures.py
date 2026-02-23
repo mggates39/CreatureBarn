@@ -2,7 +2,8 @@ from tkinter import *
 from tkinter import ttk
 from widgets.PairTupleCombobox import PairTupleCombobox
 from database import SessionLocal
-from models import Creature
+from models import Creature, CreatureLanguages
+import re
 
 alignment_tuples = [ ('LG', 'Lawful Good'), ('NG', 'Neutral Good'), ('CG', 'Chaotic Good'),
                      ('LN', 'Lawful Neutral'), ('N', 'Neutral'), ('CN', 'Chaotic Neutral'),
@@ -245,3 +246,91 @@ class CreatureForm:
 
         except ValueError:
             pass
+
+    def populate_creature(self, parsed_data):
+        db = SessionLocal()
+        creature = Creature(db)
+        creature.formal_name = parsed_data['Formal Name']
+        creature.common_name = parsed_data['Name']
+        creature.challenge_rating = parsed_data['CR']
+        creature.experience_points = parsed_data['EP']
+        creature.alignment = parsed_data['Alignment']
+        creature.size = parsed_data['Size']
+        type_sub_type = parsed_data['Type/(sub-type)']
+        matches = re.match("(.+)(\\(.+\\))*", type_sub_type)
+        if matches:
+            creature.type = matches.group(1)
+            if matches.group(2):
+                creature.sub_type = matches.group(2)
+
+        creature.fortitude = parsed_data['Fort']
+        creature.reflexes = parsed_data['Ref']
+        creature.will = parsed_data['Will']
+        creature.strength = parsed_data['STR']
+        creature.dexterity = parsed_data['DEX']
+        creature.constitution = parsed_data['CON']
+        creature.intelligence = parsed_data['INT']
+        creature.wisdom = parsed_data['WIS']
+        creature.charisma = parsed_data['CHA']
+
+        languages = [p.strip() for p in parsed_data['Languages'].split(",") if p.strip()]
+        for language in languages:
+            creature_language = CreatureLanguages(db)
+            creature_language.language = language
+            creature.languages.append(creature_language)
+
+class CreatureList:
+
+    def __init__(self, root):
+        self.root = root
+        self.creature = None
+        self.creature_id = 0
+
+        root.title("Creature List")
+
+        mainframe = ttk.Frame(root, padding=3, borderwidth=2, relief='raised')
+        mainframe.grid(column=0, row=0, padx=10, pady=10, sticky="nsew")
+        self.creature_choices_var = StringVar()
+        self.creature_list = Listbox(mainframe, height=10, listvariable=self.creature_choices_var)
+        self.creature_list.grid(row=0, column=0, sticky="nsew")
+
+        load_button = ttk.Button(mainframe, text="load", command=lambda: self.show_creature())
+        load_button.grid(row=1, column=0, sticky="w")
+        new_button = ttk.Button(mainframe, text="New")
+        new_button.grid(row=1, column=2, sticky="e")
+
+
+        try:
+            db = SessionLocal()
+            creatures = db.query(Creature).order_by(Creature.formal_name).all()
+            creature_choices = []
+            for creature in creatures:
+                creature_choices.append(creature.formal_name)
+
+            self.creature_choices_var.set(creature_choices)
+
+
+
+        except ValueError:
+            pass
+
+    def show_creature(self):
+        selection_indices = self.creature_list.curselection()
+        if selection_indices:
+            # Get the first (and only) index from the tuple
+            index = selection_indices[0]
+            # Get the value at that index
+            selected_item = self.creature_list.get(index)
+            print(f"Selected item: {selected_item}")
+            formal_name = selected_item
+            print(formal_name)
+            db = SessionLocal()
+            self.creature = db.query(Creature).filter(Creature.formal_name == formal_name).first()
+            creature_id = self.creature.id
+            creature_form = CreatureForm(self.root)
+            creature_form.on_load(creature_id)
+        else:
+            print("No item selected")
+
+
+

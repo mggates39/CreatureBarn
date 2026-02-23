@@ -7,10 +7,11 @@ import tkinter as tk
 from tkinter import filedialog
 from pathlib import Path
 import re
-from forms.creatures import CreatureForm
+from forms.creatures import CreatureForm, CreatureList
 
 
 OUTPUT_FIELDS = [
+    "Formal Name",
     "Name",
     "CR",
     "XP",
@@ -128,7 +129,7 @@ class CreatureBarn:
         menu.add_cascade(label="File", menu=fm)
         dbm = tk.Menu(menu, tearoff=0)
         dbm.add_command(label="Manage Spells")
-        dbm.add_command(label="Manage Creatures", command=self.add_creature)
+        dbm.add_command(label="Manage Creatures", command=self.show_creature)
         dbm.add_command(label="Manage NPCs")
         dbm.add_separator()
         dbm.add_command(label="Init Database")
@@ -173,6 +174,15 @@ class CreatureBarn:
         self.newWindow = tk.Toplevel(self.root)
         self.app = CreatureForm(self.newWindow)
 
+    def show_creature(self):
+        print('Button B is pressed!')
+
+        self.newWindow = tk.Toplevel(self.root)
+        self.app = CreatureList(self.newWindow)
+
+    def save_parsed_creature(self, parsed):
+        pass
+
     def load(self):
         path = filedialog.askopenfilename(filetypes=[("Text Files", "*.txt")])
         if not path:
@@ -181,22 +191,29 @@ class CreatureBarn:
         parsed = self.parse(raw)
         self.text.delete("1.0", tk.END)
         self.text.insert(tk.END, render(parsed))
+        self.save_parsed_creature(parsed)
 
     def parse_screen(self) -> dict:
         text = self.text.get("1.0", tk.END)
         parsed = self.parse(text)
         self.text.delete("1.0", tk.END)
         self.text.insert(tk.END, render(parsed))
+        self.save_parsed_creature(parsed)
 
     def parse(self, text: str) -> dict:
         r = {field: "" for field in OUTPUT_FIELDS}
         text = re.sub(r"\r\n", "\n", text)
         text = re.sub(r"\n+", "\n", text)
 
-        # --- NAME ---
+        # --= FORMAL NAME ---
         name_match = re.match(r"^(.+)", text)
         if name_match:
-            r["Name"] = name_match.group(1).strip()
+            r["Formal Name"] = name_match.group(1).strip()
+
+        # --- NAME ---
+        name_match = re.findall(r"^(.+)\sCR\s+([\d/]+)", text, re.MULTILINE)
+        if name_match:
+            r["Name"] = name_match[0][0].strip()
 
         # --- CR / XP ---
         cr_match = re.search(r"CR\s+([\d/]+)", text, re.IGNORECASE)
