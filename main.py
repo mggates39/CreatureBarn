@@ -181,7 +181,9 @@ class CreatureBarn:
         self.app = CreatureList(self.newWindow)
 
     def save_parsed_creature(self, parsed):
-        pass
+        self.newWindow = tk.Toplevel(self.root)
+        self.app = CreatureForm(self.newWindow)
+        self.app.populate_creature(parsed)
 
     def load(self):
         path = filedialog.askopenfilename(filetypes=[("Text Files", "*.txt")])
@@ -214,12 +216,14 @@ class CreatureBarn:
         name_match = re.findall(r"^(.+)\sCR\s+([\d/]+)", text, re.MULTILINE)
         if name_match:
             r["Name"] = name_match[0][0].strip()
+            if r["Formal Name"] == '':
+                r["Formal Name"] = r["Name"]
 
         # --- CR / XP ---
         cr_match = re.search(r"CR\s+([\d/]+)", text, re.IGNORECASE)
         xp_match = re.search(r"XP\s+([\d,]+)", text, re.IGNORECASE)
         if cr_match:
-            r["CR"] = f"CR {cr_match.group(1)}"
+            r["CR"] = f"{cr_match.group(1)}"
         if xp_match:
             r["XP"] = xp_match.group(1)
 

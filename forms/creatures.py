@@ -2,7 +2,7 @@ from tkinter import *
 from tkinter import ttk
 from widgets.PairTupleCombobox import PairTupleCombobox
 from database import SessionLocal
-from models import Creature, CreatureLanguages
+from models import Creature, CreatureLanguages, CreatureFeats, CreatureSkills
 import re
 
 alignment_tuples = [ ('LG', 'Lawful Good'), ('NG', 'Neutral Good'), ('CG', 'Chaotic Good'),
@@ -177,11 +177,11 @@ class CreatureForm:
         combat_maneuver_defense_entry = ttk.Entry(mainframe, width=4, textvariable=self.combat_maneuver_defense)
         combat_maneuver_defense_entry.grid(row=21, column=5, sticky=W)
 
-        ttk.Label(mainframe, text="Feats").grid(row=22, column=0, sticky=W)
+        ttk.Label(mainframe, text="Feats").grid(row=22, column=0, sticky=NW)
         self.feats_entry = Text(mainframe, width=30, height=1)
         self.feats_entry.grid(row=22, column=1, sticky=W)
 
-        ttk.Label(mainframe, text="Skills").grid(row=23, column=0, sticky=W)
+        ttk.Label(mainframe, text="Skills").grid(row=23, column=0, sticky=NW)
         self.skills_entry = Text(mainframe, width=30, height=1)
         self.skills_entry.grid(row=23, column=1, sticky=W)
 
@@ -195,7 +195,7 @@ class CreatureForm:
         self.language_entry.grid(row=26, column=1, columnspan=3, sticky=W)
 
 
-        ttk.Button(mainframe, text='load', command=lambda: self.on_load(1)).grid(row=27, column=0, sticky=W)
+        ttk.Button(mainframe, text='load').grid(row=27, column=0, sticky=W)
 
         root.columnconfigure(0, weight=1)
         root.rowconfigure(0, weight=1)
@@ -203,11 +203,9 @@ class CreatureForm:
         for child in mainframe.winfo_children():
             child.grid_configure(padx=5, pady=5)
 
-    def on_load(self, creature_id):
+    def on_load(self, creature):
         try:
-            db = SessionLocal()
-            self.creature_id = creature_id
-            self.creature = db.query(Creature).filter(Creature.id == creature_id).first()
+            self.creature = creature
             self.formal_name.set(getattr(self.creature, 'formal_name'))
             self.common_name.set(getattr(self.creature, 'common_name'))
             self.challenge_rating.set(getattr(self.creature, 'challenge_rating'))
@@ -243,41 +241,73 @@ class CreatureForm:
             for language in self.creature.languages:
                 self.language_entry.insert(END, getattr(language, 'language') + "\n")
 
+            self.feats_entry.delete("1.0", END)
+            self.feats_entry['height'] = len(self.creature.feats)
+            for feat in self.creature.feats:
+                self.feats_entry.insert(END, getattr(feat, 'feat') + "\n")
+
+            self.skills_entry.delete("1.0", END)
+            self.skills_entry['height'] = len(self.creature.skills)
+            for skill in self.creature.skills:
+                self.skills_entry.insert(END, getattr(skill, 'skill') + " " + getattr(skill, 'modifier') + "\n")
+
 
         except ValueError:
             pass
 
     def populate_creature(self, parsed_data):
-        db = SessionLocal()
-        creature = Creature(db)
-        creature.formal_name = parsed_data['Formal Name']
-        creature.common_name = parsed_data['Name']
-        creature.challenge_rating = parsed_data['CR']
-        creature.experience_points = parsed_data['EP']
-        creature.alignment = parsed_data['Alignment']
-        creature.size = parsed_data['Size']
-        type_sub_type = parsed_data['Type/(sub-type)']
-        matches = re.match("(.+)(\\(.+\\))*", type_sub_type)
+        creature = Creature()
+        creature.formal_name = parsed_data.get('Formal Name','')
+        creature.common_name = parsed_data.get('Name','')
+        creature.challenge_rating = parsed_data.get('CR','')
+        creature.experience_points = parsed_data.get('XP','')
+        creature.alignment = parsed_data.get('Alignment','')
+        creature.size = parsed_data.get('Size','')
+        type_sub_type = parsed_data.get('Type/(sub-type)','')
+        matches = re.match("(.+) (\\((.+)\\))", type_sub_type)
         if matches:
             creature.type = matches.group(1)
-            if matches.group(2):
-                creature.sub_type = matches.group(2)
+            if matches.group(3):
+                creature.sub_type = matches.group(3)
+        else:
+            matches = re.match("(.+)", type_sub_type)
+            if matches:
+                creature.type = matches.group(1)
 
-        creature.fortitude = parsed_data['Fort']
-        creature.reflexes = parsed_data['Ref']
-        creature.will = parsed_data['Will']
-        creature.strength = parsed_data['STR']
-        creature.dexterity = parsed_data['DEX']
-        creature.constitution = parsed_data['CON']
-        creature.intelligence = parsed_data['INT']
-        creature.wisdom = parsed_data['WIS']
-        creature.charisma = parsed_data['CHA']
+        creature.fortitude = parsed_data.get('Fort','')
+        creature.reflex = parsed_data.get('Ref','')
+        creature.will = parsed_data.get('Will','')
+        creature.strength = parsed_data.get('STR','')
+        creature.dexterity = parsed_data.get('DEX','')
+        creature.constitution = parsed_data.get('CON','')
+        creature.intelligence = parsed_data.get('INT','')
+        creature.wisdom = parsed_data.get('WIS','')
+        creature.charisma = parsed_data.get('CHA','')
+        creature.base_attack = parsed_data.get('BAB','')
+        creature.combat_maneuver_bonus = parsed_data.get('CMB','')
+        creature.combat_maneuver_defense = parsed_data.get('CMD','')
 
         languages = [p.strip() for p in parsed_data['Languages'].split(",") if p.strip()]
         for language in languages:
-            creature_language = CreatureLanguages(db)
+            creature_language = CreatureLanguages()
             creature_language.language = language
             creature.languages.append(creature_language)
+
+        feats = [p.strip() for p in parsed_data['Feats'].split(",") if p.strip()]
+        for feat in feats:
+            creature_feat = CreatureFeats()
+            creature_feat.feat = feat
+            creature.feats.append(creature_feat)
+
+        skills = [p.strip() for p in parsed_data['Skills'].split(",") if p.strip()]
+        for skill in skills:
+            creature_skill = CreatureSkills()
+            parts = skill.split("+")
+            creature_skill.skill = parts[0].strip()
+            creature_skill.modifier = "+" + parts[1].strip()
+            creature.skills.append(creature_skill)
+
+        self.on_load(creature)
 
 class CreatureList:
 
@@ -326,9 +356,9 @@ class CreatureList:
             print(formal_name)
             db = SessionLocal()
             self.creature = db.query(Creature).filter(Creature.formal_name == formal_name).first()
-            creature_id = self.creature.id
+            self.creature_id = self.creature.id
             creature_form = CreatureForm(self.root)
-            creature_form.on_load(creature_id)
+            creature_form.on_load(self.creature)
         else:
             print("No item selected")
 
