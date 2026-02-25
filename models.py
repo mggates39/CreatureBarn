@@ -9,6 +9,7 @@ class Creature(Base):
     formal_name = Column(String)
     common_name = Column(String)
     challenge_rating = Column(String)
+    description = Column(String)
     experience_points = Column(String)
     alignment = Column(String)
     size = Column(String)
@@ -20,17 +21,17 @@ class Creature(Base):
     level = Column(String)
     initiative = Column(String)
     perception_modifier = Column(String)
-    base_armor_class = Column(Integer)
-    touch_armor_class = Column(Integer)
-    flat_footed_armor_class = Column(Integer)
+    base_armor_class = Column(String)
+    touch_armor_class = Column(String)
+    flat_footed_armor_class = Column(String)
     hit_points = Column(Integer)
     hit_dice = Column(String)
     fortitude = Column(Integer)
     reflex = Column(Integer)
     will = Column(Integer)
-    damage_reduction = Column(Integer)
-    spell_resistence = Column(Integer)
-    speed = Column(Integer)
+    damage_reduction = Column(String)
+    spell_resistence = Column(String)
+    speed = Column(String)
     space = Column(String)
     reach = Column(String)
     reach_modifier = Column(String)
@@ -77,7 +78,7 @@ class Creature(Base):
     special_abilities = relationship("CreatureSpecialAbilities", back_populates="creature", cascade="all, delete-orphan")
 
     def __repr__(self):
-        return f"Creature(id={self.id}, formal_name='{self.formal_name}', common_name='{self.common_name}', challenge_rating={self.challenge_rating} )"
+        return "<Creature: {}>".format(self.__dict__)
 
 
 class CreatureSenses(Base):
@@ -90,6 +91,9 @@ class CreatureSenses(Base):
 
     # Relationships
     creature = relationship('Creature', back_populates='senses')
+
+    def __repr__(self):
+        return "<CreatureSenses: {}>".format(self.__dict__)
 
 
 class CreatureAuras(Base):
@@ -105,6 +109,9 @@ class CreatureAuras(Base):
     # Relationships
     creature = relationship('Creature', back_populates='auras')
 
+    def __repr__(self):
+        return "<CreatureAuras: {}>".format(self.__dict__)
+
 
 class CreatureACModifiers(Base):
     __tablename__ = 'creature_ac_modifiers'
@@ -118,6 +125,9 @@ class CreatureACModifiers(Base):
     # Relationships
     creature = relationship('Creature', back_populates='ac_modifiers')
 
+    def __repr__(self):
+        return "<CreatureACModifiers: {}>".format(self.__dict__)
+
 class CreatureDamageReductionModifiers(Base):
     __tablename__ = 'creature_damage_modifiers'
     id = Column(Integer, primary_key=True)
@@ -129,6 +139,9 @@ class CreatureDamageReductionModifiers(Base):
 
     # Relationships
     creature = relationship('Creature', back_populates='dr_modifiers')
+
+    def __repr__(self):
+        return "<CreatureDamageReductionModifiers: {}>".format(self.__dict__)
 
 
 class CreatureSpellResistenceModifiers(Base):
@@ -143,6 +156,9 @@ class CreatureSpellResistenceModifiers(Base):
     # Relationships
     creature = relationship('Creature', back_populates='sr_modifiers')
 
+    def __repr__(self):
+        return "<CreatureSpellResistenceModifiers: {}>".format(self.__dict__)
+
 
 class CreatureWeaknesses(Base):
     __tablename__ = 'creature_weaknesses'
@@ -154,6 +170,9 @@ class CreatureWeaknesses(Base):
 
     # Relationships
     creature = relationship('Creature', back_populates='weaknesses')
+
+    def __repr__(self):
+        return "<CreatureWeaknesses: {}>".format(self.__dict__)
 
 
 class CreatureImmuneModifiers(Base):
@@ -167,6 +186,9 @@ class CreatureImmuneModifiers(Base):
     # Relationships
     creature = relationship('Creature', back_populates='immune_modifiers')
 
+    def __repr__(self):
+        return "<CreatureImmuneModifiers: {}>".format(self.__dict__)
+
 
 class CreatureDefenseAbilities(Base):
     __tablename__ = 'creature_defensive_abilities'
@@ -178,6 +200,9 @@ class CreatureDefenseAbilities(Base):
 
     # Relationships
     creature = relationship('Creature', back_populates='defensive_abilities')
+
+    def __repr__(self):
+        return "<CreatureDefenseAbilities: {}>".format(self.__dict__)
 
 
 class CreatureSpeedModifiers(Base):
@@ -192,6 +217,9 @@ class CreatureSpeedModifiers(Base):
 
     # Relationships
     creature = relationship('Creature', back_populates='speed_modifiers')
+
+    def __repr__(self):
+        return "<CreatureSpeedModifiers: {}>".format(self.__dict__)
 
 
 class CreatureMeleeAttacks(Base):
@@ -208,6 +236,9 @@ class CreatureMeleeAttacks(Base):
     # Relationships
     creature = relationship('Creature', back_populates='melee_attacks')
 
+    def __repr__(self):
+        return "<CreatureMeleeAttacks: {}>".format(self.__dict__)
+
 
 class CreatureRangedAttacks(Base):
     __tablename__ = 'creature_ranged_attacks'
@@ -222,6 +253,9 @@ class CreatureRangedAttacks(Base):
 
     # Relationships
     creature = relationship('Creature', back_populates='ranged_attacks')
+
+    def __repr__(self):
+        return "<CreatureRangedAttacks: {}>".format(self.__dict__)
 
 
 class CreatureSpecialAttacks(Base):
@@ -238,6 +272,9 @@ class CreatureSpecialAttacks(Base):
     # Relationships
     creature = relationship('Creature', back_populates='special_attacks')
 
+    def __repr__(self):
+        return "<CreatureSpecialAttacks: {}>".format(self.__dict__)
+
 
 class CreatureSpellLikeAbilities(Base):
     __tablename__ = 'creature_spell_like_abilities'
@@ -251,6 +288,9 @@ class CreatureSpellLikeAbilities(Base):
 
     # Relationships
     creature = relationship('Creature', back_populates='spell_like_abilities')
+
+    def __repr__(self):
+        return "<CreatureSpellLikeAbilities: {}>".format(self.__dict__)
 
 
 class CreatureKnownSpells(Base):
@@ -267,6 +307,9 @@ class CreatureKnownSpells(Base):
     # Relationships
     creature = relationship('Creature', back_populates='known_spells')
 
+    def __repr__(self):
+        return "<CreatureKnownSpells: {}>".format(self.__dict__)
+
 
 class CreaturePreparedSpells(Base):
     __tablename__ = 'creature_prepared_spells'
@@ -281,6 +324,9 @@ class CreaturePreparedSpells(Base):
     # Relationships
     creature = relationship('Creature', back_populates='prepared_spells')
 
+    def __repr__(self):
+        return "<CreaturePreparedSpells: {}>".format(self.__dict__)
+
 
 class CreatureFeats(Base):
     __tablename__ = 'creature_feats'
@@ -293,18 +339,24 @@ class CreatureFeats(Base):
     # Relationships
     creature = relationship('Creature', back_populates='feats')
 
+    def __repr__(self):
+        return "<CreatureFeats: {}>".format(self.__dict__)
+
 
 class CreatureSkills(Base):
     __tablename__ = 'creature_skills'
     id = Column(Integer, primary_key=True)
     skill = Column(String)
-    modifier = Column(Integer)
+    modifier = Column(String)
 
     # Foreign key to Creatures
     creature_id = Column(Integer, ForeignKey('creatures.id'))
 
     # Relationships
     creature = relationship('Creature', back_populates='skills')
+
+    def __repr__(self):
+        return "<CreatureSkills: {}>".format(self.__dict__)
 
 
 class CreatureLanguages(Base):
@@ -318,6 +370,9 @@ class CreatureLanguages(Base):
     # Relationships
     creature = relationship('Creature', back_populates='languages')
 
+    def __repr__(self):
+        return "<CreatureLanguages: {}>".format(self.__dict__)
+
 
 class CreatureSpecialQualities(Base):
     __tablename__ = 'creature_special_qualities'
@@ -329,6 +384,9 @@ class CreatureSpecialQualities(Base):
 
     # Relationships
     creature = relationship('Creature', back_populates='special_qualities')
+
+    def __repr__(self):
+        return "<CreatureSpecialQualities: {}>".format(self.__dict__)
 
 
 class CreatureSpecialAbilities(Base):
@@ -343,3 +401,6 @@ class CreatureSpecialAbilities(Base):
 
     # Relationships
     creature = relationship('Creature', back_populates='special_abilities')
+
+    def __repr__(self):
+        return "<CreatureSpecialAbilities: {}>".format(self.__dict__)
