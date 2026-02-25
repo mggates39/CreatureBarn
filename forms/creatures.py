@@ -100,12 +100,36 @@ class CreatureForm:
         ttk.Label(mainframe, text="PM").grid(row=10, column=0, sticky=W)
         self.perception_modifier = StringVar()
         perception_modifier_entry = ttk.Entry(mainframe, width=16, textvariable=self.perception_modifier)
-        perception_modifier_entry.grid(row=9, column=1, sticky=W)
+        perception_modifier_entry.grid(row=10, column=1, sticky=W)
 
         ttk.Label(mainframe, text="Senses").grid(row=11, column=0, sticky=W)
+        self.senses_entry = Text(mainframe, width=30, height=1)
+        self.senses_entry.grid(row=11, column=1, columnspan=5, sticky=W)
+
         ttk.Label(mainframe, text="Auras").grid(row=12, column=0, sticky=W)
+        self.auras_entry = Text(mainframe, width=40, height=1)
+        self.auras_entry.grid(row=12, column=1, columnspan=5, sticky=W)
+
         ttk.Label(mainframe, text="AC").grid(row=13, column=0, sticky=W)
+        self.base_ac = StringVar()
+        base_ac_entry = ttk.Entry(mainframe, width=4, textvariable=self.base_ac)
+        base_ac_entry.grid(row=13, column=1, sticky=W)
+
+        ttk.Label(mainframe, text="Touch").grid(row=13, column=2, sticky=W)
+        self.touch_ac = StringVar()
+        touch_ac_entry = ttk.Entry(mainframe, width=4, textvariable=self.touch_ac)
+        touch_ac_entry.grid(row=13, column=3, sticky=W)
+
+        ttk.Label(mainframe, text="Flat-Footed").grid(row=13, column=4, sticky=W)
+        self.flat_footed_ac = StringVar()
+        flat_footed_ac_entry = ttk.Entry(mainframe, width=4, textvariable=self.flat_footed_ac)
+        flat_footed_ac_entry.grid(row=13, column=5, sticky=W)
+
         ttk.Label(mainframe, text="HP").grid(row=14, column=0, sticky=W)
+        self.hit_points = StringVar()
+        hit_points_entry = ttk.Entry(mainframe, width=20, textvariable=self.hit_points)
+        hit_points_entry.grid(row=14, column=1, sticky=W)
+
 
         ttk.Label(mainframe, text="Fort").grid(row=15, column=0, sticky=W)
         self.fortitude = StringVar()
@@ -179,11 +203,11 @@ class CreatureForm:
 
         ttk.Label(mainframe, text="Feats").grid(row=22, column=0, sticky=NW)
         self.feats_entry = Text(mainframe, width=30, height=1)
-        self.feats_entry.grid(row=22, column=1, sticky=W)
+        self.feats_entry.grid(row=22, column=1, columnspan=5, sticky=W)
 
         ttk.Label(mainframe, text="Skills").grid(row=23, column=0, sticky=NW)
         self.skills_entry = Text(mainframe, width=30, height=1)
-        self.skills_entry.grid(row=23, column=1, sticky=W)
+        self.skills_entry.grid(row=23, column=1, columnspan=5, sticky=W)
 
         ttk.Label(mainframe, text="Racial Modifiers").grid(row=24, column=0, sticky=W)
         self.racial_modifiers = StringVar()
@@ -192,7 +216,7 @@ class CreatureForm:
 
         ttk.Label(mainframe, text="Languages").grid(row=26, column=0, sticky=NW)
         self.language_entry = Text(mainframe, width=30, height=1)
-        self.language_entry.grid(row=26, column=1, columnspan=3, sticky=W)
+        self.language_entry.grid(row=26, column=1, columnspan=5, sticky=W)
 
 
         ttk.Button(mainframe, text='save', command=self.on_save).grid(row=0, column=0, sticky=W)
@@ -220,6 +244,10 @@ class CreatureForm:
             self.level.set(getattr(self.creature, 'level'))
             self.initiative.set(getattr(self.creature, 'initiative'))
             self.perception_modifier.set(getattr(self.creature, 'perception_modifier'))
+            self.base_ac.set(getattr(self.creature, 'base_armor_class'))
+            self.touch_ac.set(getattr(self.creature, 'touch_armor_class'))
+            self.flat_footed_ac.set(getattr(self.creature, 'flat_footed_armor_class'))
+            self.hit_points.set(getattr(self.creature, 'hit_points') + " (" + getattr(self.creature, 'hit_dice') + ")")
             self.fortitude.set(getattr(self.creature, 'fortitude'))
             self.reflex.set(getattr(self.creature, 'reflex'))
             self.will.set(getattr(self.creature, 'will'))
@@ -240,6 +268,16 @@ class CreatureForm:
             self.language_entry['height'] = len(self.creature.languages)
             for language in self.creature.languages:
                 self.language_entry.insert(END, getattr(language, 'language') + "\n")
+
+            self.auras_entry.delete("1.0", END)
+            self.auras_entry['height'] = len(self.creature.auras)
+            for aura in self.creature.auras:
+                self.auras_entry.insert(END, getattr(aura, 'aura') + " (" + getattr(aura, 'radius') + ", " + getattr(aura, 'save_role') + ")\n")
+
+            self.senses_entry.delete("1.0", END)
+            self.senses_entry['height'] = len(self.creature.senses)
+            for sense in self.creature.senses:
+                self.senses_entry.insert(END, getattr(sense, 'sense') + "\n")
 
             self.feats_entry.delete("1.0", END)
             self.feats_entry['height'] = len(self.creature.feats)
