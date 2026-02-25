@@ -182,6 +182,48 @@ def transition_parse_tactics(fsm_obj):
         tactics = ''
     fsm_obj.creature.tactics = tactics
 
+def transition_parse_strength(fsm_obj):
+    match_strength = re.findall(r"(Str|Dex|Con|Int|Wis|Cha)\s*([+\-]?\d+)", fsm_obj.current_line, re.IGNORECASE)
+    for stat, val in match_strength:
+        stat_name = stat.capitalize()
+        if stat_name == "Str":
+            fsm_obj.creature.strength = val
+        elif stat_name == "Dex":
+            fsm_obj.creature.dexterity = val
+        elif stat_name == "Con":
+            fsm_obj.creature.constitution = val
+        elif stat_name == "Int":
+            fsm_obj.creature.intelligence = val
+        elif stat_name == "Wis":
+            fsm_obj.creature.wisdom = val
+        elif stat_name == "Cha":
+            fsm_obj.creature.charisma = val
+
+def transition_parse_base_attack(fsm_obj):
+    match_attack = re.findall(r"(Base Atk|CMB|CMD)\s*([+\-]?\d+)", fsm_obj.current_line, re.IGNORECASE)
+    for stat, val in match_attack:
+        stat_name = stat.capitalize()
+        if stat_name == "Base atk":
+            fsm_obj.creature.base_attack = val
+        elif stat_name == "Cmb":
+            fsm_obj.creature.combat_maneuver_bonus = val
+        elif stat_name == "Cmd":
+            fsm_obj.creature.combat_maneuver_defense = val
+
+def transition_parse_feats(fsm_obj):
+    feat_match = re.search(r"Feats\s+(.+)", fsm_obj.current_line, re.IGNORECASE)
+    if feat_match:
+        for feat in feat_match.group(1).split(","):
+            creature_feat = CreatureFeats()
+            creature_feat.feat = feat.strip()
+            fsm_obj.creature.feats.append(creature_feat)
+
+def transition_parse_skills(fsm_obj):
+    pass
+
+def transition_parse_languages(fsm_obj):
+    pass
+
 T_SKIP = transition_skip
 T_PARSE_FORMAL_NAME = transition_parse_formal_name
 T_PARSE_COMMON_NAME = transition_parse_common_name
@@ -208,6 +250,11 @@ T_PARSE_SLA_SPELLS = transition_parse_sla_spells
 T_PARSE_SK_SPELLS = transition_parse_sk_spells
 T_PARSE_SP_SPELLS = transition_parse_sp_spells
 T_PARSE_TACTICS = transition_parse_tactics
+T_PARSE_STRENGTH = transition_parse_strength
+T_PARSE_BASE_ATTACK = transition_parse_base_attack
+T_PARSE_FEATS = transition_parse_feats
+T_PARSE_SKILLS = transition_parse_skills
+T_PARSE_LANGUAGES = transition_parse_languages
 
 S_INITIAL_LOAD = "STATE: INITIAL FILE"
 S_FOUND_FORMAL_NAME = "STATE: FOUND FORMAL NAME"
@@ -327,6 +374,9 @@ FSM_MAP = [
     {'src': S_FOUND_TACTICS, 'dst': S_FOUND_MORE_TACTICS, 'cond': r"^(.*)", 'callback': T_PARSE_TACTICS},
     {'src': S_FOUND_MORE_TACTICS, 'dst': S_FOUND_STATISTICS, 'cond': r"^STATISTICS", 'callback': T_SKIP},
     {'src': S_FOUND_MORE_TACTICS, 'dst': S_FOUND_MORE_TACTICS, 'cond': r"^(.*)", 'callback': T_PARSE_TACTICS},
+    {'src': S_FOUND_STATISTICS, 'dst': S_FOUND_STRENGTH, 'cond': r"^Str\s(\d+)", 'callback': T_PARSE_STRENGTH},
+    {'src': S_FOUND_STRENGTH, 'dst': S_FOUND_BASE_ATTACK, 'cond': r"^Base Atk\s", 'callback': T_PARSE_BASE_ATTACK},
+    {'src': S_FOUND_BASE_ATTACK, 'dst': S_FOUND_FEATS, 'cond': r"^Feats\s", 'callback': T_PARSE_FEATS},
 ]
 
 for map_item in FSM_MAP:
