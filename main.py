@@ -184,6 +184,11 @@ class CreatureBarn:
         self.app = CreatureForm(self.newWindow)
         self.app.populate_creature(parsed)
 
+    def show_parsed_creature(self, creature):
+        self.newWindow = tk.Toplevel(self.root)
+        self.app = CreatureForm(self.newWindow)
+        self.app.on_load(creature)
+
     def load(self):
         path = filedialog.askopenfilename(filetypes=[("Text Files", "*.txt")])
         if not path:
@@ -195,7 +200,7 @@ class CreatureBarn:
         parsed = self.parse(raw)
         self.text.delete("1.0", tk.END)
         self.text.insert(tk.END, render(parsed))
-        self.save_parsed_creature(parsed)
+        self.show_parsed_creature(parser.creature)
 
     def parse_screen(self):
         text = self.text.get("1.0", tk.END)
@@ -205,7 +210,7 @@ class CreatureBarn:
         parsed = self.parse(text)
         self.text.delete("1.0", tk.END)
         self.text.insert(tk.END, render(parsed))
-        self.save_parsed_creature(parsed)
+        self.show_parsed_creature(parser.creature)
 
     def parse(self, text: str) -> dict:
         r = {field: "" for field in OUTPUT_FIELDS}
