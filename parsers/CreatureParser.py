@@ -65,17 +65,25 @@ def transition_parse_race(fsm_obj):
     fsm_obj.creature.race = " ".join(parts[:-2])
 
 def transition_parse_initiative(fsm_obj):
-    init_match = re.search(r"Init\s+([^\n;]+)", fsm_obj.current_line, re.IGNORECASE)
-    fsm_obj.creature.initiative = init_match.group(1).strip() if init_match else ""
+    parts = fsm_obj.current_line.split(';')
+    for part in parts:
+        init_match = re.search(r"Init\s+([^\n;]+)", part, re.IGNORECASE)
+        if init_match:
+            fsm_obj.creature.initiative = init_match.group(1).strip()
 
-    senses_match = re.search(r"Senses\s+(.*);\s+Perception ([+\d]+)", fsm_obj.current_line, re.IGNORECASE)
-    if senses_match:
-        fsm_obj.creature.perception_modifier = senses_match.group(2).strip()
-        senses = _normalize_case(senses_match.group(1)).split(",")
-        for sense in senses:
-            creature_senses = CreatureSenses()
-            creature_senses.sense = sense
-            fsm_obj.creature.senses.append(creature_senses)
+        perceptions_match = re.search(r"Perception ([+\d]+)", part, re.IGNORECASE)
+        if perceptions_match:
+            fsm_obj.creature.perception_modifier = perceptions_match.group(1).strip()
+
+        senses_match = re.search(r"Senses\s+(.*)", part, re.IGNORECASE)
+        if senses_match:
+            senses = _normalize_case(senses_match.group(1)).split(",")
+            for sense in senses:
+                creature_senses = CreatureSenses()
+                creature_senses.sense = sense
+                fsm_obj.creature.senses.append(creature_senses)
+
+        transition_parse_auras(fsm_obj)
 
 def transition_parse_auras(fsm_obj):
     aura_match = re.search(r"Aura\s+(.+)", fsm_obj.current_line)
