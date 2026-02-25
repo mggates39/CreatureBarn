@@ -195,7 +195,7 @@ class CreatureForm:
         self.language_entry.grid(row=26, column=1, columnspan=3, sticky=W)
 
 
-        ttk.Button(mainframe, text='load').grid(row=27, column=0, sticky=W)
+        ttk.Button(mainframe, text='save', command=self.on_save).grid(row=0, column=0, sticky=W)
 
         root.columnconfigure(0, weight=1)
         root.rowconfigure(0, weight=1)
@@ -251,9 +251,18 @@ class CreatureForm:
             for skill in self.creature.skills:
                 self.skills_entry.insert(END, getattr(skill, 'skill') + " " + getattr(skill, 'modifier') + "\n")
 
+            # print(self.creature)
 
         except ValueError:
             pass
+
+    def on_save(self):
+        db = SessionLocal()
+        if not self.creature_id:
+            db.add(self.creature)
+        db.commit()
+        db.refresh(self.creature)  # Refresh to get generated values (id, created_at)
+        self.creature_id = self.creature.id
 
     def populate_creature(self, parsed_data):
         creature = Creature()
@@ -324,7 +333,7 @@ class CreatureList:
         self.creature_list = Listbox(mainframe, height=10, listvariable=self.creature_choices_var)
         self.creature_list.grid(row=0, column=0, sticky="nsew")
 
-        load_button = ttk.Button(mainframe, text="load", command=lambda: self.show_creature())
+        load_button = ttk.Button(mainframe, text="load", command=self.show_creature)
         load_button.grid(row=1, column=0, sticky="w")
         new_button = ttk.Button(mainframe, text="New")
         new_button.grid(row=1, column=2, sticky="e")
