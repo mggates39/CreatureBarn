@@ -116,7 +116,7 @@ class CreatureAuras(Base):
 class CreatureACModifiers(Base):
     __tablename__ = 'creature_ac_modifiers'
     id = Column(Integer, primary_key=True)
-    modifier_amount = Column(Integer)
+    modifier_amount = Column(String)
     modifier_type = Column(String)
 
     # Foreign key to Creatures
