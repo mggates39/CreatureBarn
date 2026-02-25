@@ -199,6 +199,9 @@ class CreatureBarn:
 
     def parse_screen(self):
         text = self.text.get("1.0", tk.END)
+        parser = ParseCreature(text)
+        parser.run()
+
         parsed = self.parse(text)
         self.text.delete("1.0", tk.END)
         self.text.insert(tk.END, render(parsed))
