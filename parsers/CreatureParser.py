@@ -1,4 +1,4 @@
-from models import Creature, CreatureLanguages, CreatureFeats, CreatureSkills, CreatureSenses
+from models import Creature, CreatureLanguages, CreatureFeats, CreatureSkills, CreatureSenses, CreatureAuras
 import re
 
 def _normalize_case(text: str) -> str:
@@ -62,7 +62,7 @@ def transition_parse_race(fsm_obj):
     parts = fsm_obj.current_line.split(' ')
     fsm_obj.creature.level = parts[-1]
     fsm_obj.creature.char_class = parts[-2]
-    fsm_obj.creature.race = parts[:-2].join(' ')
+    fsm_obj.creature.race = " ".join(parts[:-2])
 
 def transition_parse_initiative(fsm_obj):
     init_match = re.search(r"Init\s+([^\n;]+)", fsm_obj.current_line, re.IGNORECASE)
@@ -70,7 +70,6 @@ def transition_parse_initiative(fsm_obj):
 
     senses_match = re.search(r"Senses\s+(.*);\s+Perception ([+\d]+)", fsm_obj.current_line, re.IGNORECASE)
     if senses_match:
-        print(senses_match.groups())
         fsm_obj.creature.perception_modifier = senses_match.group(2).strip()
         senses = _normalize_case(senses_match.group(1)).split(",")
         for sense in senses:
@@ -79,9 +78,17 @@ def transition_parse_initiative(fsm_obj):
             fsm_obj.creature.senses.append(creature_senses)
 
 def transition_parse_auras(fsm_obj):
-    aura_match = re.search(r"Aura\s+([^\n]+)", text, re.IGNORECASE)
-    r["Aura"] = _normalize_aura(aura_match.group(1)) if aura_match else ""
-    pass
+    aura_match = re.search(r"Aura\s+(.+)", fsm_obj.current_line)
+    if aura_match:
+        aura_details = re.findall(r"([, ]*(.+?)\s\((.+?),\s(.+?)\))+?", aura_match.group(1), re.IGNORECASE)
+        if aura_details:
+            print(len(aura_details), ' ', aura_details)
+            for aura_detail in aura_details:
+                creature_auras = CreatureAuras()
+                creature_auras.aura = aura_detail[1].strip()
+                creature_auras.radius = aura_detail[2].strip()
+                creature_auras.save_role = aura_detail[3].strip()
+                fsm_obj.creature.auras.append(creature_auras)
 
 T_SKIP = transition_skip
 T_PARSE_FORMAL_NAME = transition_parse_formal_name
@@ -91,6 +98,7 @@ T_PARSE_EXPERIENCE_POINTS = transition_parse_experience_points
 T_PARSE_ALIGNMENT = transition_parse_alignment
 T_PARSE_RACE = transition_parse_race
 T_PARSE_INITIATIVE = transition_parse_initiative
+T_PARSE_AURAS = transition_parse_auras
 
 S_INITIAL_LOAD = "STATE: INITIAL FILE"
 S_FOUND_FORMAL_NAME = "STATE: FOUND FORMAL NAME"
@@ -100,6 +108,7 @@ S_FOUND_XP = "STATE: FOUND XP"
 S_FOUND_RACE = "STATE: FOUNDE RACE"
 S_FOUND_ALIGNMENT = "STATE: FOUND ALIGNMENT"
 S_FOUND_INITIATIVE = "STATE: FOUND INITIATIVE"
+S_FOUND_AURAS = "STATE: FOUND AURAS"
 S_FOUND_DEFENSE = "STATE: FOUND DEFENSE"
 S_FOUND_AC = "STATE: FOUND AC"
 S_FOUND_HP = "STATE: FOUND HP"
@@ -148,7 +157,10 @@ FSM_MAP = [
     {'src': S_FOUND_XP, 'dst': S_FOUND_ALIGNMENT, 'cond': r"^([LNCEG]{1,2})\s", 'callback': T_PARSE_ALIGNMENT}, #10
     {'src': S_FOUND_XP, 'dst': S_FOUND_RACE, 'cond': r"^(.+)", 'callback': T_PARSE_RACE}, #11
     {'src': S_FOUND_RACE, 'dst': S_FOUND_ALIGNMENT, 'cond': r"^([LNCEG]{1,2})\s", 'callback': T_PARSE_ALIGNMENT},  # 12
-    {'src': S_FOUND_ALIGNMENT, 'dst': S_FOUND_INITIATIVE, 'cond': r"Init\s+([^\n;]+)", 'callback': T_PARSE_INITIATIVE},  # 12
+    {'src': S_FOUND_ALIGNMENT, 'dst': S_FOUND_INITIATIVE, 'cond': r"^Init\s+([^\n;]+)", 'callback': T_PARSE_INITIATIVE},  # 13
+    {'src': S_FOUND_INITIATIVE, 'dst': S_FOUND_AURAS, 'cond': r"^Aura\s+([^\n;]+)", 'callback': T_PARSE_AURAS}, # 14
+    {'src': S_FOUND_INITIATIVE, 'dst': S_FOUND_DEFENSE, 'cond': r"^DEFENSE", 'callback': T_SKIP}, # 15
+    {'src': S_FOUND_AURAS, 'dst': S_FOUND_DEFENSE, 'cond': r"^DEFENSE", 'callback': T_SKIP},  # 16
 
 ]
 
