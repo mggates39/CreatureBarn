@@ -8,6 +8,7 @@ from tkinter import filedialog
 from pathlib import Path
 import re
 from forms.creatures import CreatureForm, CreatureList
+from parsers.CreatureParser import ParseCreature
 
 
 OUTPUT_FIELDS = [
@@ -175,8 +176,6 @@ class CreatureBarn:
         self.app = CreatureForm(self.newWindow)
 
     def show_creature(self):
-        print('Button B is pressed!')
-
         self.newWindow = tk.Toplevel(self.root)
         self.app = CreatureList(self.newWindow)
 
@@ -190,12 +189,15 @@ class CreatureBarn:
         if not path:
             return
         raw = Path(path).read_text(encoding="utf-8")
+        parser = ParseCreature(raw)
+        parser.run()
+
         parsed = self.parse(raw)
         self.text.delete("1.0", tk.END)
         self.text.insert(tk.END, render(parsed))
         self.save_parsed_creature(parsed)
 
-    def parse_screen(self) -> dict:
+    def parse_screen(self):
         text = self.text.get("1.0", tk.END)
         parsed = self.parse(text)
         self.text.delete("1.0", tk.END)
@@ -344,7 +346,7 @@ class CreatureBarn:
             stat_text = stat_section.group(1)
             attr_match = re.search(
                 r"Str (\d+), Dex (\d+), Con (\d+), Int (\d+), Wis (\d+), Cha (\d+)",
-                stat_text,
+                stat_text, re.IGNORECASE
             )
             if attr_match:
                 r["STR"], r["DEX"], r["CON"], r["INT"], r["WIS"], r["CHA"] = (
