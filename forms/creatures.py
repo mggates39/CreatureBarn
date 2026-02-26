@@ -29,203 +29,214 @@ class CreatureForm:
         self.creature_id = 0
 
         root.title("Creature Details")
+        canvas = Canvas(root)
+        canvas.pack(side=LEFT, fill=BOTH, expand=True)
 
-        mainframe = ttk.Frame(root, padding=3, borderwidth=2, relief='raised')
-        mainframe.grid(column=0, row=0, padx=10, pady=10, sticky="nsew")
+        scrollbar = Scrollbar(root, orient=VERTICAL, command=canvas.yview)
+        scrollbar.pack(side=RIGHT, fill=Y)
 
-        ttk.Label(mainframe, text="Formal Name").grid(row=1, column=0, sticky=W)
+        canvas.configure(yscrollcommand=scrollbar.set)
+        mainframe = ttk.Frame(canvas)
+
+        canvas.create_window((0, 0), window=mainframe, anchor="nw")
+        mainframe.bind("<Configure>", lambda e: canvas.configure(scrollregion=canvas.bbox("all")))
+
+        # mainframe = ttk.Frame(root, padding=3, borderwidth=2, relief='raised')
+        # mainframe.grid(column=0, row=0, padx=10, pady=10, sticky="nsew")
+
+        ttk.Label(mainframe, text="Formal Name").grid(row=1, column=0, sticky=E)
         self.formal_name = StringVar()
         formal_name_entry = ttk.Entry(mainframe, width=50, textvariable=self.formal_name)
         formal_name_entry.grid(row=1, column=1, columnspan=3, sticky=W)
 
-        ttk.Label(mainframe, text="Common Name").grid(row=2, column=0, sticky=W)
+        ttk.Label(mainframe, text="Common Name").grid(row=2, column=0, sticky=E)
         self.common_name = StringVar()
         common_name_entry = ttk.Entry(mainframe, width=50, textvariable=self.common_name)
         common_name_entry.grid(row=2, column=1, columnspan=3, sticky=W)
 
-        ttk.Label(mainframe, text="CR").grid(row=2, column=4, sticky=W)
+        ttk.Label(mainframe, text="CR").grid(row=2, column=4, sticky=E)
         self.challenge_rating = StringVar()
         challenge_rating_entry = ttk.Entry(mainframe, width=6, textvariable=self.challenge_rating)
         challenge_rating_entry.grid(row=2, column=5, sticky=W)
 
-        ttk.Label(mainframe, text="XP").grid(row=3, column=0, sticky=W)
+        ttk.Label(mainframe, text="XP").grid(row=3, column=0, sticky=E)
         self.experience_points = StringVar()
         experience_points_entry = ttk.Entry(mainframe, width=10, textvariable=self.experience_points)
         experience_points_entry.grid(row=3, column=1, sticky=W)
 
-        ttk.Label(mainframe, text="Alignment").grid(row=4, column=0, sticky=W)
+        ttk.Label(mainframe, text="Alignment").grid(row=4, column=0, sticky=E)
         self.alignment_entry = PairTupleCombobox(mainframe, p_list_pair_tuple = alignment_tuples, p_default_key = 'N')
         self.alignment_entry.grid(row=4, column=1, sticky=W)
 
-        ttk.Label(mainframe, text="Size").grid(row=5, column=0, sticky=W)
+        ttk.Label(mainframe, text="Size").grid(row=5, column=0, sticky=E)
         self.size = StringVar()
         size_entry = ttk.Combobox(mainframe, values=creature_sizes, textvariable=self.size)
         size_entry.grid(row=5, column=1, sticky=W)
 
-        ttk.Label(mainframe, text="Age").grid(row=6, column=0, sticky=W)
+        ttk.Label(mainframe, text="Age").grid(row=6, column=0, sticky=E)
         self.age = StringVar()
         age_entry = ttk.Entry(mainframe, width=6, textvariable=self.age)
         age_entry.grid(row=6, column=1, sticky=W)
 
-        ttk.Label(mainframe, text="Type").grid(row=7, column=0, sticky=W)
+        ttk.Label(mainframe, text="Type").grid(row=7, column=0, sticky=E)
         self.type = StringVar()
         type_entry = ttk.Entry(mainframe, width=16, textvariable=self.type)
         type_entry.grid(row=7, column=1, sticky=W)
 
-        ttk.Label(mainframe, text=" / Sub-Type").grid(row=7, column=2, sticky=W)
+        ttk.Label(mainframe, text=" / Sub-Type").grid(row=7, column=2, sticky=E)
         self.sub_type = StringVar()
         sub_type_entry = ttk.Entry(mainframe, width=16, textvariable=self.sub_type)
         sub_type_entry.grid(row=7, column=3, sticky=W)
 
-        ttk.Label(mainframe, text="Race").grid(row=8, column=0, sticky=W)
+        ttk.Label(mainframe, text="Race").grid(row=8, column=0, sticky=E)
         self.race = StringVar()
         race_entry = ttk.Entry(mainframe, width=16, textvariable=self.race)
         race_entry.grid(row=8, column=1, sticky=W)
 
-        ttk.Label(mainframe, text="Class").grid(row=8, column=2, sticky=W)
+        ttk.Label(mainframe, text="Class").grid(row=8, column=2, sticky=E)
         self.char_class = StringVar()
         char_class_entry = ttk.Entry(mainframe, width=16, textvariable=self.char_class)
         char_class_entry.grid(row=8, column=3, sticky=W)
 
-        ttk.Label(mainframe, text=" / Level").grid(row=8, column=4, sticky=W)
+        ttk.Label(mainframe, text=" / Level").grid(row=8, column=4, sticky=E)
         self.level = StringVar()
         level_entry = ttk.Entry(mainframe, width=16, textvariable=self.level)
         level_entry.grid(row=8, column=5, sticky=W)
 
-        ttk.Label(mainframe, text="Init").grid(row=9, column=0, sticky=W)
+        ttk.Label(mainframe, text="Init").grid(row=9, column=0, sticky=E)
         self.initiative = StringVar()
         initiative_entry = ttk.Entry(mainframe, width=16, textvariable=self.initiative)
         initiative_entry.grid(row=9, column=1, sticky=W)
 
-        ttk.Label(mainframe, text="PM").grid(row=10, column=0, sticky=W)
+        ttk.Label(mainframe, text="PM").grid(row=10, column=0, sticky=E)
         self.perception_modifier = StringVar()
         perception_modifier_entry = ttk.Entry(mainframe, width=16, textvariable=self.perception_modifier)
         perception_modifier_entry.grid(row=10, column=1, sticky=W)
 
-        ttk.Label(mainframe, text="Senses").grid(row=11, column=0, sticky=W)
+        ttk.Label(mainframe, text="Senses").grid(row=11, column=0, sticky=NE)
         self.senses_entry = Text(mainframe, width=30, height=1)
         self.senses_entry.grid(row=11, column=1, columnspan=5, sticky=W)
 
-        ttk.Label(mainframe, text="Auras").grid(row=12, column=0, sticky=W)
+        ttk.Label(mainframe, text="Auras").grid(row=12, column=0, sticky=NE)
         self.auras_entry = Text(mainframe, width=40, height=1)
         self.auras_entry.grid(row=12, column=1, columnspan=5, sticky=W)
 
-        ttk.Label(mainframe, text="AC").grid(row=13, column=0, sticky=W)
+        ttk.Label(mainframe, text="AC").grid(row=13, column=0, sticky=E)
         self.base_ac = StringVar()
         base_ac_entry = ttk.Entry(mainframe, width=4, textvariable=self.base_ac)
         base_ac_entry.grid(row=13, column=1, sticky=W)
 
-        ttk.Label(mainframe, text="Touch").grid(row=13, column=2, sticky=W)
+        ttk.Label(mainframe, text="Touch").grid(row=13, column=2, sticky=E)
         self.touch_ac = StringVar()
         touch_ac_entry = ttk.Entry(mainframe, width=4, textvariable=self.touch_ac)
         touch_ac_entry.grid(row=13, column=3, sticky=W)
 
-        ttk.Label(mainframe, text="Flat-Footed").grid(row=13, column=4, sticky=W)
+        ttk.Label(mainframe, text="Flat-Footed").grid(row=13, column=4, sticky=E)
         self.flat_footed_ac = StringVar()
         flat_footed_ac_entry = ttk.Entry(mainframe, width=4, textvariable=self.flat_footed_ac)
         flat_footed_ac_entry.grid(row=13, column=5, sticky=W)
 
-        ttk.Label(mainframe, text="HP").grid(row=14, column=0, sticky=W)
+        ttk.Label(mainframe, text="HP").grid(row=14, column=0, sticky=E)
         self.hit_points = StringVar()
         hit_points_entry = ttk.Entry(mainframe, width=20, textvariable=self.hit_points)
         hit_points_entry.grid(row=14, column=1, sticky=W)
 
 
-        ttk.Label(mainframe, text="Fort").grid(row=15, column=0, sticky=W)
+        ttk.Label(mainframe, text="Fort").grid(row=15, column=0, sticky=E)
         self.fortitude = StringVar()
         fortitude_entry = ttk.Entry(mainframe, width=16, textvariable=self.fortitude)
         fortitude_entry.grid(row=15, column=1, sticky=W)
 
-        ttk.Label(mainframe, text="Ref").grid(row=15, column=2, sticky=W)
+        ttk.Label(mainframe, text="Ref").grid(row=15, column=2, sticky=E)
         self.reflex = StringVar()
         reflex_entry = ttk.Entry(mainframe, width=16, textvariable=self.reflex)
         reflex_entry.grid(row=15, column=3, sticky=W)
 
-        ttk.Label(mainframe, text="Will").grid(row=15, column=4, sticky=W)
+        ttk.Label(mainframe, text="Will").grid(row=15, column=4, sticky=E)
         self.will = StringVar()
         will_entry = ttk.Entry(mainframe, width=16, textvariable=self.will)
         will_entry.grid(row=15, column=5, sticky=W)
 
-        ttk.Label(mainframe, text="DR").grid(row=18, column=0, sticky=W)
+        ttk.Label(mainframe, text="DR").grid(row=18, column=0, sticky=E)
         self.damage_reduction = StringVar()
         damage_reduction_entry = ttk.Entry(mainframe, width=16, textvariable=self.damage_reduction)
         damage_reduction_entry.grid(row=18, column=1, sticky=W)
 
-        ttk.Label(mainframe, text="SR").grid(row=19, column=0, sticky=W)
+        ttk.Label(mainframe, text="SR").grid(row=19, column=0, sticky=E)
         self.spell_resistence = StringVar()
         spell_resistence_entry = ttk.Entry(mainframe, width=16, textvariable=self.spell_resistence)
         spell_resistence_entry.grid(row=19, column=1, sticky=W)
 
-        ttk.Label(mainframe, text="STR").grid(row=20, column=0, sticky=W)
+        ttk.Label(mainframe, text="STR").grid(row=20, column=0, sticky=E)
         self.strength = StringVar()
         strength_entry = ttk.Entry(mainframe, width=4, textvariable=self.strength)
         strength_entry.grid(row=20, column=1, sticky=W)
 
-        ttk.Label(mainframe, text="DEX").grid(row=20, column=2, sticky=W)
+        ttk.Label(mainframe, text="DEX").grid(row=20, column=2, sticky=E)
         self.dexterity = StringVar()
         dexterity_entry = ttk.Entry(mainframe, width=4, textvariable=self.dexterity)
         dexterity_entry.grid(row=20, column=3, sticky=W)
 
-        ttk.Label(mainframe, text="CON").grid(row=20, column=4, sticky=W)
+        ttk.Label(mainframe, text="CON").grid(row=20, column=4, sticky=E)
         self.constitution = StringVar()
         constitution_entry = ttk.Entry(mainframe, width=4, textvariable=self.constitution)
         constitution_entry.grid(row=20, column=5, sticky=W)
 
-        ttk.Label(mainframe, text="INT").grid(row=20, column=6, sticky=W)
+        ttk.Label(mainframe, text="INT").grid(row=20, column=6, sticky=E)
         self.intelligence = StringVar()
         intelligence_entry = ttk.Entry(mainframe, width=4, textvariable=self.intelligence)
         intelligence_entry.grid(row=20, column=7, sticky=W)
 
-        ttk.Label(mainframe, text="WIS").grid(row=20, column=8, sticky=W)
+        ttk.Label(mainframe, text="WIS").grid(row=20, column=8, sticky=E)
         self.wisdom = StringVar()
         wisdom_entry = ttk.Entry(mainframe, width=4, textvariable=self.wisdom)
         wisdom_entry.grid(row=20, column=9, sticky=W)
 
-        ttk.Label(mainframe, text="CHA").grid(row=20, column=10, sticky=W)
+        ttk.Label(mainframe, text="CHA").grid(row=20, column=10, sticky=E)
         self.charisma = StringVar()
         charisma_entry = ttk.Entry(mainframe, width=4, textvariable=self.charisma)
         charisma_entry.grid(row=20, column=11, sticky=W)
 
-        ttk.Label(mainframe, text="BAB").grid(row=21, column=0, sticky=W)
+        ttk.Label(mainframe, text="BAB").grid(row=21, column=0, sticky=E)
         self.base_attack = StringVar()
         base_attack_entry = ttk.Entry(mainframe, width=4, textvariable=self.base_attack)
         base_attack_entry.grid(row=21, column=1, sticky=W)
 
-        ttk.Label(mainframe, text="CMB").grid(row=21, column=2, sticky=W)
+        ttk.Label(mainframe, text="CMB").grid(row=21, column=2, sticky=E)
         self.combat_maneuver_bonus = StringVar()
         combat_maneuver_bonus_entry = ttk.Entry(mainframe, width=4, textvariable=self.combat_maneuver_bonus)
         combat_maneuver_bonus_entry.grid(row=21, column=3, sticky=W)
 
-        ttk.Label(mainframe, text="CMD").grid(row=21, column=4, sticky=W)
+        ttk.Label(mainframe, text="CMD").grid(row=21, column=4, sticky=E)
         self.combat_maneuver_defense = StringVar()
         combat_maneuver_defense_entry = ttk.Entry(mainframe, width=4, textvariable=self.combat_maneuver_defense)
         combat_maneuver_defense_entry.grid(row=21, column=5, sticky=W)
 
-        ttk.Label(mainframe, text="Feats").grid(row=22, column=0, sticky=NW)
+        ttk.Label(mainframe, text="Feats").grid(row=22, column=0, sticky=NE)
         self.feats_entry = Text(mainframe, width=30, height=1)
         self.feats_entry.grid(row=22, column=1, columnspan=5, sticky=W)
 
-        ttk.Label(mainframe, text="Skills").grid(row=23, column=0, sticky=NW)
+        ttk.Label(mainframe, text="Skills").grid(row=23, column=0, sticky=NE)
         self.skills_entry = Text(mainframe, width=30, height=1)
         self.skills_entry.grid(row=23, column=1, columnspan=5, sticky=W)
 
-        ttk.Label(mainframe, text="Racial Modifiers").grid(row=24, column=0, sticky=W)
+        ttk.Label(mainframe, text="Racial Modifiers").grid(row=24, column=0, sticky=E)
         self.racial_modifiers = StringVar()
         racial_modifiers_entry = ttk.Entry(mainframe, width=4, textvariable=self.racial_modifiers)
         racial_modifiers_entry.grid(row=24, column=1, sticky=W)
 
-        ttk.Label(mainframe, text="Languages").grid(row=26, column=0, sticky=NW)
+        ttk.Label(mainframe, text="Languages").grid(row=26, column=0, sticky=NE)
         self.language_entry = Text(mainframe, width=30, height=1)
         self.language_entry.grid(row=26, column=1, columnspan=5, sticky=W)
 
 
         ttk.Button(mainframe, text='save', command=self.on_save).grid(row=0, column=0, sticky=W)
 
-        root.columnconfigure(0, weight=1)
-        root.rowconfigure(0, weight=1)
-        mainframe.columnconfigure(2, weight=1)
-        for child in mainframe.winfo_children():
-            child.grid_configure(padx=5, pady=5)
+        # root.columnconfigure(0, weight=1)
+        # root.rowconfigure(0, weight=1)
+        # mainframe.columnconfigure(2, weight=1)
+        # for child in mainframe.winfo_children():
+        #     child.grid_configure(padx=5, pady=5)
 
     def on_load(self, creature):
         try:
