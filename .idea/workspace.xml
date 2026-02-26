@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="71c3a291-103e-4653-a4fd-d79cf3183176" name="Changes" comment="update misc pycharm files">
-      <change afterPath="$PROJECT_DIR$/.idea/db-forest-config.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/1f013547-b7cc-4f5e-ada2-163c3dc2e6b8.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/1f013547-b7cc-4f5e-ada2-163c3dc2e6b8/storage_v2/_src_/schema/main.uQUzAA.meta" beforeDir="false" />
+    <list default="true" id="71c3a291-103e-4653-a4fd-d79cf3183176" name="Changes" comment="Added AC Modifiers to display&#10;&#10;Fixed Racial Modifiers parsing &#10;Fixed bad exit in prepared spells parsing">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/creature_barn.db" beforeDir="false" />
     </list>
@@ -60,6 +56,7 @@
     &quot;Python.first.ph.executor&quot;: &quot;Run&quot;,
     &quot;Python.main.executor&quot;: &quot;Run&quot;,
     &quot;Python.parser_test.executor&quot;: &quot;Run&quot;,
+    &quot;Python.scroll_test.executor&quot;: &quot;Run&quot;,
     &quot;Python.test_form.executor&quot;: &quot;Run&quot;,
     &quot;Python.test_multi.executor&quot;: &quot;Run&quot;,
     &quot;Python.test_re.executor&quot;: &quot;Run&quot;,
@@ -139,7 +136,9 @@
       <workItem from="1771643609853" duration="192000" />
       <workItem from="1771643844830" duration="35268000" />
       <workItem from="1771939681036" duration="33106000" />
-      <workItem from="1772032385936" duration="19031000" />
+      <workItem from="1772032385936" duration="29398000" />
+      <workItem from="1772077327502" duration="2373000" />
+      <workItem from="1772114223255" duration="10248000" />
     </task>
     <task id="LOCAL-00001" summary="Start adding npc tables for version 2 of the database">
       <option name="closed" value="true" />
@@ -381,7 +380,87 @@
       <option name="project" value="LOCAL" />
       <updated>1772056296044</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="update misc pycharm files">
+      <option name="closed" value="true" />
+      <created>1772056309010</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1772056309010</updated>
+    </task>
+    <task id="LOCAL-00032" summary="Add statistics, base attack and feats to parser">
+      <option name="closed" value="true" />
+      <created>1772059022707</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1772059022707</updated>
+    </task>
+    <task id="LOCAL-00033" summary="Add skills and languages to parser">
+      <option name="closed" value="true" />
+      <created>1772075413017</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1772075413017</updated>
+    </task>
+    <task id="LOCAL-00034" summary="Add scrolling frame to creature form">
+      <option name="closed" value="true" />
+      <created>1772076118088</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1772076118088</updated>
+    </task>
+    <task id="LOCAL-00035" summary="Add weaknesses to creature parser and form">
+      <option name="closed" value="true" />
+      <created>1772076795743</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1772076795743</updated>
+    </task>
+    <task id="LOCAL-00036" summary="Started adding damage resistance parsing">
+      <option name="closed" value="true" />
+      <created>1772079702041</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1772079702041</updated>
+    </task>
+    <task id="LOCAL-00037" summary="Fixed layout to not have hard coded rows and fixed padding">
+      <option name="closed" value="true" />
+      <created>1772119233593</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1772119233596</updated>
+    </task>
+    <task id="LOCAL-00038" summary="Added immunity and resistance display">
+      <option name="closed" value="true" />
+      <created>1772119266694</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1772119266694</updated>
+    </task>
+    <task id="LOCAL-00039" summary="Added immunity and resistance parsing&#10;&#10;Cleaned up header identification">
+      <option name="closed" value="true" />
+      <created>1772119355466</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1772119355466</updated>
+    </task>
+    <task id="LOCAL-00040" summary="Added AC Modifiers to display&#10;&#10;Fixed Racial Modifiers parsing &#10;Fixed bad exit in prepared spells parsing">
+      <option name="closed" value="true" />
+      <created>1772124857707</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1772124857707</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -405,15 +484,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Updated data models for creatures" />
-    <MESSAGE value="Add an initial about box" />
-    <MESSAGE value="Various project level updates" />
-    <MESSAGE value="Start creating custom widgets" />
-    <MESSAGE value="Add debug printing to Creature class" />
-    <MESSAGE value="Begin adding real character forms class" />
-    <MESSAGE value="Clean up layout issues" />
-    <MESSAGE value="Add support for the language list" />
-    <MESSAGE value="Continue adding fields to the form" />
     <MESSAGE value="Start wiring in the parser to the data load" />
     <MESSAGE value="get the parser actually doing a data load" />
     <MESSAGE value="Clean up models and add creature description" />
@@ -430,7 +500,16 @@
     <MESSAGE value="Add more parsing transitions, states, and mapped steps" />
     <MESSAGE value="Add support for the Tactics section" />
     <MESSAGE value="update misc pycharm files" />
-    <option name="LAST_COMMIT_MESSAGE" value="update misc pycharm files" />
+    <MESSAGE value="Add statistics, base attack and feats to parser" />
+    <MESSAGE value="Add skills and languages to parser" />
+    <MESSAGE value="Add scrolling frame to creature form" />
+    <MESSAGE value="Add weaknesses to creature parser and form" />
+    <MESSAGE value="Started adding damage resistance parsing" />
+    <MESSAGE value="Fixed layout to not have hard coded rows and fixed padding" />
+    <MESSAGE value="Added immunity and resistance display" />
+    <MESSAGE value="Added immunity and resistance parsing&#10;&#10;Cleaned up header identification" />
+    <MESSAGE value="Added AC Modifiers to display&#10;&#10;Fixed Racial Modifiers parsing &#10;Fixed bad exit in prepared spells parsing" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added AC Modifiers to display&#10;&#10;Fixed Racial Modifiers parsing &#10;Fixed bad exit in prepared spells parsing" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -450,12 +529,13 @@
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/CreatureBarn$test_re.coverage" NAME="test_re Coverage Results" MODIFIED="1771810287507" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/CreatureBarn$parser_test.coverage" NAME="parser_test Coverage Results" MODIFIED="1771949896338" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/CreatureBarn$scroll_test.coverage" NAME="scroll_test Coverage Results" MODIFIED="1772072419404" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/CreatureBarn$test_scroll.coverage" NAME="test_scroll Coverage Results" MODIFIED="1771199224472" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/CreatureBarn$test_form.coverage" NAME="test_form Coverage Results" MODIFIED="1771368711543" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/CreatureBarn$test_form.coverage" NAME="test_form Coverage Results" MODIFIED="1772071106587" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/CreatureBarn$first_ph.coverage" NAME="first.ph Coverage Results" MODIFIED="1771471698721" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/CreatureBarn$create_tables.coverage" NAME="create_tables Coverage Results" MODIFIED="1772046619960" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/CreatureBarn$main.coverage" NAME="main Coverage Results" MODIFIED="1772055990828" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/CreatureBarn$creatures.coverage" NAME="creatures Coverage Results" MODIFIED="1771535650434" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/forms" />
+    <SUITE FILE_PATH="coverage/CreatureBarn$main.coverage" NAME="main Coverage Results" MODIFIED="1772124659334" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/CreatureBarn$creatures.coverage" NAME="creatures Coverage Results" MODIFIED="1772072654456" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/forms" />
     <SUITE FILE_PATH="coverage/CreatureBarn$database.coverage" NAME="database Coverage Results" MODIFIED="1768856737518" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/CreatureBarn$test_multi.coverage" NAME="test_multi Coverage Results" MODIFIED="1771251586258" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
