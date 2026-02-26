@@ -141,7 +141,6 @@ class CreatureForm:
         hit_points_entry = ttk.Entry(mainframe, width=20, textvariable=self.hit_points)
         hit_points_entry.grid(row=14, column=1, sticky=W)
 
-
         ttk.Label(mainframe, text="Fort").grid(row=15, column=0, sticky=E)
         self.fortitude = StringVar()
         fortitude_entry = ttk.Entry(mainframe, width=16, textvariable=self.fortitude)
@@ -167,63 +166,67 @@ class CreatureForm:
         spell_resistence_entry = ttk.Entry(mainframe, width=16, textvariable=self.spell_resistence)
         spell_resistence_entry.grid(row=19, column=1, sticky=W)
 
-        ttk.Label(mainframe, text="STR").grid(row=20, column=0, sticky=E)
+        ttk.Label(mainframe, text="Weaknesses").grid(row=20, column=0, sticky=NE)
+        self.weakness_entry = Text(mainframe, width=40, height=1)
+        self.weakness_entry.grid(row=20, column=1, columnspan=5, sticky=W)
+
+        ttk.Label(mainframe, text="STR").grid(row=21, column=0, sticky=E)
         self.strength = StringVar()
         strength_entry = ttk.Entry(mainframe, width=4, textvariable=self.strength)
-        strength_entry.grid(row=20, column=1, sticky=W)
+        strength_entry.grid(row=21, column=1, sticky=W)
 
-        ttk.Label(mainframe, text="DEX").grid(row=20, column=2, sticky=E)
+        ttk.Label(mainframe, text="DEX").grid(row=21, column=2, sticky=E)
         self.dexterity = StringVar()
         dexterity_entry = ttk.Entry(mainframe, width=4, textvariable=self.dexterity)
-        dexterity_entry.grid(row=20, column=3, sticky=W)
+        dexterity_entry.grid(row=21, column=3, sticky=W)
 
-        ttk.Label(mainframe, text="CON").grid(row=20, column=4, sticky=E)
+        ttk.Label(mainframe, text="CON").grid(row=21, column=4, sticky=E)
         self.constitution = StringVar()
         constitution_entry = ttk.Entry(mainframe, width=4, textvariable=self.constitution)
-        constitution_entry.grid(row=20, column=5, sticky=W)
+        constitution_entry.grid(row=21, column=5, sticky=W)
 
-        ttk.Label(mainframe, text="INT").grid(row=20, column=6, sticky=E)
+        ttk.Label(mainframe, text="INT").grid(row=21, column=6, sticky=E)
         self.intelligence = StringVar()
         intelligence_entry = ttk.Entry(mainframe, width=4, textvariable=self.intelligence)
-        intelligence_entry.grid(row=20, column=7, sticky=W)
+        intelligence_entry.grid(row=21, column=7, sticky=W)
 
-        ttk.Label(mainframe, text="WIS").grid(row=20, column=8, sticky=E)
+        ttk.Label(mainframe, text="WIS").grid(row=21, column=8, sticky=E)
         self.wisdom = StringVar()
         wisdom_entry = ttk.Entry(mainframe, width=4, textvariable=self.wisdom)
-        wisdom_entry.grid(row=20, column=9, sticky=W)
+        wisdom_entry.grid(row=21, column=9, sticky=W)
 
-        ttk.Label(mainframe, text="CHA").grid(row=20, column=10, sticky=E)
+        ttk.Label(mainframe, text="CHA").grid(row=21, column=10, sticky=E)
         self.charisma = StringVar()
         charisma_entry = ttk.Entry(mainframe, width=4, textvariable=self.charisma)
-        charisma_entry.grid(row=20, column=11, sticky=W)
+        charisma_entry.grid(row=21, column=11, sticky=W)
 
-        ttk.Label(mainframe, text="BAB").grid(row=21, column=0, sticky=E)
+        ttk.Label(mainframe, text="BAB").grid(row=22, column=0, sticky=E)
         self.base_attack = StringVar()
         base_attack_entry = ttk.Entry(mainframe, width=4, textvariable=self.base_attack)
-        base_attack_entry.grid(row=21, column=1, sticky=W)
+        base_attack_entry.grid(row=22, column=1, sticky=W)
 
-        ttk.Label(mainframe, text="CMB").grid(row=21, column=2, sticky=E)
+        ttk.Label(mainframe, text="CMB").grid(row=22, column=2, sticky=E)
         self.combat_maneuver_bonus = StringVar()
         combat_maneuver_bonus_entry = ttk.Entry(mainframe, width=4, textvariable=self.combat_maneuver_bonus)
-        combat_maneuver_bonus_entry.grid(row=21, column=3, sticky=W)
+        combat_maneuver_bonus_entry.grid(row=22, column=3, sticky=W)
 
-        ttk.Label(mainframe, text="CMD").grid(row=21, column=4, sticky=E)
+        ttk.Label(mainframe, text="CMD").grid(row=22, column=4, sticky=E)
         self.combat_maneuver_defense = StringVar()
         combat_maneuver_defense_entry = ttk.Entry(mainframe, width=4, textvariable=self.combat_maneuver_defense)
-        combat_maneuver_defense_entry.grid(row=21, column=5, sticky=W)
+        combat_maneuver_defense_entry.grid(row=22, column=5, sticky=W)
 
-        ttk.Label(mainframe, text="Feats").grid(row=22, column=0, sticky=NE)
+        ttk.Label(mainframe, text="Feats").grid(row=23, column=0, sticky=NE)
         self.feats_entry = Text(mainframe, width=30, height=1)
-        self.feats_entry.grid(row=22, column=1, columnspan=5, sticky=W)
+        self.feats_entry.grid(row=23, column=1, columnspan=5, sticky=W)
 
-        ttk.Label(mainframe, text="Skills").grid(row=23, column=0, sticky=NE)
+        ttk.Label(mainframe, text="Skills").grid(row=24, column=0, sticky=NE)
         self.skills_entry = Text(mainframe, width=30, height=1)
-        self.skills_entry.grid(row=23, column=1, columnspan=5, sticky=W)
+        self.skills_entry.grid(row=24, column=1, columnspan=5, sticky=W)
 
-        ttk.Label(mainframe, text="Racial Modifiers").grid(row=24, column=0, sticky=E)
+        ttk.Label(mainframe, text="Racial Modifiers").grid(row=25, column=0, sticky=E)
         self.racial_modifiers = StringVar()
         racial_modifiers_entry = ttk.Entry(mainframe, width=4, textvariable=self.racial_modifiers)
-        racial_modifiers_entry.grid(row=24, column=1, sticky=W)
+        racial_modifiers_entry.grid(row=25, column=1, sticky=W)
 
         ttk.Label(mainframe, text="Languages").grid(row=26, column=0, sticky=NE)
         self.language_entry = Text(mainframe, width=30, height=1)
@@ -274,6 +277,11 @@ class CreatureForm:
             self.combat_maneuver_bonus.set(getattr(self.creature, 'combat_maneuver_bonus'))
             self.combat_maneuver_defense.set(getattr(self.creature, 'combat_maneuver_defense'))
             self.racial_modifiers.set(getattr(self.creature, 'racial_modifiers'))
+
+            self.weakness_entry.delete("1.0", END)
+            self.weakness_entry['height'] = len(self.creature.weaknesses)
+            for weakness in self.creature.weaknesses:
+                self.weakness_entry.insert(END, getattr(weakness, 'weakness') + "\n")
 
             self.language_entry.delete("1.0", END)
             self.language_entry['height'] = len(self.creature.languages)

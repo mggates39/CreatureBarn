@@ -1,4 +1,5 @@
-from models import Creature, CreatureLanguages, CreatureFeats, CreatureSkills, CreatureSenses, CreatureAuras, CreatureACModifiers
+from models import Creature, CreatureLanguages, CreatureFeats, CreatureSkills, CreatureSenses, CreatureAuras, \
+    CreatureACModifiers, CreatureWeaknesses
 import re
 
 def _normalize_case(text: str) -> str:
@@ -136,7 +137,12 @@ def transition_parse_fortitude(fsm_obj):
             fsm_obj.creature.will = val
 
 def transition_parse_weakness(fsm_obj):
-    pass
+    weakness_match = re.search(r"Weaknesses\s+(.+)", fsm_obj.current_line, re.IGNORECASE)
+    if weakness_match:
+        for weakness in weakness_match.group(1).split(","):
+            creature_weakness = CreatureWeaknesses()
+            creature_weakness.weakness = weakness.strip()
+            fsm_obj.creature.weaknesses.append(creature_weakness)
 
 def transition_parse_damage_resistance(fsm_obj):
     pass
