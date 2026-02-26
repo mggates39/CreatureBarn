@@ -175,9 +175,20 @@ class CreatureForm:
         ttk.Label(mainframe, text="DR").grid(row=row_count, column=0, sticky=E)
         self.damage_reduction = StringVar()
         damage_reduction_entry = ttk.Entry(mainframe, width=16, textvariable=self.damage_reduction)
-        damage_reduction_entry.grid(row=18, column=1, sticky=W)
+        damage_reduction_entry.grid(row=row_count, column=1, sticky=W)
 
-        ttk.Label(mainframe, text="SR").grid(row=19, column=0, sticky=E)
+        row_count += 1
+        ttk.Label(mainframe, text="Immune").grid(row=row_count, column=0, sticky=NE)
+        self.immune_entry = Text(mainframe, width=40, height=1)
+        self.immune_entry.grid(row=row_count, column=1, columnspan=5, sticky=W)
+
+        row_count += 1
+        ttk.Label(mainframe, text="Resist").grid(row=row_count, column=0, sticky=NE)
+        self.resist_entry = Text(mainframe, width=40, height=1)
+        self.resist_entry.grid(row=row_count, column=1, columnspan=5, sticky=W)
+
+        row_count += 1
+        ttk.Label(mainframe, text="SR").grid(row=row_count, column=0, sticky=E)
         self.spell_resistence = StringVar()
         spell_resistence_entry = ttk.Entry(mainframe, width=16, textvariable=self.spell_resistence)
         spell_resistence_entry.grid(row=row_count, column=1, sticky=W)
@@ -289,6 +300,17 @@ class CreatureForm:
             self.reflex.set(getattr(self.creature, 'reflex'))
             self.will.set(getattr(self.creature, 'will'))
             self.damage_reduction.set(getattr(self.creature, 'damage_reduction'))
+
+            self.immune_entry.delete("1.0", END)
+            self.immune_entry['height'] = len(self.creature.immune_modifiers)
+            for immunity in self.creature.immune_modifiers:
+                self.immune_entry.insert(END, getattr(immunity, 'immune_to') + "\n")
+
+            self.resist_entry.delete("1.0", END)
+            self.resist_entry['height'] = len(self.creature.sr_modifiers)
+            for resist in self.creature.sr_modifiers:
+                self.resist_entry.insert(END, getattr(resist, 'resists') + " " + getattr(resist, 'resist_amount') + "\n")
+
             self.spell_resistence.set(getattr(self.creature, 'spell_resistence'))
             self.strength.set(getattr(self.creature, 'strength'))
             self.dexterity.set(getattr(self.creature, 'dexterity'))
