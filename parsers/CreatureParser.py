@@ -1,5 +1,5 @@
 from models import Creature, CreatureLanguages, CreatureFeats, CreatureSkills, CreatureSenses, CreatureAuras, \
-    CreatureACModifiers, CreatureWeaknesses
+    CreatureACModifiers, CreatureWeaknesses, CreatureImmuneModifiers
 import re
 
 def _normalize_case(text: str) -> str:
@@ -88,7 +88,10 @@ def transition_parse_initiative(fsm_obj):
                     creature_senses.sense = sense.strip()
                     fsm_obj.creature.senses.append(creature_senses)
 
-        transition_parse_auras(fsm_obj)
+        aura_match = re.search(r"Aura\s+(.+)", part, re.IGNORECASE)
+        if aura_match:
+            fsm_obj.current_line = part
+            transition_parse_auras(fsm_obj)
 
 def transition_parse_auras(fsm_obj):
     aura_match = re.search(r"Aura\s+(.+)", fsm_obj.current_line)
@@ -145,7 +148,26 @@ def transition_parse_weakness(fsm_obj):
             fsm_obj.creature.weaknesses.append(creature_weakness)
 
 def transition_parse_damage_resistance(fsm_obj):
-    pass
+    parts = fsm_obj.current_line.split(';')
+    for part in parts:
+        damage_reduction_match = re.search(r"DR\s+(.+)", part, re.IGNORECASE)
+        if damage_reduction_match:
+            fsm_obj.creature.damage_reduction = damage_reduction_match.group(1).strip()
+
+        spell_reduction_match = re.search(r"SR\s+(.+)", part, re.IGNORECASE)
+        if spell_reduction_match:
+            fsm_obj.creature.spell_resistence = spell_reduction_match.group(1).strip()
+
+        immunity_match = re.search(r"Immune\s+(.*)", part, re.IGNORECASE)
+        if immunity_match:
+            immunities = _normalize_case(immunity_match.group(1)).split(",")
+            for immunity in immunities:
+                creature_immunity = CreatureImmuneModifiers()
+                creature_immunity.immune_to = immunity.strip()
+                fsm_obj.creature.immune_modifiers.append(creature_immunity)
+
+        transition_parse_auras(fsm_obj)
+
 
 def transition_parse_speed(fsm_obj):
     pass
@@ -391,6 +413,7 @@ FSM_MAP = [
     {'src': S_FOUND_SK_SPELLS, 'dst': S_FOUND_SK_SPELLS, 'cond': r"^(.*)", 'callback': T_PARSE_SK_SPELLS},
     {'src': S_FOUND_SPELLS_PREPARED, 'dst': S_FOUND_SP_SPELLS, 'cond': r"^(.*)", 'callback': T_PARSE_SK_SPELLS},
     {'src': S_FOUND_SP_SPELLS, 'dst': S_FOUND_STATISTICS, 'cond': r"^STATISTICS", 'callback': T_SKIP},
+    {'src': S_FOUND_SP_SPELLS, 'dst': S_FOUND_TACTICS, 'cond': r"^TACTICS", 'callback': T_SKIP},
     {'src': S_FOUND_SK_SPELLS, 'dst': S_FOUND_SK_SPELLS, 'cond': r"^(.*)", 'callback': T_PARSE_SK_SPELLS},
     {'src': S_FOUND_TACTICS, 'dst': S_FOUND_STATISTICS, 'cond': r"^STATISTICS", 'callback': T_SKIP},
     {'src': S_FOUND_TACTICS, 'dst': S_FOUND_MORE_TACTICS, 'cond': r"^(.*)", 'callback': T_PARSE_TACTICS},
