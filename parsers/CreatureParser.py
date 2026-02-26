@@ -219,10 +219,26 @@ def transition_parse_feats(fsm_obj):
             fsm_obj.creature.feats.append(creature_feat)
 
 def transition_parse_skills(fsm_obj):
-    pass
+    skills_match = re.search(r"Skills\s+(.+)", fsm_obj.current_line, re.IGNORECASE)
+    if skills_match:
+        skills = skills_match.group(1).split(",")
+        for skill in skills:
+            skill_match = re.search(r"(.+)\s([+\-]?\d+)", skill, re.IGNORECASE)
+            if skill_match:
+                creature_skill = CreatureSkills()
+                creature_skill.skill = skill_match.group(1).strip()
+                creature_skill.modifier = skill_match.group(2).strip()
+                fsm_obj.creature.skills.append(creature_skill)
+
 
 def transition_parse_languages(fsm_obj):
-    pass
+    language_match = re.search(r"Languages\s+(.+)", fsm_obj.current_line, re.IGNORECASE)
+    if language_match:
+        for language in language_match.group(1).split(","):
+            creature_language = CreatureLanguages()
+            creature_language.language = language.strip()
+            fsm_obj.creature.languages.append(creature_language)
+
 
 T_SKIP = transition_skip
 T_PARSE_FORMAL_NAME = transition_parse_formal_name
@@ -377,6 +393,9 @@ FSM_MAP = [
     {'src': S_FOUND_STATISTICS, 'dst': S_FOUND_STRENGTH, 'cond': r"^Str\s(\d+)", 'callback': T_PARSE_STRENGTH},
     {'src': S_FOUND_STRENGTH, 'dst': S_FOUND_BASE_ATTACK, 'cond': r"^Base Atk\s", 'callback': T_PARSE_BASE_ATTACK},
     {'src': S_FOUND_BASE_ATTACK, 'dst': S_FOUND_FEATS, 'cond': r"^Feats\s", 'callback': T_PARSE_FEATS},
+    {'src': S_FOUND_FEATS, 'dst': S_FOUND_SKILLS, 'cond': r"^Skills\s", 'callback': T_PARSE_SKILLS},
+    {'src': S_FOUND_SKILLS, 'dst': S_FOUND_LANGUAGES, 'cond': r"^Languages\s", 'callback': T_PARSE_LANGUAGES},
+
 ]
 
 for map_item in FSM_MAP:
