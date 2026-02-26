@@ -113,7 +113,7 @@ def transition_parse_armor_class(fsm_obj):
         fsm_obj.creature.flat_footed_armor_class = ac_match.group(3)
         modifiers = ac_match.group(4).split(",")
         for modifier in modifiers:
-            mod_match = re.search(r"([-+\d]+)\s(.+)", modifier)
+            mod_match = re.search(r"(.\d+)\s(.+)", modifier)
             if mod_match:
                 creature_ac_modifiers = CreatureACModifiers()
                 creature_ac_modifiers.modifier_amount = mod_match.group(1).strip()
@@ -258,15 +258,20 @@ def transition_parse_feats(fsm_obj):
 def transition_parse_skills(fsm_obj):
     skills_match = re.search(r"Skills\s+(.+)", fsm_obj.current_line, re.IGNORECASE)
     if skills_match:
-        skills = skills_match.group(1).split(",")
-        for skill in skills:
-            skill_match = re.search(r"(.+)\s([+\-]?\d+)", skill, re.IGNORECASE)
-            if skill_match:
-                creature_skill = CreatureSkills()
-                creature_skill.skill = skill_match.group(1).strip()
-                creature_skill.modifier = skill_match.group(2).strip()
-                fsm_obj.creature.skills.append(creature_skill)
-
+        parts = skills_match.group(1).split(";")
+        for part in parts:
+            racial_match = re.search(r"Racial Modifiers\s(.+)", part, re.IGNORECASE)
+            if racial_match:
+                fsm_obj.creature.racial_modifiers = racial_match.group(1).strip()
+            else:
+                skills = part.split(",")
+                for skill in skills:
+                    skill_match = re.search(r"(.+)\s([+\-]?\d+)", skill, re.IGNORECASE)
+                    if skill_match:
+                        creature_skill = CreatureSkills()
+                        creature_skill.skill = skill_match.group(1).strip()
+                        creature_skill.modifier = skill_match.group(2).strip()
+                        fsm_obj.creature.skills.append(creature_skill)
 
 def transition_parse_languages(fsm_obj):
     language_match = re.search(r"Languages\s+(.+)", fsm_obj.current_line, re.IGNORECASE)
@@ -435,7 +440,7 @@ FSM_MAP = [
     {'src': S_FOUND_SPELLS_PREPARED, 'dst': S_FOUND_SP_SPELLS, 'cond': r"^(.*)", 'callback': T_PARSE_SK_SPELLS},
     {'src': S_FOUND_SP_SPELLS, 'dst': S_FOUND_STATISTICS_HEADER, 'cond': r"^STATISTICS", 'callback': T_SKIP},
     {'src': S_FOUND_SP_SPELLS, 'dst': S_FOUND_TACTICS_HEADER, 'cond': r"^TACTICS", 'callback': T_SKIP},
-    {'src': S_FOUND_SK_SPELLS, 'dst': S_FOUND_SK_SPELLS, 'cond': r"^(.*)", 'callback': T_PARSE_SK_SPELLS},
+    {'src': S_FOUND_SP_SPELLS, 'dst': S_FOUND_SP_SPELLS, 'cond': r"^(.*)", 'callback': T_PARSE_SK_SPELLS},
     {'src': S_FOUND_TACTICS_HEADER, 'dst': S_FOUND_STATISTICS_HEADER, 'cond': r"^STATISTICS", 'callback': T_SKIP},
     {'src': S_FOUND_TACTICS_HEADER, 'dst': S_FOUND_TACTICS_DETAIL, 'cond': r"^(.*)", 'callback': T_PARSE_TACTICS},
     {'src': S_FOUND_TACTICS_DETAIL, 'dst': S_FOUND_STATISTICS_HEADER, 'cond': r"^STATISTICS", 'callback': T_SKIP},

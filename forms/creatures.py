@@ -150,6 +150,11 @@ class CreatureForm:
         flat_footed_ac_entry.grid(row=row_count, column=5, sticky=W)
 
         row_count += 1
+        ttk.Label(mainframe, text="AC Modifiers").grid(row=row_count, column=0, sticky=NE)
+        self.ac_modifier_entry = Text(mainframe, width=30, height=1)
+        self.ac_modifier_entry.grid(row=row_count, column=1, columnspan=5, sticky=W)
+
+        row_count += 1
         ttk.Label(mainframe, text="HP").grid(row=row_count, column=0, sticky=E)
         self.hit_points = StringVar()
         hit_points_entry = ttk.Entry(mainframe, width=20, textvariable=self.hit_points)
@@ -258,7 +263,7 @@ class CreatureForm:
         row_count += 1
         ttk.Label(mainframe, text="Racial Modifiers").grid(row=row_count, column=0, sticky=E)
         self.racial_modifiers = StringVar()
-        racial_modifiers_entry = ttk.Entry(mainframe, width=4, textvariable=self.racial_modifiers)
+        racial_modifiers_entry = ttk.Entry(mainframe, width=32, textvariable=self.racial_modifiers)
         racial_modifiers_entry.grid(row=row_count, column=1, sticky=W)
 
         row_count += 1
@@ -295,6 +300,12 @@ class CreatureForm:
             self.base_ac.set(getattr(self.creature, 'base_armor_class'))
             self.touch_ac.set(getattr(self.creature, 'touch_armor_class'))
             self.flat_footed_ac.set(getattr(self.creature, 'flat_footed_armor_class'))
+
+            self.ac_modifier_entry.delete("1.0", END)
+            self.ac_modifier_entry['height'] = len(self.creature.ac_modifiers)
+            for ac_modifier in self.creature.ac_modifiers:
+                self.ac_modifier_entry.insert(END, getattr(ac_modifier, 'modifier_amount') + " " + getattr(ac_modifier, 'modifier_type') + "\n")
+
             self.hit_points.set(getattr(self.creature, 'hit_points') + " (" + getattr(self.creature, 'hit_dice') + ")")
             self.fortitude.set(getattr(self.creature, 'fortitude'))
             self.reflex.set(getattr(self.creature, 'reflex'))
