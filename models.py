@@ -210,9 +210,7 @@ class CreatureDefenseAbilities(Base):
 class CreatureSpeedModifiers(Base):
     __tablename__ = 'creature_speed_modifiers'
     id = Column(Integer, primary_key=True)
-    speed_type = Column(String)
-    speed_modifier = Column(Integer)
-    speed_units = Column(String)
+    speed_modifier = Column(String)
 
     # Foreign key to Creatures
     creature_id = Column(Integer, ForeignKey('creatures.id'))
@@ -228,9 +226,6 @@ class CreatureMeleeAttacks(Base):
     __tablename__ = 'creature_melee_attacks'
     id = Column(Integer, primary_key=True)
     attack = Column(String)
-    attack_roll_modifier = Column(Integer)
-    damage_modifier = Column(String)
-    critical_modifier = Column(String)
 
     # Foreign key to Creatures
     creature_id = Column(Integer, ForeignKey('creatures.id'))
@@ -246,9 +241,6 @@ class CreatureRangedAttacks(Base):
     __tablename__ = 'creature_ranged_attacks'
     id = Column(Integer, primary_key=True)
     attack = Column(String)
-    attack_roll_modifier = Column(Integer)
-    damage_modifier = Column(String)
-    critical_modifier = Column(String)
 
     # Foreign key to Creatures
     creature_id = Column(Integer, ForeignKey('creatures.id'))
