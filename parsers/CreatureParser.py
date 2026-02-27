@@ -470,7 +470,7 @@ FSM_MAP = [
     {'src': S_FOUND_RANGED, 'dst': S_FOUND_SPECIAL_ATTACKS, 'cond': r"^Special Attacks\s", 'callback': T_PARSE_SPECIAL_ATTACKS},  # 27
     {'src': S_FOUND_RANGED, 'dst': S_FOUND_SPACE, 'cond': r"^Space\s", 'callback': T_PARSE_SPACE},  # 26
     {'src': S_FOUND_RANGED, 'dst': S_FOUND_SPELLS_KNOWN, 'cond': r".*Spells\sKnown\s", 'callback': T_PARSE_SPELLS_KNOWN},  # 29
-    {'src': S_FOUND_RANGED, 'dst': S_FOUND_SPELLS_PREPARED, 'cond': r"S.*pells\sPrepared\s", 'callback': T_PARSE_SPELLS_PREPARED},  # 29
+    {'src': S_FOUND_RANGED, 'dst': S_FOUND_SPELLS_PREPARED, 'cond': r".*Spells\sPrepared\s", 'callback': T_PARSE_SPELLS_PREPARED},  # 29
     {'src': S_FOUND_RANGED, 'dst': S_FOUND_STATISTICS_HEADER, 'cond': r"^STATISTICS", 'callback': T_SKIP},  # 28
     {'src': S_FOUND_RANGED, 'dst': S_FOUND_TACTICS_HEADER, 'cond': r"^TACTICS", 'callback': T_SKIP},  # 28
     {'src': S_FOUND_SPACE, 'dst': S_FOUND_SPECIAL_ATTACKS, 'cond': r"^Special Attacks\s", 'callback': T_PARSE_SPECIAL_ATTACKS},  # 27
