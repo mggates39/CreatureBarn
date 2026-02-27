@@ -126,12 +126,12 @@ class CreatureForm:
         row_count += 1
         ttk.Label(mainframe, text="Senses").grid(row=row_count, column=0, sticky=NE)
         self.senses_entry = Text(mainframe, width=30, height=1)
-        self.senses_entry.grid(row=row_count, column=1, columnspan=5, sticky=W)
+        self.senses_entry.grid(row=row_count, column=1, columnspan=7, sticky=W)
 
         row_count += 1
         ttk.Label(mainframe, text="Auras").grid(row=row_count, column=0, sticky=NE)
         self.auras_entry = Text(mainframe, width=40, height=1)
-        self.auras_entry.grid(row=row_count, column=1, columnspan=5, sticky=W)
+        self.auras_entry.grid(row=row_count, column=1, columnspan=7, sticky=W)
 
         row_count += 1
         ttk.Label(mainframe, text="AC").grid(row=row_count, column=0, sticky=E)
@@ -152,7 +152,7 @@ class CreatureForm:
         row_count += 1
         ttk.Label(mainframe, text="AC Modifiers").grid(row=row_count, column=0, sticky=NE)
         self.ac_modifier_entry = Text(mainframe, width=30, height=1)
-        self.ac_modifier_entry.grid(row=row_count, column=1, columnspan=5, sticky=W)
+        self.ac_modifier_entry.grid(row=row_count, column=1, columnspan=7, sticky=W)
 
         row_count += 1
         ttk.Label(mainframe, text="HP").grid(row=row_count, column=0, sticky=E)
@@ -185,12 +185,12 @@ class CreatureForm:
         row_count += 1
         ttk.Label(mainframe, text="Immune").grid(row=row_count, column=0, sticky=NE)
         self.immune_entry = Text(mainframe, width=40, height=1)
-        self.immune_entry.grid(row=row_count, column=1, columnspan=5, sticky=W)
+        self.immune_entry.grid(row=row_count, column=1, columnspan=7, sticky=W)
 
         row_count += 1
         ttk.Label(mainframe, text="Resist").grid(row=row_count, column=0, sticky=NE)
         self.resist_entry = Text(mainframe, width=40, height=1)
-        self.resist_entry.grid(row=row_count, column=1, columnspan=5, sticky=W)
+        self.resist_entry.grid(row=row_count, column=1, columnspan=7, sticky=W)
 
         row_count += 1
         ttk.Label(mainframe, text="SR").grid(row=row_count, column=0, sticky=E)
@@ -201,17 +201,17 @@ class CreatureForm:
         row_count += 1
         ttk.Label(mainframe, text="Weaknesses").grid(row=row_count, column=0, sticky=NE)
         self.weakness_entry = Text(mainframe, width=40, height=1)
-        self.weakness_entry.grid(row=row_count, column=1, columnspan=5, sticky=W)
+        self.weakness_entry.grid(row=row_count, column=1, columnspan=7, sticky=W)
 
         row_count += 1
         ttk.Label(mainframe, text="Speed").grid(row=row_count, column=0, sticky=NE)
         self.speed_entry = Text(mainframe, width=40, height=1)
-        self.speed_entry.grid(row=row_count, column=1, columnspan=5, sticky=W)
+        self.speed_entry.grid(row=row_count, column=1, columnspan=7, sticky=W)
 
         row_count += 1
         ttk.Label(mainframe, text="Melee").grid(row=row_count, column=0, sticky=NE)
         self.melee_entry = Text(mainframe, width=40, height=1)
-        self.melee_entry.grid(row=row_count, column=1, columnspan=5, sticky=W)
+        self.melee_entry.grid(row=row_count, column=1, columnspan=7, sticky=W)
 
         row_count += 1
         ttk.Label(mainframe, text="Space").grid(row=row_count, column=0, sticky=E)
@@ -227,7 +227,7 @@ class CreatureForm:
         row_count += 1
         ttk.Label(mainframe, text="Special Attacks").grid(row=row_count, column=0, sticky=NE)
         self.special_attacks_entry = Text(mainframe, width=40, height=1)
-        self.special_attacks_entry.grid(row=row_count, column=1, columnspan=5, sticky=W)
+        self.special_attacks_entry.grid(row=row_count, column=1, columnspan=7, sticky=W)
 
         self.reach = StringVar()
         reach_entry = ttk.Entry(mainframe, width=4, textvariable=self.reach)
@@ -235,13 +235,33 @@ class CreatureForm:
 
         row_count += 1
         ttk.Label(mainframe, text="Spell-Like Abilities").grid(row=row_count, column=0, sticky=NE)
-        self.caster_level = StringVar()
-        casting_level_entry = ttk.Entry(mainframe, width=30, textvariable=self.caster_level)
+        self.spell_like_caster_level = StringVar()
+        casting_level_entry = ttk.Entry(mainframe, width=30, textvariable=self.spell_like_caster_level)
         casting_level_entry.grid(row=row_count, column=1, sticky=W)
 
         row_count += 1
-        self.spell_like_abilities_entry = Text(mainframe, width=40, height=1)
-        self.spell_like_abilities_entry.grid(row=row_count, column=1, columnspan=5, sticky=W)
+        self.spell_like_abilities_entry = Text(mainframe, width=60, height=1)
+        self.spell_like_abilities_entry.grid(row=row_count, column=1, columnspan=7, sticky=W)
+
+        row_count += 1
+        ttk.Label(mainframe, text="Known Spells").grid(row=row_count, column=0, sticky=NE)
+        self.known_caster_level = StringVar()
+        known_casting_level_entry = ttk.Entry(mainframe, width=30, textvariable=self.known_caster_level)
+        known_casting_level_entry.grid(row=row_count, column=1, sticky=W)
+
+        row_count += 1
+        self.known_spells_entry = Text(mainframe, width=60, height=1)
+        self.known_spells_entry.grid(row=row_count, column=1, columnspan=7, sticky=W)
+
+        row_count += 1
+        ttk.Label(mainframe, text="Prepared Spells").grid(row=row_count, column=0, sticky=NE)
+        self.prepared_caster_level = StringVar()
+        prepared_casting_level_entry = ttk.Entry(mainframe, width=30, textvariable=self.prepared_caster_level)
+        prepared_casting_level_entry.grid(row=row_count, column=1, sticky=W)
+
+        row_count += 1
+        self.prepared_spells_entry = Text(mainframe, width=60, height=1)
+        self.prepared_spells_entry.grid(row=row_count, column=1, columnspan=7, sticky=W)
 
         row_count += 1
         ttk.Label(mainframe, text="STR").grid(row=row_count, column=0, sticky=E)
@@ -293,12 +313,12 @@ class CreatureForm:
         row_count += 1
         ttk.Label(mainframe, text="Feats").grid(row=row_count, column=0, sticky=NE)
         self.feats_entry = Text(mainframe, width=30, height=1)
-        self.feats_entry.grid(row=row_count, column=1, columnspan=5, sticky=W)
+        self.feats_entry.grid(row=row_count, column=1, columnspan=7, sticky=W)
 
         row_count += 1
         ttk.Label(mainframe, text="Skills").grid(row=row_count, column=0, sticky=NE)
         self.skills_entry = Text(mainframe, width=30, height=1)
-        self.skills_entry.grid(row=row_count, column=1, columnspan=5, sticky=W)
+        self.skills_entry.grid(row=row_count, column=1, columnspan=7, sticky=W)
 
         row_count += 1
         ttk.Label(mainframe, text="Racial Modifiers").grid(row=row_count, column=0, sticky=E)
@@ -309,7 +329,7 @@ class CreatureForm:
         row_count += 1
         ttk.Label(mainframe, text="Languages").grid(row=row_count, column=0, sticky=NE)
         self.language_entry = Text(mainframe, width=30, height=1)
-        self.language_entry.grid(row=row_count, column=1, columnspan=5, sticky=W)
+        self.language_entry.grid(row=row_count, column=1, columnspan=7, sticky=W)
 
         row_count += 1
         ttk.Button(mainframe, text='save', command=self.on_save).grid(row=0, column=0, sticky=W)
@@ -360,7 +380,7 @@ class CreatureForm:
                 self.resist_entry.insert(END, getattr(resist, 'resists') + " " + getattr(resist, 'resist_amount') + "\n")
 
             self.spell_resistence.set(getattr(self.creature, 'spell_resistence'))
-            self.caster_level.set(getattr(self.creature, 'caster_level'))
+            self.spell_like_caster_level.set(getattr(self.creature, 'spell_like_caster_level'))
 
             self.spell_like_abilities_entry.delete("1.0", END)
             self.spell_like_abilities_entry['height'] = len(self.creature.spell_like_abilities)
@@ -370,6 +390,27 @@ class CreatureForm:
                 else:
                     spell_modifiers = ""
                 self.spell_like_abilities_entry.insert(END, getattr(spell_like, 'rate') + " - " + getattr(spell_like, 'name') + spell_modifiers + "\n")
+
+            self.known_caster_level.set(getattr(self.creature, 'spell_known_caster_level'))
+            self.known_spells_entry.delete("1.0", END)
+            self.known_spells_entry['height'] = len(self.creature.known_spells)
+            for spell_like in self.creature.known_spells:
+                if getattr(spell_like, 'modifiers'):
+                    spell_modifiers = " (" + getattr(spell_like, 'modifiers') + ")"
+                else:
+                    spell_modifiers = ""
+                self.known_spells_entry.insert(END, getattr(spell_like, 'spell_level') + " - " + getattr(spell_like, 'rate') + " - " + getattr(spell_like, 'name') + spell_modifiers + "\n")
+
+            self.prepared_caster_level.set(getattr(self.creature, 'spell_prepared_caster_level'))
+
+            self.prepared_spells_entry.delete("1.0", END)
+            self.prepared_spells_entry['height'] = len(self.creature.prepared_spells)
+            for spell_like in self.creature.prepared_spells:
+                if getattr(spell_like, 'modifiers'):
+                    spell_modifiers = " (" + getattr(spell_like, 'modifiers') + ")"
+                else:
+                    spell_modifiers = ""
+                self.prepared_spells_entry.insert(END, getattr(spell_like, 'spell_level') + " - " + getattr(spell_like, 'name') + spell_modifiers + "\n")
 
             self.strength.set(getattr(self.creature, 'strength'))
             self.dexterity.set(getattr(self.creature, 'dexterity'))
