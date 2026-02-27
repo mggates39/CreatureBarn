@@ -1,6 +1,7 @@
 from models import Creature, CreatureLanguages, CreatureFeats, CreatureSkills, CreatureSenses, CreatureAuras, \
     CreatureACModifiers, CreatureWeaknesses, CreatureImmuneModifiers, CreatureSpellResistenceModifiers, \
-    CreatureSpellLikeAbilities, CreatureKnownSpells, CreaturePreparedSpells
+    CreatureSpellLikeAbilities, CreatureKnownSpells, CreaturePreparedSpells, CreatureSpeedModifiers, \
+    CreatureMeleeAttacks, CreatureRangedAttacks
 import re
 
 def _normalize_case(text: str) -> str:
@@ -14,7 +15,7 @@ def transition_parse_formal_name(fsm_obj):
     fsm_obj.creature.formal_name = fsm_obj.current_line.strip()
 
 def transition_parse_common_name(fsm_obj):
-    name_match = re.match(r"^(.+)\sCR\s+([\d/]+)", fsm_obj.current_line)
+    name_match = re.match(R_COMMON_NAME, fsm_obj.current_line)
     if name_match:
         fsm_obj.creature.common_name = name_match.group(1).strip()
         if fsm_obj.creature.formal_name == '':
@@ -36,7 +37,7 @@ def transition_parse_description(fsm_obj):
     pass
 
 def transition_parse_experience_points(fsm_obj):
-    xp_match = re.search(r"XP\s+([\d,]+)", fsm_obj.current_line, re.IGNORECASE)
+    xp_match = re.search(R_EXPERIENCE, fsm_obj.current_line, re.IGNORECASE)
     if xp_match:
         fsm_obj.creature.experience_points = xp_match.group(1)
 
@@ -178,15 +179,35 @@ def transition_parse_damage_resistance(fsm_obj):
                     creature_resists.resist_amount = resistance_match.group(2).strip()
                     fsm_obj.creature.sr_modifiers.append(creature_resists)
 
-
 def transition_parse_speed(fsm_obj):
-    pass
+    speed_match = re.search(R_SPEED, fsm_obj.current_line, re.IGNORECASE)
+    if speed_match:
+        speeds = re.split(R_SPLIT_COMMA_OUTSIDE_PARENS, speed_match.group(1))
+        base_speed = speeds[0]
+        fsm_obj.creature.speed = base_speed.strip()
+        for speed in speeds:
+            if speed != base_speed:
+                creature_speed_modifier = CreatureSpeedModifiers()
+                creature_speed_modifier.speed_modifier = speed.strip()
+                fsm_obj.creature.speed_modifiers.append(creature_speed_modifier)
 
 def transition_parse_melee(fsm_obj):
-    pass
+    melee_match = re.search(R_MELEE, fsm_obj.current_line, re.IGNORECASE)
+    if melee_match:
+        melee_attacks = re.split(R_SPLIT_COMMA_OUTSIDE_PARENS, melee_match.group(1))
+        for melee_attack in melee_attacks:
+            creature_melee = CreatureMeleeAttacks()
+            creature_melee.attack = melee_attack.strip()
+            fsm_obj.creature.melee_attacks.append(creature_melee)
 
 def transition_parse_ranged(fsm_obj):
-    pass
+    ranged_match = re.search(R_RANGED, fsm_obj.current_line, re.IGNORECASE)
+    if ranged_match:
+        ranged_attacks = re.split(R_SPLIT_COMMA_OUTSIDE_PARENS, ranged_match.group(1))
+        for ranged_attack in ranged_attacks:
+            creature_ranged = CreatureRangedAttacks()
+            creature_ranged.attack = ranged_attack.strip()
+            fsm_obj.creature.ranged_attacks.append(creature_ranged)
 
 def transition_parse_space(fsm_obj):
     pass
@@ -204,7 +225,7 @@ def transition_parse_sla_spells(fsm_obj):
     if spell_like_match:
         spell_rate = spell_like_match.group(1).strip()
 
-        for spell_like in re.split(r',\s*(?![^()]*\))', spell_like_match.group(2)):
+        for spell_like in re.split(R_SPLIT_COMMA_OUTSIDE_PARENS, spell_like_match.group(2)):
             spells_match = re.search(r"(.+)\((.+)\)", spell_like)
             if spells_match:
                 name = spells_match.group(1).strip()
@@ -229,7 +250,7 @@ def transition_parse_sk_spells(fsm_obj):
         spell_level = spell_known_match.group(1).strip()
         spell_rate = spell_known_match.group(2).strip()
 
-        for spells in re.split(r',\s*(?![^()]*\))', spell_known_match.group(3)):
+        for spells in re.split(R_SPLIT_COMMA_OUTSIDE_PARENS, spell_known_match.group(3)):
             spells_match = re.search(r"(.+)\((.+)\)", spells)
             if spells_match:
                 name = spells_match.group(1).strip()
@@ -254,7 +275,7 @@ def transition_parse_sp_spells(fsm_obj):
     if spell_prepared_match:
         spell_level = spell_prepared_match.group(1).strip()
 
-        for spells in re.split(r',\s*(?![^()]*\))', spell_prepared_match.group(2)):
+        for spells in re.split(R_SPLIT_COMMA_OUTSIDE_PARENS, spell_prepared_match.group(2)):
             spells_match = re.search(r"(.+)\((.+)\)", spells)
             if spells_match:
                 name = spells_match.group(1).strip()
@@ -432,24 +453,37 @@ S_FOUND_TREASURE = "STATE: FOUND TREASURE"
 S_FOUND_ABOUT_HEADER = "STATE: FOUND ABOUT HEADER"
 S_FOUND_ABOUT_DETAILS = "STATE: FOUND ABOUT DETAILS"
 
+R_ANYTHING = r"^(.+)"
+R_COMMON_NAME = r"^(.+)\sCR\s+([\d/]+)"
+R_ALIGNMENT = r"^([LNCEG]{1,2})\s"
+R_EXPERIENCE = r"XP\s+([\d,]+)"
+R_INITIATIVE = r"^Init\s+([^\n;]+)"
+R_AURA = r"^Aura\s+([^\n;]+)"
+R_DEFENCE_HEADER = r"^DEFENSE"
+R_KNOWN_SPELLS = r".*Spells\sKnown\s"
+R_SPEED = r"^Speed\s+(.+)"
+R_MELEE = r"^Melee\s+(.+)"
+R_RANGED = r"^Ranged\s+(.+)"
+R_SPLIT_COMMA_OUTSIDE_PARENS = r',\s*(?![^()]*\))'
+
 FSM_MAP = [
     #  {'src':, 'dst':, 'condition':, 'callback': },
-    {'src': S_INITIAL_LOAD, 'dst': S_FOUND_FORMAL_NAME, 'cond': r"(.+)", 'callback': T_PARSE_FORMAL_NAME},  # 1
-    {'src': S_INITIAL_LOAD, 'dst': S_FOUND_COMMON_NAME, 'cond': r"^(.+)\sCR\s+([\d/]+)", 'callback': T_PARSE_COMMON_NAME},  # 2
-    {'src': S_FOUND_FORMAL_NAME, 'dst': S_FOUND_COMMON_NAME, 'cond': r"^(.+)\sCR\s+([\d/]+)", 'callback': T_PARSE_COMMON_NAME},  # 3
-    {'src': S_FOUND_FORMAL_NAME, 'dst': S_FOUND_DESCRIPTION, 'cond': r"^(.+)", 'callback': T_PARSE_DESCRIPTION},  # 4
-    {'src': S_FOUND_DESCRIPTION, 'dst': S_FOUND_COMMON_NAME, 'cond': r"^(.+)\sCR\s+([\d/]+)", 'callback': T_PARSE_COMMON_NAME},  # 5
-    {'src': S_FOUND_DESCRIPTION, 'dst': S_FOUND_XP, 'cond': r"XP\s+([\d,]+)", 'callback': T_PARSE_EXPERIENCE_POINTS}, #6
-    {'src': S_FOUND_DESCRIPTION, 'dst': S_FOUND_DESCRIPTION, 'cond': r"^(.+)", 'callback': T_PARSE_DESCRIPTION},  #7
-    {'src': S_FOUND_COMMON_NAME, 'dst': S_FOUND_XP, 'cond': r"XP\s+([\d,]+)", 'callback': T_PARSE_EXPERIENCE_POINTS}, #8
-    {'src': S_FOUND_COMMON_NAME, 'dst': S_FOUND_DESCRIPTION, 'cond': r"^(.+)", 'callback': T_PARSE_DESCRIPTION}, #9
-    {'src': S_FOUND_XP, 'dst': S_FOUND_ALIGNMENT, 'cond': r"^([LNCEG]{1,2})\s", 'callback': T_PARSE_ALIGNMENT}, #10
-    {'src': S_FOUND_XP, 'dst': S_FOUND_RACE, 'cond': r"^(.+)", 'callback': T_PARSE_RACE}, #11
-    {'src': S_FOUND_RACE, 'dst': S_FOUND_ALIGNMENT, 'cond': r"^([LNCEG]{1,2})\s", 'callback': T_PARSE_ALIGNMENT},  # 12
-    {'src': S_FOUND_ALIGNMENT, 'dst': S_FOUND_INITIATIVE, 'cond': r"^Init\s+([^\n;]+)", 'callback': T_PARSE_INITIATIVE},  # 13
-    {'src': S_FOUND_INITIATIVE, 'dst': S_FOUND_AURAS, 'cond': r"^Aura\s+([^\n;]+)", 'callback': T_PARSE_AURAS}, # 14
-    {'src': S_FOUND_INITIATIVE, 'dst': S_FOUND_DEFENSE_HEADER, 'cond': r"^DEFENSE", 'callback': T_SKIP}, # 15
-    {'src': S_FOUND_AURAS, 'dst': S_FOUND_DEFENSE_HEADER, 'cond': r"^DEFENSE", 'callback': T_SKIP},  # 16
+    {'src': S_INITIAL_LOAD, 'dst': S_FOUND_FORMAL_NAME, 'cond': R_ANYTHING, 'callback': T_PARSE_FORMAL_NAME},  # 1
+    {'src': S_INITIAL_LOAD, 'dst': S_FOUND_COMMON_NAME, 'cond': R_COMMON_NAME, 'callback': T_PARSE_COMMON_NAME},  # 2
+    {'src': S_FOUND_FORMAL_NAME, 'dst': S_FOUND_COMMON_NAME, 'cond': R_COMMON_NAME, 'callback': T_PARSE_COMMON_NAME},  # 3
+    {'src': S_FOUND_FORMAL_NAME, 'dst': S_FOUND_DESCRIPTION, 'cond': R_ANYTHING, 'callback': T_PARSE_DESCRIPTION},  # 4
+    {'src': S_FOUND_DESCRIPTION, 'dst': S_FOUND_COMMON_NAME, 'cond': R_COMMON_NAME, 'callback': T_PARSE_COMMON_NAME},  # 5
+    {'src': S_FOUND_DESCRIPTION, 'dst': S_FOUND_XP, 'cond': R_EXPERIENCE, 'callback': T_PARSE_EXPERIENCE_POINTS}, #6
+    {'src': S_FOUND_DESCRIPTION, 'dst': S_FOUND_DESCRIPTION, 'cond': R_ANYTHING, 'callback': T_PARSE_DESCRIPTION},  #7
+    {'src': S_FOUND_COMMON_NAME, 'dst': S_FOUND_XP, 'cond': R_EXPERIENCE, 'callback': T_PARSE_EXPERIENCE_POINTS}, #8
+    {'src': S_FOUND_COMMON_NAME, 'dst': S_FOUND_DESCRIPTION, 'cond': R_ANYTHING, 'callback': T_PARSE_DESCRIPTION}, #9
+    {'src': S_FOUND_XP, 'dst': S_FOUND_ALIGNMENT, 'cond': R_ALIGNMENT, 'callback': T_PARSE_ALIGNMENT}, #10
+    {'src': S_FOUND_XP, 'dst': S_FOUND_RACE, 'cond': R_ANYTHING, 'callback': T_PARSE_RACE}, #11
+    {'src': S_FOUND_RACE, 'dst': S_FOUND_ALIGNMENT, 'cond': R_ALIGNMENT, 'callback': T_PARSE_ALIGNMENT},  # 12
+    {'src': S_FOUND_ALIGNMENT, 'dst': S_FOUND_INITIATIVE, 'cond': R_INITIATIVE, 'callback': T_PARSE_INITIATIVE},  # 13
+    {'src': S_FOUND_INITIATIVE, 'dst': S_FOUND_AURAS, 'cond': R_AURA, 'callback': T_PARSE_AURAS}, # 14
+    {'src': S_FOUND_INITIATIVE, 'dst': S_FOUND_DEFENSE_HEADER, 'cond':R_DEFENCE_HEADER, 'callback': T_SKIP}, # 15
+    {'src': S_FOUND_AURAS, 'dst': S_FOUND_DEFENSE_HEADER, 'cond':R_DEFENCE_HEADER, 'callback': T_SKIP},  # 16
     {'src': S_FOUND_DEFENSE_HEADER, 'dst': S_FOUND_AC, 'cond': r"^AC\s(\d+)", 'callback': T_PARSE_AC},  # 17
     {'src': S_FOUND_AC, 'dst': S_FOUND_HP, 'cond': r"^[HPhp]{2}\s(\d+)", 'callback': T_PARSE_HP},  # 18
     {'src': S_FOUND_HP, 'dst': S_FOUND_FORTITUDE, 'cond': r"^Fort\s", 'callback': T_PARSE_FORTITUDE},  # 19
@@ -458,50 +492,50 @@ FSM_MAP = [
     {'src': S_FOUND_DR, 'dst': S_FOUND_WEAKNESS, 'cond': r"^Weaknesses\s", 'callback': T_PARSE_WEAKNESS},  # 21
     {'src': S_FOUND_DR, 'dst': S_FOUND_OFFENSE_HEADER, 'cond': r"^OFFENSE", 'callback': T_SKIP},  # 22
     {'src': S_FOUND_WEAKNESS, 'dst': S_FOUND_OFFENSE_HEADER, 'cond': r"^OFFENSE", 'callback': T_SKIP},  # 23
-    {'src': S_FOUND_OFFENSE_HEADER, 'dst': S_FOUND_SPEED, 'cond': r"^Speed\s(\d+)", 'callback': T_PARSE_SPEED},  # 24
-    {'src': S_FOUND_SPEED, 'dst': S_FOUND_MELEE, 'cond': r"^Melee\s", 'callback': T_PARSE_MELEE},  # 25
-    {'src': S_FOUND_MELEE, 'dst': S_FOUND_RANGED, 'cond': r"^Ranged\s", 'callback': T_PARSE_RANGED},  # 26
+    {'src': S_FOUND_OFFENSE_HEADER, 'dst': S_FOUND_SPEED, 'cond': R_SPEED, 'callback': T_PARSE_SPEED},  # 24
+    {'src': S_FOUND_SPEED, 'dst': S_FOUND_MELEE, 'cond': R_MELEE, 'callback': T_PARSE_MELEE},  # 25
+    {'src': S_FOUND_MELEE, 'dst': S_FOUND_RANGED, 'cond': R_RANGED, 'callback': T_PARSE_RANGED},  # 26
     {'src': S_FOUND_MELEE, 'dst': S_FOUND_SPACE, 'cond': r"^Space\s", 'callback': T_PARSE_SPACE},  # 26
     {'src': S_FOUND_MELEE, 'dst': S_FOUND_SPECIAL_ATTACKS, 'cond': r"^Special Attacks\s", 'callback': T_PARSE_SPECIAL_ATTACKS},  # 27
-    {'src': S_FOUND_MELEE, 'dst': S_FOUND_SPELLS_KNOWN, 'cond': r".*Spells\sKnown\s", 'callback': T_PARSE_SPELLS_KNOWN},  # 29
+    {'src': S_FOUND_MELEE, 'dst': S_FOUND_SPELLS_KNOWN, 'cond': R_KNOWN_SPELLS, 'callback': T_PARSE_SPELLS_KNOWN},  # 29
     {'src': S_FOUND_MELEE, 'dst': S_FOUND_SPELLS_PREPARED, 'cond': r".*Spells\sPrepared\s", 'callback': T_PARSE_SPELLS_PREPARED},  # 29
     {'src': S_FOUND_MELEE, 'dst': S_FOUND_STATISTICS_HEADER, 'cond': r"^STATISTICS", 'callback': T_SKIP},  # 28
     {'src': S_FOUND_MELEE, 'dst': S_FOUND_TACTICS_HEADER, 'cond': r"^TACTICS", 'callback': T_SKIP},  # 28
     {'src': S_FOUND_RANGED, 'dst': S_FOUND_SPECIAL_ATTACKS, 'cond': r"^Special Attacks\s", 'callback': T_PARSE_SPECIAL_ATTACKS},  # 27
     {'src': S_FOUND_RANGED, 'dst': S_FOUND_SPACE, 'cond': r"^Space\s", 'callback': T_PARSE_SPACE},  # 26
-    {'src': S_FOUND_RANGED, 'dst': S_FOUND_SPELLS_KNOWN, 'cond': r".*Spells\sKnown\s", 'callback': T_PARSE_SPELLS_KNOWN},  # 29
+    {'src': S_FOUND_RANGED, 'dst': S_FOUND_SPELLS_KNOWN, 'cond': R_KNOWN_SPELLS, 'callback': T_PARSE_SPELLS_KNOWN},  # 29
     {'src': S_FOUND_RANGED, 'dst': S_FOUND_SPELLS_PREPARED, 'cond': r".*Spells\sPrepared\s", 'callback': T_PARSE_SPELLS_PREPARED},  # 29
     {'src': S_FOUND_RANGED, 'dst': S_FOUND_STATISTICS_HEADER, 'cond': r"^STATISTICS", 'callback': T_SKIP},  # 28
     {'src': S_FOUND_RANGED, 'dst': S_FOUND_TACTICS_HEADER, 'cond': r"^TACTICS", 'callback': T_SKIP},  # 28
     {'src': S_FOUND_SPACE, 'dst': S_FOUND_SPECIAL_ATTACKS, 'cond': r"^Special Attacks\s", 'callback': T_PARSE_SPECIAL_ATTACKS},  # 27
-    {'src': S_FOUND_SPACE, 'dst': S_FOUND_SPELLS_KNOWN, 'cond': r".*Spells\sKnown\s", 'callback': T_PARSE_SPELLS_KNOWN},  # 29
+    {'src': S_FOUND_SPACE, 'dst': S_FOUND_SPELLS_KNOWN, 'cond': R_KNOWN_SPELLS, 'callback': T_PARSE_SPELLS_KNOWN},  # 29
     {'src': S_FOUND_SPACE, 'dst': S_FOUND_SPELLS_PREPARED, 'cond': r".*Spells\sPrepared\s", 'callback': T_PARSE_SPELLS_PREPARED},  # 29
     {'src': S_FOUND_SPACE, 'dst': S_FOUND_STATISTICS_HEADER, 'cond': r"^STATISTICS", 'callback': T_SKIP},  # 28
     {'src': S_FOUND_SPACE, 'dst': S_FOUND_TACTICS_HEADER, 'cond': r"^TACTICS", 'callback': T_SKIP},  # 28
     {'src': S_FOUND_SPECIAL_ATTACKS, 'dst': S_FOUND_STATISTICS_HEADER, 'cond': r"^STATISTICS", 'callback': T_SKIP},  # 29
     {'src': S_FOUND_SPECIAL_ATTACKS, 'dst': S_FOUND_TACTICS_HEADER, 'cond': r"^TACTICS", 'callback': T_SKIP},  # 29
     {'src': S_FOUND_SPECIAL_ATTACKS, 'dst': S_FOUND_SPELL_LIKE_ABILITIES, 'cond': r".*Spell\-Like\sAbilities\s", 'callback': T_PARSE_SPELL_LIKE_ABILITIES},  # 29
-    {'src': S_FOUND_SPECIAL_ATTACKS, 'dst': S_FOUND_SPELLS_KNOWN, 'cond': r".*Spells\sKnown\s", 'callback': T_PARSE_SPELLS_KNOWN},  # 29
+    {'src': S_FOUND_SPECIAL_ATTACKS, 'dst': S_FOUND_SPELLS_KNOWN, 'cond': R_KNOWN_SPELLS, 'callback': T_PARSE_SPELLS_KNOWN},  # 29
     {'src': S_FOUND_SPECIAL_ATTACKS, 'dst': S_FOUND_SPELLS_PREPARED, 'cond': r".*Spells\sPrepared\s", 'callback': T_PARSE_SPELLS_PREPARED},  # 29
-    {'src': S_FOUND_SPELL_LIKE_ABILITIES, 'dst': S_FOUND_SLA_SPELLS, 'cond': r"^(.*)", 'callback': T_PARSE_SLA_SPELLS},
+    {'src': S_FOUND_SPELL_LIKE_ABILITIES, 'dst': S_FOUND_SLA_SPELLS, 'cond': R_ANYTHING, 'callback': T_PARSE_SLA_SPELLS},
     {'src': S_FOUND_SLA_SPELLS, 'dst': S_FOUND_STATISTICS_HEADER, 'cond': r"^STATISTICS", 'callback': T_SKIP},
     {'src': S_FOUND_SLA_SPELLS, 'dst': S_FOUND_TACTICS_HEADER, 'cond': r"^TACTICS", 'callback': T_SKIP},  # 29
-    {'src': S_FOUND_SLA_SPELLS, 'dst': S_FOUND_SPELLS_KNOWN, 'cond': r".*Spells\sKnown\s", 'callback': T_PARSE_SPELLS_KNOWN},  # 29
+    {'src': S_FOUND_SLA_SPELLS, 'dst': S_FOUND_SPELLS_KNOWN, 'cond': R_KNOWN_SPELLS, 'callback': T_PARSE_SPELLS_KNOWN},  # 29
     {'src': S_FOUND_SLA_SPELLS, 'dst': S_FOUND_SPELLS_PREPARED, 'cond': r".*Spells\sPrepared\s", 'callback': T_PARSE_SPELLS_PREPARED},  # 29
-    {'src': S_FOUND_SLA_SPELLS, 'dst': S_FOUND_SLA_SPELLS, 'cond': r"^(.*)", 'callback': T_PARSE_SLA_SPELLS},
-    {'src': S_FOUND_SPELLS_KNOWN, 'dst': S_FOUND_SK_SPELLS, 'cond': r"^(.*)", 'callback': T_PARSE_SK_SPELLS},
+    {'src': S_FOUND_SLA_SPELLS, 'dst': S_FOUND_SLA_SPELLS, 'cond': R_ANYTHING, 'callback': T_PARSE_SLA_SPELLS},
+    {'src': S_FOUND_SPELLS_KNOWN, 'dst': S_FOUND_SK_SPELLS, 'cond': R_ANYTHING, 'callback': T_PARSE_SK_SPELLS},
     {'src': S_FOUND_SK_SPELLS, 'dst': S_FOUND_STATISTICS_HEADER, 'cond': r"^STATISTICS", 'callback': T_SKIP},
     {'src': S_FOUND_SK_SPELLS, 'dst': S_FOUND_TACTICS_HEADER, 'cond': r"^TACTICS", 'callback': T_SKIP},  # 29
     {'src': S_FOUND_SK_SPELLS, 'dst': S_FOUND_SPELLS_PREPARED, 'cond': r".*Spells\sPrepared\s", 'callback': T_PARSE_SPELLS_PREPARED},  # 29
-    {'src': S_FOUND_SK_SPELLS, 'dst': S_FOUND_SK_SPELLS, 'cond': r"^(.*)", 'callback': T_PARSE_SK_SPELLS},
-    {'src': S_FOUND_SPELLS_PREPARED, 'dst': S_FOUND_SP_SPELLS, 'cond': r"^(.*)", 'callback': T_PARSE_SP_SPELLS},
+    {'src': S_FOUND_SK_SPELLS, 'dst': S_FOUND_SK_SPELLS, 'cond': R_ANYTHING, 'callback': T_PARSE_SK_SPELLS},
+    {'src': S_FOUND_SPELLS_PREPARED, 'dst': S_FOUND_SP_SPELLS, 'cond': R_ANYTHING, 'callback': T_PARSE_SP_SPELLS},
     {'src': S_FOUND_SP_SPELLS, 'dst': S_FOUND_STATISTICS_HEADER, 'cond': r"^STATISTICS", 'callback': T_SKIP},
     {'src': S_FOUND_SP_SPELLS, 'dst': S_FOUND_TACTICS_HEADER, 'cond': r"^TACTICS", 'callback': T_SKIP},
-    {'src': S_FOUND_SP_SPELLS, 'dst': S_FOUND_SP_SPELLS, 'cond': r"^(.*)", 'callback': T_PARSE_SP_SPELLS},
+    {'src': S_FOUND_SP_SPELLS, 'dst': S_FOUND_SP_SPELLS, 'cond': R_ANYTHING, 'callback': T_PARSE_SP_SPELLS},
     {'src': S_FOUND_TACTICS_HEADER, 'dst': S_FOUND_STATISTICS_HEADER, 'cond': r"^STATISTICS", 'callback': T_SKIP},
-    {'src': S_FOUND_TACTICS_HEADER, 'dst': S_FOUND_TACTICS_DETAIL, 'cond': r"^(.*)", 'callback': T_PARSE_TACTICS},
+    {'src': S_FOUND_TACTICS_HEADER, 'dst': S_FOUND_TACTICS_DETAIL, 'cond': R_ANYTHING, 'callback': T_PARSE_TACTICS},
     {'src': S_FOUND_TACTICS_DETAIL, 'dst': S_FOUND_STATISTICS_HEADER, 'cond': r"^STATISTICS", 'callback': T_SKIP},
-    {'src': S_FOUND_TACTICS_DETAIL, 'dst': S_FOUND_TACTICS_DETAIL, 'cond': r"^(.*)", 'callback': T_PARSE_TACTICS},
+    {'src': S_FOUND_TACTICS_DETAIL, 'dst': S_FOUND_TACTICS_DETAIL, 'cond': R_ANYTHING, 'callback': T_PARSE_TACTICS},
     {'src': S_FOUND_STATISTICS_HEADER, 'dst': S_FOUND_STRENGTH, 'cond': r"^Str\s(\d+)", 'callback': T_PARSE_STRENGTH},
     {'src': S_FOUND_STRENGTH, 'dst': S_FOUND_BASE_ATTACK, 'cond': r"^Base Atk\s", 'callback': T_PARSE_BASE_ATTACK},
     {'src': S_FOUND_BASE_ATTACK, 'dst': S_FOUND_FEATS, 'cond': r"^Feats\s", 'callback': T_PARSE_FEATS},
