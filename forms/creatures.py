@@ -205,8 +205,13 @@ class CreatureForm:
 
         row_count += 1
         ttk.Label(mainframe, text="Speed").grid(row=row_count, column=0, sticky=NE)
-        self.speed_entry = Text(mainframe, width=40, height=1)
-        self.speed_entry.grid(row=row_count, column=1, columnspan=7, sticky=W)
+        self.speed = StringVar()
+        speed_entry = ttk.Entry(mainframe, width=30, textvariable=self.speed)
+        speed_entry.grid(row=row_count, column=1, sticky=W)
+
+        row_count += 1
+        self.speed_modifiers_entry = Text(mainframe, width=30, height=1)
+        self.speed_modifiers_entry.grid(row=row_count, column=1, columnspan=7, sticky=W)
 
         row_count += 1
         ttk.Label(mainframe, text="Melee").grid(row=row_count, column=0, sticky=NE)
@@ -214,10 +219,15 @@ class CreatureForm:
         self.melee_entry.grid(row=row_count, column=1, columnspan=7, sticky=W)
 
         row_count += 1
+        ttk.Label(mainframe, text="Ranged").grid(row=row_count, column=0, sticky=NE)
+        self.ranged_entry = Text(mainframe, width=40, height=1)
+        self.ranged_entry.grid(row=row_count, column=1, columnspan=7, sticky=W)
+
+        row_count += 1
         ttk.Label(mainframe, text="Space").grid(row=row_count, column=0, sticky=E)
         self.space = StringVar()
-        sspace_entry = ttk.Entry(mainframe, width=4, textvariable=self.space)
-        sspace_entry.grid(row=row_count, column=1, sticky=W)
+        space_entry = ttk.Entry(mainframe, width=4, textvariable=self.space)
+        space_entry.grid(row=row_count, column=1, sticky=W)
 
         ttk.Label(mainframe, text="Reach").grid(row=row_count, column=2, sticky=E)
         self.reach = StringVar()
@@ -427,6 +437,23 @@ class CreatureForm:
             self.weakness_entry['height'] = len(self.creature.weaknesses)
             for weakness in self.creature.weaknesses:
                 self.weakness_entry.insert(END, getattr(weakness, 'weakness') + "\n")
+
+            self.speed.set(getattr(self.creature, 'speed'))
+
+            self.speed_modifiers_entry.delete("1.0", END)
+            self.speed_modifiers_entry['height'] = len(self.creature.speed_modifiers)
+            for speed_modifier in self.creature.speed_modifiers:
+                self.speed_modifiers_entry.insert(END, getattr(speed_modifier, 'speed_modifier') + "\n")
+
+            self.melee_entry.delete("1.0", END)
+            self.melee_entry['height'] = len(self.creature.melee_attacks)
+            for melee in self.creature.melee_attacks:
+                self.melee_entry.insert(END, getattr(melee, 'attack') + "\n")
+
+            self.ranged_entry.delete("1.0", END)
+            self.ranged_entry['height'] = len(self.creature.ranged_attacks)
+            for ranged in self.creature.ranged_attacks:
+                self.ranged_entry.insert(END, getattr(ranged, 'attack') + "\n")
 
             self.language_entry.delete("1.0", END)
             self.language_entry['height'] = len(self.creature.languages)
