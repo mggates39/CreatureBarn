@@ -1,6 +1,7 @@
 from tkinter import *
 from tkinter import ttk
 from widgets.PairTupleCombobox import PairTupleCombobox
+from widgets.SectionBorder import SectionBorder
 from database import SessionLocal
 from models import Creature, CreatureLanguages, CreatureFeats, CreatureSkills
 import re
@@ -30,18 +31,17 @@ class CreatureForm:
 
         root.title("Creature Details")
         canvas = Canvas(root)
-        canvas.pack(side=LEFT, fill=BOTH, expand=True)
+        canvas.pack(side="left", fill="both", expand=True)
 
-        scrollbar = Scrollbar(root, orient=VERTICAL, command=canvas.yview)
-        scrollbar.pack(side=RIGHT, fill=Y)
+        scrollbar = Scrollbar(root, orient="vertical", command=canvas.yview)
+        scrollbar.pack(side="right", fill="y")
 
         canvas.configure(yscrollcommand=scrollbar.set)
-        mainframe = ttk.Frame(canvas)
+        mainframe = ttk.Frame(root, padding=3, borderwidth=2, relief='raised')
 
         canvas.create_window((0, 0), window=mainframe, anchor="nw")
         mainframe.bind("<Configure>", lambda e: canvas.configure(scrollregion=canvas.bbox("all")))
 
-        # mainframe = ttk.Frame(root, padding=3, borderwidth=2, relief='raised')
         # mainframe.grid(column=0, row=0, padx=10, pady=10, sticky="nsew")
 
         row_count = 1
@@ -134,6 +134,11 @@ class CreatureForm:
         self.auras_entry.grid(row=row_count, column=1, columnspan=7, sticky=W)
 
         row_count += 1
+        # defense_frame = SectionBorder(mainframe, title="Defense", borderwidth=3, relief="raised")
+        defense_frame = SectionBorder(mainframe, title="Defense")
+        defense_frame.grid(row=row_count, column=0, columnspan=12)
+
+        row_count += 1
         ttk.Label(mainframe, text="AC").grid(row=row_count, column=0, sticky=E)
         self.base_ac = StringVar()
         base_ac_entry = ttk.Entry(mainframe, width=4, textvariable=self.base_ac)
@@ -204,6 +209,10 @@ class CreatureForm:
         self.weakness_entry.grid(row=row_count, column=1, columnspan=7, sticky=W)
 
         row_count += 1
+        offense_frame = SectionBorder(mainframe, title="Offense")
+        offense_frame.grid(row=row_count, column=0, columnspan=12)
+
+        row_count += 1
         ttk.Label(mainframe, text="Speed").grid(row=row_count, column=0, sticky=NE)
         self.speed = StringVar()
         speed_entry = ttk.Entry(mainframe, width=30, textvariable=self.speed)
@@ -226,22 +235,18 @@ class CreatureForm:
         row_count += 1
         ttk.Label(mainframe, text="Space").grid(row=row_count, column=0, sticky=E)
         self.space = StringVar()
-        space_entry = ttk.Entry(mainframe, width=4, textvariable=self.space)
+        space_entry = ttk.Entry(mainframe, width=10, textvariable=self.space)
         space_entry.grid(row=row_count, column=1, sticky=W)
 
         ttk.Label(mainframe, text="Reach").grid(row=row_count, column=2, sticky=E)
         self.reach = StringVar()
-        reach_entry = ttk.Entry(mainframe, width=4, textvariable=self.reach)
+        reach_entry = ttk.Entry(mainframe, width=20, textvariable=self.reach)
         reach_entry.grid(row=row_count, column=3, sticky=W)
 
         row_count += 1
         ttk.Label(mainframe, text="Special Attacks").grid(row=row_count, column=0, sticky=NE)
         self.special_attacks_entry = Text(mainframe, width=40, height=1)
         self.special_attacks_entry.grid(row=row_count, column=1, columnspan=7, sticky=W)
-
-        self.reach = StringVar()
-        reach_entry = ttk.Entry(mainframe, width=4, textvariable=self.reach)
-        reach_entry.grid(row=row_count, column=3, sticky=W)
 
         row_count += 1
         ttk.Label(mainframe, text="Spell-Like Abilities").grid(row=row_count, column=0, sticky=NE)
@@ -272,6 +277,18 @@ class CreatureForm:
         row_count += 1
         self.prepared_spells_entry = Text(mainframe, width=60, height=1)
         self.prepared_spells_entry.grid(row=row_count, column=1, columnspan=7, sticky=W)
+
+        row_count += 1
+        offense_frame = SectionBorder(mainframe, title="Tactics")
+        offense_frame.grid(row=row_count, column=0, columnspan=12)
+
+        row_count += 1
+        self.tactics_entry = Text(mainframe, wrap="word", width=90, height=1)
+        self.tactics_entry.grid(row=row_count, column=1, columnspan=12, sticky=W)
+
+        row_count += 1
+        offense_frame = SectionBorder(mainframe, title="Statistics")
+        offense_frame.grid(row=row_count, column=0, columnspan=12)
 
         row_count += 1
         ttk.Label(mainframe, text="STR").grid(row=row_count, column=0, sticky=E)
@@ -342,7 +359,15 @@ class CreatureForm:
         self.language_entry.grid(row=row_count, column=1, columnspan=7, sticky=W)
 
         row_count += 1
-        ttk.Button(mainframe, text='save', command=self.on_save).grid(row=0, column=0, sticky=W)
+        offense_frame = SectionBorder(mainframe, title="About")
+        offense_frame.grid(row=row_count, column=0, columnspan=12)
+
+        row_count += 1
+        self.description_entry = Text(mainframe, wrap="word", width=90, height=1)
+        self.description_entry.grid(row=row_count, column=1, columnspan=12, sticky=W)
+
+        row_count += 1
+        ttk.Button(mainframe, text='save', command=self.on_save).grid(row=row_count, column=0)
 
         # root.columnconfigure(0, weight=1)
         # root.rowconfigure(0, weight=1)
@@ -370,6 +395,8 @@ class CreatureForm:
             self.base_ac.set(getattr(self.creature, 'base_armor_class'))
             self.touch_ac.set(getattr(self.creature, 'touch_armor_class'))
             self.flat_footed_ac.set(getattr(self.creature, 'flat_footed_armor_class'))
+            self.space.set(getattr(self.creature, 'space'))
+            self.reach.set(getattr(self.creature, 'reach'))
 
             self.ac_modifier_entry.delete("1.0", END)
             self.ac_modifier_entry['height'] = len(self.creature.ac_modifiers)
@@ -421,6 +448,14 @@ class CreatureForm:
                 else:
                     spell_modifiers = ""
                 self.prepared_spells_entry.insert(END, getattr(spell_like, 'spell_level') + " - " + getattr(spell_like, 'name') + spell_modifiers + "\n")
+
+            self.tactics_entry.delete("1.0", END)
+            if self.creature.tactics:
+                tactic_lines = self.creature.tactics.split("\n")
+                for tactic_line in tactic_lines:
+                    self.tactics_entry.insert(END, tactic_line + "\n")
+                # self.tactics_entry['height'] = self.tactics_entry.count("1.0", END, "displaylines")[0]
+                self.tactics_entry['height'] = 5
 
             self.strength.set(getattr(self.creature, 'strength'))
             self.dexterity.set(getattr(self.creature, 'dexterity'))
@@ -479,6 +514,14 @@ class CreatureForm:
             self.skills_entry['height'] = len(self.creature.skills)
             for skill in self.creature.skills:
                 self.skills_entry.insert(END, getattr(skill, 'skill') + " " + getattr(skill, 'modifier') + "\n")
+
+            self.description_entry.delete("1.0", END)
+            if self.creature.description:
+                description_lines = self.creature.description.split("\n")
+                for description_line in description_lines:
+                    self.description_entry.insert(END, description_line + "\n")
+                # self.description_entry['height'] = self.description_entry.count("1.0", END, "displaylines")[0]
+                self.description_entry['height'] = 5
 
             # print(self.creature)
 
