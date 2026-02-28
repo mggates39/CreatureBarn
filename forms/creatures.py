@@ -624,7 +624,7 @@ class CreatureForm:
         if self.creature.sr_modifiers:
             resistance_list = []
             for resist in self.creature.sr_modifiers:
-                resistance_list.append(resist.resists + " " + resist.resist_ammount)
+                resistance_list.append(resist.resists + " " + resist.resist_amount)
             resistance = ", ".join(resistance_list)
         else:
             resistance = ""
@@ -647,8 +647,7 @@ class CreatureForm:
 
         if self.creature.known_spells:
             spell_dictionary = {}
-            spell_list = []
-            spell_list.append(self.creature.spell_known_caster_level)
+            spell_list = [self.creature.spell_known_caster_level]
             for spell in self.creature.known_spells:
                 key = spell.spell_level + " " + spell.rate + "— "
                 value = spell.name
@@ -667,8 +666,7 @@ class CreatureForm:
 
         if self.creature.prepared_spells:
             spell_dictionary = {}
-            spell_list = []
-            spell_list.append(self.creature.spell_prepared_caster_level)
+            spell_list = [self.creature.spell_prepared_caster_level]
             for spell in self.creature.prepared_spells:
                 key = spell.spell_level + "— "
                 value = spell.name
@@ -681,7 +679,6 @@ class CreatureForm:
                 spell_list.append(rate + ", ".join(spells))
 
             prepared_spells = "{#ENTER}".join(spell_list)
-
         else:
             prepared_spells = ""
 
@@ -701,11 +698,11 @@ class CreatureForm:
             auras,
             self.creature.base_armor_class + " " + self.creature.touch_armor_class + " " + self.creature.flat_footed_armor_class + ac_modifiers,
             self.creature.hit_points + " (" + self.creature.hit_dice + ")",
-            self.creature.fortitude,
-            self.creature.reflex,
-            self.creature.will,
-            self.creature.damage_reduction if self.creature.environment else "",
-            self.creature.spell_resistence if self.creature.environment else "",
+            self.creature.fortitude if self.creature.fortitude else "",
+            self.creature.reflex if self.creature.reflex else "",
+            self.creature.will if self.creature.will else "",
+            self.creature.damage_reduction if self.creature.damage_reduction else "",
+            self.creature.spell_resistence if self.creature.spell_resistence else "",
             immunity,
             resistance,
             weaknesses,
