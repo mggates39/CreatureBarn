@@ -1,7 +1,7 @@
 from models import Creature, CreatureLanguages, CreatureFeats, CreatureSkills, CreatureSenses, CreatureAuras, \
     CreatureACModifiers, CreatureWeaknesses, CreatureImmuneModifiers, CreatureSpellResistenceModifiers, \
     CreatureSpellLikeAbilities, CreatureKnownSpells, CreaturePreparedSpells, CreatureSpeedModifiers, \
-    CreatureMeleeAttacks, CreatureRangedAttacks
+    CreatureMeleeAttacks, CreatureRangedAttacks, CreatureSpecialQualities, CreatureSpecialAttacks
 import re
 
 def _normalize_case(text: str) -> str:
@@ -193,7 +193,10 @@ def transition_parse_speed(fsm_obj):
 def transition_parse_melee(fsm_obj):
     melee_match = re.search(R_MELEE, fsm_obj.current_line, re.IGNORECASE)
     if melee_match:
-        melee_attacks = re.split(R_SPLIT_COMMA_OUTSIDE_PARENS, melee_match.group(1))
+        if " or " in melee_match.group(1):
+            melee_attacks = melee_match.group(1).split(" or ")
+        else:
+            melee_attacks = re.split(R_SPLIT_COMMA_OUTSIDE_PARENS, melee_match.group(1))
         for melee_attack in melee_attacks:
             creature_melee = CreatureMeleeAttacks()
             creature_melee.attack = melee_attack.strip()
@@ -202,7 +205,10 @@ def transition_parse_melee(fsm_obj):
 def transition_parse_ranged(fsm_obj):
     ranged_match = re.search(R_RANGED, fsm_obj.current_line, re.IGNORECASE)
     if ranged_match:
-        ranged_attacks = re.split(R_SPLIT_COMMA_OUTSIDE_PARENS, ranged_match.group(1))
+        if " or " in ranged_match.group(1):
+            ranged_attacks = ranged_match.group(1).split(" or ")
+        else:
+            ranged_attacks = re.split(R_SPLIT_COMMA_OUTSIDE_PARENS, ranged_match.group(1))
         for ranged_attack in ranged_attacks:
             creature_ranged = CreatureRangedAttacks()
             creature_ranged.attack = ranged_attack.strip()
@@ -220,7 +226,13 @@ def transition_parse_space(fsm_obj):
                 fsm_obj.creature.space = part.strip()
 
 def transition_parse_special_attacks(fsm_obj):
-    pass
+    special_attack_match = re.search(r"Special Attacks\s+(.+)", fsm_obj.current_line, re.IGNORECASE)
+    if special_attack_match:
+        for special_attack in re.split(R_SPLIT_COMMA_OUTSIDE_PARENS, special_attack_match.group(1)):
+            creature_special_attack = CreatureSpecialAttacks()
+            creature_special_attack.attack = special_attack.strip()
+            fsm_obj.creature.special_attacks.append(creature_special_attack)
+
 
 def transition_parse_spell_like_abilities(fsm_obj):
     spell_like_match = re.search(r".*Spell-Like Abilities\s+(.+)", fsm_obj.current_line, re.IGNORECASE)
@@ -367,10 +379,14 @@ def transition_parse_languages(fsm_obj):
             fsm_obj.creature.languages.append(creature_language)
 
 def transition_parse_special_qualities(fsm_obj):
-    pass
+    special_qualities_match = re.search(r"SQ\s+(.+)", fsm_obj.current_line, re.IGNORECASE)
+    if special_qualities_match:
+        for special_quality in special_qualities_match.group(1).split(","):
+            creature_special_quality = CreatureSpecialQualities()
+            creature_special_quality.special_quality = special_quality.strip()
+            fsm_obj.creature.special_qualities.append(creature_special_quality)
 
-def transition_parse_gear(fsm_obj):
-    pass
+
 
 def transition_parse_gear_list(fsm_obj):
     pass
@@ -388,13 +404,19 @@ def transition_parse_special_ability_description(fsm_obj):
     pass
 
 def transition_parse_environment(fsm_obj):
-    pass
+    environment_match = re.search(r"Environment\s+(.+)", fsm_obj.current_line, re.IGNORECASE)
+    if environment_match:
+        fsm_obj.creature.environment = environment_match.group(1).strip()
 
 def transition_parse_organization(fsm_obj):
-    pass
+    organization_match = re.search(r"Organization\s+(.+)", fsm_obj.current_line, re.IGNORECASE)
+    if organization_match:
+        fsm_obj.creature.environment = organization_match.group(1).strip()
 
 def transition_parse_treasure(fsm_obj):
-    pass
+    treasure_match = re.search(r"Treasure\s+(.+)", fsm_obj.current_line, re.IGNORECASE)
+    if treasure_match:
+        fsm_obj.creature.environment = treasure_match.group(1).strip()
 
 
 T_SKIP = transition_skip
@@ -429,7 +451,6 @@ T_PARSE_FEATS = transition_parse_feats
 T_PARSE_SKILLS = transition_parse_skills
 T_PARSE_LANGUAGES = transition_parse_languages
 T_PARSE_SPECIAL_QUALITIES = transition_parse_special_qualities
-T_PARSE_GEAR = transition_parse_gear
 T_PARSE_GEAR_LIST = transition_parse_gear_list
 T_PARSE_GEAR_ITEM = transition_parse_gear_item
 T_PARSE_GEAR_DESCRIPTION = transition_parse_gear_description
@@ -491,7 +512,7 @@ S_FOUND_ABOUT_DETAILS = "STATE: FOUND ABOUT DETAILS"
 S_FOUND_COPYRIGHT = "STATE: FOUND COPYRIGHT"
 
 R_ANYTHING = r"^(.+)"
-R_COMMON_NAME = r"^(.+)\sCR\s+([\d/]+)"
+R_COMMON_NAME = r"^(.+)CR\s+([\d/]+)"
 R_ALIGNMENT = r"^([LNCEG]{1,2})\s"
 R_EXPERIENCE = r"XP\s+([\d,]+)"
 R_INITIATIVE = r"^Init\s+([^\n;]+)"
@@ -632,6 +653,10 @@ for map_item in FSM_MAP:
 class ParseCreature:
     def __init__(self, raw_input):
         self.creature = Creature()
+        self.creature.space = '5 ft.'
+        self.creature.reach = '5 ft.'
+        self.gear_item = None
+        self.special_ability = None
         self.input_str = raw_input
         self.current_state = S_INITIAL_LOAD
         self.current_line = ""

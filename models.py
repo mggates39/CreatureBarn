@@ -256,9 +256,6 @@ class CreatureSpecialAttacks(Base):
     __tablename__ = 'creature_special_attacks'
     id = Column(Integer, primary_key=True)
     attack = Column(String)
-    attack_roll_modifier = Column(Integer)
-    damage_modifier = Column(String)
-    critical_modifier = Column(String)
 
     # Foreign key to Creatures
     creature_id = Column(Integer, ForeignKey('creatures.id'))

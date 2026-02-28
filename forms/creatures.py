@@ -359,6 +359,11 @@ class CreatureForm:
         self.language_entry.grid(row=row_count, column=1, columnspan=7, sticky=W)
 
         row_count += 1
+        ttk.Label(mainframe, text="Special Qualities").grid(row=row_count, column=0, sticky=NE)
+        self.special_qualities_entry = Text(mainframe, width=30, height=1)
+        self.special_qualities_entry.grid(row=row_count, column=1, columnspan=7, sticky=W)
+
+        row_count += 1
         offense_frame = SectionBorder(mainframe, title="About")
         offense_frame.grid(row=row_count, column=0, columnspan=12)
 
@@ -490,6 +495,11 @@ class CreatureForm:
             for ranged in self.creature.ranged_attacks:
                 self.ranged_entry.insert(END, getattr(ranged, 'attack') + "\n")
 
+            self.special_attacks_entry.delete("1.0", END)
+            self.special_attacks_entry['height'] = len(self.creature.special_attacks)
+            for attack in self.creature.special_attacks:
+                self.special_attacks_entry.insert(END, getattr(attack, 'attack') + "\n")
+
             self.language_entry.delete("1.0", END)
             self.language_entry['height'] = len(self.creature.languages)
             for language in self.creature.languages:
@@ -499,6 +509,11 @@ class CreatureForm:
             self.auras_entry['height'] = len(self.creature.auras)
             for aura in self.creature.auras:
                 self.auras_entry.insert(END, getattr(aura, 'aura') + " (" + getattr(aura, 'radius') + ", " + getattr(aura, 'save_role') + ")\n")
+
+            self.special_qualities_entry.delete("1.0", END)
+            self.special_qualities_entry['height'] = len(self.creature.special_qualities)
+            for special_quality in self.creature.special_qualities:
+                self.special_qualities_entry.insert(END, getattr(special_quality, 'special_quality') + "\n")
 
             self.senses_entry.delete("1.0", END)
             self.senses_entry['height'] = len(self.creature.senses)
