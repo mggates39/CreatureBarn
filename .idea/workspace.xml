@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="71c3a291-103e-4653-a4fd-d79cf3183176" name="Changes" comment="Added AC Modifiers to display&#10;&#10;Fixed Racial Modifiers parsing &#10;Fixed bad exit in prepared spells parsing">
+    <list default="true" id="71c3a291-103e-4653-a4fd-d79cf3183176" name="Changes" comment="started formatting the export.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/creature_barn.db" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/forms/creatures.py" beforeDir="false" afterPath="$PROJECT_DIR$/forms/creatures.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/parsers/CreatureParser.py" beforeDir="false" afterPath="$PROJECT_DIR$/parsers/CreatureParser.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,6 +53,7 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Python.CreatureParser.executor&quot;: &quot;Run&quot;,
     &quot;Python.create_tables.executor&quot;: &quot;Run&quot;,
     &quot;Python.creatures.executor&quot;: &quot;Run&quot;,
     &quot;Python.database.executor&quot;: &quot;Run&quot;,
@@ -60,6 +64,7 @@
     &quot;Python.test_form.executor&quot;: &quot;Run&quot;,
     &quot;Python.test_multi.executor&quot;: &quot;Run&quot;,
     &quot;Python.test_re.executor&quot;: &quot;Run&quot;,
+    &quot;Python.test_regex.executor&quot;: &quot;Run&quot;,
     &quot;Python.test_scroll.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
@@ -85,7 +90,31 @@
     ]
   }
 }</component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.main">
+    <configuration name="create_tables" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="CreatureBarn" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="RUN_TOOL" value="" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/create_tables.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="CreatureBarn" />
       <option name="ENV_FILES" value="" />
@@ -111,11 +140,15 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.create_tables" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-9b0f141eb926-JavaScript-PY-253.31033.139" />
         <option value="bundled-python-sdk-2653e85de345-6d6dccd035ac-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-253.31033.139" />
       </set>
     </attachedChunks>
@@ -138,39 +171,7 @@
       <workItem from="1771939681036" duration="33106000" />
       <workItem from="1772032385936" duration="29398000" />
       <workItem from="1772077327502" duration="2373000" />
-      <workItem from="1772114223255" duration="10248000" />
-    </task>
-    <task id="LOCAL-00001" summary="Start adding npc tables for version 2 of the database">
-      <option name="closed" value="true" />
-      <created>1769655908850</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1769655908850</updated>
-    </task>
-    <task id="LOCAL-00002" summary="Fix cat based typo in code">
-      <option name="closed" value="true" />
-      <created>1769656006725</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1769656006725</updated>
-    </task>
-    <task id="LOCAL-00003" summary="Add initial data models for creatures">
-      <option name="closed" value="true" />
-      <created>1771190950313</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1771190950313</updated>
-    </task>
-    <task id="LOCAL-00004" summary="Updated data models for creatures">
-      <option name="closed" value="true" />
-      <created>1771191859217</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1771191859217</updated>
+      <workItem from="1772114223255" duration="75649000" />
     </task>
     <task id="LOCAL-00005" summary="Updated data models for creatures">
       <option name="closed" value="true" />
@@ -460,7 +461,111 @@
       <option name="project" value="LOCAL" />
       <updated>1772124857707</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="missed PyCharm project file change">
+      <option name="closed" value="true" />
+      <created>1772125065911</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1772125065911</updated>
+    </task>
+    <task id="LOCAL-00042" summary="Add spell like abilities to parser and form">
+      <option name="closed" value="true" />
+      <created>1772144820793</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1772144820794</updated>
+    </task>
+    <task id="LOCAL-00043" summary="Clean up issue with caster level being different for spell like abilities, known spells and prepared spells&#10;Add parsing and display support for known spells and prepared spells">
+      <option name="closed" value="true" />
+      <created>1772164214765</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1772164214765</updated>
+    </task>
+    <task id="LOCAL-00044" summary="Fixed issue in Spells Prepared">
+      <option name="closed" value="true" />
+      <created>1772164345138</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1772164345140</updated>
+    </task>
+    <task id="LOCAL-00045" summary="simplified melee, ranged attacks and speed modifier data model">
+      <option name="closed" value="true" />
+      <created>1772208117014</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1772208117014</updated>
+    </task>
+    <task id="LOCAL-00046" summary="added speed, melee, ranged attacks to parser and display form&#10;Start to unify regex definitions">
+      <option name="closed" value="true" />
+      <created>1772208311161</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1772208311163</updated>
+    </task>
+    <task id="LOCAL-00047" summary="added speed, melee, ranged attacks to parser and display form&#10;Start to unify regex definitions">
+      <option name="closed" value="true" />
+      <created>1772208319059</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1772208319059</updated>
+    </task>
+    <task id="LOCAL-00048" summary="added section header widget">
+      <option name="closed" value="true" />
+      <created>1772234031084</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1772234031084</updated>
+    </task>
+    <task id="LOCAL-00049" summary="added Finite States to process all the files">
+      <option name="closed" value="true" />
+      <created>1772234127288</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1772234127288</updated>
+    </task>
+    <task id="LOCAL-00050" summary="added section headers and some more fields">
+      <option name="closed" value="true" />
+      <created>1772234187001</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1772234187006</updated>
+    </task>
+    <task id="LOCAL-00051" summary="added some more fields to parser and display">
+      <option name="closed" value="true" />
+      <created>1772242702842</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1772242702843</updated>
+    </task>
+    <task id="LOCAL-00052" summary="added ecology section to form and fixed typos in parser">
+      <option name="closed" value="true" />
+      <created>1772245026473</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1772245026473</updated>
+    </task>
+    <task id="LOCAL-00053" summary="started formatting the export.">
+      <option name="closed" value="true" />
+      <created>1772255429602</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1772255429602</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -484,18 +589,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Start wiring in the parser to the data load" />
-    <MESSAGE value="get the parser actually doing a data load" />
-    <MESSAGE value="Clean up models and add creature description" />
-    <MESSAGE value="Add save button to save or update a creature" />
-    <MESSAGE value="Add the new Finite State Machine Parser" />
-    <MESSAGE value="Wire in the new parser" />
-    <MESSAGE value="Wire in the new parser fully" />
-    <MESSAGE value="Add aura parsing" />
-    <MESSAGE value="fix typo in state message" />
-    <MESSAGE value="Fix issue in initiative parse for possible auras" />
-    <MESSAGE value="Change data type of AC modifier amount to string" />
-    <MESSAGE value="Show the actual parsed creature" />
     <MESSAGE value="Add more fields to the form" />
     <MESSAGE value="Add more parsing transitions, states, and mapped steps" />
     <MESSAGE value="Add support for the Tactics section" />
@@ -509,7 +602,19 @@
     <MESSAGE value="Added immunity and resistance display" />
     <MESSAGE value="Added immunity and resistance parsing&#10;&#10;Cleaned up header identification" />
     <MESSAGE value="Added AC Modifiers to display&#10;&#10;Fixed Racial Modifiers parsing &#10;Fixed bad exit in prepared spells parsing" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added AC Modifiers to display&#10;&#10;Fixed Racial Modifiers parsing &#10;Fixed bad exit in prepared spells parsing" />
+    <MESSAGE value="missed PyCharm project file change" />
+    <MESSAGE value="Add spell like abilities to parser and form" />
+    <MESSAGE value="Clean up issue with caster level being different for spell like abilities, known spells and prepared spells&#10;Add parsing and display support for known spells and prepared spells" />
+    <MESSAGE value="Fixed issue in Spells Prepared" />
+    <MESSAGE value="simplified melee, ranged attacks and speed modifier data model" />
+    <MESSAGE value="added speed, melee, ranged attacks to parser and display form&#10;Start to unify regex definitions" />
+    <MESSAGE value="added section header widget" />
+    <MESSAGE value="added Finite States to process all the files" />
+    <MESSAGE value="added section headers and some more fields" />
+    <MESSAGE value="added some more fields to parser and display" />
+    <MESSAGE value="added ecology section to form and fixed typos in parser" />
+    <MESSAGE value="started formatting the export." />
+    <option name="LAST_COMMIT_MESSAGE" value="started formatting the export." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -523,20 +628,27 @@
           <url>file://$PROJECT_DIR$/parsers/CreatureParser.py</url>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/forms/creatures.py</url>
+          <line>743</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/CreatureBarn$test_re.coverage" NAME="test_re Coverage Results" MODIFIED="1771810287507" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/CreatureBarn$test_form.coverage" NAME="test_form Coverage Results" MODIFIED="1772071106587" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/CreatureBarn$test_regex.coverage" NAME="test_regex Coverage Results" MODIFIED="1772147182389" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/CreatureBarn$database.coverage" NAME="database Coverage Results" MODIFIED="1768856737518" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/CreatureBarn$test_multi.coverage" NAME="test_multi Coverage Results" MODIFIED="1771251586258" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/CreatureBarn$parser_test.coverage" NAME="parser_test Coverage Results" MODIFIED="1771949896338" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/CreatureBarn$scroll_test.coverage" NAME="scroll_test Coverage Results" MODIFIED="1772072419404" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/CreatureBarn$test_scroll.coverage" NAME="test_scroll Coverage Results" MODIFIED="1771199224472" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/CreatureBarn$test_form.coverage" NAME="test_form Coverage Results" MODIFIED="1772071106587" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/CreatureBarn$first_ph.coverage" NAME="first.ph Coverage Results" MODIFIED="1771471698721" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/CreatureBarn$create_tables.coverage" NAME="create_tables Coverage Results" MODIFIED="1772046619960" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/CreatureBarn$main.coverage" NAME="main Coverage Results" MODIFIED="1772124659334" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/CreatureBarn$create_tables.coverage" NAME="create_tables Coverage Results" MODIFIED="1772255524813" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/CreatureBarn$CreatureParser.coverage" NAME="CreatureParser Coverage Results" MODIFIED="1772142878006" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/parsers" />
+    <SUITE FILE_PATH="coverage/CreatureBarn$main.coverage" NAME="main Coverage Results" MODIFIED="1772256556938" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/CreatureBarn$creatures.coverage" NAME="creatures Coverage Results" MODIFIED="1772072654456" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/forms" />
-    <SUITE FILE_PATH="coverage/CreatureBarn$database.coverage" NAME="database Coverage Results" MODIFIED="1768856737518" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/CreatureBarn$test_multi.coverage" NAME="test_multi Coverage Results" MODIFIED="1771251586258" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
