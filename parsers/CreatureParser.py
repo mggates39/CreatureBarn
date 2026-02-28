@@ -30,10 +30,10 @@ def transition_parse_common_name(fsm_obj):
 def transition_parse_description(fsm_obj):
     description = fsm_obj.creature.description
     if description:
-        description += fsm_obj.current_line
+        description += fsm_obj.current_line + "\n"
     else:
         description = fsm_obj.current_line
-    fsm_obj.creature.description = description
+    fsm_obj.creature.description = description + "\n"
 
 def transition_parse_experience_points(fsm_obj):
     xp_match = re.search(R_EXPERIENCE, fsm_obj.current_line, re.IGNORECASE)
@@ -311,9 +311,9 @@ def transition_parse_sp_spells(fsm_obj):
 def transition_parse_tactics(fsm_obj):
     tactics = fsm_obj.creature.tactics
     if tactics:
-        tactics += fsm_obj.current_line
+        tactics += fsm_obj.current_line + "\n"
     else:
-        tactics = fsm_obj.current_line
+        tactics = fsm_obj.current_line + "\n"
     fsm_obj.creature.tactics = tactics
 
 def transition_parse_strength(fsm_obj):
@@ -411,12 +411,12 @@ def transition_parse_environment(fsm_obj):
 def transition_parse_organization(fsm_obj):
     organization_match = re.search(r"Organization\s+(.+)", fsm_obj.current_line, re.IGNORECASE)
     if organization_match:
-        fsm_obj.creature.environment = organization_match.group(1).strip()
+        fsm_obj.creature.organization = organization_match.group(1).strip()
 
 def transition_parse_treasure(fsm_obj):
     treasure_match = re.search(r"Treasure\s+(.+)", fsm_obj.current_line, re.IGNORECASE)
     if treasure_match:
-        fsm_obj.creature.environment = treasure_match.group(1).strip()
+        fsm_obj.creature.treasure = treasure_match.group(1).strip()
 
 
 T_SKIP = transition_skip

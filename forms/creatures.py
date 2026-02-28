@@ -364,6 +364,28 @@ class CreatureForm:
         self.special_qualities_entry.grid(row=row_count, column=1, columnspan=7, sticky=W)
 
         row_count += 1
+        ecology_frame = SectionBorder(mainframe, title="Ecology")
+        ecology_frame.grid(row=row_count, column=0, columnspan=12)
+
+        row_count += 1
+        ttk.Label(mainframe, text="Environment").grid(row=row_count, column=0, sticky=E)
+        self.environment = StringVar()
+        environment_entry = ttk.Entry(mainframe, width=30, textvariable=self.environment)
+        environment_entry.grid(row=row_count, column=1, sticky=W)
+
+        row_count += 1
+        ttk.Label(mainframe, text="Organization").grid(row=row_count, column=0, sticky=E)
+        self.organization = StringVar()
+        organization_entry = ttk.Entry(mainframe, width=30, textvariable=self.organization)
+        organization_entry.grid(row=row_count, column=1, sticky=W)
+
+        row_count += 1
+        ttk.Label(mainframe, text="Treasure").grid(row=row_count, column=0, sticky=E)
+        self.treasure = StringVar()
+        treasure_entry = ttk.Entry(mainframe, width=30, textvariable=self.treasure)
+        treasure_entry.grid(row=row_count, column=1, sticky=W)
+
+        row_count += 1
         offense_frame = SectionBorder(mainframe, title="About")
         offense_frame.grid(row=row_count, column=0, columnspan=12)
 
@@ -472,6 +494,9 @@ class CreatureForm:
             self.combat_maneuver_bonus.set(getattr(self.creature, 'combat_maneuver_bonus'))
             self.combat_maneuver_defense.set(getattr(self.creature, 'combat_maneuver_defense'))
             self.racial_modifiers.set(getattr(self.creature, 'racial_modifiers'))
+            self.environment.set(getattr(self.creature, 'environment'))
+            self.organization.set(getattr(self.creature, 'organization'))
+            self.treasure.set(getattr(self.creature, 'treasure'))
 
             self.weakness_entry.delete("1.0", END)
             self.weakness_entry['height'] = len(self.creature.weaknesses)
