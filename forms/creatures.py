@@ -394,7 +394,7 @@ class CreatureForm:
         self.description_entry.grid(row=row_count, column=1, columnspan=12, sticky=W)
 
         row_count += 1
-        ttk.Button(mainframe, text='save', command=self.on_save).grid(row=row_count, column=0)
+        ttk.Button(mainframe, text='save', command=self.on_save).grid(row=0, column=0)
 
         # root.columnconfigure(0, weight=1)
         # root.rowconfigure(0, weight=1)
@@ -570,11 +570,171 @@ class CreatureForm:
 
     def on_save(self):
         db = SessionLocal()
-        if not self.creature_id:
-            db.add(self.creature)
-        db.commit()
-        db.refresh(self.creature)  # Refresh to get generated values (id, created_at)
-        self.creature_id = self.creature.id
+        # if not self.creature_id:
+        #     db.add(self.creature)
+        # db.commit()
+        # db.refresh(self.creature)  # Refresh to get generated values (id, created_at)
+        # self.creature_id = self.creature.id
+        sub_type = ("(" + self.creature.sub_type + ")") if self.creature.type else ""
+        if self.creature.senses:
+            senses_list = []
+            for sense in self.creature.senses:
+                senses_list.append(sense.sense)
+            senses = ", ".join(senses_list) + "; Perception " + self.creature.perception_modifier
+        else:
+            senses = ""
+
+        if self.creature.auras:
+            auras_list = []
+            for aura in self.creature.auras:
+                auras_list.append(aura.aura + " " + aura.radius + " (" + aura.save_role + ")")
+            auras = ", ".join(auras_list)
+        else:
+            auras = ""
+
+        if self.creature.ac_modifiers:
+            ac_mod_list = []
+            for ac_mod in self.creature.ac_modifiers:
+                ac_mod_list.append(ac_mod.modifier_amount + " " + ac_mod.modifier_type)
+            ac_modifiers = " (" + ", ".join(ac_mod_list) + ")"
+        else:
+            ac_modifiers = ""
+
+        if self.creature.immune_modifiers:
+            immune_list = []
+            for immune in self.creature.immune_modifiers:
+                immune_list.append(immune.immune_to)
+            immunity = ", ".join(immune_list)
+        else:
+            immunity = ""
+
+        if self.creature.weaknesses:
+            weakness_list = []
+            for weakness in self.creature.weaknesses:
+                weakness_list.append(weakness.weakness)
+            weaknesses = ", ".join(weakness_list)
+        else:
+            weaknesses = ""
+
+        if self.creature.sr_modifiers:
+            resistance_list = []
+            for resist in self.creature.sr_modifiers:
+                resistance_list.append(resist.resists + " " + resist.resist_ammount)
+            resistance = ", ".join(resistance_list)
+        else:
+            resistance = ""
+
+        if self.creature.languages:
+            languages_list = []
+            for language in self.creature.languages:
+                languages_list.append(language.language)
+            languages = ", ".join(languages_list)
+        else:
+            languages = ""
+
+        if self.creature.skills:
+            skill_list = []
+            for skill in self.creature.skills:
+                skill_list.append(skill.skill + " " + skill.modifier)
+            skills = ", ".join(skill_list)
+        else:
+            skills = ""
+
+        if self.creature.known_spells:
+            spell_dictionary = {}
+            spell_list = []
+            spell_list.append(self.creature.spell_known_caster_level)
+            for spell in self.creature.known_spells:
+                key = spell.spell_level + " " + spell.rate + "— "
+                value = spell.name
+                value += (" (" + spell.modifiers + ")") if spell.modifiers else ""
+                if key in spell_dictionary:
+                    spell_dictionary[key].append(value)
+                else:
+                    spell_dictionary[key] = [value]
+            for rate, spells in spell_dictionary.items():
+                spell_list.append(rate + ", ".join(spells))
+
+            known_spells = "{#ENTER}".join(spell_list)
+
+        else:
+            known_spells = ""
+
+        if self.creature.prepared_spells:
+            spell_dictionary = {}
+            spell_list = []
+            spell_list.append(self.creature.spell_prepared_caster_level)
+            for spell in self.creature.prepared_spells:
+                key = spell.spell_level + "— "
+                value = spell.name
+                value += (" (" + spell.modifiers + ")") if spell.modifiers else ""
+                if key in spell_dictionary:
+                    spell_dictionary[key].append(value)
+                else:
+                    spell_dictionary[key] = [value]
+            for rate, spells in spell_dictionary.items():
+                spell_list.append(rate + ", ".join(spells))
+
+            prepared_spells = "{#ENTER}".join(spell_list)
+
+        else:
+            prepared_spells = ""
+
+        creature_type = self.creature.type
+        creature_type += (" (" + self.creature.sub_type + ")") if self.creature.type else ""
+        output_fields = [
+            self.creature.formal_name,
+            self.creature.common_name,
+            "CR " + self.creature.challenge_rating,
+            self.creature.experience_points,
+            self.creature.alignment,
+            self.creature.size,
+            creature_type,
+            (self.creature.char_class + " " + self.creature.level) if self.creature.char_class else "",
+            self.creature.alignment + " " + self.creature.type + " " + self.creature.initiative,
+            senses,
+            auras,
+            self.creature.base_armor_class + " " + self.creature.touch_armor_class + " " + self.creature.flat_footed_armor_class + ac_modifiers,
+            self.creature.hit_points + " (" + self.creature.hit_dice + ")",
+            self.creature.fortitude,
+            self.creature.reflex,
+            self.creature.will,
+            self.creature.damage_reduction,
+            self.creature.spell_resistence,
+            immunity,
+            resistance,
+            weaknesses,
+            "Defensive Abilities",
+            "Speed",
+            "Space",
+            "Reach",
+            "Melee",
+            "Ranged",
+            "Special Attacks",
+            "Spell-Like Abilities",
+            known_spells,
+            prepared_spells,
+            self.creature.strength,
+            self.creature.dexterity,
+            self.creature.constitution,
+            self.creature.intelligence,
+            self.creature.wisdom,
+            self.creature.charisma,
+            "BAB",
+            "CMB",
+            "CMD",
+            "Feats",
+            skills,
+            self.creature.racial_modifiers,
+            languages,
+            "Special Qualities",
+            self.creature.environment,
+            self.creature.organization,
+            self.creature.treasure,
+            "Special Abilities and Content",
+        ]
+
+        print("{#TAB}".join(output_fields))
 
     def populate_creature(self, parsed_data):
         creature = Creature()
@@ -636,6 +796,7 @@ class CreatureList:
         self.root = root
         self.creature = None
         self.creature_id = 0
+        self.newWindow = None
 
         root.title("Creature List")
 
@@ -678,7 +839,8 @@ class CreatureList:
             db = SessionLocal()
             self.creature = db.query(Creature).filter(Creature.formal_name == formal_name).first()
             self.creature_id = self.creature.id
-            creature_form = CreatureForm(self.root)
+            self.newWindow = Toplevel(self.root)
+            creature_form = CreatureForm(self.newWindow)
             creature_form.on_load(self.creature)
         else:
             print("No item selected")
