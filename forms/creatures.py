@@ -645,6 +645,56 @@ class CreatureForm:
         else:
             skills = ""
 
+        if self.creature.speed:
+            speed_list = [self.creature.speed]
+            for speed in self.creature.speed_modifiers:
+                speed_list.append(speed.speed_modifier )
+            speeds = ", ".join(speed_list)
+        else:
+            speeds = ""
+
+        if self.creature.feats:
+            feat_list = []
+            for feat in self.creature.feats:
+                feat_list.append(feat.feat)
+            feats = ", ".join(feat_list)
+        else:
+            feats = ""
+
+        if self.creature.melee_attacks:
+            melee_list = []
+            for melee in self.creature.melee_attacks:
+                melee_list.append(melee.attack)
+            melees = ", ".join(melee_list)
+        else:
+            melees = ""
+
+        if self.creature.ranged_attacks:
+            ranged_list = []
+            for range in self.creature.ranged_attacks:
+                ranged_list.append(range.attack)
+            ranged = ", ".join(ranged_list)
+        else:
+            ranged = ""
+
+        if self.creature.spell_like_abilities:
+            spell_dictionary = {}
+            spell_list = [self.creature.spell_like_caster_level]
+            for spell in self.creature.spell_like_abilities:
+                key = spell.rate + "— "
+                value = spell.name
+                value += (" (" + spell.modifiers + ")") if spell.modifiers else ""
+                if key in spell_dictionary:
+                    spell_dictionary[key].append(value)
+                else:
+                    spell_dictionary[key] = [value]
+            for rate, spells in spell_dictionary.items():
+                spell_list.append(rate + ", ".join(spells))
+
+            spell_like_abilities = "{#ENTER}".join(spell_list)
+        else:
+            spell_like_abilities = ""
+
         if self.creature.known_spells:
             spell_dictionary = {}
             spell_list = [self.creature.spell_known_caster_level]
@@ -707,13 +757,13 @@ class CreatureForm:
             resistance,
             weaknesses,
             "Defensive Abilities",
-            "Speed",
-            "Space",
-            "Reach",
-            "Melee",
-            "Ranged",
+            speeds,
+            self.creature.space if self.creature.space else "",
+            self.creature.reach if self.creature.reach else "",
+            melees,
+            ranged,
             "Special Attacks",
-            "Spell-Like Abilities",
+            spell_like_abilities,
             known_spells,
             prepared_spells,
             self.creature.strength,
@@ -722,10 +772,10 @@ class CreatureForm:
             self.creature.intelligence,
             self.creature.wisdom,
             self.creature.charisma,
-            "BAB",
-            "CMB",
-            "CMD",
-            "Feats",
+            self.creature.base_attack if self.creature.base_attack else "",
+            self.creature.combat_maneuver_bonus if self.creature.combat_maneuver_bonus else "",
+            self.creature.combat_maneuver_defense if self.creature.combat_maneuver_defense else "",
+            feats,
             skills,
             self.creature.racial_modifiers if self.creature.racial_modifiers else "",
             languages,
