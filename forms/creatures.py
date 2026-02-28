@@ -181,6 +181,10 @@ class CreatureForm:
         will_entry = ttk.Entry(mainframe, width=16, textvariable=self.will)
         will_entry.grid(row=row_count, column=5, sticky=W)
 
+        self.will_modifier = StringVar()
+        will_entry = ttk.Entry(mainframe, width=20, textvariable=self.will_modifier)
+        will_entry.grid(row=row_count, column=6, sticky=W)
+
         row_count += 1
         ttk.Label(mainframe, text="DR").grid(row=row_count, column=0, sticky=E)
         self.damage_reduction = StringVar()
@@ -434,6 +438,7 @@ class CreatureForm:
             self.fortitude.set(getattr(self.creature, 'fortitude'))
             self.reflex.set(getattr(self.creature, 'reflex'))
             self.will.set(getattr(self.creature, 'will'))
+            self.will_modifier.set(getattr(self.creature, 'will_modifiers'))
             self.damage_reduction.set(getattr(self.creature, 'damage_reduction'))
 
             self.immune_entry.delete("1.0", END)

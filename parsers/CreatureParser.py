@@ -130,7 +130,8 @@ def transition_parse_hit_points(fsm_obj):
 
 
 def transition_parse_fortitude(fsm_obj):
-    match_fortitude = re.findall(r"(Fort|Ref|Will)\s*([+\-]?\d+)", fsm_obj.current_line, re.IGNORECASE)
+    fortitude = fsm_obj.current_line.split(';')
+    match_fortitude = re.findall(r"(Fort|Ref|Will)\s*([+\-]?\d+)", fortitude[0], re.IGNORECASE)
     for stat, val in match_fortitude:
         stat_name = stat.capitalize()
         if stat_name == "Fort":
@@ -139,6 +140,9 @@ def transition_parse_fortitude(fsm_obj):
             fsm_obj.creature.reflex = val
         elif stat_name == "Will":
             fsm_obj.creature.will = val
+
+    if len(fortitude) > 1:
+        fsm_obj.creature.will_modifiers = fortitude[1].strip()
 
 def transition_parse_weakness(fsm_obj):
     weakness_match = re.search(r"Weaknesses\s+(.+)", fsm_obj.current_line, re.IGNORECASE)

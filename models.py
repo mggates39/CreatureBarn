@@ -29,6 +29,7 @@ class Creature(Base):
     fortitude = Column(Integer)
     reflex = Column(Integer)
     will = Column(Integer)
+    will_modifiers = Column(String)
     damage_reduction = Column(String)
     spell_resistence = Column(String)
     speed = Column(String)
