@@ -787,7 +787,7 @@ class CreatureForm:
 
         output_fields = [
             self.creature.common_name,
-            "CR " + self.creature.challenge_rating,
+            self.creature.challenge_rating,
             self.creature.experience_points,
             self.creature.alignment,
             self.creature.size,
