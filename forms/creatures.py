@@ -613,7 +613,7 @@ class CreatureForm:
         if self.creature.auras:
             auras_list = []
             for aura in self.creature.auras:
-                auras_list.append(aura.aura + " " + aura.radius + " (" + aura.save_role + ")")
+                auras_list.append(aura.aura + " (" + aura.radius + ", " + aura.save_role + ")")
             auras = ", ".join(auras_list)
         else:
             auras = ""
@@ -784,8 +784,8 @@ class CreatureForm:
 
         creature_type = self.creature.type
         creature_type += (" (" + self.creature.sub_type + ")") if self.creature.type else ""
+
         output_fields = [
-            self.creature.formal_name,
             self.creature.common_name,
             "CR " + self.creature.challenge_rating,
             self.creature.experience_points,
@@ -793,7 +793,7 @@ class CreatureForm:
             self.creature.size,
             creature_type,
             (self.creature.char_class + " " + self.creature.level) if self.creature.char_class else "",
-            self.creature.alignment + " " + self.creature.type + " " + self.creature.initiative,
+            self.creature.alignment + " " + self.creature.size + " " + creature_type + " " + self.creature.initiative,
             senses,
             auras,
             self.creature.base_armor_class + " " + self.creature.touch_armor_class + " " + self.creature.flat_footed_armor_class + ac_modifiers,
