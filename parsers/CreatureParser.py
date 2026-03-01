@@ -33,8 +33,8 @@ def transition_parse_description(fsm_obj):
     if description:
         description += fsm_obj.current_line + "\n"
     else:
-        description = fsm_obj.current_line
-    fsm_obj.creature.description = description + "\n"
+        description = fsm_obj.current_line + "\n"
+    fsm_obj.creature.description = description
 
 def transition_parse_experience_points(fsm_obj):
     xp_match = re.search(R_EXPERIENCE, fsm_obj.current_line, re.IGNORECASE)
@@ -402,7 +402,13 @@ def transition_parse_special_qualities(fsm_obj):
 
 
 def transition_parse_gear_list(fsm_obj):
-    pass
+    gear = fsm_obj.creature.gear
+    if gear:
+        gear += "; " + fsm_obj.current_line
+    else:
+        gear = fsm_obj.current_line
+    fsm_obj.creature.gear = gear
+
 
 def transition_parse_gear_item(fsm_obj):
     pass

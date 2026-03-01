@@ -51,6 +51,7 @@ class Creature(Base):
     combat_maneuver_bonus_modifier = Column(String)
     combat_maneuver_defense = Column(Integer)
     combat_maneuver_defense_modifier = Column(String)
+    gear = Column(String)
     tactics = Column(String)
     racial_modifiers = Column(String)
     environment = Column(String)

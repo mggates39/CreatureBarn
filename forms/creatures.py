@@ -292,6 +292,12 @@ class CreatureForm:
         offense_frame.grid(row=row_count, column=0, columnspan=12)
 
         row_count += 1
+        ttk.Label(mainframe, text="Gear").grid(row=row_count, column=0, sticky=E)
+        self.gear = StringVar()
+        gear_entry = ttk.Entry(mainframe, width=60, textvariable=self.gear)
+        gear_entry.grid(row=row_count, column=1, columnspan=7, sticky=W)
+
+        row_count += 1
         self.tactics_entry = Text(mainframe, wrap="word", width=90, height=1)
         self.tactics_entry.grid(row=row_count, column=1, columnspan=12, sticky=W)
 
@@ -493,6 +499,8 @@ class CreatureForm:
                 else:
                     spell_modifiers = ""
                 self.prepared_spells_entry.insert(END, getattr(spell_like, 'spell_level') + " - " + getattr(spell_like, 'name') + spell_modifiers + "\n")
+
+            self.gear.set(getattr(self.creature, 'gear'))
 
             self.tactics_entry.delete("1.0", END)
             if self.creature.tactics:
@@ -743,6 +751,19 @@ class CreatureForm:
         else:
             known_spells = ""
 
+        if self.creature.description:
+            description = re.sub(r"\n", " ", self.creature.description)
+        else:
+            description = ""
+
+        if self.creature.special_qualities:
+            special_quality_list = []
+            for special_quality in self.creature.special_qualities:
+                special_quality_list.append(special_quality.special_quality)
+            special_qualities = ", ".join(special_quality_list)
+        else:
+            special_qualities = ""
+
         if self.creature.prepared_spells:
             spell_dictionary = {}
             spell_list = [self.creature.spell_prepared_caster_level]
@@ -808,11 +829,12 @@ class CreatureForm:
             skills,
             self.creature.racial_modifiers if self.creature.racial_modifiers else "",
             languages,
-            "Special Qualities",
+            special_qualities,
             self.creature.environment if self.creature.environment else "",
             self.creature.organization if self.creature.organization else "",
             self.creature.treasure if self.creature.treasure else "",
-            "Special Abilities and Content",
+            self.creature.gear if self.creature.gear else "",
+            description
         ]
 
         print("{#TAB}".join(output_fields))
