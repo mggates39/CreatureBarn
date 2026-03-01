@@ -1,7 +1,8 @@
 from models import Creature, CreatureLanguages, CreatureFeats, CreatureSkills, CreatureSenses, CreatureAuras, \
     CreatureACModifiers, CreatureWeaknesses, CreatureImmuneModifiers, CreatureSpellResistenceModifiers, \
     CreatureSpellLikeAbilities, CreatureKnownSpells, CreaturePreparedSpells, CreatureSpeedModifiers, \
-    CreatureMeleeAttacks, CreatureRangedAttacks, CreatureSpecialQualities, CreatureSpecialAttacks
+    CreatureMeleeAttacks, CreatureRangedAttacks, CreatureSpecialQualities, CreatureSpecialAttacks, \
+    CreatureDefenseAbilities
 import re
 
 def _normalize_case(text: str) -> str:
@@ -162,6 +163,14 @@ def transition_parse_damage_resistance(fsm_obj):
         spell_reduction_match = re.search(r"SR\s+(.+)", part, re.IGNORECASE)
         if spell_reduction_match:
             fsm_obj.creature.spell_resistence = spell_reduction_match.group(1).strip()
+
+        defence_ability_match = re.search(r"Defensive Abilities\s+(.+)", part, re.IGNORECASE)
+        if defence_ability_match:
+            abilities = _normalize_case(defence_ability_match.group(1)).split(",")
+            for ability in abilities:
+                creature_defense_ability = CreatureDefenseAbilities()
+                creature_defense_ability.ability = ability.strip()
+                fsm_obj.creature.defensive_abilities.append(creature_defense_ability)
 
         immunity_match = re.search(r"Immune\s+(.+)", part, re.IGNORECASE)
         if immunity_match:

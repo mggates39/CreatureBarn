@@ -192,25 +192,30 @@ class CreatureForm:
         damage_reduction_entry.grid(row=row_count, column=1, sticky=W)
 
         row_count += 1
-        ttk.Label(mainframe, text="Immune").grid(row=row_count, column=0, sticky=NE)
-        self.immune_entry = Text(mainframe, width=40, height=1)
-        self.immune_entry.grid(row=row_count, column=1, columnspan=7, sticky=W)
-
-        row_count += 1
-        ttk.Label(mainframe, text="Resist").grid(row=row_count, column=0, sticky=NE)
-        self.resist_entry = Text(mainframe, width=40, height=1)
-        self.resist_entry.grid(row=row_count, column=1, columnspan=7, sticky=W)
-
-        row_count += 1
         ttk.Label(mainframe, text="SR").grid(row=row_count, column=0, sticky=E)
         self.spell_resistence = StringVar()
         spell_resistence_entry = ttk.Entry(mainframe, width=16, textvariable=self.spell_resistence)
         spell_resistence_entry.grid(row=row_count, column=1, sticky=W)
 
         row_count += 1
+        ttk.Label(mainframe, text="Immunities").grid(row=row_count, column=0, sticky=NE)
+        self.immune_entry = Text(mainframe, width=40, height=1)
+        self.immune_entry.grid(row=row_count, column=1, columnspan=7, sticky=W)
+
+        row_count += 1
+        ttk.Label(mainframe, text="Resistance").grid(row=row_count, column=0, sticky=NE)
+        self.resist_entry = Text(mainframe, width=40, height=1)
+        self.resist_entry.grid(row=row_count, column=1, columnspan=7, sticky=W)
+
+        row_count += 1
         ttk.Label(mainframe, text="Weaknesses").grid(row=row_count, column=0, sticky=NE)
         self.weakness_entry = Text(mainframe, width=40, height=1)
         self.weakness_entry.grid(row=row_count, column=1, columnspan=7, sticky=W)
+
+        row_count += 1
+        ttk.Label(mainframe, text="Defensive Abilities").grid(row=row_count, column=0, sticky=NE)
+        self.defense_action_entry = Text(mainframe, width=40, height=1)
+        self.defense_action_entry.grid(row=row_count, column=1, columnspan=7, sticky=W)
 
         row_count += 1
         offense_frame = SectionBorder(mainframe, title="Offense")
