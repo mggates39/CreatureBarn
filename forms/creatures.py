@@ -232,16 +232,6 @@ class CreatureForm:
         self.speed_modifiers_entry.grid(row=row_count, column=1, columnspan=7, sticky=W)
 
         row_count += 1
-        ttk.Label(mainframe, text="Melee").grid(row=row_count, column=0, sticky=NE)
-        self.melee_entry = Text(mainframe, width=40, height=1)
-        self.melee_entry.grid(row=row_count, column=1, columnspan=7, sticky=W)
-
-        row_count += 1
-        ttk.Label(mainframe, text="Ranged").grid(row=row_count, column=0, sticky=NE)
-        self.ranged_entry = Text(mainframe, width=40, height=1)
-        self.ranged_entry.grid(row=row_count, column=1, columnspan=7, sticky=W)
-
-        row_count += 1
         ttk.Label(mainframe, text="Space").grid(row=row_count, column=0, sticky=E)
         self.space = StringVar()
         space_entry = ttk.Entry(mainframe, width=10, textvariable=self.space)
@@ -251,6 +241,16 @@ class CreatureForm:
         self.reach = StringVar()
         reach_entry = ttk.Entry(mainframe, width=20, textvariable=self.reach)
         reach_entry.grid(row=row_count, column=3, sticky=W)
+
+        row_count += 1
+        ttk.Label(mainframe, text="Melee").grid(row=row_count, column=0, sticky=NE)
+        self.melee_entry = Text(mainframe, width=40, height=1)
+        self.melee_entry.grid(row=row_count, column=1, columnspan=7, sticky=W)
+
+        row_count += 1
+        ttk.Label(mainframe, text="Ranged").grid(row=row_count, column=0, sticky=NE)
+        self.ranged_entry = Text(mainframe, width=40, height=1)
+        self.ranged_entry.grid(row=row_count, column=1, columnspan=7, sticky=W)
 
         row_count += 1
         ttk.Label(mainframe, text="Special Attacks").grid(row=row_count, column=0, sticky=NE)
@@ -450,6 +450,14 @@ class CreatureForm:
             self.immune_entry['height'] = len(self.creature.immune_modifiers)
             for immunity in self.creature.immune_modifiers:
                 self.immune_entry.insert(END, getattr(immunity, 'immune_to') + "\n")
+
+            self.defense_action_entry.delete("1.0", END)
+            self.defense_action_entry['height'] = len(self.creature.immune_modifiers)
+            for defense_action in self.creature.defensive_abilities:
+                self.defense_action_entry.insert(END, getattr(defense_action, 'ability') + "\n")
+
+            self.resist_entry.delete("1.0", END)
+            self.resist_entry['height'] = len(self.creature.immune_modifiers)
             for resist in self.creature.sr_modifiers:
                 self.resist_entry.insert(END, getattr(resist, 'resists') + " " + getattr(resist, 'resist_amount') + "\n")
 
@@ -626,6 +634,14 @@ class CreatureForm:
         else:
             weaknesses = ""
 
+        if self.creature.defensive_abilities:
+            defense_ability_list = []
+            for defense_abililty in self.creature.defensive_abilities:
+                defense_ability_list.append(defense_abililty.ability)
+            defense_abilities = ", ".join(defense_ability_list)
+        else:
+            defense_abilities = ""
+
         if self.creature.sr_modifiers:
             resistance_list = []
             for resist in self.creature.sr_modifiers:
@@ -681,6 +697,14 @@ class CreatureForm:
             ranged = ", ".join(ranged_list)
         else:
             ranged = ""
+
+        if self.creature.special_attacks:
+            special_attack_list = []
+            for special_attack in self.creature.special_attacks:
+                special_attack_list.append(special_attack.attack)
+            special_attacks = ", ".join(special_attack_list)
+        else:
+            special_attacks = ""
 
         if self.creature.spell_like_abilities:
             spell_dictionary = {}
@@ -761,13 +785,13 @@ class CreatureForm:
             immunity,
             resistance,
             weaknesses,
-            "Defensive Abilities",
+            defense_abilities,
             speeds,
             self.creature.space if self.creature.space else "",
             self.creature.reach if self.creature.reach else "",
             melees,
             ranged,
-            "Special Attacks",
+            special_attacks,
             spell_like_abilities,
             known_spells,
             prepared_spells,
