@@ -2,7 +2,7 @@ from models import Creature, CreatureLanguages, CreatureFeats, CreatureSkills, C
     CreatureACModifiers, CreatureWeaknesses, CreatureImmuneModifiers, CreatureSpellResistenceModifiers, \
     CreatureSpellLikeAbilities, CreatureKnownSpells, CreaturePreparedSpells, CreatureSpeedModifiers, \
     CreatureMeleeAttacks, CreatureRangedAttacks, CreatureSpecialQualities, CreatureSpecialAttacks, \
-    CreatureDefenseAbilities
+      CreatureDefenseAbilities, CreatureSpecialAbilities
 import re
 
 def _normalize_case(text: str) -> str:
@@ -417,10 +417,23 @@ def transition_parse_gear_description(fsm_obj):
     pass
 
 def transition_parse_special_ability_name(fsm_obj):
-    pass
+    special_ability_match = re.search(r"(.+) (\(.+\))", fsm_obj.current_line, re.IGNORECASE)
+    if special_ability_match:
+        if fsm_obj.special_ability:
+            fsm_obj.creature.special_abilities.append(fsm_obj.special_ability)
+        fsm_obj.special_ability = CreatureSpecialAbilities()
+        fsm_obj.special_ability.ability = special_ability_match.group(1).strip()
+        fsm_obj.special_ability.type = special_ability_match.group(2).strip()
 
 def transition_parse_special_ability_description(fsm_obj):
-    pass
+    special_ability_match = re.search(R_ANYTHING,fsm_obj.current_line, re.IGNORECASE)
+    if special_ability_match:
+        fsm_obj.special_ability.description = special_ability_match.group(1).strip()
+
+def transition_parse_save_special_ability(fsm_obj):
+    if fsm_obj.special_ability:
+        fsm_obj.creature.special_abilities.append(fsm_obj.special_ability)
+        fsm_obj.special_ability = None
 
 def transition_parse_environment(fsm_obj):
     environment_match = re.search(r"Environment\s+(.+)", fsm_obj.current_line, re.IGNORECASE)
@@ -475,6 +488,7 @@ T_PARSE_GEAR_ITEM = transition_parse_gear_item
 T_PARSE_GEAR_DESCRIPTION = transition_parse_gear_description
 T_PARSE_SPECIAL_ABILITY_NAME = transition_parse_special_ability_name
 T_PARSE_SPECIAL_ABILITY_DESCRIPTION = transition_parse_special_ability_description
+T_PARSE_SAVE_SPECIAL_ABILITY = transition_parse_save_special_ability
 T_PARSE_ENVIRONMENT = transition_parse_environment
 T_PARSE_ORGANIZATION = transition_parse_organization
 T_PARSE_TREASURE = transition_parse_treasure
@@ -644,8 +658,10 @@ FSM_MAP = [
     {'src': S_FOUND_GEAR_LINE, 'dst': S_FOUND_ABOUT_HEADER, 'cond': r"^(ABOUT|DESCRIPTION)", 'callback': T_SKIP},
     {'src': S_FOUND_SPECIAL_ABILITIES_HEADER, 'dst': S_FOUND_SPECIAL_ABILITY_NAME, 'cond': r"^(.+) \((.+)\)", 'callback': T_PARSE_SPECIAL_ABILITY_NAME},
     {'src': S_FOUND_SPECIAL_ABILITY_NAME, 'dst': S_FOUND_SPECIAL_ABILITY_DESCRIPTION, 'cond': R_ANYTHING, 'callback': T_PARSE_SPECIAL_ABILITY_DESCRIPTION},
-    {'src': S_FOUND_SPECIAL_ABILITY_DESCRIPTION, 'dst': S_FOUND_ECOLOGY_HEADER, 'cond': r"^ECOLOGY", 'callback': T_SKIP},
-    {'src': S_FOUND_SPECIAL_ABILITY_DESCRIPTION, 'dst': S_FOUND_GEAR_HEADER, 'cond': r"^GEAR", 'callback': T_SKIP},
+    {'src': S_FOUND_SPECIAL_ABILITY_DESCRIPTION, 'dst': S_FOUND_ECOLOGY_HEADER, 'cond': r"^ECOLOGY", 'callback': T_PARSE_SAVE_SPECIAL_ABILITY},
+    {'src': S_FOUND_SPECIAL_ABILITY_DESCRIPTION, 'dst': S_FOUND_SPECIAL_ABILITY_NAME, 'cond': r"^(.+) \((.+)\)", 'callback': T_PARSE_SPECIAL_ABILITY_NAME},
+    {'src': S_FOUND_SPECIAL_ABILITY_DESCRIPTION, 'dst': S_FOUND_GEAR_HEADER, 'cond': r"^GEAR", 'callback': T_PARSE_SAVE_SPECIAL_ABILITY},
+    {'src': S_FOUND_SPECIAL_ABILITY_DESCRIPTION, 'dst': S_FOUND_ABOUT_HEADER, 'cond': r"^(ABOUT|DESCRIPTION)", 'callback': T_PARSE_SAVE_SPECIAL_ABILITY},
     {'src': S_FOUND_SPECIAL_ABILITY_DESCRIPTION, 'dst': S_FOUND_SPECIAL_ABILITY_DESCRIPTION, 'cond': R_ANYTHING, 'callback': T_PARSE_SPECIAL_ABILITY_DESCRIPTION},
     {'src': S_FOUND_GEAR_HEADER, 'dst': S_FOUND_GEAR_ITEM, 'cond': r"^(.* )Item: (.+)", 'callback': T_PARSE_GEAR_ITEM},
     {'src': S_FOUND_GEAR_ITEM, 'dst': S_FOUND_GEAR_DESCRIPTION, 'cond': R_ANYTHING, 'callback': T_PARSE_GEAR_DESCRIPTION},

@@ -379,6 +379,20 @@ class CreatureForm:
         self.special_qualities_entry.grid(row=row_count, column=1, columnspan=7, sticky=W)
 
         row_count += 1
+        ttk.Label(mainframe, text="Languages").grid(row=row_count, column=0, sticky=NE)
+        self.language_entry = Text(mainframe, width=30, height=1)
+        self.language_entry.grid(row=row_count, column=1, columnspan=7, sticky=W)
+
+        row_count += 1
+        special_ability_frame = SectionBorder(mainframe, title="Special Abilities")
+        special_ability_frame.grid(row=row_count, column=0, columnspan=12)
+
+        row_count += 1
+        ttk.Label(mainframe, text="Special Abilities").grid(row=row_count, column=0, sticky=NE)
+        self.special_abilities_entry = Text(mainframe, width=60, height=1)
+        self.special_abilities_entry.grid(row=row_count, column=1, columnspan=7, sticky=W)
+
+        row_count += 1
         ecology_frame = SectionBorder(mainframe, title="Ecology")
         ecology_frame.grid(row=row_count, column=0, columnspan=12)
 
@@ -565,6 +579,12 @@ class CreatureForm:
             self.special_qualities_entry['height'] = len(self.creature.special_qualities)
             for special_quality in self.creature.special_qualities:
                 self.special_qualities_entry.insert(END, getattr(special_quality, 'special_quality') + "\n")
+
+            self.special_abilities_entry.delete("1.0", END)
+            self.special_abilities_entry['height'] = len(self.creature.special_abilities) * 3
+            for special_ability in self.creature.special_abilities:
+                self.special_abilities_entry.insert(END, getattr(special_ability, 'ability') + " " + getattr(special_ability, 'type') + "\n")
+                self.special_abilities_entry.insert(END, getattr(special_ability, 'description') + "\n\n")
 
             self.senses_entry.delete("1.0", END)
             self.senses_entry['height'] = len(self.creature.senses)
