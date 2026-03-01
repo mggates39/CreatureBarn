@@ -784,6 +784,9 @@ class CreatureForm:
 
         creature_type = self.creature.type
         creature_type += (" (" + self.creature.sub_type + ")") if self.creature.type else ""
+        "Special Abilities and Content"
+        special_abilities_and_content = self.creature.gear + "{#tab}"  if self.creature.gear else ""
+        special_abilities_and_content += description
 
         output_fields = [
             self.creature.common_name,
@@ -833,8 +836,7 @@ class CreatureForm:
             self.creature.environment if self.creature.environment else "",
             self.creature.organization if self.creature.organization else "",
             self.creature.treasure if self.creature.treasure else "",
-            self.creature.gear if self.creature.gear else "",
-            description
+            special_abilities_and_content
         ]
 
         print("{#TAB}".join(output_fields))
