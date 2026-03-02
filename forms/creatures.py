@@ -292,14 +292,14 @@ class CreatureForm:
         offense_frame.grid(row=row_count, column=0, columnspan=12)
 
         row_count += 1
+        self.tactics_entry = Text(mainframe, wrap="word", width=90, height=1)
+        self.tactics_entry.grid(row=row_count, column=1, columnspan=12, sticky=W)
+
+        row_count += 1
         ttk.Label(mainframe, text="Gear").grid(row=row_count, column=0, sticky=E)
         self.gear = StringVar()
         gear_entry = ttk.Entry(mainframe, width=60, textvariable=self.gear)
         gear_entry.grid(row=row_count, column=1, columnspan=7, sticky=W)
-
-        row_count += 1
-        self.tactics_entry = Text(mainframe, wrap="word", width=90, height=1)
-        self.tactics_entry.grid(row=row_count, column=1, columnspan=12, sticky=W)
 
         row_count += 1
         offense_frame = SectionBorder(mainframe, title="Statistics")
@@ -637,7 +637,7 @@ class CreatureForm:
         # db.commit()
         # db.refresh(self.creature)  # Refresh to get generated values (id, created_at)
         # self.creature_id = self.creature.id
-        sub_type = ("(" + self.creature.sub_type + ")") if self.creature.type else ""
+
         if self.creature.senses:
             senses_list = []
             for sense in self.creature.senses:
@@ -819,7 +819,7 @@ class CreatureForm:
             prepared_spells = ""
 
         creature_type = self.creature.type
-        creature_type += (" (" + self.creature.sub_type + ")") if self.creature.type else ""
+        creature_type += (" (" + self.creature.sub_type + ")") if self.creature.sub_type else ""
         "Special Abilities and Content"
         special_abilities_and_content = self.creature.gear + "{#tab}"  if self.creature.gear else ""
         special_abilities_and_content += description
@@ -876,6 +876,14 @@ class CreatureForm:
         ]
 
         print("{#TAB}".join(output_fields))
+
+        try:
+            file_path = "output/" + self.creature.common_name + '.txt'
+            with open(file_path, 'w', encoding='utf-8') as file:
+                file.write("{#TAB}".join(output_fields))
+            print(f"File '{file_path}' written successfully in write mode.")
+        except IOError as e:
+            print(f"Error writing to file: {e}")
 
     def populate_creature(self, parsed_data):
         creature = Creature()
