@@ -669,6 +669,7 @@ FSM_MAP = [
     {'src': S_FOUND_LANGUAGES, 'dst': S_FOUND_SPECIAL_QUALITIES, 'cond': r"^SQ\s", 'callback': T_PARSE_SPECIAL_QUALITIES},
     {'src': S_FOUND_LANGUAGES, 'dst': S_FOUND_GEAR_LINE, 'cond': R_GEAR_LIST, 'callback': T_PARSE_GEAR_LIST},
     {'src': S_FOUND_LANGUAGES, 'dst': S_FOUND_SPECIAL_ABILITIES_HEADER, 'cond': r"^SPECIAL ABILITIES",  'callback': T_SKIP},
+    {'src': S_FOUND_LANGUAGES, 'dst': S_FOUND_ECOLOGY_HEADER, 'cond': r"^ECOLOGY",  'callback': T_SKIP},
     {'src': S_FOUND_SPECIAL_QUALITIES, 'dst': S_FOUND_GEAR_LINE, 'cond': R_GEAR_LIST, 'callback': T_PARSE_GEAR_LIST},
     {'src': S_FOUND_SPECIAL_QUALITIES, 'dst': S_FOUND_SPECIAL_ABILITIES_HEADER, 'cond': r"^SPECIAL ABILITIES", 'callback': T_SKIP},
     {'src': S_FOUND_GEAR_LINE, 'dst': S_FOUND_SPECIAL_ABILITIES_HEADER, 'cond': r"^SPECIAL ABILITIES",  'callback': T_SKIP},
@@ -698,6 +699,7 @@ FSM_MAP = [
     {'src': S_FOUND_ORGANIZATION, 'dst': S_FOUND_GEAR_HEADER, 'cond': r"^GEAR", 'callback': T_SKIP},
     {'src': S_FOUND_TREASURE, 'dst': S_FOUND_GEAR_HEADER, 'cond': r"^GEAR", 'callback': T_SKIP},
     {'src': S_FOUND_TREASURE, 'dst': S_FOUND_ABOUT_HEADER, 'cond': r"^(ABOUT|DESCRIPTION)", 'callback': T_SKIP},
+    {'src': S_FOUND_TREASURE, 'dst': S_FOUND_ABOUT_DETAILS, 'cond': R_ANYTHING, 'callback': T_PARSE_DESCRIPTION},
     {'src': S_FOUND_ABOUT_HEADER, 'dst': S_FOUND_ABOUT_DETAILS, 'cond': R_ANYTHING, 'callback': T_PARSE_DESCRIPTION},
     {'src': S_FOUND_ABOUT_DETAILS, 'dst': S_FOUND_COPYRIGHT, 'cond': r"Copyright", 'callback': T_SKIP},
     {'src': S_FOUND_ABOUT_DETAILS, 'dst': S_FOUND_ABOUT_DETAILS, 'cond': R_ANYTHING, 'callback': T_PARSE_DESCRIPTION}
