@@ -78,6 +78,7 @@ class Creature(Base):
     feats = relationship("CreatureFeats", back_populates="creature", cascade="all, delete-orphan")
     skills = relationship("CreatureSkills", back_populates="creature", cascade="all, delete-orphan")
     languages = relationship("CreatureLanguages", back_populates="creature", cascade="all, delete-orphan")
+    gear_items = relationship("CreatureGearItems", back_populates="creature", cascade="all, delete-orphan")
     special_qualities = relationship("CreatureSpecialQualities", back_populates="creature", cascade="all, delete-orphan")
     special_abilities = relationship("CreatureSpecialAbilities", back_populates="creature", cascade="all, delete-orphan")
 
@@ -397,3 +398,19 @@ class CreatureSpecialAbilities(Base):
 
     def __repr__(self):
         return "<CreatureSpecialAbilities: {}>".format(self.__dict__)
+
+class CreatureGearItems(Base):
+    __tablename__ = 'creature_gear_items'
+    id = Column(Integer, primary_key=True)
+    name = Column(String)
+    description = Column(String)
+
+    # Foreign key to Creatures
+    creature_id = Column(Integer, ForeignKey('creatures.id'))
+
+    # Relationships
+    creature = relationship('Creature', back_populates='gear_items')
+
+    def __repr__(self):
+        return "<CreatureGearItems: {}>".format(self.__dict__)
+

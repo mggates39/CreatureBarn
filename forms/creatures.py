@@ -393,6 +393,15 @@ class CreatureForm:
         self.special_abilities_entry.grid(row=row_count, column=1, columnspan=7, sticky=W)
 
         row_count += 1
+        unique_gear_frame = SectionBorder(mainframe, title="Gear")
+        unique_gear_frame.grid(row=row_count, column=0, columnspan=12)
+
+        row_count += 1
+        ttk.Label(mainframe, text="Unique Items").grid(row=row_count, column=0, sticky=NE)
+        self.special_gear_entry = Text(mainframe, wrap="word", width=70, height=1)
+        self.special_gear_entry.grid(row=row_count, column=1, columnspan=7, sticky=W)
+
+        row_count += 1
         ecology_frame = SectionBorder(mainframe, title="Ecology")
         ecology_frame.grid(row=row_count, column=0, columnspan=12)
 
@@ -585,6 +594,13 @@ class CreatureForm:
             for special_ability in self.creature.special_abilities:
                 self.special_abilities_entry.insert(END, getattr(special_ability, 'ability') + " " + getattr(special_ability, 'type') + "\n")
                 self.special_abilities_entry.insert(END, getattr(special_ability, 'description') + "\n\n")
+
+
+            self.special_gear_entry.delete("1.0", END)
+            self.special_gear_entry['height'] = len(self.creature.gear_items) * 3
+            for gear_item in self.creature.gear_items:
+                self.special_gear_entry.insert(END, getattr(gear_item, 'name') + "\n")
+                self.special_gear_entry.insert(END, getattr(gear_item, 'description') + "\n\n")
 
             self.senses_entry.delete("1.0", END)
             self.senses_entry['height'] = len(self.creature.senses)
