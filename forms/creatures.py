@@ -433,6 +433,7 @@ class CreatureForm:
 
         row_count += 1
         ttk.Button(mainframe, text='save', command=self.on_save).grid(row=0, column=0)
+        ttk.Button(mainframe, text='export', command=self.on_export).grid(row=0, column=1)
 
         # root.columnconfigure(0, weight=1)
         # root.rowconfigure(0, weight=1)
@@ -516,12 +517,12 @@ class CreatureForm:
 
             self.prepared_spells_entry.delete("1.0", END)
             self.prepared_spells_entry['height'] = len(self.creature.prepared_spells)
-            for spell_like in self.creature.prepared_spells:
-                if getattr(spell_like, 'modifiers'):
-                    spell_modifiers = " (" + getattr(spell_like, 'modifiers') + ")"
+            for prepared_spell in self.creature.prepared_spells:
+                if getattr(prepared_spell, 'modifiers'):
+                    spell_modifiers = " (" + getattr(prepared_spell, 'modifiers') + ")"
                 else:
                     spell_modifiers = ""
-                self.prepared_spells_entry.insert(END, getattr(spell_like, 'spell_level') + " - " + getattr(spell_like, 'name') + spell_modifiers + "\n")
+                self.prepared_spells_entry.insert(END, getattr(prepared_spell, 'spell_level') + " - " + getattr(prepared_spell, 'name') + spell_modifiers + "\n")
 
             self.gear.set(getattr(self.creature, 'gear'))
 
@@ -632,12 +633,13 @@ class CreatureForm:
 
     def on_save(self):
         db = SessionLocal()
-        # if not self.creature_id:
-        #     db.add(self.creature)
-        # db.commit()
-        # db.refresh(self.creature)  # Refresh to get generated values (id, created_at)
-        # self.creature_id = self.creature.id
+        if not self.creature_id:
+            db.add(self.creature)
+        db.commit()
+        db.refresh(self.creature)  # Refresh to get generated values (id, created_at)
+        self.creature_id = self.creature.id
 
+    def on_export(self):
         if self.creature.senses:
             senses_list = []
             for sense in self.creature.senses:
