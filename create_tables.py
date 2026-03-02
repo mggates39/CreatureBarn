@@ -5,7 +5,7 @@ from models import (Creature, CreatureSenses, CreatureAuras, CreatureACModifiers
                     CreatureSpellResistenceModifiers, CreatureWeaknesses, CreatureImmuneModifiers,
                     CreatureDefenseAbilities, CreatureSpeedModifiers, CreatureMeleeAttacks,
                     CreatureRangedAttacks, CreatureSpecialAttacks, CreatureSpellLikeAbilities,
-                    CreatureKnownSpells, CreaturePreparedSpells, CreatureFeats, CreatureSkills,
+                    CreatureKnownSpells, CreaturePreparedSpells, CreatureFeats, CreatureSkills, CreatureGearItems,
                     CreatureLanguages, CreatureSpecialQualities, CreatureSpecialAbilities)  # Import models to register them
 
 def create_tables():
