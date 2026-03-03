@@ -882,7 +882,7 @@ class CreatureForm:
         try:
             file_path = "output/" + self.creature.common_name + '.txt'
             with open(file_path, 'w', encoding='utf-8') as file:
-                file.write("{#TAB}".join(output_fields))
+                file.write("{#TAB}".join(output_fields)+"\n")
             print(f"File '{file_path}' written successfully in write mode.")
         except IOError as e:
             print(f"Error writing to file: {e}")
