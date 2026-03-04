@@ -148,7 +148,7 @@ def transition_parse_fortitude(fsm_obj):
 def transition_parse_weakness(fsm_obj):
     weakness_match = re.search(r"Weaknesses\s+(.+)", fsm_obj.current_line, re.IGNORECASE)
     if weakness_match:
-        for weakness in weakness_match.group(1).split(","):
+        for weakness in _normalize_case(weakness_match.group(1)).split(","):
             creature_weakness = CreatureWeaknesses()
             creature_weakness.weakness = weakness.strip()
             fsm_obj.creature.weaknesses.append(creature_weakness)
@@ -360,7 +360,7 @@ def transition_parse_base_attack(fsm_obj):
 def transition_parse_feats(fsm_obj):
     feat_match = re.search(r"Feats\s+(.+)", fsm_obj.current_line, re.IGNORECASE)
     if feat_match:
-        for feat in feat_match.group(1).split(","):
+        for feat in _normalize_case(feat_match.group(1)).split(","):
             creature_feat = CreatureFeats()
             creature_feat.feat = feat.strip()
             fsm_obj.creature.feats.append(creature_feat)
@@ -374,7 +374,7 @@ def transition_parse_skills(fsm_obj):
             if racial_match:
                 fsm_obj.creature.racial_modifiers = racial_match.group(1).strip()
             else:
-                skills = part.split(",")
+                skills = _normalize_case(part).split(",")
                 for skill in skills:
                     skill_match = re.search(r"(.+)\s([+\-]?\d+)", skill, re.IGNORECASE)
                     if skill_match:
@@ -386,7 +386,7 @@ def transition_parse_skills(fsm_obj):
 def transition_parse_languages(fsm_obj):
     language_match = re.search(r"Languages\s+(.+)", fsm_obj.current_line, re.IGNORECASE)
     if language_match:
-        for language in language_match.group(1).split(","):
+        for language in _normalize_case(language_match.group(1)).split(","):
             creature_language = CreatureLanguages()
             creature_language.language = language.strip()
             fsm_obj.creature.languages.append(creature_language)
@@ -394,7 +394,7 @@ def transition_parse_languages(fsm_obj):
 def transition_parse_special_qualities(fsm_obj):
     special_qualities_match = re.search(r"SQ\s+(.+)", fsm_obj.current_line, re.IGNORECASE)
     if special_qualities_match:
-        for special_quality in special_qualities_match.group(1).split(","):
+        for special_quality in _normalize_case(special_qualities_match.group(1)).split(","):
             creature_special_quality = CreatureSpecialQualities()
             creature_special_quality.special_quality = special_quality.strip()
             fsm_obj.creature.special_qualities.append(creature_special_quality)
@@ -456,17 +456,17 @@ def transition_parse_save_special_ability(fsm_obj):
 def transition_parse_environment(fsm_obj):
     environment_match = re.search(r"Environment\s+(.+)", fsm_obj.current_line, re.IGNORECASE)
     if environment_match:
-        fsm_obj.creature.environment = environment_match.group(1).strip()
+        fsm_obj.creature.environment = _normalize_case(environment_match.group(1)).strip()
 
 def transition_parse_organization(fsm_obj):
     organization_match = re.search(r"Organization\s+(.+)", fsm_obj.current_line, re.IGNORECASE)
     if organization_match:
-        fsm_obj.creature.organization = organization_match.group(1).strip()
+        fsm_obj.creature.organization = _normalize_case(organization_match.group(1)).strip()
 
 def transition_parse_treasure(fsm_obj):
     treasure_match = re.search(r"Treasure\s+(.+)", fsm_obj.current_line, re.IGNORECASE)
     if treasure_match:
-        fsm_obj.creature.treasure = treasure_match.group(1).strip()
+        fsm_obj.creature.treasure = _normalize_case(treasure_match.group(1)).strip()
 
 
 T_SKIP = transition_skip
