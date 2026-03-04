@@ -36,8 +36,11 @@ class Creature(Base):
     space = Column(String)
     reach = Column(String)
     reach_modifier = Column(String)
+    spell_like_type = Column(String)
     spell_like_caster_level = Column(String)
+    spell_known_type = Column(String)
     spell_known_caster_level = Column(String)
+    spell_prepared_type = Column(String)
     spell_prepared_caster_level = Column(String)
     strength = Column(String)
     dexterity = Column(String)
@@ -75,6 +78,7 @@ class Creature(Base):
     spell_like_abilities = relationship("CreatureSpellLikeAbilities", back_populates="creature", cascade="all, delete-orphan")
     known_spells = relationship("CreatureKnownSpells", back_populates="creature", cascade="all, delete-orphan")
     prepared_spells = relationship("CreaturePreparedSpells", back_populates="creature", cascade="all, delete-orphan")
+    cleric_domains = relationship("CreatureDomains", back_populates="creature", cascade="all, delete-orphan")
     feats = relationship("CreatureFeats", back_populates="creature", cascade="all, delete-orphan")
     skills = relationship("CreatureSkills", back_populates="creature", cascade="all, delete-orphan")
     languages = relationship("CreatureLanguages", back_populates="creature", cascade="all, delete-orphan")
@@ -193,6 +197,21 @@ class CreatureImmuneModifiers(Base):
 
     def __repr__(self):
         return "<CreatureImmuneModifiers: {}>".format(self.__dict__)
+
+
+class CreatureDomains(Base):
+    __tablename__ = 'creature_domainss'
+    id = Column(Integer, primary_key=True)
+    domain = Column(String)
+
+    # Foreign key to Creatures
+    creature_id = Column(Integer, ForeignKey('creatures.id'))
+
+    # Relationships
+    creature = relationship('Creature', back_populates='cleric_domains')
+
+    def __repr__(self):
+        return "<CreatureDomains: {}>".format(self.__dict__)
 
 
 class CreatureDefenseAbilities(Base):

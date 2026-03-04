@@ -2,7 +2,7 @@ from models import Creature, CreatureLanguages, CreatureFeats, CreatureSkills, C
     CreatureACModifiers, CreatureWeaknesses, CreatureImmuneModifiers, CreatureSpellResistenceModifiers, \
     CreatureSpellLikeAbilities, CreatureKnownSpells, CreaturePreparedSpells, CreatureSpeedModifiers, \
     CreatureMeleeAttacks, CreatureRangedAttacks, CreatureSpecialQualities, CreatureSpecialAttacks, \
-    CreatureDefenseAbilities, CreatureSpecialAbilities, CreatureGearItems
+    CreatureDefenseAbilities, CreatureSpecialAbilities, CreatureGearItems, CreatureDomains
 import re
 
 def _normalize_case(text: str) -> str:
@@ -248,9 +248,10 @@ def transition_parse_special_attacks(fsm_obj):
 
 
 def transition_parse_spell_like_abilities(fsm_obj):
-    spell_like_match = re.search(r".*Spell-Like Abilities\s+(.+)", fsm_obj.current_line, re.IGNORECASE)
+    spell_like_match = re.search(r"(.*)Spell-Like Abilities\s+(.+)", fsm_obj.current_line, re.IGNORECASE)
     if spell_like_match:
-        fsm_obj.creature.spell_like_caster_level = spell_like_match.group(1).strip()
+        fsm_obj.creature.spell_like_type = spell_like_match.group(1).strip()
+        fsm_obj.creature.spell_like_caster_level = spell_like_match.group(2).strip()
 
 def transition_parse_sla_spells(fsm_obj):
     spell_like_match = re.search(r"(.+)—(.+)", fsm_obj.current_line, re.IGNORECASE)
@@ -272,9 +273,10 @@ def transition_parse_sla_spells(fsm_obj):
             fsm_obj.creature.spell_like_abilities.append(creature_spell_like_ability)
 
 def transition_parse_spells_known(fsm_obj):
-    spell_known_match = re.search(r".*Spells Known\s+(.+)", fsm_obj.current_line, re.IGNORECASE)
+    spell_known_match = re.search(r"(.*)Spells Known\s+(.+)", fsm_obj.current_line, re.IGNORECASE)
     if spell_known_match:
-        fsm_obj.creature.spell_known_caster_level = spell_known_match.group(1).strip()
+        fsm_obj.creature.spell_known_type = spell_known_match.group(1).strip()
+        fsm_obj.creature.spell_known_caster_level = spell_known_match.group(2).strip()
 
 def transition_parse_sk_spells(fsm_obj):
     spell_known_match = re.search(r"(.+) (\(.+\))?—(.+)", fsm_obj.current_line, re.IGNORECASE)
@@ -298,9 +300,10 @@ def transition_parse_sk_spells(fsm_obj):
             fsm_obj.creature.known_spells.append(creature_known_spell)
 
 def transition_parse_spells_prepared(fsm_obj):
-    spell_prepared_match = re.search(r".*Spells Prepared\s+(.+)", fsm_obj.current_line, re.IGNORECASE)
+    spell_prepared_match = re.search(r"(.*)Spells Prepared\s+(.+)", fsm_obj.current_line, re.IGNORECASE)
     if spell_prepared_match:
-        fsm_obj.creature.spell_prepared_caster_level = spell_prepared_match.group(1).strip()
+        fsm_obj.creature.spell_prepared_type = spell_prepared_match.group(1).strip()
+        fsm_obj.creature.spell_prepared_caster_level = spell_prepared_match.group(2).strip()
 
 def transition_parse_sp_spells(fsm_obj):
     spell_prepared_match = re.search(r"(.+)—(.+)", fsm_obj.current_line, re.IGNORECASE)

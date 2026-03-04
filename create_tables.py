@@ -3,7 +3,7 @@
 from database import engine, Base
 from models import (Creature, CreatureSenses, CreatureAuras, CreatureACModifiers, CreatureDamageReductionModifiers,
                     CreatureSpellResistenceModifiers, CreatureWeaknesses, CreatureImmuneModifiers,
-                    CreatureDefenseAbilities, CreatureSpeedModifiers, CreatureMeleeAttacks,
+                    CreatureDefenseAbilities, CreatureSpeedModifiers, CreatureMeleeAttacks, CreatureDomains,
                     CreatureRangedAttacks, CreatureSpecialAttacks, CreatureSpellLikeAbilities,
                     CreatureKnownSpells, CreaturePreparedSpells, CreatureFeats, CreatureSkills, CreatureGearItems,
                     CreatureLanguages, CreatureSpecialQualities, CreatureSpecialAbilities)  # Import models to register them
