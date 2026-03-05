@@ -30,10 +30,11 @@ class CreatureForm:
         self.creature_id = 0
 
         root.title("Creature Details")
+        root.geometry("1024x768")
         canvas = Canvas(root)
         canvas.pack(side="left", fill="both", expand=True)
 
-        scrollbar = Scrollbar(root, orient="vertical", command=canvas.yview)
+        scrollbar = Scrollbar(root, orient="vertical", command=canvas.yview, width=5)
         scrollbar.pack(side="right", fill="y")
 
         canvas.configure(yscrollcommand=scrollbar.set)
@@ -976,6 +977,7 @@ class CreatureList:
         new_button = ttk.Button(mainframe, text="New")
         new_button.grid(row=1, column=2, sticky="e")
 
+        self.creature_list.bind('<Double-Button-1>', lambda: self.show_creature)
 
         try:
             db = SessionLocal()
