@@ -3,7 +3,7 @@ Superstitious Mercenary CR 1/2
 
 XP 200
 Human Fighter 1
-CN Medium humanoid (human)
+N Medium humanoid (human)
 Init +2; Senses Perception +2
 
 DEFENSE
