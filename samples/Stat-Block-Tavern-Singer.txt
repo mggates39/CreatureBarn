@@ -1,0 +1,44 @@
+Tavern Singer (Half-Elf Bard 1)
+Tavern Singer CR 1/2
+
+XP 200
+Half-elf Bard 1
+CN Medium humanoid (elf, human)
+Init +2; Senses low-light vision; Perception +5
+
+DEFENSE
+
+AC 15, touch 12, flat-footed 13 (+3 armor, +2 Dex)
+hp 9 (1d8+1)
+Fort +1, Ref +4, Will +1; +2 vs. enchantments
+Immune sleep
+
+OFFENSE
+
+Speed 30 ft.
+Melee rapier +2 (1d6/18–20)
+Ranged shortbow +2 (1d6/×3)
+Special Attacks bardic performance 7 rounds/day (countersong, distraction, fascinate, inspire courage +1)
+Bard Spells Known (CL 1st; concentration +4)
+
+1st (2/day)—grease, hideous laughter (DC 14)
+0th (at will)—dancing lights, ghost sound (DC 13), message, prestidigitation
+
+TACTICS
+
+During Combat The bard uses grease to escape.
+
+STATISTICS
+
+Str 10, Dex 14, Con 12, Int 13, Wis 8, Cha 17
+Base Atk +0; CMB +0; CMD 12
+Feats Skill Focus (Perform [wind]), Weapon Finesse
+Skills Bluff +7, Diplomacy +7, Perception +5, Perform (wind) +12, Sense Motive +3, Sleight of Hand +6, Stealth +5, Use Magic Device +7
+Languages Common, Elven
+SQ bardic knowledge +1, elf blood
+Combat Gear potions of cure light wounds (2), alchemist’s fire, sunrod, tanglefoot bag, thunderstone; Other Gear studded leather, rapier, shortbow with 20 arrows, masterwork flute, 13 gp
+
+DESCRIPTION
+
+These performers entertain to earn drinks and tips.
+

@@ -1,0 +1,43 @@
+Careful Initiate (Human Monk 1)
+
+Careful InitiateCR 1/2
+
+XP 200
+Human Monk 1
+LN Medium humanoid (human)
+Init +3; Senses Perception +6
+
+DEFENSE
+
+AC 16, touch 16, flat-footed 12 (+3 Dex, +1 dodge, +2 Wis)
+hp 9 (1d8+1)
+Fort +2, Ref +5, Will +4
+
+OFFENSE
+
+Speed 30 ft.
+Melee unarmed strike +3 (1d6+1) or kama +3 (1d6+1) or unarmed strike flurry of blows +2/+2 (1d6+1)
+Ranged light crossbow +3 (1d8/19–20) or shuriken +3 (1d2+1) or shuriken flurry of blows +2/2 (1d2+1)
+Special Attacks flurry of blows, stunning fist (1/day, DC 12)
+
+TACTICS
+
+Before Combat The monk uses Stealth to catch enemies off-guard, starting any surprise round with Stunning Fist.
+
+During Combat The monk never fights multiple opponents if she can help it, and prefers to use her shuriken with a flurry of blows before entering melee.
+
+STATISTICS
+
+Str 12, Dex 16, Con 10, Int 13, Wis 15, Cha 8
+Base Atk +0; CMB +1; CMD 17
+Feats Combat Reflexes, Dodge, Improved Unarmed Strike, Stunning Fist, Weapon Finesse
+Skills Acrobatics +7, Knowledge (history, religion) +5, Perception +6, Sense Motive +6, Stealth +7
+Languages Common, Dwarven
+Combat Gear potions of cure light wounds (2), potions of mage armor (2), potions of magic weapon (2); Other Gear kama, light crossbow with 10 bolts, shuriken (20), 50 gp
+
+
+
+DESCRIPTION
+
+Neophyte monks are often eager to prove their mettle in battle, but just as often their strict training means they tend to act tentatively when deprived of their master’s guidance.
+

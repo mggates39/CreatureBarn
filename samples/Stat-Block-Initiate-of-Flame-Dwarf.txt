@@ -1,0 +1,53 @@
+Initiate of Flame (Dwarf Druid 1)
+Initiate of Flame CR 1/2
+
+XP 200
+Dwarf Druid 1
+LN Medium humanoid (dwarf)
+Init +0; Senses Perception +6
+
+DEFENSE
+
+AC 14, touch 10, flat-footed 14 (+4 armor)
+hp 15 (1d8+7)
+Fort +5, Ref +0, Will +4; +2 vs. poison, spells, and spell-like abilities
+Defensive Abilities defensive training (+4 dodge bonus to AC vs. giants)
+
+OFFENSE
+
+Speed 20 ft.
+Melee spear +2 (1d8+3/×3)
+Ranged sling +0 (1d4+2)
+Special Attacks +1 on attack rolls against goblinoid and orc humanoids
+Domain Spell-Like Abilities (CL 1st; concentration +3)
+
+5/day—fire bolt
+
+Druid Spells Prepared (CL 1st; concentration +3)
+
+1st—burning hands D (DC 13), endure elements, faerie fire
+0th (at will)—detect poison, flare (DC 12), stabilize
+
+D Domain spell; Domain Fire
+
+TACTICS
+
+Before Combat The druid casts endure elements each day.
+
+During Combat The druid casts faerie fire, then drops a smokestick at his feet, letting foes come to him, and possibly sets his spear against a charge. He then fights with his spear or casts burning hands.
+
+STATISTICS
+
+Str 15, Dex 10, Con 16, Int 12, Wis 15, Cha 6
+Base Atk +0; CMB +2; CMD 12 (16 vs. bull rush or trip)
+Feats Toughness
+Skills Climb +4, Handle Animal +2, Knowledge (geography) +5, Knowledge (nature) +3, Perception +6 (+8 to notice unusual stonework), Survival +8
+Languages Common, Druidic, Dwarven, Giant
+SQ nature bond (Fire domain), nature sense, wild empathy –1
+Combat Gear alchemist’s fire (2), smokesticks (2); Other Gear masterwork hide armor, sling with 20 bullets, spear, climber’s kit, healer’s kit, holly and mistletoe, spell component pouch, 8 gp
+
+DESCRIPTION
+
+These hostile guardians of volcanic mountain regions have tempers to match their fiery environs, and tolerate no intruders.
+
+

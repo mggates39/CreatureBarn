@@ -1,0 +1,38 @@
+Superstitious Mercenary (Human Fighter 1)
+Superstitious Mercenary CR 1/2
+
+XP 200
+Human Fighter 1
+CN Medium humanoid (human)
+Init +2; Senses Perception +2
+
+DEFENSE
+
+AC 20, touch 12, flat-footed 18 (+6 armor, +2 Dex, +2 shield)
+hp 14 (1d10+4)
+Fort +3, Ref +2, Will +3
+
+OFFENSE
+
+Speed 30 ft.
+Melee longsword +4 (1d8+3/19–20) or cold iron dagger +4 (1d4+3/19–20)
+Ranged heavy crossbow +3 (1d10/19–20)
+
+TACTICS
+
+During Combat The fighter fires his crossbow, then readies his sword and shield. He saves his alchemist’s fire for foes he can’t harm or can’t hit with his sword.
+
+STATISTICS
+
+Str 17, Dex 14, Con 12, Int 8, Wis 13, Cha 10
+Base Atk +1; CMB +4; CMD 16
+Feats Iron Will, Power Attack, Toughness
+Skills Heal +2, Perception +2, Survival +5
+Languages Common
+Combat Gear potion of cure light wounds, alchemist’s fire, holy water, oil (2), healer’s kit (2 uses remaining); Other Gear breastplate, heavy wooden shield, cold iron dagger, heavy crossbow with 20 bolts, longsword, bedroll, tindertwigs (2), whetstone, wooden holy symbol, 3 gp
+
+DESCRIPTION
+
+Some mercenaries believe their survival has less to do with skill and more to do with their ability to gain the gods’ favor.
+
+

@@ -1,0 +1,44 @@
+Mercenary Magician (Human Sorcerer 1)
+Mercenary Magician CR 1/2
+
+XP 200
+Human Sorcerer 1
+LN Medium humanoid (human)
+Init +2; Senses Perception +1
+
+DEFENSE
+
+AC 12, touch 12, flat-footed 10 (+2 Dex)
+hp 8 (1d6+2)
+Fort +3, Ref +2, Will +3
+
+OFFENSE
+
+Speed 30 ft.
+Melee quarterstaff +0 (1d6)
+Ranged dart +2 (1d4)
+Sorcerer Spells Known (CL 1st; concentration +4)
+
+1st (4/day)—color spray (DC 14), magic missile
+0th (at will)—daze (DC 13), detect magic, ray of frost, read magic
+
+Bloodline arcane
+
+TACTICS
+
+During Combat The sorcerer casts color spray to neutralize groups of foes, followed by magic missile at any foes left standing.
+
+STATISTICS
+
+Str 10, Dex 14, Con 13, Int 12, Wis 8, Cha 17
+Base Atk +0; CMB +0; CMD 12
+Feats Alertness, Combat Casting, Eschew Materials, Iron Will
+Skills Bluff +7, Intimidate +7, Knowledge (local) +5, Perception +1, Sense Motive +1, Spellcraft +5
+Languages Common, Draconic
+SQ arcane bond (familiar [rat]), bloodline arcana (+1 DC for metamagic spells that increase spell level)
+Combat Gear potion of cure light wounds, scrolls of disguise self (2), scrolls of shield (2), wand of sleep (11 charges), alchemist’s fire (2); Other Gear darts (5), quarterstaff, 33 gp
+
+DESCRIPTION
+
+The mercenary magician serves whoever can pay her, but is not particularly loyal to her employers.
+
