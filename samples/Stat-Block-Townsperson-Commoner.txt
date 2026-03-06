@@ -1,0 +1,32 @@
+Townsperson (Human Commoner 2)
+Townsperson CR 1/2
+
+XP 200
+Human commoner 2
+N Medium humanoid (human)
+Init +0; Senses Perception +3
+
+DEFENSE
+
+AC 10, touch 10, flat-footed 10
+hp 9 (2d6+2)
+Fort +1, Ref +0, Will -1
+
+OFFENSE
+
+Speed 30 ft.
+Melee club +2 (1d6+1) or torch –3 (1d3+1 plus 1 fire)
+Ranged stone –3 (1d2+1)
+
+TACTICS
+
+Morale A townsperson flees as soon as he or she takes any damage.
+
+STATISTICS
+
+Str 12, Dex 11, Con 13, Int 10, Wis 9, Cha 10
+Base Atk +1; CMB +2; CMD 12
+Feats Animal Affinity, Skill Focus (Profession [any])
+Skills Climb +6, Handle Animal +7, Knowledge (local) +1, Perception +3, Profession (any) +7, Ride +2
+Languages Common
+Gear club, stones, torches (3)

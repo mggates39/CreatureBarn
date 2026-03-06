@@ -1,0 +1,48 @@
+Mercenary Healer (Human Cleric 1)
+Mercenary Healer CR 1/2
+
+XP 200
+Human Cleric 1
+LE Medium humanoid (human)
+Init +1; Senses Perception +2
+
+DEFENSE
+
+AC 17, touch 11, flat-footed 16 (+6 armor, +1 Dex)
+hp 9 (1d8+1)
+Fort +3, Ref +1, Will +4
+
+OFFENSE
+
+Speed 30 ft.
+Melee morningstar –1 (1d8–1)
+Ranged light crossbow +2 (1d8/19–20)
+Special Attacks channel negative energy 6/day (DC 13, 1d6)
+Domain Spell-Like Abilities (CL 1st; concentration +3)
+
+5/day—inspiring word (1 round)
+
+Cleric Spells Prepared (CL 1st; concentration +3)
+
+1st—cure light wounds, longstriderD, protection from good
+0th (at will)—detect magic, mending, read magic
+
+D Domain spell; Domains Nobility, Travel
+
+TACTICS
+
+During Combat The cleric uses channeled energy, tanglefoot bags, and longstrider to escape.
+
+STATISTICS
+
+Str 8, Dex 12, Con 13, Int 10, Wis 14, Cha 17
+Base Atk +0; CMB –1; CMD 10
+Feats Selective Channeling, Weapon Focus (light crossbow)
+Skills Appraise +4, Diplomacy +7, Knowledge (religion) +4, Spellcraft +4
+Languages Common
+SQ aura, +10 base speed from Travel domain, agile feet (5/day)
+Combat Gear potion of cure light wounds, tanglefoot bags (2); Other Gear chainmail, light crossbow with 20 bolts, morningstar, silver unholy symbol, 22 gp
+
+DESCRIPTION
+
+Mercenary healers exploit loopholes in laws for their own profit.

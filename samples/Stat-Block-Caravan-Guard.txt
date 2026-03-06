@@ -1,0 +1,33 @@
+Caravan Guard (Human Warrior 3)
+Caravan Guard CR 1
+
+XP 400
+Male human warrior 3
+LN Medium humanoid (human)
+Init +1; Senses Perception +1
+
+DEFENSE
+
+AC 17, touch 11, flat-footed 16 (+4 armor, +1 Dex, +2 shield)
+hp 25 (3d10+9)
+Fort +4, Ref +2, Will +0
+
+OFFENSE
+
+Speed 30 ft.
+Melee scimitar +4 (1d6+1/18–20)
+Ranged longbow +5 (1d8/×3)
+
+TACTICS
+
+Caravan Guards favor their longbows in combat, reverting to melee with their scimitars only if their foes move to engage, if directly commanded to change their tactics, or to move up to support other guards caught in melee. The guards fight to the death.
+
+STATISTICS
+
+Str 13, Dex 13, Con 12, Int 10, Wis 9, Cha 8
+Base Atk +3; CMB +4; CMD 15
+Feats Alertness, Toughness, Weapon Focus (longbow)
+Skills Handle Animal +5, Intimidate +5, Ride +7
+Languages Common, +1 additional
+Gear chain shirt, heavy steel shield, scimitar, longbow with 20 arrows
+

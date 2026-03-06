@@ -1,0 +1,42 @@
+Savage Mercenary (Human Barbarian 1)
+
+Savage mercenary CR 1/2
+
+XP 200
+Human Barbarian 1
+CN Medium humanoid (human)
+Init +1; Senses Perception +5
+
+DEFENSE
+
+AC 15, touch 9, flat-footed 14 (+6 armor, +1 Dex, –2 rage)
+hp 17 (1d12+5)
+Fort +6, Ref +1, Will +3
+
+OFFENSE
+
+Speed 30 ft.
+Melee greatsword +6 (2d6+7/19–20) or heavy flail +6 (1d10+7/19–20)
+Special Attacks rage (6 rounds/day)
+
+TACTICS
+
+During Combat The barbarian favors her greatsword and Power Attack when fighting monsters, but uses her flail against weapon-using foes to make disarm and trip combat maneuvers.
+
+Base Statistics
+
+When not raging, the barbarian’s statistics are AC 17, touch 11, flat-footed 16; hp 15; Fort +4, Will+1; Melee greatsword +4 (2d6+4/19–20) or heavy flail +4 (1d10+4/19–20); Ranged sling +2 (1d4+3); Str 17, Con 14; CMB +4; Skills Climb +3, Swim +3.
+
+STATISTICS
+
+Str 21, Dex 13, Con 18, Int 10, Wis 12, Cha 8
+Base Atk +1; CMB +6; CMD 15
+Feats Cleave, Power Attack
+Skills Climb +5, Knowledge (nature) +4, Perception +5, Survival +5, Swim +5
+Languages Common
+SQ fast movement
+Combat Gear potion of cure light wounds, potion of remove fear, alchemist’s fire; Other Gear breastplate, greatsword, heavy flail, sling with 10 bullets, 5 gp
+
+DESCRIPTION
+This cold, merciless barbarian fights for gold and glory.
+

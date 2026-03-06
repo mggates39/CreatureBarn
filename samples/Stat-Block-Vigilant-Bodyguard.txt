@@ -1,0 +1,44 @@
+Vigilant Bodyguard (Human Monk 3)
+Vigilant Bodyguard CR 2
+
+XP 600
+Human Monk 3
+LN Medium humanoid (human)
+Init +5; Senses Perception +10
+
+DEFENSE
+
+AC 20, touch 16, flat-footed 18 (+4 armor, +1 Dex, +1 dodge, +4 Wis)
+hp 20 (3d8+3)
+Fort +4, Ref +4, Will +7; +2 vs. enchantments
+Defensive Abilities evasion
+
+OFFENSE
+
+Speed 40 ft.
+Melee unarmed strike +5 (1d6+2) or nunchaku +4 (1d6+2) or unarmed strike flurry of blows +3/+3 (1d6+2)
+Ranged shuriken +3 (1d2+2)
+Special Attacks flurry of blows, stunning fist (3/day, DC 15)
+
+TACTICS
+
+Before Combat The monk drinks her potion of owl’s wisdom to enhance her AC and Perception, as well as a potion of mage armor.
+
+During Combat The monk uses a flurry of blows to make disarm attempts with her nunchaku. If protecting someone, she uses Stunning Fist before withdrawing with her charge.
+
+Base Statistics
+
+Without owl’s wisdom and mage armor, the monk’s statistics are Senses Perception +8; AC 15, touch 14, flat-footed 13; Wis 15; CMD 18; Skills Perception +8, Sense Motive +8, Survival +3.
+
+STATISTICS
+
+Str 14, Dex 13, Con 12, Int 10, Wis 19, Cha 8
+Base Atk +2; CMB +5; CMD 20
+Feats Combat Reflexes, Dodge, Improved Initiative, Improved Unarmed Strike, Stunning Fist, Weapon Focus (unarmed strike)
+Skills Acrobatics +7 (+11 when jumping), Climb +6, Intimidate +5, Perception +10, Sense Motive +10, Stealth +7, Survival +5, Swim +6
+SQ fast movement, maneuver training
+Combat Gear potions of cure light wounds (3), potion of mage armor, potion of magic weapon, potion of owl’s wisdom, smokesticks (3); Other Gear dagger, nunchaku, shuriken (20), bracers of armor +1, 30 gp
+
+ABOUT
+
+Some monk orders hire out vigilant bodyguards to princelings, merchants, and priests with compatible interests and philosophies.

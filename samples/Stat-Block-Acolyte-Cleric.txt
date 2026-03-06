@@ -1,0 +1,48 @@
+Acolyte (Human Cleric 1)
+
+Acolyte (CR 1/2)
+
+XP 200
+Human cleric 1
+LN Medium humanoid
+Init +0; Senses Perception +2
+
+DEFENSE
+
+AC 17, touch 10, flat-footed 17 (+5 armor, +2 shield)
+hp 5 (1d8+1)
+Fort +3, Ref +0, Will +4
+
+OFFENSE
+
+Speed 20 ft.
+Melee shortspear +1 (1d6+1)
+Ranged shortspear +0 (1d6+1)
+Special Attacks channel positive energy 7/day (DC 12, 1d6)
+
+Domain Spell-Like Abilities (CL 1st; concentration +3)
+
+5/day—rebuke death, touch of law
+
+Cleric Spells Prepared (CL 1st; concentration +3)
+
+1st—bless, command (DC 13), cure light woundsD
+0 (at will)—guidance, resistance, virtue
+
+D domain spell; Domains Healing, Law
+
+STATISTICS
+
+Str 12, Dex 10, Con 13, Int 10, Wis 15, Cha 14
+Base Atk +0; CMB +1; CMD 11
+Feats Extra Channel, Selective Channeling
+Skills Diplomacy +6, Heal +8, Knowledge (religion) +4, Sense Motive +6
+Languages Common
+Combat Gear scroll of protection from chaos, scroll of sanctuary; Other Gear scale mail, heavy wooden shield, shortspears (2), healer’s kit, silver holy symbol
+
+ABOUT
+
+Boon An acolyte can tend a character’s wounds or provide a free wooden holy symbol or sacred tract (granting a +2 circumstance bonus on Knowledge [religion] checks about the acolyte’s faith). An acolyte can also make holy water for PCs at a 20% discount. an acolyte is a priest in training, often a callow youth fresh from the cloisters, loaded with zeal but not much practiced in proselytism. They are found in temples and monasteries throughout the world, and their enthusiasm and devotion makes them eager to take up arms and armor to defend their faith and flocks.
+
+Acolytes of different faiths can be easily created by simply changing their domains, spells, armor, or weapons. Evil acolytes might have the Death and Evil domains, for example, and channel negative energy instead. An acolyte of nature could have the Animal and Plant domains, and wear leather armor. Acolytes can be temple caretakers or messengers, attendants at small roadside shrines and chapels, or assistants to more experienced priests. A pair of acolytes may accompany a temple guard (CR 3), a pilgrim (CR 4), or a medium (CR 5). 
+

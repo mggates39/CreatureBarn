@@ -1,0 +1,45 @@
+Acolyte (Human Adept 1)
+
+Acolyte CR 1/3
+
+XP 135
+Human Adept 1
+N Medium humanoid (human)
+Init +1; Senses Perception +1
+
+DEFENSE
+
+AC 14, touch 11, flat-footed 13 (+3 armor, +1 Dex)
+hp 5 (1d6+2)
+Fort –1, Ref +1, Will +3
+
+OFFENSE
+
+Speed 30 ft.
+Melee morningstar +0 (1d8) or silver dagger +0 (1d4/19–20)
+Ranged silver dagger +1 (1d4/19–20)
+
+Adept Spells Prepared (CL 1st; concentration +2)
+1st— bless, cure light wounds
+0th (at will)— guidance, light, mending
+
+TACTICS
+
+During Combat The adept reads her scroll of sleep and commands her dog to attack. She then casts bless and attacks with her morningstar.
+
+STATISTICS
+
+Str 10, Dex 12, Con 8, Int 9, Wis 13, Cha 10
+Base Atk +0; CMB +0; CMD 11
+Feats Skill Focus (Handle Animal), Toughness
+Skills Handle Animal +7, Heal +7, Spellcraft +3
+Languages Common
+Combat Gear scroll of cure light wounds, scroll of sleep, alchemist’s fire;
+Other Gear studded leather, morningstar, silver dagger, guard dog, healer’s kit, silver holy symbol, smokestick, spell component pouch, tindertwig, 9 gp
+
+DESCRIPTION
+
+An acolyte has just begun to unravel the mysteries of her faith, and lacks the fervent zeal that more indoctrinated members of her religion have. She is eager to learn, but her incomplete teachings mean she is more easily swayed by contrary rhetoric.
+
+Settlements that have adepts rather than clerics are often primitive or remote. Their religious practices may be a strange or heretical offshoot of a main religion, weaker than the common form but giving access to spells that are normally unavailable to true clerics (such as minor creation and sleep). A person trained by a cleric who instead manifests adept abilities may be cast out as a blasphemer or witch.
+
