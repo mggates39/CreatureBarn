@@ -22,6 +22,11 @@ creature_sizes = [
     "Colossal",
 ]
 
+
+def safe_copy(data):
+    return data if data else ""
+
+
 class CreatureForm:
 
     def __init__(self, root):
@@ -697,8 +702,8 @@ class CreatureForm:
 
         if self.creature.defensive_abilities:
             defense_ability_list = []
-            for defense_abililty in self.creature.defensive_abilities:
-                defense_ability_list.append(defense_abililty.ability)
+            for defense_ability in self.creature.defensive_abilities:
+                defense_ability_list.append(defense_ability.ability)
             defense_abilities = ", ".join(defense_ability_list)
         else:
             defense_abilities = ""
@@ -837,7 +842,6 @@ class CreatureForm:
 
         creature_type = self.creature.type
         creature_type += (" (" + self.creature.sub_type + ")") if self.creature.sub_type else ""
-        "Special Abilities and Content"
         special_abilities_and_content = self.creature.gear + "{#tab}"  if self.creature.gear else ""
         special_abilities_and_content += description
 
@@ -849,23 +853,23 @@ class CreatureForm:
             self.creature.size,
             creature_type,
             (self.creature.char_class + " " + self.creature.level) if self.creature.char_class else "",
-            self.creature.alignment + " " + self.creature.size + " " + creature_type + " " + self.creature.initiative,
+            safe_copy(self.creature.alignment) + " " + safe_copy(self.creature.size) + " " + safe_copy(creature_type) + " " + safe_copy(self.creature.initiative),
             senses,
             auras,
-            self.creature.base_armor_class + " " + self.creature.touch_armor_class + " " + self.creature.flat_footed_armor_class + ac_modifiers,
+            safe_copy(self.creature.base_armor_class) + " " + safe_copy(self.creature.touch_armor_class) + " " + safe_copy(self.creature.flat_footed_armor_class) + ac_modifiers,
             self.creature.hit_points + " (" + self.creature.hit_dice + ")",
-            self.creature.fortitude if self.creature.fortitude else "",
-            self.creature.reflex if self.creature.reflex else "",
-            self.creature.will if self.creature.will else "",
-            self.creature.damage_reduction if self.creature.damage_reduction else "",
-            self.creature.spell_resistence if self.creature.spell_resistence else "",
+            safe_copy(self.creature.fortitude),
+            safe_copy(self.creature.reflex),
+            safe_copy(self.creature.will),
+            safe_copy(self.creature.damage_reduction),
+            safe_copy(self.creature.spell_resistence),
             immunity,
             resistance,
             weaknesses,
             defense_abilities,
             speeds,
-            self.creature.space if self.creature.space else "",
-            self.creature.reach if self.creature.reach else "",
+            safe_copy(self.creature.space),
+            safe_copy(self.creature.reach),
             melees,
             ranged,
             special_attacks,
@@ -878,17 +882,17 @@ class CreatureForm:
             self.creature.intelligence,
             self.creature.wisdom,
             self.creature.charisma,
-            self.creature.base_attack if self.creature.base_attack else "",
-            self.creature.combat_maneuver_bonus if self.creature.combat_maneuver_bonus else "",
-            self.creature.combat_maneuver_defense if self.creature.combat_maneuver_defense else "",
+            safe_copy( self.creature.base_attack),
+            safe_copy( self.creature.combat_maneuver_bonus),
+            safe_copy(self.creature.combat_maneuver_defense),
             feats,
             skills,
-            self.creature.racial_modifiers if self.creature.racial_modifiers else "",
+            safe_copy(self.creature.racial_modifiers),
             languages,
             special_qualities,
-            self.creature.environment if self.creature.environment else "",
-            self.creature.organization if self.creature.organization else "",
-            self.creature.treasure if self.creature.treasure else "",
+            safe_copy(self.creature.environment),
+            safe_copy(self.creature.organization),
+            safe_copy(self.creature.treasure),
             special_abilities_and_content
         ]
 
