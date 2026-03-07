@@ -849,9 +849,9 @@ class CreatureForm:
             for ability in self.creature.special_abilities:
                 special_abilities_list.append(ability.ability + " (" + ability.type + ") " + ability.description)
             special_abilities_and_content = "{#ENTER}".join(special_abilities_list)
-
-        special_abilities_and_content += ("{#ENTER}" + self.creature.gear)  if self.creature.gear else ""
-        special_abilities_and_content += "{#ENTER}" + description
+            special_abilities_and_content += "{#ENTER}" + description
+        else:
+            special_abilities_and_content += description
 
         creature_class = ""
         if self.creature.race:
@@ -910,7 +910,7 @@ class CreatureForm:
             special_qualities,
             safe_copy(self.creature.environment),
             safe_copy(self.creature.organization),
-            safe_copy(self.creature.treasure),
+            safe_copy(self.creature.gear),
             special_abilities_and_content
         ]
 
