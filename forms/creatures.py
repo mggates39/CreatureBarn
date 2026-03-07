@@ -842,8 +842,16 @@ class CreatureForm:
 
         creature_type = self.creature.type
         creature_type += (" (" + self.creature.sub_type + ")") if self.creature.sub_type else ""
-        special_abilities_and_content = self.creature.gear + "{#tab}"  if self.creature.gear else ""
-        special_abilities_and_content += description
+
+        special_abilities_and_content = ""
+        if self.creature.special_abilities:
+            special_abilities_list = ["Special Abilities"]
+            for ability in self.creature.special_abilities:
+                special_abilities_list.append(ability.ability + " (" + ability.type + ") " + ability.description)
+            special_abilities_and_content = "{#ENTER}".join(special_abilities_list)
+
+        special_abilities_and_content += ("{#ENTER}" + self.creature.gear)  if self.creature.gear else ""
+        special_abilities_and_content += "{#ENTER}" + description
 
         creature_class = ""
         if self.creature.race:
