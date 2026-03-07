@@ -845,18 +845,28 @@ class CreatureForm:
         special_abilities_and_content = self.creature.gear + "{#tab}"  if self.creature.gear else ""
         special_abilities_and_content += description
 
+        creature_class = ""
+        if self.creature.race:
+            creature_class = self.creature.race + " "
+            if self.creature.char_class:
+                creature_class += self.creature.char_class
+        elif self.creature.char_class:
+            creature_class = self.creature.char_class
+        if self.creature.level:
+            creature_class += " " + self.creature.level
+
         output_fields = [
             self.creature.common_name,
-            self.creature.challenge_rating,
+            "CR " + self.creature.challenge_rating,
             self.creature.experience_points,
             self.creature.alignment,
             self.creature.size,
             creature_type,
-            (self.creature.char_class + " " + self.creature.level) if self.creature.char_class else "",
+            creature_class,
             safe_copy(self.creature.alignment) + " " + safe_copy(self.creature.size) + " " + safe_copy(creature_type) + " " + safe_copy(self.creature.initiative),
             senses,
             auras,
-            safe_copy(self.creature.base_armor_class) + ", Touch " + safe_copy(self.creature.touch_armor_class) + ", Flat-footed " + safe_copy(self.creature.flat_footed_armor_class) + ac_modifiers,
+            safe_copy(self.creature.base_armor_class) + ", touch " + safe_copy(self.creature.touch_armor_class) + ", flat-footed " + safe_copy(self.creature.flat_footed_armor_class) + ac_modifiers,
             self.creature.hit_points + " (" + self.creature.hit_dice + ")",
             safe_copy(self.creature.fortitude),
             safe_copy(self.creature.reflex),
@@ -973,8 +983,8 @@ class CreatureList:
         mainframe = ttk.Frame(root, padding=3, borderwidth=2, relief='raised')
         mainframe.grid(column=0, row=0, padx=10, pady=10, sticky="nsew")
         self.creature_choices_var = StringVar()
-        self.creature_list = Listbox(mainframe, height=10, listvariable=self.creature_choices_var)
-        self.creature_list.grid(row=0, column=0, sticky="nsew")
+        self.creature_list = Listbox(mainframe, height=10, width=60, listvariable=self.creature_choices_var)
+        self.creature_list.grid(row=0, column=0, columnspan=2, sticky="nsew")
 
         load_button = ttk.Button(mainframe, text="load", command=self.show_creature)
         load_button.grid(row=1, column=0, sticky="w")
