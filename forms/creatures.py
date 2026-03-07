@@ -666,7 +666,7 @@ class CreatureForm:
                 senses_list.append(sense.sense)
             senses = ", ".join(senses_list) + "; Perception " + self.creature.perception_modifier
         else:
-            senses = ""
+            senses = "Perception " + self.creature.perception_modifier
 
         if self.creature.auras:
             auras_list = []
@@ -856,7 +856,7 @@ class CreatureForm:
             safe_copy(self.creature.alignment) + " " + safe_copy(self.creature.size) + " " + safe_copy(creature_type) + " " + safe_copy(self.creature.initiative),
             senses,
             auras,
-            safe_copy(self.creature.base_armor_class) + " " + safe_copy(self.creature.touch_armor_class) + " " + safe_copy(self.creature.flat_footed_armor_class) + ac_modifiers,
+            safe_copy(self.creature.base_armor_class) + ", Touch " + safe_copy(self.creature.touch_armor_class) + ", Flat-footed " + safe_copy(self.creature.flat_footed_armor_class) + ac_modifiers,
             self.creature.hit_points + " (" + self.creature.hit_dice + ")",
             safe_copy(self.creature.fortitude),
             safe_copy(self.creature.reflex),
