@@ -731,6 +731,10 @@ class ParseCreature:
             if not self.process_next(line):
                 print("skip '{}' in {}".format(line, self.current_state))
 
+        # Clean up any unsaved compound objects
+        transition_parse_save_special_ability(self)
+        transition_parse_save_gear_item(self)
+
         print(self.creature)
 
     def process_next(self, line):
