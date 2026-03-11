@@ -1,0 +1,40 @@
+Survivor (Human Barbarian 1)
+Survivor CR 1/2
+
+XP 200
+Human barbarian 1
+CN Medium humanoid (human)
+Init +1; Senses Perception +2
+
+DEFENSE
+
+AC 14, touch 9, flat-footed 13 (+4 armor, +1 Dex, +1 natural, –2 rage)
+hp 10 (1d12+4)
+Fort +5, Ref +1, Will +4
+Resist cold 2, electricity 2, fire 2
+
+OFFENSE
+
+Speed 30 ft.
+Melee mwk greatsword +6 (2d6+6/19–20)
+Ranged javelin +2 (1d6+4)
+Special Attacks rage (6 rounds/day)
+
+Base Statistics When not raging, the survivor’s stats are AC 16, touch 11, flat-footed 15; hp 8; Fort +3, Will +2; Melee mwk greatsword +4 (2d6+3/19–20); Ranged javelin +2 (1d6+2); Str 14, Con 15; CMB +3, CMD +14; Climb +3
+
+STATISTICS
+
+Str 18, Dex 13, Con 19, Int 10, Wis 14, Cha 8
+Base Atk +1; CMB +5; CMD 16
+Feats Self-Sufficient, Twisted Flesh (see below)
+Skills Acrobatics +2, Climb +5, Heal +5, Intimidate +4, Knowledge (geography) +1, Survival +8
+Languages Common, +1 additional
+SQ fast movement
+Gear hide armor, javelins (2), masterwork greatsword, demonfaced helmet, heavy cloak
+
+SPECIAL ABILITIES
+
+Twisted Flesh (Ex)
+Surviving the chaos has left this barbarian more resilient, but hideously deformed. they gain a +1 natural armor bonus, a +1 bonus on Intimidate checks, and cold, electricity, and fire resistance 2. They also gain a –1 penalty on all other Charisma-based skills, Charisma checks, and Fortitude saves.
+
+
