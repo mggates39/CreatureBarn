@@ -849,9 +849,9 @@ class CreatureForm:
             for ability in self.creature.special_abilities:
                 special_abilities_list.append(ability.ability + " (" + ability.type + ") " + ability.description)
             special_abilities_and_content = "{#ENTER}".join(special_abilities_list)
-            special_abilities_and_content += "{#ENTER}" + description
+            special_abilities_and_content += "{#ENTER}" + description.strip()
         else:
-            special_abilities_and_content += description
+            special_abilities_and_content += description.strip()
 
         creature_class = ""
         if self.creature.race:
@@ -919,7 +919,7 @@ class CreatureForm:
         try:
             file_path = "output/" + self.creature.common_name + '.txt'
             with open(file_path, 'w', encoding='utf-8') as file:
-                file.write("{#TAB}".join(output_fields)+"\n")
+                file.write("{#TAB}".join(output_fields))
             print(f"File '{file_path}' written successfully in write mode.")
         except IOError as e:
             print(f"Error writing to file: {e}")
