@@ -999,7 +999,7 @@ class CreatureList:
         new_button = ttk.Button(mainframe, text="New")
         new_button.grid(row=1, column=2, sticky="e")
 
-        self.creature_list.bind('<Double-Button-1>', lambda: self.show_creature)
+        self.creature_list.bind('<Double-Button-1>', self.show_creature)
 
         try:
             db = SessionLocal()
@@ -1015,7 +1015,7 @@ class CreatureList:
         except ValueError:
             pass
 
-    def show_creature(self):
+    def show_creature(self, event):
         selection_indices = self.creature_list.curselection()
         if selection_indices:
             # Get the first (and only) index from the tuple
