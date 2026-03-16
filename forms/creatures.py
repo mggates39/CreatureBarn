@@ -401,7 +401,7 @@ class CreatureForm:
 
         row_count += 1
         ttk.Label(mainframe, text="Special Abilities").grid(row=row_count, column=0, sticky=NE)
-        self.special_abilities_entry = Text(mainframe, width=60, height=1)
+        self.special_abilities_entry = Text(mainframe, wrap="word", width=60, height=1)
         self.special_abilities_entry.grid(row=row_count, column=1, columnspan=7, sticky=W)
 
         row_count += 1
@@ -501,7 +501,8 @@ class CreatureForm:
             self.resist_entry.delete("1.0", END)
             self.resist_entry['height'] = len(self.creature.immune_modifiers)
             for resist in self.creature.sr_modifiers:
-                self.resist_entry.insert(END, getattr(resist, 'resists') + " " + getattr(resist, 'resist_amount') + "\n")
+                resist_item = "{} {}\n".format(getattr(resist, 'resists'), getattr(resist, 'resist_amount'))
+                self.resist_entry.insert(END, resist_item)
 
             self.spell_resistence.set(getattr(self.creature, 'spell_resistence'))
 
