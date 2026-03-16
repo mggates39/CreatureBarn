@@ -35,11 +35,11 @@ class CreatureForm:
         self.creature_id = 0
 
         root.title("Creature Details")
-        root.geometry("1024x768")
+        root.geometry("2300x1024")
         canvas = Canvas(root)
         canvas.pack(side="left", fill="both", expand=True)
 
-        scrollbar = Scrollbar(root, orient="vertical", command=canvas.yview, width=5)
+        scrollbar = Scrollbar(root, orient="vertical", command=canvas.yview, width=20)
         scrollbar.pack(side="right", fill="y")
 
         canvas.configure(yscrollcommand=scrollbar.set)
