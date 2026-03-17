@@ -140,8 +140,7 @@ class CreatureForm:
         self.auras_entry.grid(row=row_count, column=1, columnspan=7, sticky=W)
 
         row_count += 1
-        # defense_frame = SectionBorder(mainframe, title="Defense", borderwidth=3, relief="raised")
-        defense_frame = SectionBorder(mainframe, title="Defense")
+        defense_frame = SectionBorder(mainframe, title="\nDefense\n")
         defense_frame.grid(row=row_count, column=0, columnspan=12)
 
         row_count += 1
@@ -224,7 +223,7 @@ class CreatureForm:
         self.defense_action_entry.grid(row=row_count, column=1, columnspan=7, sticky=W)
 
         row_count += 1
-        offense_frame = SectionBorder(mainframe, title="Offense")
+        offense_frame = SectionBorder(mainframe, title="\nOffense\n")
         offense_frame.grid(row=row_count, column=0, columnspan=12)
 
         row_count += 1
@@ -302,6 +301,8 @@ class CreatureForm:
         row_count += 1
         offense_frame = SectionBorder(mainframe, title="Tactics")
         offense_frame.grid(row=row_count, column=0, columnspan=12)
+        tactics_frame = SectionBorder(mainframe, title="\nTactics\n")
+        tactics_frame.grid(row=row_count, column=0, columnspan=12)
 
         row_count += 1
         self.tactics_entry = Text(mainframe, wrap="word", width=90, height=1)
@@ -314,7 +315,7 @@ class CreatureForm:
         gear_entry.grid(row=row_count, column=1, columnspan=7, sticky=W)
 
         row_count += 1
-        offense_frame = SectionBorder(mainframe, title="Statistics")
+        offense_frame = SectionBorder(mainframe, title="\nStatistics\n")
         offense_frame.grid(row=row_count, column=0, columnspan=12)
 
         row_count += 1
@@ -391,12 +392,7 @@ class CreatureForm:
         self.special_qualities_entry.grid(row=row_count, column=1, columnspan=7, sticky=W)
 
         row_count += 1
-        ttk.Label(mainframe, text="Languages").grid(row=row_count, column=0, sticky=NE)
-        self.language_entry = Text(mainframe, width=30, height=1)
-        self.language_entry.grid(row=row_count, column=1, columnspan=7, sticky=W)
-
-        row_count += 1
-        special_ability_frame = SectionBorder(mainframe, title="Special Abilities")
+        special_ability_frame = SectionBorder(mainframe, title="\nSpecial Abilities\n")
         special_ability_frame.grid(row=row_count, column=0, columnspan=12)
 
         row_count += 1
@@ -405,7 +401,7 @@ class CreatureForm:
         self.special_abilities_entry.grid(row=row_count, column=1, columnspan=7, sticky=W)
 
         row_count += 1
-        unique_gear_frame = SectionBorder(mainframe, title="Gear")
+        unique_gear_frame = SectionBorder(mainframe, title="\nGear\n")
         unique_gear_frame.grid(row=row_count, column=0, columnspan=12)
 
         row_count += 1
@@ -414,7 +410,7 @@ class CreatureForm:
         self.special_gear_entry.grid(row=row_count, column=1, columnspan=7, sticky=W)
 
         row_count += 1
-        ecology_frame = SectionBorder(mainframe, title="Ecology")
+        ecology_frame = SectionBorder(mainframe, title="\nEcology\n")
         ecology_frame.grid(row=row_count, column=0, columnspan=12)
 
         row_count += 1
@@ -436,7 +432,7 @@ class CreatureForm:
         treasure_entry.grid(row=row_count, column=1, sticky=W)
 
         row_count += 1
-        offense_frame = SectionBorder(mainframe, title="About")
+        offense_frame = SectionBorder(mainframe, title="\nAbout\n")
         offense_frame.grid(row=row_count, column=0, columnspan=12)
 
         row_count += 1
