@@ -387,8 +387,6 @@ class CreatureForm:
 
         row_count += 1
         ttk.Label(mainframe, text="Special Qualities").grid(row=row_count, column=0, sticky=NE)
-        self.special_qualities_entry = Text(mainframe, width=30, height=1)
-        self.special_qualities_entry.grid(row=row_count, column=1, columnspan=7, sticky=W)
         self.special_qualities_entry = scrolledtext.ScrolledText(mainframe, width=30, height=1)
 
         row_count += 1
@@ -397,9 +395,8 @@ class CreatureForm:
 
         row_count += 1
         ttk.Label(mainframe, text="Special Abilities").grid(row=row_count, column=0, sticky=NE)
-        self.special_abilities_entry = Text(mainframe, wrap="word", width=60, height=1)
-        self.special_abilities_entry.grid(row=row_count, column=1, columnspan=7, sticky=W)
         self.special_abilities_entry = scrolledtext.ScrolledText(mainframe, wrap="word", width=70, height=1)
+        self.special_abilities_entry.tag_configure("bold_tag", font=("Arial", 10, "bold"))
 
         row_count += 1
         unique_gear_frame = SectionBorder(mainframe, title="\nGear\n")
@@ -407,8 +404,6 @@ class CreatureForm:
 
         row_count += 1
         ttk.Label(mainframe, text="Unique Items").grid(row=row_count, column=0, sticky=NE)
-        self.special_gear_entry = Text(mainframe, wrap="word", width=70, height=1)
-        self.special_gear_entry.grid(row=row_count, column=1, columnspan=7, sticky=W)
         self.special_gear_entry = scrolledtext.ScrolledText(mainframe, wrap="word", width=70, height=1)
 
         row_count += 1
@@ -620,7 +615,6 @@ class CreatureForm:
             for special_ability in self.creature.special_abilities:
                 self.special_abilities_entry.insert(END, getattr(special_ability, 'ability') + " " + getattr(special_ability, 'type') + "\n")
                 self.special_abilities_entry.insert(END, getattr(special_ability, 'description') + "\n\n")
-
 
             self.special_gear_entry.delete("1.0", END)
             self.special_gear_entry['height'] = len(self.creature.gear_items) * 3
