@@ -20,6 +20,8 @@ engine = create_engine(
 # Create session factory
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
+my_db = SessionLocal()
+
 # Base class for models
 Base = declarative_base()
 
