@@ -1,6 +1,8 @@
 from sqlalchemy import Column, Integer, String, ForeignKey
 from sqlalchemy.orm import relationship
+
 from database import Base
+
 
 class Creature(Base):
     """ Creature record"""
@@ -66,16 +68,20 @@ class Creature(Base):
     senses = relationship("CreatureSenses", back_populates="creature", cascade="all, delete-orphan")
     auras = relationship("CreatureAuras", back_populates="creature", cascade="all, delete-orphan")
     ac_modifiers = relationship("CreatureACModifiers", back_populates="creature", cascade="all, delete-orphan")
-    dr_modifiers = relationship("CreatureDamageReductionModifiers", back_populates="creature", cascade="all, delete-orphan")
-    sr_modifiers = relationship("CreatureSpellResistenceModifiers", back_populates="creature", cascade="all, delete-orphan")
+    dr_modifiers = relationship("CreatureDamageReductionModifiers", back_populates="creature",
+                                cascade="all, delete-orphan")
+    sr_modifiers = relationship("CreatureSpellResistenceModifiers", back_populates="creature",
+                                cascade="all, delete-orphan")
     weaknesses = relationship("CreatureWeaknesses", back_populates="creature", cascade="all, delete-orphan")
     immune_modifiers = relationship("CreatureImmuneModifiers", back_populates="creature", cascade="all, delete-orphan")
-    defensive_abilities = relationship("CreatureDefenseAbilities", back_populates="creature", cascade="all, delete-orphan")
+    defensive_abilities = relationship("CreatureDefenseAbilities", back_populates="creature",
+                                       cascade="all, delete-orphan")
     speed_modifiers = relationship("CreatureSpeedModifiers", back_populates="creature", cascade="all, delete-orphan")
     melee_attacks = relationship("CreatureMeleeAttacks", back_populates="creature", cascade="all, delete-orphan")
     ranged_attacks = relationship("CreatureRangedAttacks", back_populates="creature", cascade="all, delete-orphan")
     special_attacks = relationship("CreatureSpecialAttacks", back_populates="creature", cascade="all, delete-orphan")
-    spell_like_abilities = relationship("CreatureSpellLikeAbilities", back_populates="creature", cascade="all, delete-orphan")
+    spell_like_abilities = relationship("CreatureSpellLikeAbilities", back_populates="creature",
+                                        cascade="all, delete-orphan")
     known_spells = relationship("CreatureKnownSpells", back_populates="creature", cascade="all, delete-orphan")
     prepared_spells = relationship("CreaturePreparedSpells", back_populates="creature", cascade="all, delete-orphan")
     cleric_domains = relationship("CreatureDomains", back_populates="creature", cascade="all, delete-orphan")
@@ -83,8 +89,10 @@ class Creature(Base):
     skills = relationship("CreatureSkills", back_populates="creature", cascade="all, delete-orphan")
     languages = relationship("CreatureLanguages", back_populates="creature", cascade="all, delete-orphan")
     gear_items = relationship("CreatureGearItems", back_populates="creature", cascade="all, delete-orphan")
-    special_qualities = relationship("CreatureSpecialQualities", back_populates="creature", cascade="all, delete-orphan")
-    special_abilities = relationship("CreatureSpecialAbilities", back_populates="creature", cascade="all, delete-orphan")
+    special_qualities = relationship("CreatureSpecialQualities", back_populates="creature",
+                                     cascade="all, delete-orphan")
+    special_abilities = relationship("CreatureSpecialAbilities", back_populates="creature",
+                                     cascade="all, delete-orphan")
 
     def __repr__(self):
         return "<Creature: {}>".format(self.__dict__)
@@ -136,6 +144,7 @@ class CreatureACModifiers(Base):
 
     def __repr__(self):
         return "<CreatureACModifiers: {}>".format(self.__dict__)
+
 
 class CreatureDamageReductionModifiers(Base):
     __tablename__ = 'creature_damage_modifiers'
@@ -292,7 +301,7 @@ class CreatureSpecialAttacks(Base):
 class CreatureSpellLikeAbilities(Base):
     __tablename__ = 'creature_spell_like_abilities'
     id = Column(Integer, primary_key=True)
-    rate =  Column(String)
+    rate = Column(String)
     name = Column(String)
     modifiers = Column(String)
 
@@ -309,7 +318,7 @@ class CreatureSpellLikeAbilities(Base):
 class CreatureKnownSpells(Base):
     __tablename__ = 'creature_known_spells'
     id = Column(Integer, primary_key=True)
-    spell_level =  Column(String)
+    spell_level = Column(String)
     rate = Column(String)
     name = Column(String)
     modifiers = Column(String)
@@ -327,7 +336,7 @@ class CreatureKnownSpells(Base):
 class CreaturePreparedSpells(Base):
     __tablename__ = 'creature_prepared_spells'
     id = Column(Integer, primary_key=True)
-    spell_level =  Column(Integer)
+    spell_level = Column(Integer)
     name = Column(String)
     modifiers = Column(String)
 
@@ -418,6 +427,7 @@ class CreatureSpecialAbilities(Base):
     def __repr__(self):
         return "<CreatureSpecialAbilities: {}>".format(self.__dict__)
 
+
 class CreatureGearItems(Base):
     __tablename__ = 'creature_gear_items'
     id = Column(Integer, primary_key=True)
@@ -432,4 +442,3 @@ class CreatureGearItems(Base):
 
     def __repr__(self):
         return "<CreatureGearItems: {}>".format(self.__dict__)
-
