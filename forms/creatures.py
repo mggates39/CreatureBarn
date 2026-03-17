@@ -2,7 +2,7 @@ from tkinter import *
 from tkinter import ttk
 from widgets.PairTupleCombobox import PairTupleCombobox
 from widgets.SectionBorder import SectionBorder
-from database import SessionLocal
+from database import my_db
 from models import Creature, CreatureLanguages, CreatureFeats, CreatureSkills
 import re
 
@@ -444,8 +444,14 @@ class CreatureForm:
         self.description_entry.grid(row=row_count, column=1, columnspan=12, sticky=W)
 
         row_count += 1
-        ttk.Button(mainframe, text='save', command=self.on_save).grid(row=0, column=0)
-        ttk.Button(mainframe, text='export', command=self.on_export).grid(row=0, column=1)
+        self.save_button = ttk.Button(mainframe, text='Save', command=self.on_save)
+        self.save_button.grid(row=0, column=0)
+        self.update_button = ttk.Button(mainframe, text='Update', command=self.on_save)
+        self.update_button.grid(row=0, column=1)
+        self.delete_button = ttk.Button(mainframe, text='Delete', command=self.on_delete)
+        self.delete_button.grid(row=0, column=2)
+        self.export_button = ttk.Button(mainframe, text='Export', command=self.on_export)
+        self.export_button.grid(row=0, column=3)
 
         # root.columnconfigure(0, weight=1)
         # root.rowconfigure(0, weight=1)
@@ -648,17 +654,33 @@ class CreatureForm:
                 self.description_entry['height'] = 5
 
             # print(self.creature)
+            if self.creature.id:
+                self.save_button.grid_forget()
+            else:
+                self.update_button.grid_forget()
+                self.delete_button.grid_forget()
 
         except ValueError:
             pass
 
     def on_save(self):
-        db = SessionLocal()
-        if not self.creature_id:
-            db.add(self.creature)
-        db.commit()
-        db.refresh(self.creature)  # Refresh to get generated values (id, created_at)
+        if not self.creature.id:
+            my_db.add(self.creature)
+        my_db.commit()
+        my_db.refresh(self.creature)  # Refresh to get generated values (id, created_at)
         self.creature_id = self.creature.id
+        self.save_button.grid_forget()
+        self.update_button.grid(row=0, column=1)
+        self.delete_button.grid(row=0, column=2)
+
+    def on_delete(self):
+        if self.creature.id:
+            my_db.merge(self.creature)
+            my_db.delete(self.creature)
+        my_db.commit()
+        self.creature_id = None
+        self.creature = None
+        self.root.destroy()
 
     def on_export(self):
         if self.creature.senses:
@@ -1003,8 +1025,7 @@ class CreatureList:
         self.creature_list.bind('<Double-Button-1>', self.show_creature)
 
         try:
-            db = SessionLocal()
-            creatures = db.query(Creature).order_by(Creature.formal_name).all()
+            creatures = my_db.query(Creature).order_by(Creature.formal_name).all()
             creature_choices = []
             for creature in creatures:
                 creature_choices.append(creature.formal_name)
@@ -1026,8 +1047,7 @@ class CreatureList:
             print(f"Selected item: {selected_item}")
             formal_name = selected_item
             print(formal_name)
-            db = SessionLocal()
-            self.creature = db.query(Creature).filter(Creature.formal_name == formal_name).first()
+            self.creature = my_db.query(Creature).filter(Creature.formal_name == formal_name).first()
             self.creature_id = self.creature.id
             self.newWindow = Toplevel(self.root)
             creature_form = CreatureForm(self.newWindow)
