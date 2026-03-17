@@ -1,5 +1,6 @@
 from tkinter import *
 from tkinter import ttk
+from tkinter import scrolledtext
 from widgets.PairTupleCombobox import PairTupleCombobox
 from widgets.SectionBorder import SectionBorder
 from database import my_db
@@ -299,8 +300,6 @@ class CreatureForm:
         self.prepared_spells_entry.grid(row=row_count, column=1, columnspan=7, sticky=W)
 
         row_count += 1
-        offense_frame = SectionBorder(mainframe, title="Tactics")
-        offense_frame.grid(row=row_count, column=0, columnspan=12)
         tactics_frame = SectionBorder(mainframe, title="\nTactics\n")
         tactics_frame.grid(row=row_count, column=0, columnspan=12)
 
@@ -390,6 +389,7 @@ class CreatureForm:
         ttk.Label(mainframe, text="Special Qualities").grid(row=row_count, column=0, sticky=NE)
         self.special_qualities_entry = Text(mainframe, width=30, height=1)
         self.special_qualities_entry.grid(row=row_count, column=1, columnspan=7, sticky=W)
+        self.special_qualities_entry = scrolledtext.ScrolledText(mainframe, width=30, height=1)
 
         row_count += 1
         special_ability_frame = SectionBorder(mainframe, title="\nSpecial Abilities\n")
@@ -399,6 +399,7 @@ class CreatureForm:
         ttk.Label(mainframe, text="Special Abilities").grid(row=row_count, column=0, sticky=NE)
         self.special_abilities_entry = Text(mainframe, wrap="word", width=60, height=1)
         self.special_abilities_entry.grid(row=row_count, column=1, columnspan=7, sticky=W)
+        self.special_abilities_entry = scrolledtext.ScrolledText(mainframe, wrap="word", width=70, height=1)
 
         row_count += 1
         unique_gear_frame = SectionBorder(mainframe, title="\nGear\n")
@@ -408,6 +409,7 @@ class CreatureForm:
         ttk.Label(mainframe, text="Unique Items").grid(row=row_count, column=0, sticky=NE)
         self.special_gear_entry = Text(mainframe, wrap="word", width=70, height=1)
         self.special_gear_entry.grid(row=row_count, column=1, columnspan=7, sticky=W)
+        self.special_gear_entry = scrolledtext.ScrolledText(mainframe, wrap="word", width=70, height=1)
 
         row_count += 1
         ecology_frame = SectionBorder(mainframe, title="\nEcology\n")
@@ -436,7 +438,7 @@ class CreatureForm:
         offense_frame.grid(row=row_count, column=0, columnspan=12)
 
         row_count += 1
-        self.description_entry = Text(mainframe, wrap="word", width=90, height=1)
+        self.description_entry = scrolledtext.ScrolledText(mainframe, wrap="word", width=90, height=1)
         self.description_entry.grid(row=row_count, column=1, columnspan=12, sticky=W)
 
         row_count += 1
