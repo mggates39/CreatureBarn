@@ -36,7 +36,7 @@ class CreatureForm:
         self.creature_id = 0
 
         root.title("Creature Details")
-        root.geometry("1910x1024")
+        root.geometry("1950x1024")
         canvas = Canvas(root)
         canvas.pack(side="left", fill="both", expand=True)
 
