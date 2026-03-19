@@ -308,10 +308,9 @@ class CreatureForm:
         self.tactics_entry.grid(row=row_count, column=1, columnspan=12, sticky=W)
 
         row_count += 1
-        ttk.Label(mainframe, text="Gear").grid(row=row_count, column=0, sticky=E)
-        self.gear = StringVar()
-        gear_entry = ttk.Entry(mainframe, width=60, textvariable=self.gear)
-        gear_entry.grid(row=row_count, column=1, columnspan=11, sticky=W)
+        ttk.Label(mainframe, text="Gear").grid(row=row_count, column=0, sticky=NE)
+        self.gear_entry = scrolledtext.ScrolledText(mainframe, wrap="word", width=60, height=1)
+        self.gear_entry.grid(row=row_count, column=1, columnspan=11, sticky=W)
 
         row_count += 1
         offense_frame = SectionBorder(mainframe, title="\nStatistics\n")
@@ -553,7 +552,12 @@ class CreatureForm:
                     spell_modifiers = ""
                 self.prepared_spells_entry.insert(END, getattr(prepared_spell, 'spell_level') + " - " + getattr(prepared_spell, 'name') + spell_modifiers + "\n")
 
-            self.gear.set(getattr(self.creature, 'gear'))
+            gear_items = getattr(self.creature, 'gear')
+            self.gear_entry.delete("1.0", END)
+            self.gear_entry['height'] = (len(gear_items) / 60) + 1
+            for gear_item in gear_items.split(';'):
+                self.gear_entry.insert(END, gear_item.strip() + "\n")
+
 
             self.tactics_entry.delete("1.0", END)
             if self.creature.tactics:
