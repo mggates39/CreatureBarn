@@ -34,6 +34,7 @@ class CreatureBarn:
         fm.add_command(label="Parse", command=self.parse_screen)
         fm.add_command(label="Exit", command=root.quit)
         menu.add_cascade(label="File", menu=fm)
+
         dbm = tk.Menu(menu, tearoff=0)
         dbm.add_command(label="Manage Spells")
         dbm.add_command(label="Manage Creatures", command=self.show_creature_list)
@@ -41,9 +42,11 @@ class CreatureBarn:
         dbm.add_separator()
         dbm.add_command(label="Init Database", command=initialize_database)
         menu.add_cascade(label="Database", menu=dbm)
+
         help_menu = tk.Menu(menu, tearoff=0)
         help_menu.add_command(label="About", command=self.show_about_dialog)
         menu.add_cascade(label="Help", menu=help_menu)
+
         root.config(menu=menu)
 
     # Function to display the "About" dialog box
@@ -74,12 +77,6 @@ class CreatureBarn:
         # Add an OK button to close the dialog
         ok_button = tk.Button(about_box, text="OK", command=about_box.destroy)
         ok_button.pack(pady=10)
-
-    def add_creature(self):
-        print('Button A is pressed!')
-
-        self.newWindow = tk.Toplevel(self.root)
-        self.app = CreatureForm(self.newWindow)
 
     def show_creature_list(self):
         self.newWindow = tk.Toplevel(self.root)
