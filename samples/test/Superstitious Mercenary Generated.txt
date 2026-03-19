@@ -1,0 +1,48 @@
+Superstitious Mercenary
+CR 1/2
+200
+N
+Medium
+Humanoid (Human)
+Human Fighter 1
+N Medium Humanoid (Human) +2
+Perception +2
+
+20, touch 12, flat-footed 18 (+6 armor, +2 Dex, +2 shield)
+14 (1d10+4)
++3
++2
++3
+
+
+
+
+
+
+30 ft.
+5 ft.
+5 ft.
+longsword +4 (1d8+3/19–20), cold iron dagger +4 (1d4+3/19–20)
+heavy crossbow +3 (1d10/19–20)
+
+
+
+
+17
+14
+12
+8
+13
+10
++1
++4
+16
+Iron Will, Power Attack, Toughness
+Heal +2, Perception +2, Survival +5
+
+Common
+
+
+
+Combat Gear potion of cure light wounds, alchemist’s fire, holy water, oil (2), healer’s kit (2 uses remaining); Other Gear breastplate, heavy wooden shield, cold iron dagger, heavy crossbow with 20 bolts, longsword, bedroll, tindertwigs (2), whetstone, wooden holy symbol, 3 gp
+Some mercenaries believe their survival has less to do with skill and more to do with their ability to gain the gods’ favor. 

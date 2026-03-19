@@ -945,7 +945,7 @@ class CreatureForm:
         print("{#TAB}".join(output_fields))
 
         try:
-            file_path = "output/" + self.creature.common_name + '.txt'
+            file_path = "output/" + self.creature.formal_name + '.txt'
             with open(file_path, 'w', encoding='utf-8') as file:
                 file.write("{#TAB}".join(output_fields))
             print(f"File '{file_path}' written successfully in write mode.")

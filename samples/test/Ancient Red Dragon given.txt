@@ -1,0 +1,48 @@
+Ancient Red Dragon
+CR 19
+204,800
+CE
+Gargantuan
+Dragon (Fire)
+
+CE Gargantuan Dragon (Fire) +3
+Dragon senses, Smoke vision; Perception +33
+Fire (10 ft., 2d6 fire), Frightful presence (300 ft., DC 27)
+38, Touch 5, Flat-footed 38 (1 Dex, +33 Natural, 4 Size)
+362 (25d12+200)
++22
++13
++21
+15/magic
+30
+Fire, Paralysis, Sleep
+
+Vulnerability to cold
+
+40 Ft., Fly 250 Ft. (Clumsy)
+20 Ft.
+15 Ft. (20 Ft. With Bite)
+Bite +35 (4d6+21/19-20), 2 Claws +35 (2d8+14), 2 Wings +33 (2d6+7), Tail Slap +33 (2d8+21)
+
+Breath Weapon (60-ft. Cone, Dc 30, 20d10 Fire), Crush, Manipulate Flames, Melt Stone, Tail Sweep
+(Cl 25th) 
+At Will— Detect Magic, Find The Path, Pyrotechnics  (Dc 17) , Suggestion  (Dc 18), Wall Of Fire
+(Cl 15th){#ENTER}7th (4/day)— Limited Wish, Spell Turning{#ENTER}6th (6/day)— Antimagic Field, Contingency, Greater Dispel Magic{#ENTER}5th (7/day)— Polymorph, Telekinesis  (Dc 20), Teleport, Wall Of Force{#ENTER}4th (7/day)— Fear (Dc 19) , Fire Shield, Greater Invisibility, Stoneskin{#ENTER}3rd (7/day)— Dispel Magic, Displacement, Haste, Tongues{#ENTER}2nd (7/day)— Alter Self, Detect Thoughts (Dc 17), Misdirection (Dc 17), Resist Energy, See Invisibility{#ENTER}1st (8/day)— Alarm, Grease  (Dc 16), Magic Missile, Shield, True Strike{#ENTER}0 (At Will)— Arcane Mark, Bleed, Light, Mage Hand, Mending, Message, Open/close, Prestidigitation, Read Magic
+39
+8
+27
+20
+21
+20
++25
++43
++52 (56 Vs. Trip)
+Cleave , Critical Focus , Greater Vital Strike , Improved Critical (Bite), Improved Initiative , Improved Iron Will , Improved Vital Strike , Iron Will , Multiattack , Power Attack , Quicken Spell , Staggering Critical , Vital Strike
+Appraise +33, Bluff +33, Diplomacy +33, Fly +11, Intimidate +33, Knowledge (Arcana) +33, Knowledge (History) +33, Perception +33, Sense Motive +33, Spellcraft +33, Stealth +15
+
+Abyssal, Common, Draconic, Dwarven, Giant, Orc
+
+Warm Mountains
+Solitary
+Triple
+ A crown of cruel horns surrounds the head of this mighty dragon. Thick scales the color of molten rock cover its long body.  Few creatures are more cruel and fearsome than the mighty red dragon. King of the chromatics, this terrible beast brings ruin and death to the lands that fall under its shadow.
