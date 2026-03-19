@@ -952,59 +952,6 @@ class CreatureForm:
         except IOError as e:
             print(f"Error writing to file: {e}")
 
-    def populate_creature(self, parsed_data):
-        creature = Creature()
-        creature.formal_name = parsed_data.get('Formal Name','')
-        creature.common_name = parsed_data.get('Name','')
-        creature.challenge_rating = parsed_data.get('CR','')
-        creature.experience_points = parsed_data.get('XP','')
-        creature.alignment = parsed_data.get('Alignment','')
-        creature.size = parsed_data.get('Size','')
-        type_sub_type = parsed_data.get('Type/(sub-type)','')
-        matches = re.match("(.+) (\\((.+)\\))", type_sub_type)
-        if matches:
-            creature.type = matches.group(1)
-            if matches.group(3):
-                creature.sub_type = matches.group(3)
-        else:
-            matches = re.match("(.+)", type_sub_type)
-            if matches:
-                creature.type = matches.group(1)
-
-        creature.fortitude = parsed_data.get('Fort','')
-        creature.reflex = parsed_data.get('Ref','')
-        creature.will = parsed_data.get('Will','')
-        creature.strength = parsed_data.get('STR','')
-        creature.dexterity = parsed_data.get('DEX','')
-        creature.constitution = parsed_data.get('CON','')
-        creature.intelligence = parsed_data.get('INT','')
-        creature.wisdom = parsed_data.get('WIS','')
-        creature.charisma = parsed_data.get('CHA','')
-        creature.base_attack = parsed_data.get('BAB','')
-        creature.combat_maneuver_bonus = parsed_data.get('CMB','')
-        creature.combat_maneuver_defense = parsed_data.get('CMD','')
-
-        languages = [p.strip() for p in parsed_data['Languages'].split(",") if p.strip()]
-        for language in languages:
-            creature_language = CreatureLanguages()
-            creature_language.language = language
-            creature.languages.append(creature_language)
-
-        feats = [p.strip() for p in parsed_data['Feats'].split(",") if p.strip()]
-        for feat in feats:
-            creature_feat = CreatureFeats()
-            creature_feat.feat = feat
-            creature.feats.append(creature_feat)
-
-        skills = [p.strip() for p in parsed_data['Skills'].split(",") if p.strip()]
-        for skill in skills:
-            creature_skill = CreatureSkills()
-            parts = skill.split("+")
-            creature_skill.skill = parts[0].strip()
-            creature_skill.modifier = "+" + parts[1].strip()
-            creature.skills.append(creature_skill)
-
-        self.on_load(creature)
 
 class CreatureList:
 
