@@ -463,37 +463,37 @@ class CreatureForm:
     def on_load(self, creature):
         try:
             self.creature = creature
-            self.formal_name.set(getattr(self.creature, 'formal_name'))
-            self.common_name.set(getattr(self.creature, 'common_name'))
-            self.challenge_rating.set(getattr(self.creature, 'challenge_rating'))
-            self.experience_points.set(getattr(self.creature, 'experience_points'))
-            self.alignment_entry.set_selected_key(getattr(self.creature, 'alignment'))
-            self.size.set(getattr(self.creature, 'size'))
-            self.age.set(getattr(self.creature, 'age'))
-            self.type.set(getattr(self.creature, 'type'))
-            self.sub_type.set(getattr(self.creature, 'sub_type'))
-            self.race.set(getattr(self.creature, 'race'))
-            self.char_class.set(getattr(self.creature, 'char_class'))
-            self.level.set(getattr(self.creature, 'level'))
-            self.initiative.set(getattr(self.creature, 'initiative'))
-            self.perception_modifier.set(getattr(self.creature, 'perception_modifier'))
-            self.base_ac.set(getattr(self.creature, 'base_armor_class'))
-            self.touch_ac.set(getattr(self.creature, 'touch_armor_class'))
-            self.flat_footed_ac.set(getattr(self.creature, 'flat_footed_armor_class'))
-            self.space.set(getattr(self.creature, 'space'))
-            self.reach.set(getattr(self.creature, 'reach'))
+            self.formal_name.set(safe_copy(getattr(self.creature, 'formal_name')))
+            self.common_name.set(safe_copy(getattr(self.creature, 'common_name')))
+            self.challenge_rating.set(safe_copy(getattr(self.creature, 'challenge_rating')))
+            self.experience_points.set(safe_copy(getattr(self.creature, 'experience_points')))
+            self.alignment_entry.set_selected_key(safe_copy(getattr(self.creature, 'alignment')))
+            self.size.set(safe_copy(getattr(self.creature, 'size')))
+            self.age.set(safe_copy(getattr(self.creature, 'age')))
+            self.type.set(safe_copy(getattr(self.creature, 'type')))
+            self.sub_type.set(safe_copy(getattr(self.creature, 'sub_type')))
+            self.race.set(safe_copy(getattr(self.creature, 'race')))
+            self.char_class.set(safe_copy(getattr(self.creature, 'char_class')))
+            self.level.set(safe_copy(getattr(self.creature, 'level')))
+            self.initiative.set(safe_copy(getattr(self.creature, 'initiative')))
+            self.perception_modifier.set(safe_copy(getattr(self.creature, 'perception_modifier')))
+            self.base_ac.set(safe_copy(getattr(self.creature, 'base_armor_class')))
+            self.touch_ac.set(safe_copy(getattr(self.creature, 'touch_armor_class')))
+            self.flat_footed_ac.set(safe_copy(getattr(self.creature, 'flat_footed_armor_class')))
+            self.space.set(safe_copy(getattr(self.creature, 'space')))
+            self.reach.set(safe_copy(getattr(self.creature, 'reach')))
 
             self.ac_modifier_entry.delete("1.0", END)
             self.ac_modifier_entry['height'] = len(self.creature.ac_modifiers)
             for ac_modifier in self.creature.ac_modifiers:
                 self.ac_modifier_entry.insert(END, getattr(ac_modifier, 'modifier_amount') + " " + getattr(ac_modifier, 'modifier_type') + "\n")
 
-            self.hit_points.set(getattr(self.creature, 'hit_points') + " (" + getattr(self.creature, 'hit_dice') + ")")
-            self.fortitude.set(getattr(self.creature, 'fortitude'))
-            self.reflex.set(getattr(self.creature, 'reflex'))
-            self.will.set(getattr(self.creature, 'will'))
-            self.will_modifier.set(getattr(self.creature, 'will_modifiers'))
-            self.damage_reduction.set(getattr(self.creature, 'damage_reduction'))
+            self.hit_points.set(safe_copy(getattr(self.creature, 'hit_points')) + " (" + safe_copy(getattr(self.creature, 'hit_dice')) + ")")
+            self.fortitude.set(safe_copy(getattr(self.creature, 'fortitude')))
+            self.reflex.set(safe_copy(getattr(self.creature, 'reflex')))
+            self.will.set(safe_copy(getattr(self.creature, 'will')))
+            self.will_modifier.set(safe_copy(getattr(self.creature, 'will_modifiers')))
+            self.damage_reduction.set(safe_copy(getattr(self.creature, 'damage_reduction')))
 
             self.immune_entry.delete("1.0", END)
             self.immune_entry['height'] = len(self.creature.immune_modifiers)
@@ -511,11 +511,11 @@ class CreatureForm:
                 resist_item = "{} {}\n".format(getattr(resist, 'resists'), getattr(resist, 'resist_amount'))
                 self.resist_entry.insert(END, resist_item)
 
-            self.spell_resistence.set(getattr(self.creature, 'spell_resistence'))
+            self.spell_resistence.set(safe_copy(getattr(self.creature, 'spell_resistence')))
 
-            prefix = self.creature.spell_like_type if self.creature.spell_like_type else ""
+            prefix = safe_copy(self.creature.spell_like_type)
             self.spell_like_label.set(prefix + " Spell Like Abilities")
-            self.spell_like_caster_level.set(getattr(self.creature, 'spell_like_caster_level'))
+            self.spell_like_caster_level.set(safe_copy(getattr(self.creature, 'spell_like_caster_level')))
 
             self.spell_like_abilities_entry.delete("1.0", END)
             self.spell_like_abilities_entry['height'] = len(self.creature.spell_like_abilities)
@@ -526,9 +526,9 @@ class CreatureForm:
                     spell_modifiers = ""
                 self.spell_like_abilities_entry.insert(END, getattr(spell_like, 'rate') + " - " + getattr(spell_like, 'name') + spell_modifiers + "\n")
 
-            prefix = self.creature.spell_known_type if self.creature.spell_known_type else ""
+            prefix = safe_copy(self.creature.spell_known_type)
             self.known_spells_label.set(prefix + " Known Spells")
-            self.known_caster_level.set(getattr(self.creature, 'spell_known_caster_level'))
+            self.known_caster_level.set(safe_copy(getattr(self.creature, 'spell_known_caster_level')))
 
             self.known_spells_entry.delete("1.0", END)
             self.known_spells_entry['height'] = len(self.creature.known_spells)
@@ -539,9 +539,9 @@ class CreatureForm:
                     spell_modifiers = ""
                 self.known_spells_entry.insert(END, getattr(spell_like, 'spell_level') + " - " + getattr(spell_like, 'rate') + " - " + getattr(spell_like, 'name') + spell_modifiers + "\n")
 
-            prefix = self.creature.spell_prepared_type if self.creature.spell_prepared_type else ""
+            prefix = safe_copy(self.creature.spell_prepared_type)
             self.prepared_spells_label.set(prefix + " Prepared Spells")
-            self.prepared_caster_level.set(getattr(self.creature, 'spell_prepared_caster_level'))
+            self.prepared_caster_level.set(safe_copy(getattr(self.creature, 'spell_prepared_caster_level')))
 
             self.prepared_spells_entry.delete("1.0", END)
             self.prepared_spells_entry['height'] = len(self.creature.prepared_spells)
@@ -552,7 +552,7 @@ class CreatureForm:
                     spell_modifiers = ""
                 self.prepared_spells_entry.insert(END, getattr(prepared_spell, 'spell_level') + " - " + getattr(prepared_spell, 'name') + spell_modifiers + "\n")
 
-            gear_items = getattr(self.creature, 'gear')
+            gear_items = safe_copy(getattr(self.creature, 'gear'))
             self.gear_entry.delete("1.0", END)
             self.gear_entry['height'] = (len(gear_items) / 60) + 1
             for gear_item in gear_items.split(';'):
@@ -567,26 +567,26 @@ class CreatureForm:
                 # self.tactics_entry['height'] = self.tactics_entry.count("1.0", END, "displaylines")[0]
                 self.tactics_entry['height'] = 5
 
-            self.strength.set(getattr(self.creature, 'strength'))
-            self.dexterity.set(getattr(self.creature, 'dexterity'))
-            self.constitution.set(getattr(self.creature, 'constitution'))
-            self.intelligence.set(getattr(self.creature, 'intelligence'))
-            self.wisdom.set(getattr(self.creature, 'wisdom'))
-            self.charisma.set(getattr(self.creature, 'charisma'))
-            self.base_attack.set(getattr(self.creature, 'base_attack'))
-            self.combat_maneuver_bonus.set(getattr(self.creature, 'combat_maneuver_bonus'))
-            self.combat_maneuver_defense.set(getattr(self.creature, 'combat_maneuver_defense'))
-            self.racial_modifiers.set(getattr(self.creature, 'racial_modifiers'))
-            self.environment.set(getattr(self.creature, 'environment'))
-            self.organization.set(getattr(self.creature, 'organization'))
-            self.treasure.set(getattr(self.creature, 'treasure'))
+            self.strength.set(safe_copy(getattr(self.creature, 'strength')))
+            self.dexterity.set(safe_copy(getattr(self.creature, 'dexterity')))
+            self.constitution.set(safe_copy(getattr(self.creature, 'constitution')))
+            self.intelligence.set(safe_copy(getattr(self.creature, 'intelligence')))
+            self.wisdom.set(safe_copy(getattr(self.creature, 'wisdom')))
+            self.charisma.set(safe_copy(getattr(self.creature, 'charisma')))
+            self.base_attack.set(safe_copy(getattr(self.creature, 'base_attack')))
+            self.combat_maneuver_bonus.set(safe_copy(getattr(self.creature, 'combat_maneuver_bonus')))
+            self.combat_maneuver_defense.set(safe_copy(getattr(self.creature, 'combat_maneuver_defense')))
+            self.racial_modifiers.set(safe_copy(getattr(self.creature, 'racial_modifiers')))
+            self.environment.set(safe_copy(getattr(self.creature, 'environment')))
+            self.organization.set(safe_copy(getattr(self.creature, 'organization')))
+            self.treasure.set(safe_copy(getattr(self.creature, 'treasure')))
 
             self.weakness_entry.delete("1.0", END)
             self.weakness_entry['height'] = len(self.creature.weaknesses)
             for weakness in self.creature.weaknesses:
                 self.weakness_entry.insert(END, getattr(weakness, 'weakness') + "\n")
 
-            self.speed.set(getattr(self.creature, 'speed'))
+            self.speed.set(safe_copy(getattr(self.creature, 'speed')))
 
             self.speed_modifiers_entry.delete("1.0", END)
             self.speed_modifiers_entry['height'] = len(self.creature.speed_modifiers)
