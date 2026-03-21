@@ -1,10 +1,10 @@
 from tkinter import *
 from tkinter import ttk
 from tkinter import scrolledtext
-from widgets.PairTupleCombobox import PairTupleCombobox
-from widgets.SectionBorder import SectionBorder
-from database import my_db
-from models import Creature, CreatureLanguages, CreatureFeats, CreatureSkills
+from Widgets.PairTupleCombobox import PairTupleCombobox
+from Widgets.SectionBorder import SectionBorder
+from Database.database import my_db
+from Database.models import Creature
 import re
 
 alignment_tuples = [ ('LG', 'Lawful Good'), ('NG', 'Neutral Good'), ('CG', 'Chaotic Good'),

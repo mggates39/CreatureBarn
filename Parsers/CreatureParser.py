@@ -1,8 +1,8 @@
-from models import Creature, CreatureLanguages, CreatureFeats, CreatureSkills, CreatureSenses, CreatureAuras, \
+from Database.models import Creature, CreatureLanguages, CreatureFeats, CreatureSkills, CreatureSenses, CreatureAuras, \
     CreatureACModifiers, CreatureWeaknesses, CreatureImmuneModifiers, CreatureSpellResistenceModifiers, \
     CreatureSpellLikeAbilities, CreatureKnownSpells, CreaturePreparedSpells, CreatureSpeedModifiers, \
     CreatureMeleeAttacks, CreatureRangedAttacks, CreatureSpecialQualities, CreatureSpecialAttacks, \
-    CreatureDefenseAbilities, CreatureSpecialAbilities, CreatureGearItems, CreatureDomains
+    CreatureDefenseAbilities, CreatureSpecialAbilities, CreatureGearItems
 import re
 
 def _normalize_case(text: str) -> str:
