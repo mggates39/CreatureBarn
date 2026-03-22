@@ -6,6 +6,7 @@ Robust Pathfinder stat-block parser.
 import tkinter as tk
 from tkinter import filedialog, messagebox
 from pathlib import Path
+from ttkthemes import ThemedTk
 from Forms.creatures import CreatureForm, CreatureList
 from Parsers.CreatureParser import ParseCreature
 from Database.create_tables import create_tables, drop_tables
@@ -110,6 +111,6 @@ class CreatureBarn:
 
 
 if __name__ == "__main__":
-    rootWidget = tk.Tk()
+    rootWidget = ThemedTk(theme='winxpblue')
     app = CreatureBarn(rootWidget)
     rootWidget.mainloop()
