@@ -109,18 +109,22 @@ def transition_parse_auras(fsm_obj):
 
 def transition_parse_armor_class(fsm_obj):
     ac_match = re.search(r"AC\s([+\d]+), touch\s([+\d]+), flat-footed\s([+\d]+) \((.+)\)", fsm_obj.current_line, re.IGNORECASE)
+    if not ac_match:
+        ac_match = re.search(r"AC\s([+\d]+), touch\s([+\d]+), flat-footed\s([+\d]+)", fsm_obj.current_line,
+                             re.IGNORECASE)
     if ac_match:
         fsm_obj.creature.base_armor_class = ac_match.group(1)
         fsm_obj.creature.touch_armor_class = ac_match.group(2)
         fsm_obj.creature.flat_footed_armor_class = ac_match.group(3)
-        modifiers = ac_match.group(4).split(",")
-        for modifier in modifiers:
-            mod_match = re.search(r"(.\d+)\s(.+)", modifier)
-            if mod_match:
-                creature_ac_modifiers = CreatureACModifiers()
-                creature_ac_modifiers.modifier_amount = mod_match.group(1).strip()
-                creature_ac_modifiers.modifier_type = mod_match.group(2).strip()
-                fsm_obj.creature.ac_modifiers.append(creature_ac_modifiers)
+        if len(ac_match.groups()) > 3:
+            modifiers = ac_match.group(4).split(",")
+            for modifier in modifiers:
+                mod_match = re.search(r"(.\d+)\s(.+)", modifier)
+                if mod_match:
+                    creature_ac_modifiers = CreatureACModifiers()
+                    creature_ac_modifiers.modifier_amount = mod_match.group(1).strip()
+                    creature_ac_modifiers.modifier_type = mod_match.group(2).strip()
+                    fsm_obj.creature.ac_modifiers.append(creature_ac_modifiers)
 
 def transition_parse_hit_points(fsm_obj):
     hp_match = re.search(r"HP\s(\d+)\s\((.+)\)", fsm_obj.current_line, re.IGNORECASE)

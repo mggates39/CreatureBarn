@@ -4,12 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="71c3a291-103e-4653-a4fd-d79cf3183176" name="Changes" comment="started formatting the export.">
+    <list default="true" id="71c3a291-103e-4653-a4fd-d79cf3183176" name="Changes" comment="Additional form layout changes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Parsers/CreatureParser.py" beforeDir="false" afterPath="$PROJECT_DIR$/Parsers/CreatureParser.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/creature_barn.db" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/forms/creatures.py" beforeDir="false" afterPath="$PROJECT_DIR$/forms/creatures.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/parsers/CreatureParser.py" beforeDir="false" afterPath="$PROJECT_DIR$/parsers/CreatureParser.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,46 +48,54 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;Python.CreatureParser.executor&quot;: &quot;Run&quot;,
-    &quot;Python.create_tables.executor&quot;: &quot;Run&quot;,
-    &quot;Python.creatures.executor&quot;: &quot;Run&quot;,
-    &quot;Python.database.executor&quot;: &quot;Run&quot;,
-    &quot;Python.first.ph.executor&quot;: &quot;Run&quot;,
-    &quot;Python.main.executor&quot;: &quot;Run&quot;,
-    &quot;Python.parser_test.executor&quot;: &quot;Run&quot;,
-    &quot;Python.scroll_test.executor&quot;: &quot;Run&quot;,
-    &quot;Python.test_form.executor&quot;: &quot;Run&quot;,
-    &quot;Python.test_multi.executor&quot;: &quot;Run&quot;,
-    &quot;Python.test_re.executor&quot;: &quot;Run&quot;,
-    &quot;Python.test_regex.executor&quot;: &quot;Run&quot;,
-    &quot;Python.test_scroll.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;ai.playground.ignore.import.keys.banner.in.settings&quot;: &quot;true&quot;,
-    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/mggates/Dev/CreatureBarn/main.py&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Python.CreatureParser.executor": "Run",
+    "Python.create_tables.executor": "Run",
+    "Python.creatures.executor": "Run",
+    "Python.database.executor": "Run",
+    "Python.first.ph.executor": "Run",
+    "Python.main.executor": "Run",
+    "Python.parser_test.executor": "Run",
+    "Python.scroll_test.executor": "Run",
+    "Python.test_background.executor": "Run",
+    "Python.test_form.executor": "Run",
+    "Python.test_grid.executor": "Run",
+    "Python.test_multi.executor": "Run",
+    "Python.test_re.executor": "Run",
+    "Python.test_regex.executor": "Run",
+    "Python.test_scroll.executor": "Run",
+    "Python.test_themes.executor": "Run",
+    "RunOnceActivity.MCP Project settings loaded": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "ai.playground.ignore.import.keys.banner.in.settings": "true",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "git-widget-placeholder": "main",
+    "junie.onboarding.icon.badge.shown": "true",
+    "last_opened_file_path": "/home/mggates/Dev/CreatureBarn/main.py",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "to.speed.mode.migration.done": "true",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;sqlite&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "sqlite"
     ]
   }
-}</component>
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Database" />
+    </key>
+  </component>
   <component name="RunManager" selected="Python.main">
     <configuration name="create_tables" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="CreatureBarn" />
@@ -106,7 +112,7 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="RUN_TOOL" value="" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/create_tables.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Database/create_tables.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -173,399 +179,399 @@
       <workItem from="1772077327502" duration="2373000" />
       <workItem from="1772114223255" duration="75649000" />
     </task>
-    <task id="LOCAL-00005" summary="Updated data models for creatures">
+    <task id="LOCAL-00068" summary="Add support for creature gear items table">
       <option name="closed" value="true" />
-      <created>1771211635717</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
+      <created>1772417815826</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
       <option name="project" value="LOCAL" />
-      <updated>1771211635717</updated>
+      <updated>1772417815827</updated>
     </task>
-    <task id="LOCAL-00006" summary="Add an initial about box">
+    <task id="LOCAL-00069" summary="Cleaned up a couple of parse errors">
       <option name="closed" value="true" />
-      <created>1771211672380</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
+      <created>1772419766705</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
       <option name="project" value="LOCAL" />
-      <updated>1771211672380</updated>
+      <updated>1772419766708</updated>
     </task>
-    <task id="LOCAL-00007" summary="Various project level updates">
+    <task id="LOCAL-00070" summary="Added saving phrase list to file in output folder">
       <option name="closed" value="true" />
-      <created>1771211837571</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
+      <created>1772419848935</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
       <option name="project" value="LOCAL" />
-      <updated>1771211837571</updated>
+      <updated>1772419848935</updated>
     </task>
-    <task id="LOCAL-00008" summary="Start creating custom widgets">
+    <task id="LOCAL-00071" summary="Cleaned up some typos and restored the ability to save to the database and export to text file">
       <option name="closed" value="true" />
-      <created>1771299581414</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
+      <created>1772483495371</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
       <option name="project" value="LOCAL" />
-      <updated>1771299581414</updated>
+      <updated>1772483495372</updated>
     </task>
-    <task id="LOCAL-00009" summary="Add debug printing to Creature class">
+    <task id="LOCAL-00072" summary="Added newline to end of exported data">
       <option name="closed" value="true" />
-      <created>1771299643217</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
+      <created>1772571614055</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
       <option name="project" value="LOCAL" />
-      <updated>1771299643217</updated>
+      <updated>1772571614055</updated>
     </task>
-    <task id="LOCAL-00010" summary="Begin adding real character forms class">
+    <task id="LOCAL-00073" summary="Cleaned up capitalization of so of the list items">
       <option name="closed" value="true" />
-      <created>1771555588733</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
+      <created>1772594254803</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
       <option name="project" value="LOCAL" />
-      <updated>1771555588734</updated>
+      <updated>1772594254804</updated>
     </task>
-    <task id="LOCAL-00011" summary="Clean up layout issues">
+    <task id="LOCAL-00074" summary="Added support for spell type in spell lists">
       <option name="closed" value="true" />
-      <created>1771557286931</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
+      <created>1772596398599</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
       <option name="project" value="LOCAL" />
-      <updated>1771557286931</updated>
+      <updated>1772596398599</updated>
     </task>
-    <task id="LOCAL-00012" summary="Add support for the language list">
+    <task id="LOCAL-00075" summary="Added double click on monster list.">
       <option name="closed" value="true" />
-      <created>1771643983619</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
+      <created>1772675242718</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
       <option name="project" value="LOCAL" />
-      <updated>1771643983619</updated>
+      <updated>1772675242718</updated>
     </task>
-    <task id="LOCAL-00013" summary="Continue adding fields to the form">
+    <task id="LOCAL-00076" summary="Added sample test data and exported version.">
       <option name="closed" value="true" />
-      <created>1771737638188</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
+      <created>1772766122289</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
       <option name="project" value="LOCAL" />
-      <updated>1771737638188</updated>
+      <updated>1772766122289</updated>
     </task>
-    <task id="LOCAL-00014" summary="Start wiring in the parser to the data load">
+    <task id="LOCAL-00077" summary="Added sample test data and exported version.">
       <option name="closed" value="true" />
-      <created>1771814898368</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
+      <created>1772766142442</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
       <option name="project" value="LOCAL" />
-      <updated>1771814898368</updated>
+      <updated>1772766142442</updated>
     </task>
-    <task id="LOCAL-00015" summary="get the parser actually doing a data load">
+    <task id="LOCAL-00078" summary="refactored if else &quot;&quot; into function">
       <option name="closed" value="true" />
-      <created>1771904057349</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
+      <created>1772766182475</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
       <option name="project" value="LOCAL" />
-      <updated>1771904057349</updated>
+      <updated>1772766182475</updated>
     </task>
-    <task id="LOCAL-00016" summary="Clean up models and add creature description">
+    <task id="LOCAL-00079" summary="refactored if else &quot;&quot; into function">
       <option name="closed" value="true" />
-      <created>1771980019642</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
+      <created>1772830469370</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
       <option name="project" value="LOCAL" />
-      <updated>1771980019642</updated>
+      <updated>1772830469370</updated>
     </task>
-    <task id="LOCAL-00017" summary="Add save button to save or update a creature">
+    <task id="LOCAL-00080" summary="Processed new NPCs">
       <option name="closed" value="true" />
-      <created>1771980092355</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
+      <created>1772830756160</created>
+      <option name="number" value="00080" />
+      <option name="presentableId" value="LOCAL-00080" />
       <option name="project" value="LOCAL" />
-      <updated>1771980092355</updated>
+      <updated>1772830756160</updated>
     </task>
-    <task id="LOCAL-00018" summary="Add the new Finite State Machine Parser">
+    <task id="LOCAL-00081" summary="Corrected issues in Export">
       <option name="closed" value="true" />
-      <created>1771980150895</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
+      <created>1772849876851</created>
+      <option name="number" value="00081" />
+      <option name="presentableId" value="LOCAL-00081" />
       <option name="project" value="LOCAL" />
-      <updated>1771980150895</updated>
+      <updated>1772849876851</updated>
     </task>
-    <task id="LOCAL-00019" summary="Wire in the new parser">
+    <task id="LOCAL-00082" summary="Re-exported all the current npcs">
       <option name="closed" value="true" />
-      <created>1771980161263</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
+      <created>1772850342376</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
       <option name="project" value="LOCAL" />
-      <updated>1771980161263</updated>
+      <updated>1772850342376</updated>
     </task>
-    <task id="LOCAL-00020" summary="Wire in the new parser fully">
+    <task id="LOCAL-00083" summary="Fixed some more export issues">
       <option name="closed" value="true" />
-      <created>1771993197131</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
+      <created>1772855143554</created>
+      <option name="number" value="00083" />
+      <option name="presentableId" value="LOCAL-00083" />
       <option name="project" value="LOCAL" />
-      <updated>1771993197131</updated>
+      <updated>1772855143557</updated>
     </task>
-    <task id="LOCAL-00021" summary="Add aura parsing">
+    <task id="LOCAL-00084" summary="Re-exported the level one NPCs">
       <option name="closed" value="true" />
-      <created>1771993352594</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
+      <created>1772855183025</created>
+      <option name="number" value="00084" />
+      <option name="presentableId" value="LOCAL-00084" />
       <option name="project" value="LOCAL" />
-      <updated>1771993352594</updated>
+      <updated>1772855183027</updated>
     </task>
-    <task id="LOCAL-00022" summary="fix typo in state message">
+    <task id="LOCAL-00085" summary="Re-exported all NPCs">
       <option name="closed" value="true" />
-      <created>1771993513368</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
+      <created>1772857219180</created>
+      <option name="number" value="00085" />
+      <option name="presentableId" value="LOCAL-00085" />
       <option name="project" value="LOCAL" />
-      <updated>1771993513368</updated>
+      <updated>1772857219180</updated>
     </task>
-    <task id="LOCAL-00023" summary="Fix issue in initiative parse for possible auras">
+    <task id="LOCAL-00086" summary="Made more changes in export format">
       <option name="closed" value="true" />
-      <created>1771994534661</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
+      <created>1772857446039</created>
+      <option name="number" value="00086" />
+      <option name="presentableId" value="LOCAL-00086" />
       <option name="project" value="LOCAL" />
-      <updated>1771994534661</updated>
+      <updated>1772857446039</updated>
     </task>
-    <task id="LOCAL-00024" summary="Change data type of AC modifier amount to string">
+    <task id="LOCAL-00087" summary="Fix cleanup of special abilities and gear items in short files">
       <option name="closed" value="true" />
-      <created>1772051280540</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
+      <created>1773189993217</created>
+      <option name="number" value="00087" />
+      <option name="presentableId" value="LOCAL-00087" />
       <option name="project" value="LOCAL" />
-      <updated>1772051280540</updated>
+      <updated>1773189993217</updated>
     </task>
-    <task id="LOCAL-00025" summary="Show the actual parsed creature">
+    <task id="LOCAL-00088" summary="Add a couple more stat block files and their exports">
       <option name="closed" value="true" />
-      <created>1772051344849</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
+      <created>1773190056631</created>
+      <option name="number" value="00088" />
+      <option name="presentableId" value="LOCAL-00088" />
       <option name="project" value="LOCAL" />
-      <updated>1772051344849</updated>
+      <updated>1773190056631</updated>
     </task>
-    <task id="LOCAL-00026" summary="Add more fields to the form">
+    <task id="LOCAL-00089" summary="Strip trailing spaces from the export">
       <option name="closed" value="true" />
-      <created>1772051397275</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
+      <created>1773191644477</created>
+      <option name="number" value="00089" />
+      <option name="presentableId" value="LOCAL-00089" />
       <option name="project" value="LOCAL" />
-      <updated>1772051397275</updated>
+      <updated>1773191644477</updated>
     </task>
-    <task id="LOCAL-00027" summary="Add more parsing transitions, states, and mapped steps">
+    <task id="LOCAL-00090" summary="Fix size to always snow scrolling">
       <option name="closed" value="true" />
-      <created>1772051485031</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
+      <created>1773629691073</created>
+      <option name="number" value="00090" />
+      <option name="presentableId" value="LOCAL-00090" />
       <option name="project" value="LOCAL" />
-      <updated>1772051485031</updated>
+      <updated>1773629691074</updated>
     </task>
-    <task id="LOCAL-00028" summary="Add support for the Tactics section">
+    <task id="LOCAL-00091" summary="Fix double click to load creature">
       <option name="closed" value="true" />
-      <created>1772056117870</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
+      <created>1773629729941</created>
+      <option name="number" value="00091" />
+      <option name="presentableId" value="LOCAL-00091" />
       <option name="project" value="LOCAL" />
-      <updated>1772056117870</updated>
+      <updated>1773629729941</updated>
     </task>
-    <task id="LOCAL-00029" summary="Add support for the Tactics section">
+    <task id="LOCAL-00092" summary="Clean up small layout issues">
       <option name="closed" value="true" />
-      <created>1772056152057</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
+      <created>1773629755055</created>
+      <option name="number" value="00092" />
+      <option name="presentableId" value="LOCAL-00092" />
       <option name="project" value="LOCAL" />
-      <updated>1772056152057</updated>
+      <updated>1773629755055</updated>
     </task>
-    <task id="LOCAL-00030" summary="update misc pycharm files">
+    <task id="LOCAL-00093" summary="reformat code to match standards">
       <option name="closed" value="true" />
-      <created>1772056296044</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
+      <created>1773770770883</created>
+      <option name="number" value="00093" />
+      <option name="presentableId" value="LOCAL-00093" />
       <option name="project" value="LOCAL" />
-      <updated>1772056296044</updated>
+      <updated>1773770770884</updated>
     </task>
-    <task id="LOCAL-00031" summary="update misc pycharm files">
+    <task id="LOCAL-00094" summary="Fix ECOLOGY header and re-parse">
       <option name="closed" value="true" />
-      <created>1772056309010</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
+      <created>1773770811349</created>
+      <option name="number" value="00094" />
+      <option name="presentableId" value="LOCAL-00094" />
       <option name="project" value="LOCAL" />
-      <updated>1772056309010</updated>
+      <updated>1773770811349</updated>
     </task>
-    <task id="LOCAL-00032" summary="Add statistics, base attack and feats to parser">
+    <task id="LOCAL-00095" summary="Reformat code to meet standards">
       <option name="closed" value="true" />
-      <created>1772059022707</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
+      <created>1773770897218</created>
+      <option name="number" value="00095" />
+      <option name="presentableId" value="LOCAL-00095" />
       <option name="project" value="LOCAL" />
-      <updated>1772059022707</updated>
+      <updated>1773770897218</updated>
     </task>
-    <task id="LOCAL-00033" summary="Add skills and languages to parser">
+    <task id="LOCAL-00096" summary="Cleaned up Ecology header parsing">
       <option name="closed" value="true" />
-      <created>1772075413017</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
+      <created>1773770968754</created>
+      <option name="number" value="00096" />
+      <option name="presentableId" value="LOCAL-00096" />
       <option name="project" value="LOCAL" />
-      <updated>1772075413017</updated>
+      <updated>1773770968754</updated>
     </task>
-    <task id="LOCAL-00034" summary="Add scrolling frame to creature form">
+    <task id="LOCAL-00097" summary="Tried another scrollable frame model">
       <option name="closed" value="true" />
-      <created>1772076118088</created>
-      <option name="number" value="00034" />
-      <option name="presentableId" value="LOCAL-00034" />
+      <created>1773770994879</created>
+      <option name="number" value="00097" />
+      <option name="presentableId" value="LOCAL-00097" />
       <option name="project" value="LOCAL" />
-      <updated>1772076118088</updated>
+      <updated>1773770994879</updated>
     </task>
-    <task id="LOCAL-00035" summary="Add weaknesses to creature parser and form">
+    <task id="LOCAL-00098" summary="Added global database session">
       <option name="closed" value="true" />
-      <created>1772076795743</created>
-      <option name="number" value="00035" />
-      <option name="presentableId" value="LOCAL-00035" />
+      <created>1773783032194</created>
+      <option name="number" value="00098" />
+      <option name="presentableId" value="LOCAL-00098" />
       <option name="project" value="LOCAL" />
-      <updated>1772076795743</updated>
+      <updated>1773783032199</updated>
     </task>
-    <task id="LOCAL-00036" summary="Started adding damage resistance parsing">
+    <task id="LOCAL-00099" summary="Improved database handling to allow save and delete">
       <option name="closed" value="true" />
-      <created>1772079702041</created>
-      <option name="number" value="00036" />
-      <option name="presentableId" value="LOCAL-00036" />
+      <created>1773783216723</created>
+      <option name="number" value="00099" />
+      <option name="presentableId" value="LOCAL-00099" />
       <option name="project" value="LOCAL" />
-      <updated>1772079702041</updated>
+      <updated>1773783216724</updated>
     </task>
-    <task id="LOCAL-00037" summary="Fixed layout to not have hard coded rows and fixed padding">
+    <task id="LOCAL-00100" summary="Improved section header display">
       <option name="closed" value="true" />
-      <created>1772119233593</created>
-      <option name="number" value="00037" />
-      <option name="presentableId" value="LOCAL-00037" />
+      <created>1773783447252</created>
+      <option name="number" value="00100" />
+      <option name="presentableId" value="LOCAL-00100" />
       <option name="project" value="LOCAL" />
-      <updated>1772119233596</updated>
+      <updated>1773783447252</updated>
     </task>
-    <task id="LOCAL-00038" summary="Added immunity and resistance display">
+    <task id="LOCAL-00101" summary="Made longer text areas scrollable">
       <option name="closed" value="true" />
-      <created>1772119266694</created>
-      <option name="number" value="00038" />
-      <option name="presentableId" value="LOCAL-00038" />
+      <created>1773783547535</created>
+      <option name="number" value="00101" />
+      <option name="presentableId" value="LOCAL-00101" />
       <option name="project" value="LOCAL" />
-      <updated>1772119266694</updated>
+      <updated>1773783547535</updated>
     </task>
-    <task id="LOCAL-00039" summary="Added immunity and resistance parsing&#10;&#10;Cleaned up header identification">
+    <task id="LOCAL-00102" summary="Made longer text areas scrollable">
       <option name="closed" value="true" />
-      <created>1772119355466</created>
-      <option name="number" value="00039" />
-      <option name="presentableId" value="LOCAL-00039" />
+      <created>1773783857311</created>
+      <option name="number" value="00102" />
+      <option name="presentableId" value="LOCAL-00102" />
       <option name="project" value="LOCAL" />
-      <updated>1772119355466</updated>
+      <updated>1773783857311</updated>
     </task>
-    <task id="LOCAL-00040" summary="Added AC Modifiers to display&#10;&#10;Fixed Racial Modifiers parsing &#10;Fixed bad exit in prepared spells parsing">
+    <task id="LOCAL-00103" summary="Improved special abilities layout">
       <option name="closed" value="true" />
-      <created>1772124857707</created>
-      <option name="number" value="00040" />
-      <option name="presentableId" value="LOCAL-00040" />
+      <created>1773783933808</created>
+      <option name="number" value="00103" />
+      <option name="presentableId" value="LOCAL-00103" />
       <option name="project" value="LOCAL" />
-      <updated>1772124857707</updated>
+      <updated>1773783933808</updated>
     </task>
-    <task id="LOCAL-00041" summary="missed PyCharm project file change">
+    <task id="LOCAL-00104" summary="Improved overall form layout">
       <option name="closed" value="true" />
-      <created>1772125065911</created>
-      <option name="number" value="00041" />
-      <option name="presentableId" value="LOCAL-00041" />
+      <created>1773783961685</created>
+      <option name="number" value="00104" />
+      <option name="presentableId" value="LOCAL-00104" />
       <option name="project" value="LOCAL" />
-      <updated>1772125065911</updated>
+      <updated>1773783961685</updated>
     </task>
-    <task id="LOCAL-00042" summary="Add spell like abilities to parser and form">
+    <task id="LOCAL-00105" summary="Tweaked form width">
       <option name="closed" value="true" />
-      <created>1772144820793</created>
-      <option name="number" value="00042" />
-      <option name="presentableId" value="LOCAL-00042" />
+      <created>1773801449371</created>
+      <option name="number" value="00105" />
+      <option name="presentableId" value="LOCAL-00105" />
       <option name="project" value="LOCAL" />
-      <updated>1772144820794</updated>
+      <updated>1773801449371</updated>
     </task>
-    <task id="LOCAL-00043" summary="Clean up issue with caster level being different for spell like abilities, known spells and prepared spells&#10;Add parsing and display support for known spells and prepared spells">
+    <task id="LOCAL-00106" summary="Removed old parser, added database init and cleaned up parse screen code">
       <option name="closed" value="true" />
-      <created>1772164214765</created>
-      <option name="number" value="00043" />
-      <option name="presentableId" value="LOCAL-00043" />
+      <created>1773801621809</created>
+      <option name="number" value="00106" />
+      <option name="presentableId" value="LOCAL-00106" />
       <option name="project" value="LOCAL" />
-      <updated>1772164214765</updated>
+      <updated>1773801621809</updated>
     </task>
-    <task id="LOCAL-00044" summary="Fixed issue in Spells Prepared">
+    <task id="LOCAL-00107" summary="Improved gear listing">
       <option name="closed" value="true" />
-      <created>1772164345138</created>
-      <option name="number" value="00044" />
-      <option name="presentableId" value="LOCAL-00044" />
+      <created>1773887141807</created>
+      <option name="number" value="00107" />
+      <option name="presentableId" value="LOCAL-00107" />
       <option name="project" value="LOCAL" />
-      <updated>1772164345140</updated>
+      <updated>1773887141808</updated>
     </task>
-    <task id="LOCAL-00045" summary="simplified melee, ranged attacks and speed modifier data model">
+    <task id="LOCAL-00108" summary="Removed unused code and cleaned up menu creation">
       <option name="closed" value="true" />
-      <created>1772208117014</created>
-      <option name="number" value="00045" />
-      <option name="presentableId" value="LOCAL-00045" />
+      <created>1773887196873</created>
+      <option name="number" value="00108" />
+      <option name="presentableId" value="LOCAL-00108" />
       <option name="project" value="LOCAL" />
-      <updated>1772208117014</updated>
+      <updated>1773887196873</updated>
     </task>
-    <task id="LOCAL-00046" summary="added speed, melee, ranged attacks to parser and display form&#10;Start to unify regex definitions">
+    <task id="LOCAL-00109" summary="Removed unused code">
       <option name="closed" value="true" />
-      <created>1772208311161</created>
-      <option name="number" value="00046" />
-      <option name="presentableId" value="LOCAL-00046" />
+      <created>1773930834094</created>
+      <option name="number" value="00109" />
+      <option name="presentableId" value="LOCAL-00109" />
       <option name="project" value="LOCAL" />
-      <updated>1772208311163</updated>
+      <updated>1773930834095</updated>
     </task>
-    <task id="LOCAL-00047" summary="added speed, melee, ranged attacks to parser and display form&#10;Start to unify regex definitions">
+    <task id="LOCAL-00110" summary="Updated export to use formal name for export file name">
       <option name="closed" value="true" />
-      <created>1772208319059</created>
-      <option name="number" value="00047" />
-      <option name="presentableId" value="LOCAL-00047" />
+      <created>1773930982570</created>
+      <option name="number" value="00110" />
+      <option name="presentableId" value="LOCAL-00110" />
       <option name="project" value="LOCAL" />
-      <updated>1772208319059</updated>
+      <updated>1773930982570</updated>
     </task>
-    <task id="LOCAL-00048" summary="added section header widget">
+    <task id="LOCAL-00111" summary="Cleaned up None in empty fields">
       <option name="closed" value="true" />
-      <created>1772234031084</created>
-      <option name="number" value="00048" />
-      <option name="presentableId" value="LOCAL-00048" />
+      <created>1773976703608</created>
+      <option name="number" value="00111" />
+      <option name="presentableId" value="LOCAL-00111" />
       <option name="project" value="LOCAL" />
-      <updated>1772234031084</updated>
+      <updated>1773976703608</updated>
     </task>
-    <task id="LOCAL-00049" summary="added Finite States to process all the files">
+    <task id="LOCAL-00112" summary="Renamed Folders to be consistant">
       <option name="closed" value="true" />
-      <created>1772234127288</created>
-      <option name="number" value="00049" />
-      <option name="presentableId" value="LOCAL-00049" />
+      <created>1774106195309</created>
+      <option name="number" value="00112" />
+      <option name="presentableId" value="LOCAL-00112" />
       <option name="project" value="LOCAL" />
-      <updated>1772234127288</updated>
+      <updated>1774106195309</updated>
     </task>
-    <task id="LOCAL-00050" summary="added section headers and some more fields">
+    <task id="LOCAL-00113" summary="Tweaked the form layout">
       <option name="closed" value="true" />
-      <created>1772234187001</created>
-      <option name="number" value="00050" />
-      <option name="presentableId" value="LOCAL-00050" />
+      <created>1774154951940</created>
+      <option name="number" value="00113" />
+      <option name="presentableId" value="LOCAL-00113" />
       <option name="project" value="LOCAL" />
-      <updated>1772234187006</updated>
+      <updated>1774154951940</updated>
     </task>
-    <task id="LOCAL-00051" summary="added some more fields to parser and display">
+    <task id="LOCAL-00114" summary="Added support for themes">
       <option name="closed" value="true" />
-      <created>1772242702842</created>
-      <option name="number" value="00051" />
-      <option name="presentableId" value="LOCAL-00051" />
+      <created>1774155055568</created>
+      <option name="number" value="00114" />
+      <option name="presentableId" value="LOCAL-00114" />
       <option name="project" value="LOCAL" />
-      <updated>1772242702843</updated>
+      <updated>1774155055568</updated>
     </task>
-    <task id="LOCAL-00052" summary="added ecology section to form and fixed typos in parser">
+    <task id="LOCAL-00115" summary="Additional form layout changes">
       <option name="closed" value="true" />
-      <created>1772245026473</created>
-      <option name="number" value="00052" />
-      <option name="presentableId" value="LOCAL-00052" />
+      <created>1774156293648</created>
+      <option name="number" value="00115" />
+      <option name="presentableId" value="LOCAL-00115" />
       <option name="project" value="LOCAL" />
-      <updated>1772245026473</updated>
+      <updated>1774156293648</updated>
     </task>
-    <task id="LOCAL-00053" summary="started formatting the export.">
+    <task id="LOCAL-00116" summary="Additional form layout changes">
       <option name="closed" value="true" />
-      <created>1772255429602</created>
-      <option name="number" value="00053" />
-      <option name="presentableId" value="LOCAL-00053" />
+      <created>1774156716498</created>
+      <option name="number" value="00116" />
+      <option name="presentableId" value="LOCAL-00116" />
       <option name="project" value="LOCAL" />
-      <updated>1772255429602</updated>
+      <updated>1774156716498</updated>
     </task>
-    <option name="localTasksCounter" value="54" />
+    <option name="localTasksCounter" value="117" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -589,32 +595,32 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add more fields to the form" />
-    <MESSAGE value="Add more parsing transitions, states, and mapped steps" />
-    <MESSAGE value="Add support for the Tactics section" />
-    <MESSAGE value="update misc pycharm files" />
-    <MESSAGE value="Add statistics, base attack and feats to parser" />
-    <MESSAGE value="Add skills and languages to parser" />
-    <MESSAGE value="Add scrolling frame to creature form" />
-    <MESSAGE value="Add weaknesses to creature parser and form" />
-    <MESSAGE value="Started adding damage resistance parsing" />
-    <MESSAGE value="Fixed layout to not have hard coded rows and fixed padding" />
-    <MESSAGE value="Added immunity and resistance display" />
-    <MESSAGE value="Added immunity and resistance parsing&#10;&#10;Cleaned up header identification" />
-    <MESSAGE value="Added AC Modifiers to display&#10;&#10;Fixed Racial Modifiers parsing &#10;Fixed bad exit in prepared spells parsing" />
-    <MESSAGE value="missed PyCharm project file change" />
-    <MESSAGE value="Add spell like abilities to parser and form" />
-    <MESSAGE value="Clean up issue with caster level being different for spell like abilities, known spells and prepared spells&#10;Add parsing and display support for known spells and prepared spells" />
-    <MESSAGE value="Fixed issue in Spells Prepared" />
-    <MESSAGE value="simplified melee, ranged attacks and speed modifier data model" />
-    <MESSAGE value="added speed, melee, ranged attacks to parser and display form&#10;Start to unify regex definitions" />
-    <MESSAGE value="added section header widget" />
-    <MESSAGE value="added Finite States to process all the files" />
-    <MESSAGE value="added section headers and some more fields" />
-    <MESSAGE value="added some more fields to parser and display" />
-    <MESSAGE value="added ecology section to form and fixed typos in parser" />
-    <MESSAGE value="started formatting the export." />
-    <option name="LAST_COMMIT_MESSAGE" value="started formatting the export." />
+    <MESSAGE value="Fix size to always snow scrolling" />
+    <MESSAGE value="Fix double click to load creature" />
+    <MESSAGE value="Clean up small layout issues" />
+    <MESSAGE value="reformat code to match standards" />
+    <MESSAGE value="Fix ECOLOGY header and re-parse" />
+    <MESSAGE value="Reformat code to meet standards" />
+    <MESSAGE value="Cleaned up Ecology header parsing" />
+    <MESSAGE value="Tried another scrollable frame model" />
+    <MESSAGE value="Added global database session" />
+    <MESSAGE value="Improved database handling to allow save and delete" />
+    <MESSAGE value="Improved section header display" />
+    <MESSAGE value="Made longer text areas scrollable" />
+    <MESSAGE value="Improved special abilities layout" />
+    <MESSAGE value="Improved overall form layout" />
+    <MESSAGE value="Tweaked form width" />
+    <MESSAGE value="Removed old parser, added database init and cleaned up parse screen code" />
+    <MESSAGE value="Improved gear listing" />
+    <MESSAGE value="Removed unused code and cleaned up menu creation" />
+    <MESSAGE value="Removed unused code" />
+    <MESSAGE value="Updated export to use formal name for export file name" />
+    <MESSAGE value="Cleaned up None in empty fields" />
+    <MESSAGE value="Renamed Folders to be consistant" />
+    <MESSAGE value="Tweaked the form layout" />
+    <MESSAGE value="Added support for themes" />
+    <MESSAGE value="Additional form layout changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Additional form layout changes" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -625,13 +631,9 @@
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/parsers/CreatureParser.py</url>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/forms/creatures.py</url>
-          <line>743</line>
-          <option name="timeStamp" value="6" />
+          <url>file://$PROJECT_DIR$/Database/create_tables.py</url>
+          <line>2</line>
+          <option name="timeStamp" value="8" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
