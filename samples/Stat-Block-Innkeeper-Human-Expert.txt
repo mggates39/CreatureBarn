@@ -1,0 +1,28 @@
+Innkeeper (Human Expert 4)
+
+Innkeeper CR 1
+
+XP 400
+Male human expert 4
+N Medium humanoid (human)
+Init +0; Senses Perception +1
+
+DEFENSE
+
+AC 10, touch 10, flat-footed 10
+hp 22 (4d8+4)
+Fort +4, Ref +1, Will +5
+
+OFFENSE
+
+Speed 30 ft.
+Melee club +4 (1d6+1)
+
+STATISTICS
+
+Str 12, Dex 10, Con 12, Int 10, Wis 12, Cha 10
+Base Atk +3; CMB +4; CMD 14
+Feats Great Fortitude, Toughness, Skill Focus (profession [innkeeper])
+Skills Appraise +7, Climb +8, Diplomacy +7, Knowledge (local) +7, Profession (innkeeper), Sense Motive +8, Swim +8
+Languages Common
+NPC Gear club
