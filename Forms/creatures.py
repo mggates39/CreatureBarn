@@ -60,7 +60,7 @@ class CreatureForm:
         row_count += 1
         ttk.Label(mainframe, text="Common Name").grid(row=row_count, column=0, sticky=E)
         self.common_name = StringVar()
-        common_name_entry = ttk.Entry(mainframe, width=60, textvariable=self.common_name)
+        common_name_entry = ttk.Entry(mainframe, width=50, textvariable=self.common_name)
         common_name_entry.grid(row=row_count, column=1, columnspan=6, sticky=W)
 
         ttk.Label(mainframe, text="CR").grid(row=row_count, column=4, sticky=E)
@@ -99,8 +99,8 @@ class CreatureForm:
 
         ttk.Label(mainframe, text=" / Sub-Type").grid(row=row_count, column=2, sticky=E)
         self.sub_type = StringVar()
-        sub_type_entry = ttk.Entry(mainframe, width=16, textvariable=self.sub_type)
-        sub_type_entry.grid(row=row_count, column=3, sticky=W)
+        sub_type_entry = ttk.Entry(mainframe, width=40, textvariable=self.sub_type)
+        sub_type_entry.grid(row=row_count, column=3, columnspan=11, sticky=W)
 
         row_count += 1
         ttk.Label(mainframe, text="Race").grid(row=row_count, column=0, sticky=E)
@@ -169,7 +169,7 @@ class CreatureForm:
         ttk.Label(mainframe, text="HP").grid(row=row_count, column=0, sticky=E)
         self.hit_points = StringVar()
         hit_points_entry = ttk.Entry(mainframe, width=20, textvariable=self.hit_points)
-        hit_points_entry.grid(row=row_count, column=1, sticky=W)
+        hit_points_entry.grid(row=row_count, column=1, columnspan=11, sticky=W)
 
         row_count += 1
         ttk.Label(mainframe, text="Fort").grid(row=row_count, column=0, sticky=E)
@@ -413,6 +413,7 @@ class CreatureForm:
         ttk.Label(mainframe, text="Unique Items").grid(row=row_count, column=0, sticky=NE)
         self.special_gear_entry = scrolledtext.ScrolledText(mainframe, wrap="word", width=70, height=1)
         self.special_gear_entry.grid(row=row_count, column=1, columnspan=11, sticky=W)
+        self.special_gear_entry.tag_configure("bold_tag", font=("Arial", 10, "bold"))
 
         row_count += 1
         ecology_frame = SectionBorder(mainframe, title="\nEcology\n")
@@ -632,7 +633,7 @@ class CreatureForm:
             self.special_gear_entry.delete("1.0", END)
             self.special_gear_entry['height'] = len(self.creature.gear_items) * 3
             for gear_item in self.creature.gear_items:
-                self.special_gear_entry.insert(END, getattr(gear_item, 'name') + "\n")
+                self.special_gear_entry.insert(END, getattr(gear_item, 'name') + "\n", "bold_tag")
                 self.special_gear_entry.insert(END, getattr(gear_item, 'description') + "\n\n")
 
             self.senses_entry.delete("1.0", END)
