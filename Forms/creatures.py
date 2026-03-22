@@ -625,13 +625,13 @@ class CreatureForm:
                 self.special_qualities_entry.insert(END, getattr(special_quality, 'special_quality') + "\n")
 
             self.special_abilities_entry.delete("1.0", END)
-            self.special_abilities_entry['height'] = len(self.creature.special_abilities) * 3
+            self.special_abilities_entry['height'] = len(self.creature.special_abilities) * 5
             for special_ability in self.creature.special_abilities:
                 self.special_abilities_entry.insert(END, getattr(special_ability, 'ability') + " " + getattr(special_ability, 'type') + "\n", "bold_tag")
                 self.special_abilities_entry.insert(END, getattr(special_ability, 'description') + "\n\n")
 
             self.special_gear_entry.delete("1.0", END)
-            self.special_gear_entry['height'] = len(self.creature.gear_items) * 3
+            self.special_gear_entry['height'] = len(self.creature.gear_items) * 5
             for gear_item in self.creature.gear_items:
                 self.special_gear_entry.insert(END, getattr(gear_item, 'name') + "\n", "bold_tag")
                 self.special_gear_entry.insert(END, getattr(gear_item, 'description') + "\n\n")
