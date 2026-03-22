@@ -61,11 +61,11 @@ class CreatureForm:
         ttk.Label(mainframe, text="Common Name").grid(row=row_count, column=0, sticky=E)
         self.common_name = StringVar()
         common_name_entry = ttk.Entry(mainframe, width=60, textvariable=self.common_name)
-        common_name_entry.grid(row=row_count, column=1, columnspan=3, sticky=W)
+        common_name_entry.grid(row=row_count, column=1, columnspan=6, sticky=W)
 
         ttk.Label(mainframe, text="CR").grid(row=row_count, column=4, sticky=E)
         self.challenge_rating = StringVar()
-        challenge_rating_entry = ttk.Entry(mainframe, width=6, textvariable=self.challenge_rating)
+        challenge_rating_entry = ttk.Entry(mainframe, width=7, textvariable=self.challenge_rating)
         challenge_rating_entry.grid(row=row_count, column=5, sticky=W)
 
         row_count += 1
@@ -77,13 +77,13 @@ class CreatureForm:
         row_count += 1
         ttk.Label(mainframe, text="Alignment").grid(row=row_count, column=0, sticky=E)
         self.alignment_entry = PairTupleCombobox(mainframe, p_list_pair_tuple = alignment_tuples, p_default_key = 'N')
-        self.alignment_entry.grid(row=row_count, column=1, columnspan=4, sticky=W)
+        self.alignment_entry.grid(row=row_count, column=1, columnspan=11, sticky=W)
 
         row_count += 1
         ttk.Label(mainframe, text="Size").grid(row=row_count, column=0, sticky=E)
         self.size = StringVar()
         size_entry = ttk.Combobox(mainframe, values=creature_sizes, textvariable=self.size)
-        size_entry.grid(row=row_count, column=1, columnspan=4, sticky=W)
+        size_entry.grid(row=row_count, column=1, columnspan=11, sticky=W)
 
         row_count += 1
         ttk.Label(mainframe, text="Age").grid(row=row_count, column=0, sticky=E)
@@ -231,7 +231,7 @@ class CreatureForm:
         ttk.Label(mainframe, text="Speed").grid(row=row_count, column=0, sticky=NE)
         self.speed = StringVar()
         speed_entry = ttk.Entry(mainframe, width=30, textvariable=self.speed)
-        speed_entry.grid(row=row_count, column=1, columnspan=4, sticky=W)
+        speed_entry.grid(row=row_count, column=1, columnspan=11, sticky=W)
 
         row_count += 1
         self.speed_modifiers_entry = Text(mainframe, width=30, height=1)
@@ -269,7 +269,7 @@ class CreatureForm:
         ttk.Label(mainframe, textvariable=self.spell_like_label).grid(row=row_count, column=0, sticky=NE)
         self.spell_like_caster_level = StringVar()
         casting_level_entry = ttk.Entry(mainframe, width=30, textvariable=self.spell_like_caster_level)
-        casting_level_entry.grid(row=row_count, column=1, columnspan=4, sticky=W)
+        casting_level_entry.grid(row=row_count, column=1, columnspan=11, sticky=W)
 
         row_count += 1
         self.spell_like_abilities_entry = Text(mainframe, width=60, height=1)
@@ -281,7 +281,7 @@ class CreatureForm:
         ttk.Label(mainframe, textvariable=self.known_spells_label).grid(row=row_count, column=0, sticky=NE)
         self.known_caster_level = StringVar()
         known_casting_level_entry = ttk.Entry(mainframe, width=30, textvariable=self.known_caster_level)
-        known_casting_level_entry.grid(row=row_count, column=1, columnspan=4, sticky=W)
+        known_casting_level_entry.grid(row=row_count, column=1, columnspan=11, sticky=W)
 
         row_count += 1
         self.known_spells_entry = Text(mainframe, width=60, height=1)
@@ -293,7 +293,7 @@ class CreatureForm:
         ttk.Label(mainframe, textvariable=self.prepared_spells_label).grid(row=row_count, column=0, sticky=NE)
         self.prepared_caster_level = StringVar()
         prepared_casting_level_entry = ttk.Entry(mainframe, width=30, textvariable=self.prepared_caster_level)
-        prepared_casting_level_entry.grid(row=row_count, column=1, columnspan=4, sticky=W)
+        prepared_casting_level_entry.grid(row=row_count, column=1, columnspan=11, sticky=W)
 
         row_count += 1
         self.prepared_spells_entry = Text(mainframe, width=60, height=1)
@@ -317,7 +317,7 @@ class CreatureForm:
         offense_frame.grid(row=row_count, column=0, columnspan=12)
 
         row_count += 1
-        stat_frame = Frame(mainframe)
+        stat_frame = ttk.Frame(mainframe)
         stat_frame.grid(row=row_count, column=1, columnspan=11, sticky=EW)
 
         ttk.Label(mainframe, text="STR").grid(row=row_count, column=0, sticky=E)
@@ -351,7 +351,7 @@ class CreatureForm:
         charisma_entry.grid(row=0, column=11, padx = 5, sticky=W)
 
         row_count += 1
-        bonus_frame = Frame(mainframe)
+        bonus_frame = ttk.Frame(mainframe)
         bonus_frame.grid(row=row_count, column=1, columnspan=11, sticky=EW)
 
         ttk.Label(mainframe, text="BAB").grid(row=row_count, column=0, sticky=E)
@@ -383,7 +383,7 @@ class CreatureForm:
         ttk.Label(mainframe, text="Racial Modifiers").grid(row=row_count, column=0, sticky=E)
         self.racial_modifiers = StringVar()
         racial_modifiers_entry = ttk.Entry(mainframe, width=30, textvariable=self.racial_modifiers)
-        racial_modifiers_entry.grid(row=row_count, column=1, columnspan=4, sticky=W)
+        racial_modifiers_entry.grid(row=row_count, column=1, columnspan=11, sticky=W)
 
         row_count += 1
         ttk.Label(mainframe, text="Languages").grid(row=row_count, column=0, sticky=NE)
@@ -422,19 +422,19 @@ class CreatureForm:
         ttk.Label(mainframe, text="Environment").grid(row=row_count, column=0, sticky=E)
         self.environment = StringVar()
         environment_entry = ttk.Entry(mainframe, width=30, textvariable=self.environment)
-        environment_entry.grid(row=row_count, column=1, columnspan=4, sticky=W)
+        environment_entry.grid(row=row_count, column=1, columnspan=11, sticky=W)
 
         row_count += 1
         ttk.Label(mainframe, text="Organization").grid(row=row_count, column=0, sticky=E)
         self.organization = StringVar()
         organization_entry = ttk.Entry(mainframe, width=30, textvariable=self.organization)
-        organization_entry.grid(row=row_count, column=1, columnspan=4, sticky=W)
+        organization_entry.grid(row=row_count, column=1, columnspan=11, sticky=W)
 
         row_count += 1
         ttk.Label(mainframe, text="Treasure").grid(row=row_count, column=0, sticky=E)
         self.treasure = StringVar()
         treasure_entry = ttk.Entry(mainframe, width=30, textvariable=self.treasure)
-        treasure_entry.grid(row=row_count, column=1, columnspan=4, sticky=W)
+        treasure_entry.grid(row=row_count, column=1, columnspan=11, sticky=W)
 
         row_count += 1
         offense_frame = SectionBorder(mainframe, title="\nAbout\n")
