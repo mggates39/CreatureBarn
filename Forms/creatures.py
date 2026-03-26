@@ -446,14 +446,16 @@ class CreatureForm:
         self.description_entry.grid(row=row_count, column=1, columnspan=12, sticky=W)
 
         row_count += 1
-        self.save_button = ttk.Button(mainframe, text='Save', command=self.on_save)
-        self.save_button.grid(row=0, column=0)
+        self.save_npc_button = ttk.Button(mainframe, text='Save NPC', command=self.on_save)
+        self.save_npc_button.grid(row=0, column=0)
+        self.save_creature_button = ttk.Button(mainframe, text='Save Creature', command=self.on_save)
+        self.save_creature_button.grid(row=0, column=1)
         self.update_button = ttk.Button(mainframe, text='Update', command=self.on_save)
-        self.update_button.grid(row=0, column=1)
+        self.update_button.grid(row=0, column=2)
         self.delete_button = ttk.Button(mainframe, text='Delete', command=self.on_delete)
-        self.delete_button.grid(row=0, column=2)
+        self.delete_button.grid(row=0, column=3)
         self.export_button = ttk.Button(mainframe, text='Export', command=self.on_export)
-        self.export_button.grid(row=0, column=3)
+        self.export_button.grid(row=0, column=4)
 
         # root.columnconfigure(0, weight=1)
         # root.rowconfigure(0, weight=1)
@@ -661,7 +663,8 @@ class CreatureForm:
 
             # print(self.creature)
             if self.creature.id:
-                self.save_button.grid_forget()
+                self.save_npc_button.grid_forget()
+                self.save_creature_button.grid_forget()
             else:
                 self.update_button.grid_forget()
                 self.delete_button.grid_forget()
@@ -675,9 +678,10 @@ class CreatureForm:
         my_db.commit()
         my_db.refresh(self.creature)  # Refresh to get generated values (id, created_at)
         self.creature_id = self.creature.id
-        self.save_button.grid_forget()
-        self.update_button.grid(row=0, column=1)
-        self.delete_button.grid(row=0, column=2)
+        self.save_npc_button.grid_forget()
+        self.save_creature_button.grid_forget()
+        self.update_button.grid(row=0, column=2)
+        self.delete_button.grid(row=0, column=3)
 
     def on_delete(self):
         if self.creature.id:
@@ -956,13 +960,13 @@ class CreatureForm:
 
 class CreatureList:
 
-    def __init__(self, root):
+    def __init__(self, root, barn_type='Creature'):
         self.root = root
         self.creature = None
         self.creature_id = 0
         self.newWindow = None
 
-        root.title("Creature List")
+        root.title(barn_type + " List")
 
         mainframe = ttk.Frame(root, padding=3, borderwidth=2, relief='raised')
         mainframe.grid(column=0, row=0, padx=10, pady=10, sticky="nsew")
@@ -978,7 +982,7 @@ class CreatureList:
         self.creature_list.bind('<Double-Button-1>', self.show_creature_binding)
 
         try:
-            creatures = my_db.query(Creature).order_by(Creature.formal_name).all()
+            creatures = my_db.query(Creature).order_by(Creature.formal_name).where(Creature.barn_type == barn_type)
             creature_choices = []
             for creature in creatures:
                 creature_choices.append(creature.formal_name)

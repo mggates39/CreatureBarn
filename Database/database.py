@@ -1,6 +1,6 @@
 # database.py
 # Database connection and session setup
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, text
 from sqlalchemy.orm import sessionmaker, declarative_base
 
 # Database URL format: dialect+driver://user:password@host:port/database
@@ -34,3 +34,10 @@ def get_db():
         yield db
     finally:
         db.close()
+
+def upgrade():
+    with engine.connect() as conn:
+        conn.execute(text("ALTER TABLE creatures ADD COLUMN barn_type VARCHAR(16)"))
+        conn.execute(text("UPDATE creatures set barn_type = 'Creature'"))
+        conn.execute(text("UPDATE creatures set barn_type = 'NPC' WHERE `race` is not null"))
+        conn.commit()

@@ -10,6 +10,7 @@ from ttkthemes import ThemedTk
 from Forms.creatures import CreatureForm, CreatureList
 from Parsers.CreatureParser import ParseCreature
 from Database.create_tables import create_tables, drop_tables
+from Database.database import upgrade
 
 
 def initialize_database():
@@ -18,6 +19,12 @@ def initialize_database():
         drop_tables()
         create_tables()
         messagebox.showinfo("Database", "Database Initialized")
+
+def upgrade_database():
+    if messagebox.askyesno("Confirm Database Upgrade", message="Do you really want to upgrade the database?",
+                           detail="This will retain all information currently in the database", icon='question',):
+        upgrade()
+        messagebox.showinfo("Database", "Database Upgraded")
 
 
 class CreatureBarn:
@@ -39,9 +46,10 @@ class CreatureBarn:
         dbm = tk.Menu(menu, tearoff=0)
         dbm.add_command(label="Manage Spells")
         dbm.add_command(label="Manage Creatures", command=self.show_creature_list)
-        dbm.add_command(label="Manage NPCs")
+        dbm.add_command(label="Manage NPCs", command=self.show_npc_list)
         dbm.add_separator()
         dbm.add_command(label="Init Database", command=initialize_database)
+        dbm.add_command(label="Upgrade Database", command=upgrade_database)
         menu.add_cascade(label="Database", menu=dbm)
 
         help_menu = tk.Menu(menu, tearoff=0)
@@ -81,7 +89,11 @@ class CreatureBarn:
 
     def show_creature_list(self):
         self.newWindow = tk.Toplevel(self.root)
-        self.app = CreatureList(self.newWindow)
+        self.app = CreatureList(self.newWindow, "Creature")
+
+    def show_npc_list(self):
+        self.newWindow = tk.Toplevel(self.root)
+        self.app = CreatureList(self.newWindow, "NPC")
 
     def show_parsed_creature(self, creature):
         self.newWindow = tk.Toplevel(self.root)
