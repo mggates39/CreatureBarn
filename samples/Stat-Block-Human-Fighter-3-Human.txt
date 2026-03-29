@@ -1,0 +1,33 @@
+Human Fighter 3
+Human Fighter 3 CR 2
+
+XP 600
+Male human fighter 3
+LN Medium humanoid
+Init +1; Senses Perception +0
+
+DEFENSE
+
+AC 17, touch 12, flat-footed 15 (+5 armor, +1 Dex, +1 dodge)
+hp 30 (3d10+9)
+Fort +6, Ref +3, Will +2; +6 against mind-affecting effects
+
+OFFENSE
+
+Speed 30 ft.
+Melee mwk falchion +7 (2d4+3/18-20)
+Ranged composite longbow +4 (1d8+2/×3)
+
+STATISTICS
+
+Str 15, Dex 13, Con 15, Int 14, Wis 10, Cha 8
+Base Atk +3; CMB +6; CMD 18
+Feats Dodge, Combat Expertise, Mobility, Quick Draw, Weapon Focus (falchion)
+Skills Acrobatics +3, Handle Animal +5, Knowledge (local) +4, Linguistics +3, Profession (accountant) +8, Ride +6
+Languages Common, Gnoll, +3 additional
+SQ bravery +1
+Gear +1 chain shirt, masterwork falchion, composite longbow (+2 Str) with 20 arrows, cloak of resistance +1, Pactmaster’s favor
+
+Section 15: Copyright Notice
+Pathfinder 21: The Jackal's Price Copyright 2009, Paizo Publishing, LLC; Author: Darrin Drader
+
