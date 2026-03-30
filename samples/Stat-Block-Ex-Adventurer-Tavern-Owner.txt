@@ -1,0 +1,30 @@
+Ex-Adventurer Tavern Owner (Human Fighter 4)
+
+Ex-Adventurer Tavern Owner CR 3
+
+XP 800
+Male human fighter 4
+CN Medium humanoid (human)
+Init +1; Senses Perception +1
+
+DEFENSE
+
+AC 17, touch 12, flat-footed 15 (+5 armor, +1 Dex, +1 dodge)
+hp 38 (4d10+12)
+Fort +6, Ref +2, Will +4; +1 bonus on Will saves against fear
+Defensive Abilities armor training +1, bravery +1
+
+OFFENSE
+
+Speed 30 ft.
+Melee Betty +7 (1d10+13/x3)
+Ranged light crossbow +5 (1d8/19-20)
+
+STATISTICS
+
+Str 16, Dex 13, Con 14, Int 12, Wis 12, Cha 8
+Base Atk +4; CMB +7; CMD 19
+Feats Dodge, Exotic Weapon Proficiency (bardiche), Iron Will, Power Attack, Weapon Focus (bardiche), Weapon Specialization (bardiche)
+Skills Climb +7, Craft (brewing) +8, Intimidate +6, Profession (bartender) +8
+Languages Common, Dwarven
+NPC Gear Betty (+1 bardiche), light crossbow with 20 bolts, scale mail

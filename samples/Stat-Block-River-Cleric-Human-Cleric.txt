@@ -1,0 +1,51 @@
+River Cleric (Human Cleric 4)
+This holy woman wears a large pendant of a winged, two-headed cobra around her neck and wields a mace of similar make.
+
+River Cleric CR 3
+
+XP 800
+Human cleric 4
+LG Medium humanoid (human)
+Init +2; Senses Perception +6
+
+DEFENSE
+
+AC 15, touch 12, flat-footed 13 (+3 armor, +2 Dex)
+hp 25 (4d8+4)
+Fort +5, Ref +4, Will +7
+
+OFFENSE
+
+Speed 30 ft.
+Melee mwk light mace +6 (1d6+2)
+Ranged mwk javelin +6 (1d6+2)
+Special Attacks channel positive energy 2/day (DC 11, 2d6)
+Domain Spell-Like Abilities (CL 4th; concentration +6)
+
+5/day—icicle (1d6+2 cold damage), resistant touch
+
+Cleric Spells Prepared (CL 4th; concentration +6)
+
+2nd—aid, calm emotions (DC 14), communal endure elements, fog cloudD
+1st—bless, remove fear, sanctuaryD (DC 13), shield of faith, summon monster I
+0th (at will)—guidance, know direction, purify food and drink, stabilize
+
+D Domain spell; Domains Protection, Water
+
+STATISTICS
+
+Str 14, Dex 14, Con 10, Int 14, Wis 15, Cha 8
+Base Atk +3; CMB +5; CMD 17
+Feats Alertness, Skill Focus (Survival), Toughness
+Skills Knowledge (local) +5, Knowledge (religion) +6, Perception +6, Profession (sailor) +9, Sense Motive +9, Survival +9, Swim +4
+Languages Aquan, Common, +1 additional
+
+ECOLOGY
+
+Environment any (desert)
+Organization solitary or with fellow travelers
+Treasure NPC gear (+1 leather armor, masterwork javelin, masterwork light mace, swan boat feather token, antitoxin, backpack, bedroll, fishing net, flint and steel, healer’s kit, holy water [2], silk rope [50 ft.], tent, torches [3], wooden holy symbol, 5 gp)
+
+River clerics consider it their sacred duty to offer services to river-goers, whether by acting as guides for unexperienced travelers or by ferrying individuals across rivers. While accompanying travelers on their river journeys, river clerics make sure to educate the uninitiated their ancient goddess’s divine doctrine.
+
+River clerics expect to be paid for their services just as any other guide or ferryman. Unlike others who perform similar functions, however, river clerics use nearly all of their income to fund their deity’s church. A river cleric never turns down a job unless she feels it clearly violates her deity’s code of conduct (such as obstructing or defiling the river or acting against the interests of the pharaoh and his loyal subjects). Even when not ferrying clients, a river cleric can be found traveling along the river, offering her goddess’s insight and blessings to the loyal subjects of the reigning pharaoh.
