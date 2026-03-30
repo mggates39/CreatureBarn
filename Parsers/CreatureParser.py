@@ -760,8 +760,8 @@ class ParseCreature:
         return False
 
     def update_state(self, new_state, callback):
-        print("{} -> {} : {}".format(self.current_line,
-                                     self.current_state,
-                                     new_state))
+        print("{} -> {} : {}".format(self.current_state,
+                                     new_state,
+                                     self.current_line))
         self.current_state = new_state
         callback(self)
