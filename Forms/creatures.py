@@ -461,6 +461,12 @@ class CreatureForm:
         # root.rowconfigure(0, weight=1)
         # mainframe.columnconfigure(2, weight=1)
         for child in mainframe.winfo_children():
+            child.grid_configure(padx=2, pady=2)
+
+        for child in stat_frame.winfo_children():
+            child.grid_configure(padx=5, pady=5)
+
+        for child in bonus_frame.winfo_children():
             child.grid_configure(padx=5, pady=5)
 
     def on_load(self, creature):
