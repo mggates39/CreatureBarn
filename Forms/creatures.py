@@ -991,7 +991,7 @@ class CreatureList:
             creatures = my_db.query(Creature).order_by(Creature.formal_name).where(Creature.barn_type == barn_type)
             creature_choices = []
             for creature in creatures:
-                creature_choices.append(creature.formal_name)
+                creature_choices.append("{} CR {}".format(creature.formal_name, creature.challenge_rating))
 
             self.creature_choices_var.set(creature_choices)
 
