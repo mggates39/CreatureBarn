@@ -10,7 +10,9 @@ from ttkthemes import ThemedTk
 from Forms.creatures import CreatureForm, CreatureList
 from Parsers.CreatureParser import ParseCreature
 from Database.create_tables import create_tables, drop_tables
-from Database.database import upgrade
+from Database.database import upgrade, DATABASE_VERSION
+
+APPLICATION_VERSION = '1.0.0'
 
 
 def initialize_database():
@@ -64,10 +66,10 @@ class CreatureBarn:
 
         # Create the Toplevel window
         about_box = tk.Toplevel(self.root)
-        about_box.title("About Creature Barn")
+        about_box.title("About")
 
         # Specify the width and height (e.g., 300x200 pixels)
-        about_box.geometry("500x360")
+        about_box.geometry("450x360")
 
         # Make the window non-resizable
         about_box.resizable(False, False)
@@ -78,7 +80,7 @@ class CreatureBarn:
 
         # Add content (e.g., Labels, Buttons)
         # Use a Message widget for multi-line text that wraps properly
-        message_text = "This is simple creature barn to manage creature and NPC definitions.\n\nVersion 1.0"
+        message_text = "This is a simple creature barn to manage creature and NPC definitions.\n\nVersion {}, Database {}".format(APPLICATION_VERSION, DATABASE_VERSION)
         about_message = tk.Message(about_box, text=message_text, justify=tk.CENTER,
                                    width=400)  # width in character units
         about_message.pack(pady=20, padx=10)

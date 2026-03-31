@@ -8,6 +8,7 @@ from sqlalchemy.orm import sessionmaker, declarative_base
 
 # For SQLite (file-based)
 DATABASE_URL = "sqlite:///./creature_barn.db"
+DATABASE_VERSION = '1'
 
 # Create the engine
 engine = create_engine(
