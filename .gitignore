@@ -14,3 +14,6 @@ venv/
 .idea/
 .vscode/
 .ipynb_checkpoints
+
+# application Database
+*.db
