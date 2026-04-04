@@ -472,6 +472,9 @@ class CreatureForm:
     def on_load(self, creature):
         try:
             self.creature = creature
+            if self.creature.barn_type == "NPC":
+                self.root.title("NPC Details")
+
             self.formal_name.set(safe_copy(getattr(self.creature, 'formal_name')))
             self.common_name.set(safe_copy(getattr(self.creature, 'common_name')))
             self.challenge_rating.set(safe_copy(getattr(self.creature, 'challenge_rating')))
