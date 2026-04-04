@@ -1015,7 +1015,7 @@ class CreatureList:
             print(formal_name)
             real_name = re.match(r'(.+) CR .*', formal_name)
             true_name = real_name.group(1)
-            self.creature = my_db.query(Creature).filter(Creature.formal_name == true_name.).first()
+            self.creature = my_db.query(Creature).filter(Creature.formal_name == true_name).first()
             print(self.creature)
             self.creature_id = self.creature.id
             self.newWindow = Toplevel(self.root)
