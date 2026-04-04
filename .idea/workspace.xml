@@ -4,20 +4,649 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d172422a-4b3c-458b-b2f3-8d28b5b8902a" name="Changes" comment="Cleaned up database version management so upgrades happen automatically.">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
+    <list default="true" id="71c3a291-103e-4653-a4fd-d79cf3183176" name="Changes" comment="Cleaned up database version management so upgrades happen automatically.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "git-widget-placeholder": "main"
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;mggates39&quot;
   }
-}]]></component>
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/mggates39/CreatureBarn.git&quot;,
+    &quot;accountId&quot;: &quot;6cd66d8f-1146-45fd-9deb-65056a6dbfab&quot;
+  }
+}</component>
+  <component name="McpProjectServerCommands">
+    <commands />
+    <urls />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
+  <component name="ProjectId" id="38PeUV7e5T12WnbkhYWZuthDPZo" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Python.CreatureParser.executor&quot;: &quot;Run&quot;,
+    &quot;Python.create_tables.executor&quot;: &quot;Run&quot;,
+    &quot;Python.creatures.executor&quot;: &quot;Run&quot;,
+    &quot;Python.database.executor&quot;: &quot;Run&quot;,
+    &quot;Python.first.ph.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;Python.parser_test.executor&quot;: &quot;Run&quot;,
+    &quot;Python.scroll_test.executor&quot;: &quot;Run&quot;,
+    &quot;Python.test_background.executor&quot;: &quot;Run&quot;,
+    &quot;Python.test_form.executor&quot;: &quot;Run&quot;,
+    &quot;Python.test_grid.executor&quot;: &quot;Run&quot;,
+    &quot;Python.test_multi.executor&quot;: &quot;Run&quot;,
+    &quot;Python.test_re.executor&quot;: &quot;Run&quot;,
+    &quot;Python.test_regex.executor&quot;: &quot;Run&quot;,
+    &quot;Python.test_scroll.executor&quot;: &quot;Run&quot;,
+    &quot;Python.test_themes.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;ai.playground.ignore.import.keys.banner.in.settings&quot;: &quot;true&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/mggates/Dev/TinkerTest&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;sqlite&quot;
+    ]
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Database" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python.main">
+    <configuration name="create_tables" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="CreatureBarn" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="RUN_TOOL" value="" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Database/create_tables.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="CreatureBarn" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="SDK_NAME" value="Python 3.12 (CreatureBarn)" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="RUN_TOOL" value="" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.create_tables" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-python-sdk-1cd77e80b48f-6d6dccd035ac-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-253.32098.74" />
+      </set>
+    </attachedChunks>
+  </component>
   <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="71c3a291-103e-4653-a4fd-d79cf3183176" name="Changes" comment="" />
+      <created>1768705649050</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1768705649050</updated>
+      <workItem from="1768705650158" duration="18047000" />
+      <workItem from="1769209285067" duration="2408000" />
+      <workItem from="1769650323510" duration="8758000" />
+      <workItem from="1770161291509" duration="24000" />
+      <workItem from="1770161896034" duration="1645000" />
+      <workItem from="1770566785996" duration="86056000" />
+      <workItem from="1771643609853" duration="192000" />
+      <workItem from="1771643844830" duration="35268000" />
+      <workItem from="1771939681036" duration="33106000" />
+      <workItem from="1772032385936" duration="29398000" />
+      <workItem from="1772077327502" duration="2373000" />
+      <workItem from="1772114223255" duration="75649000" />
+    </task>
+    <task id="LOCAL-00078" summary="refactored if else &quot;&quot; into function">
+      <option name="closed" value="true" />
+      <created>1772766182475</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1772766182475</updated>
+    </task>
+    <task id="LOCAL-00079" summary="refactored if else &quot;&quot; into function">
+      <option name="closed" value="true" />
+      <created>1772830469370</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1772830469370</updated>
+    </task>
+    <task id="LOCAL-00080" summary="Processed new NPCs">
+      <option name="closed" value="true" />
+      <created>1772830756160</created>
+      <option name="number" value="00080" />
+      <option name="presentableId" value="LOCAL-00080" />
+      <option name="project" value="LOCAL" />
+      <updated>1772830756160</updated>
+    </task>
+    <task id="LOCAL-00081" summary="Corrected issues in Export">
+      <option name="closed" value="true" />
+      <created>1772849876851</created>
+      <option name="number" value="00081" />
+      <option name="presentableId" value="LOCAL-00081" />
+      <option name="project" value="LOCAL" />
+      <updated>1772849876851</updated>
+    </task>
+    <task id="LOCAL-00082" summary="Re-exported all the current npcs">
+      <option name="closed" value="true" />
+      <created>1772850342376</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1772850342376</updated>
+    </task>
+    <task id="LOCAL-00083" summary="Fixed some more export issues">
+      <option name="closed" value="true" />
+      <created>1772855143554</created>
+      <option name="number" value="00083" />
+      <option name="presentableId" value="LOCAL-00083" />
+      <option name="project" value="LOCAL" />
+      <updated>1772855143557</updated>
+    </task>
+    <task id="LOCAL-00084" summary="Re-exported the level one NPCs">
+      <option name="closed" value="true" />
+      <created>1772855183025</created>
+      <option name="number" value="00084" />
+      <option name="presentableId" value="LOCAL-00084" />
+      <option name="project" value="LOCAL" />
+      <updated>1772855183027</updated>
+    </task>
+    <task id="LOCAL-00085" summary="Re-exported all NPCs">
+      <option name="closed" value="true" />
+      <created>1772857219180</created>
+      <option name="number" value="00085" />
+      <option name="presentableId" value="LOCAL-00085" />
+      <option name="project" value="LOCAL" />
+      <updated>1772857219180</updated>
+    </task>
+    <task id="LOCAL-00086" summary="Made more changes in export format">
+      <option name="closed" value="true" />
+      <created>1772857446039</created>
+      <option name="number" value="00086" />
+      <option name="presentableId" value="LOCAL-00086" />
+      <option name="project" value="LOCAL" />
+      <updated>1772857446039</updated>
+    </task>
+    <task id="LOCAL-00087" summary="Fix cleanup of special abilities and gear items in short files">
+      <option name="closed" value="true" />
+      <created>1773189993217</created>
+      <option name="number" value="00087" />
+      <option name="presentableId" value="LOCAL-00087" />
+      <option name="project" value="LOCAL" />
+      <updated>1773189993217</updated>
+    </task>
+    <task id="LOCAL-00088" summary="Add a couple more stat block files and their exports">
+      <option name="closed" value="true" />
+      <created>1773190056631</created>
+      <option name="number" value="00088" />
+      <option name="presentableId" value="LOCAL-00088" />
+      <option name="project" value="LOCAL" />
+      <updated>1773190056631</updated>
+    </task>
+    <task id="LOCAL-00089" summary="Strip trailing spaces from the export">
+      <option name="closed" value="true" />
+      <created>1773191644477</created>
+      <option name="number" value="00089" />
+      <option name="presentableId" value="LOCAL-00089" />
+      <option name="project" value="LOCAL" />
+      <updated>1773191644477</updated>
+    </task>
+    <task id="LOCAL-00090" summary="Fix size to always snow scrolling">
+      <option name="closed" value="true" />
+      <created>1773629691073</created>
+      <option name="number" value="00090" />
+      <option name="presentableId" value="LOCAL-00090" />
+      <option name="project" value="LOCAL" />
+      <updated>1773629691074</updated>
+    </task>
+    <task id="LOCAL-00091" summary="Fix double click to load creature">
+      <option name="closed" value="true" />
+      <created>1773629729941</created>
+      <option name="number" value="00091" />
+      <option name="presentableId" value="LOCAL-00091" />
+      <option name="project" value="LOCAL" />
+      <updated>1773629729941</updated>
+    </task>
+    <task id="LOCAL-00092" summary="Clean up small layout issues">
+      <option name="closed" value="true" />
+      <created>1773629755055</created>
+      <option name="number" value="00092" />
+      <option name="presentableId" value="LOCAL-00092" />
+      <option name="project" value="LOCAL" />
+      <updated>1773629755055</updated>
+    </task>
+    <task id="LOCAL-00093" summary="reformat code to match standards">
+      <option name="closed" value="true" />
+      <created>1773770770883</created>
+      <option name="number" value="00093" />
+      <option name="presentableId" value="LOCAL-00093" />
+      <option name="project" value="LOCAL" />
+      <updated>1773770770884</updated>
+    </task>
+    <task id="LOCAL-00094" summary="Fix ECOLOGY header and re-parse">
+      <option name="closed" value="true" />
+      <created>1773770811349</created>
+      <option name="number" value="00094" />
+      <option name="presentableId" value="LOCAL-00094" />
+      <option name="project" value="LOCAL" />
+      <updated>1773770811349</updated>
+    </task>
+    <task id="LOCAL-00095" summary="Reformat code to meet standards">
+      <option name="closed" value="true" />
+      <created>1773770897218</created>
+      <option name="number" value="00095" />
+      <option name="presentableId" value="LOCAL-00095" />
+      <option name="project" value="LOCAL" />
+      <updated>1773770897218</updated>
+    </task>
+    <task id="LOCAL-00096" summary="Cleaned up Ecology header parsing">
+      <option name="closed" value="true" />
+      <created>1773770968754</created>
+      <option name="number" value="00096" />
+      <option name="presentableId" value="LOCAL-00096" />
+      <option name="project" value="LOCAL" />
+      <updated>1773770968754</updated>
+    </task>
+    <task id="LOCAL-00097" summary="Tried another scrollable frame model">
+      <option name="closed" value="true" />
+      <created>1773770994879</created>
+      <option name="number" value="00097" />
+      <option name="presentableId" value="LOCAL-00097" />
+      <option name="project" value="LOCAL" />
+      <updated>1773770994879</updated>
+    </task>
+    <task id="LOCAL-00098" summary="Added global database session">
+      <option name="closed" value="true" />
+      <created>1773783032194</created>
+      <option name="number" value="00098" />
+      <option name="presentableId" value="LOCAL-00098" />
+      <option name="project" value="LOCAL" />
+      <updated>1773783032199</updated>
+    </task>
+    <task id="LOCAL-00099" summary="Improved database handling to allow save and delete">
+      <option name="closed" value="true" />
+      <created>1773783216723</created>
+      <option name="number" value="00099" />
+      <option name="presentableId" value="LOCAL-00099" />
+      <option name="project" value="LOCAL" />
+      <updated>1773783216724</updated>
+    </task>
+    <task id="LOCAL-00100" summary="Improved section header display">
+      <option name="closed" value="true" />
+      <created>1773783447252</created>
+      <option name="number" value="00100" />
+      <option name="presentableId" value="LOCAL-00100" />
+      <option name="project" value="LOCAL" />
+      <updated>1773783447252</updated>
+    </task>
+    <task id="LOCAL-00101" summary="Made longer text areas scrollable">
+      <option name="closed" value="true" />
+      <created>1773783547535</created>
+      <option name="number" value="00101" />
+      <option name="presentableId" value="LOCAL-00101" />
+      <option name="project" value="LOCAL" />
+      <updated>1773783547535</updated>
+    </task>
+    <task id="LOCAL-00102" summary="Made longer text areas scrollable">
+      <option name="closed" value="true" />
+      <created>1773783857311</created>
+      <option name="number" value="00102" />
+      <option name="presentableId" value="LOCAL-00102" />
+      <option name="project" value="LOCAL" />
+      <updated>1773783857311</updated>
+    </task>
+    <task id="LOCAL-00103" summary="Improved special abilities layout">
+      <option name="closed" value="true" />
+      <created>1773783933808</created>
+      <option name="number" value="00103" />
+      <option name="presentableId" value="LOCAL-00103" />
+      <option name="project" value="LOCAL" />
+      <updated>1773783933808</updated>
+    </task>
+    <task id="LOCAL-00104" summary="Improved overall form layout">
+      <option name="closed" value="true" />
+      <created>1773783961685</created>
+      <option name="number" value="00104" />
+      <option name="presentableId" value="LOCAL-00104" />
+      <option name="project" value="LOCAL" />
+      <updated>1773783961685</updated>
+    </task>
+    <task id="LOCAL-00105" summary="Tweaked form width">
+      <option name="closed" value="true" />
+      <created>1773801449371</created>
+      <option name="number" value="00105" />
+      <option name="presentableId" value="LOCAL-00105" />
+      <option name="project" value="LOCAL" />
+      <updated>1773801449371</updated>
+    </task>
+    <task id="LOCAL-00106" summary="Removed old parser, added database init and cleaned up parse screen code">
+      <option name="closed" value="true" />
+      <created>1773801621809</created>
+      <option name="number" value="00106" />
+      <option name="presentableId" value="LOCAL-00106" />
+      <option name="project" value="LOCAL" />
+      <updated>1773801621809</updated>
+    </task>
+    <task id="LOCAL-00107" summary="Improved gear listing">
+      <option name="closed" value="true" />
+      <created>1773887141807</created>
+      <option name="number" value="00107" />
+      <option name="presentableId" value="LOCAL-00107" />
+      <option name="project" value="LOCAL" />
+      <updated>1773887141808</updated>
+    </task>
+    <task id="LOCAL-00108" summary="Removed unused code and cleaned up menu creation">
+      <option name="closed" value="true" />
+      <created>1773887196873</created>
+      <option name="number" value="00108" />
+      <option name="presentableId" value="LOCAL-00108" />
+      <option name="project" value="LOCAL" />
+      <updated>1773887196873</updated>
+    </task>
+    <task id="LOCAL-00109" summary="Removed unused code">
+      <option name="closed" value="true" />
+      <created>1773930834094</created>
+      <option name="number" value="00109" />
+      <option name="presentableId" value="LOCAL-00109" />
+      <option name="project" value="LOCAL" />
+      <updated>1773930834095</updated>
+    </task>
+    <task id="LOCAL-00110" summary="Updated export to use formal name for export file name">
+      <option name="closed" value="true" />
+      <created>1773930982570</created>
+      <option name="number" value="00110" />
+      <option name="presentableId" value="LOCAL-00110" />
+      <option name="project" value="LOCAL" />
+      <updated>1773930982570</updated>
+    </task>
+    <task id="LOCAL-00111" summary="Cleaned up None in empty fields">
+      <option name="closed" value="true" />
+      <created>1773976703608</created>
+      <option name="number" value="00111" />
+      <option name="presentableId" value="LOCAL-00111" />
+      <option name="project" value="LOCAL" />
+      <updated>1773976703608</updated>
+    </task>
+    <task id="LOCAL-00112" summary="Renamed Folders to be consistant">
+      <option name="closed" value="true" />
+      <created>1774106195309</created>
+      <option name="number" value="00112" />
+      <option name="presentableId" value="LOCAL-00112" />
+      <option name="project" value="LOCAL" />
+      <updated>1774106195309</updated>
+    </task>
+    <task id="LOCAL-00113" summary="Tweaked the form layout">
+      <option name="closed" value="true" />
+      <created>1774154951940</created>
+      <option name="number" value="00113" />
+      <option name="presentableId" value="LOCAL-00113" />
+      <option name="project" value="LOCAL" />
+      <updated>1774154951940</updated>
+    </task>
+    <task id="LOCAL-00114" summary="Added support for themes">
+      <option name="closed" value="true" />
+      <created>1774155055568</created>
+      <option name="number" value="00114" />
+      <option name="presentableId" value="LOCAL-00114" />
+      <option name="project" value="LOCAL" />
+      <updated>1774155055568</updated>
+    </task>
+    <task id="LOCAL-00115" summary="Additional form layout changes">
+      <option name="closed" value="true" />
+      <created>1774156293648</created>
+      <option name="number" value="00115" />
+      <option name="presentableId" value="LOCAL-00115" />
+      <option name="project" value="LOCAL" />
+      <updated>1774156293648</updated>
+    </task>
+    <task id="LOCAL-00116" summary="Additional form layout changes">
+      <option name="closed" value="true" />
+      <created>1774156716498</created>
+      <option name="number" value="00116" />
+      <option name="presentableId" value="LOCAL-00116" />
+      <option name="project" value="LOCAL" />
+      <updated>1774156716498</updated>
+    </task>
+    <task id="LOCAL-00117" summary="Merge remote-tracking branch 'origin/main'">
+      <option name="closed" value="true" />
+      <created>1774924602924</created>
+      <option name="number" value="00117" />
+      <option name="presentableId" value="LOCAL-00117" />
+      <option name="project" value="LOCAL" />
+      <updated>1774924602924</updated>
+    </task>
+    <task id="LOCAL-00118" summary="Added .gitignore">
+      <option name="closed" value="true" />
+      <created>1774924810826</created>
+      <option name="number" value="00118" />
+      <option name="presentableId" value="LOCAL-00118" />
+      <option name="project" value="LOCAL" />
+      <updated>1774924810827</updated>
+    </task>
+    <task id="LOCAL-00119" summary="Fixed issue in object list caused by adding the CR in a previous update.">
+      <option name="closed" value="true" />
+      <created>1775264166399</created>
+      <option name="number" value="00119" />
+      <option name="presentableId" value="LOCAL-00119" />
+      <option name="project" value="LOCAL" />
+      <updated>1775264166400</updated>
+    </task>
+    <task id="LOCAL-00120" summary="Fixed issue in object list caused by adding the CR in a previous update.">
+      <option name="closed" value="true" />
+      <created>1775264292858</created>
+      <option name="number" value="00120" />
+      <option name="presentableId" value="LOCAL-00120" />
+      <option name="project" value="LOCAL" />
+      <updated>1775264292858</updated>
+    </task>
+    <task id="LOCAL-00121" summary="Change Creature Detail page title if NPC">
+      <option name="closed" value="true" />
+      <created>1775269482558</created>
+      <option name="number" value="00121" />
+      <option name="presentableId" value="LOCAL-00121" />
+      <option name="project" value="LOCAL" />
+      <updated>1775269482560</updated>
+    </task>
+    <task id="LOCAL-00122" summary="Make git ignore the local databases">
+      <option name="closed" value="true" />
+      <created>1775272329189</created>
+      <option name="number" value="00122" />
+      <option name="presentableId" value="LOCAL-00122" />
+      <option name="project" value="LOCAL" />
+      <updated>1775272329189</updated>
+    </task>
+    <task id="LOCAL-00123" summary="Make git ignore the local databases">
+      <option name="closed" value="true" />
+      <created>1775272389126</created>
+      <option name="number" value="00123" />
+      <option name="presentableId" value="LOCAL-00123" />
+      <option name="project" value="LOCAL" />
+      <updated>1775272389126</updated>
+    </task>
+    <task id="LOCAL-00124" summary="restore missing includes so that create_tables and drop_table work again.">
+      <option name="closed" value="true" />
+      <created>1775275705362</created>
+      <option name="number" value="00124" />
+      <option name="presentableId" value="LOCAL-00124" />
+      <option name="project" value="LOCAL" />
+      <updated>1775275705362</updated>
+    </task>
+    <task id="LOCAL-00125" summary="refactor into a single initialize repository function">
+      <option name="closed" value="true" />
+      <created>1775275754343</created>
+      <option name="number" value="00125" />
+      <option name="presentableId" value="LOCAL-00125" />
+      <option name="project" value="LOCAL" />
+      <updated>1775275754343</updated>
+    </task>
+    <task id="LOCAL-00126" summary="Cleaned up database version management so upgrades happen automatically.">
+      <option name="closed" value="true" />
+      <created>1775275858323</created>
+      <option name="number" value="00126" />
+      <option name="presentableId" value="LOCAL-00126" />
+      <option name="project" value="LOCAL" />
+      <updated>1775275858323</updated>
+    </task>
+    <option name="localTasksCounter" value="127" />
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="CUSTOM_BOOLEAN_PROPERTIES">
+                <map>
+                  <entry key="Show.Git.Branches" value="false" />
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Improved database handling to allow save and delete" />
+    <MESSAGE value="Improved section header display" />
+    <MESSAGE value="Made longer text areas scrollable" />
+    <MESSAGE value="Improved special abilities layout" />
+    <MESSAGE value="Improved overall form layout" />
+    <MESSAGE value="Tweaked form width" />
+    <MESSAGE value="Removed old parser, added database init and cleaned up parse screen code" />
+    <MESSAGE value="Improved gear listing" />
+    <MESSAGE value="Removed unused code and cleaned up menu creation" />
+    <MESSAGE value="Removed unused code" />
+    <MESSAGE value="Updated export to use formal name for export file name" />
+    <MESSAGE value="Cleaned up None in empty fields" />
+    <MESSAGE value="Renamed Folders to be consistant" />
+    <MESSAGE value="Tweaked the form layout" />
+    <MESSAGE value="Added support for themes" />
+    <MESSAGE value="Additional form layout changes" />
+    <MESSAGE value="Add initial Database version information to the about box" />
+    <MESSAGE value="Merge remote-tracking branch 'origin/main'" />
+    <MESSAGE value="Added .gitignore" />
+    <MESSAGE value="Fixed issue in object list caused by adding the CR in a previous update." />
+    <MESSAGE value="Change Creature Detail page title if NPC" />
+    <MESSAGE value="Make git ignore the local databases" />
+    <MESSAGE value="restore missing includes so that create_tables and drop_table work again." />
+    <MESSAGE value="refactor into a single initialize repository function" />
+    <MESSAGE value="Cleaned up database version management so upgrades happen automatically." />
+    <option name="LAST_COMMIT_MESSAGE" value="Cleaned up database version management so upgrades happen automatically." />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/test_form.py</url>
+          <line>79</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/CreatureBarn$test_re.coverage" NAME="test_re Coverage Results" MODIFIED="1771810287507" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/CreatureBarn$test_form.coverage" NAME="test_form Coverage Results" MODIFIED="1772071106587" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/CreatureBarn$test_regex.coverage" NAME="test_regex Coverage Results" MODIFIED="1772147182389" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/CreatureBarn$database.coverage" NAME="database Coverage Results" MODIFIED="1768856737518" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/CreatureBarn$test_multi.coverage" NAME="test_multi Coverage Results" MODIFIED="1771251586258" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/CreatureBarn$parser_test.coverage" NAME="parser_test Coverage Results" MODIFIED="1771949896338" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/CreatureBarn$scroll_test.coverage" NAME="scroll_test Coverage Results" MODIFIED="1772072419404" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/CreatureBarn$test_scroll.coverage" NAME="test_scroll Coverage Results" MODIFIED="1771199224472" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/CreatureBarn$first_ph.coverage" NAME="first.ph Coverage Results" MODIFIED="1771471698721" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/CreatureBarn$create_tables.coverage" NAME="create_tables Coverage Results" MODIFIED="1772255524813" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/CreatureBarn$CreatureParser.coverage" NAME="CreatureParser Coverage Results" MODIFIED="1772142878006" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/parsers" />
+    <SUITE FILE_PATH="coverage/CreatureBarn$main.coverage" NAME="main Coverage Results" MODIFIED="1772256556938" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/CreatureBarn$creatures.coverage" NAME="creatures Coverage Results" MODIFIED="1772072654456" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/forms" />
   </component>
 </project>
