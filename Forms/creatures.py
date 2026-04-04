@@ -1013,7 +1013,10 @@ class CreatureList:
             print(f"Selected item: {selected_item}")
             formal_name = selected_item
             print(formal_name)
-            self.creature = my_db.query(Creature).filter(Creature.formal_name == formal_name).first()
+            real_name = re.match(r'(.+) CR .*', formal_name)
+            true_name = real_name.group(1)
+            self.creature = my_db.query(Creature).filter(Creature.formal_name == true_name.).first()
+            print(self.creature)
             self.creature_id = self.creature.id
             self.newWindow = Toplevel(self.root)
             creature_form = CreatureForm(self.newWindow)
