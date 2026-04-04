@@ -38,13 +38,6 @@ def get_db():
     finally:
         db.close()
 
-def upgrade():
-    with engine.connect() as conn:
-        conn.execute(text("ALTER TABLE creatures ADD COLUMN barn_type VARCHAR(16)"))
-        conn.execute(text("UPDATE creatures set barn_type = 'Creature'"))
-        conn.execute(text("UPDATE creatures set barn_type = 'NPC' WHERE `race` is not null"))
-        conn.commit()
-
 
 class Database:
     version = DATABASE_VERSION
@@ -56,7 +49,17 @@ class Database:
             self.con = sqlite3.connect(DATABASE_NAME)
             self.con.row_factory = sqlite3.Row
 
-    def is_database_valid(self) -> bool:
+    def is_database_valid(self):
+        if self.is_database_version_valid():
+            try:
+                self.fetch_all("select count(*) from creatures", {})
+                return True
+            except sqlite3.OperationalError:
+                return False
+        else:
+            return False
+
+    def is_database_version_valid(self) -> bool:
         self.create_cursor()
         try:
             self.fetch_all("select version from db_version", {})
@@ -137,6 +140,8 @@ class Database:
         if actual_version < expected_version:
             print("Updating from version {} to version {}".format(actual_version, expected_version))
             # @TODO: Update the data structures
+            # if actual_version < 2:
+            #     #self.upgrade_from_1_to_2()
             # Then update version number in the database
             self.update_database_version(expected_version)
         elif actual_version > expected_version:

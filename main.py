@@ -4,29 +4,22 @@ Robust Pathfinder stat-block parser.
 """
 
 import tkinter as tk
+from tkinter import ttk
 from tkinter import filedialog, messagebox
 from pathlib import Path
 from ttkthemes import ThemedTk
 from Forms.creatures import CreatureForm, CreatureList
 from Parsers.CreatureParser import ParseCreature
-from Database.create_tables import create_tables, drop_tables
-from Database.database import upgrade, DATABASE_VERSION
+from Database.database import DATABASE_VERSION, Database
+from Database.create_tables import initialize_repository
 
 APPLICATION_VERSION = '1.0.0'
 
-
 def initialize_database():
-    if messagebox.askyesno("Confirm Database Init", message="Do you really want to initialize the database?",
+    if messagebox.askyesno("Initialize Database", message="Do you really want to initialize the database?",
                            detail="This will remove all information currently in the database", icon='question',):
-        drop_tables()
-        create_tables()
+        initialize_repository(True)
         messagebox.showinfo("Database", "Database Initialized")
-
-def upgrade_database():
-    if messagebox.askyesno("Confirm Database Upgrade", message="Do you really want to upgrade the database?",
-                           detail="This will retain all information currently in the database", icon='question',):
-        upgrade()
-        messagebox.showinfo("Database", "Database Upgraded")
 
 
 class CreatureBarn:
@@ -38,27 +31,34 @@ class CreatureBarn:
         self.text = tk.Text(root, wrap="word", width=120, height=45)
         self.text.pack(expand=True, fill="both")
 
-        menu = tk.Menu(root)
-        fm = tk.Menu(menu, tearoff=0)
-        fm.add_command(label="Open and Parse", command=self.load)
-        fm.add_command(label="Parse", command=self.parse_screen)
-        fm.add_command(label="Exit", command=root.quit)
-        menu.add_cascade(label="File", menu=fm)
+        self.menu = tk.Menu(root)
+        self.file_menu = tk.Menu(self.menu, tearoff=0)
+        self.file_menu.add_command(label="Open and Parse", command=self.load)
+        self.file_menu.add_command(label="Parse", command=self.parse_screen)
+        self.file_menu.add_command(label="Exit", command=root.quit)
+        self.menu.add_cascade(label="File", menu=self.file_menu)
 
-        dbm = tk.Menu(menu, tearoff=0)
-        dbm.add_command(label="Manage Spells")
-        dbm.add_command(label="Manage Creatures", command=self.show_creature_list)
-        dbm.add_command(label="Manage NPCs", command=self.show_npc_list)
-        dbm.add_separator()
-        dbm.add_command(label="Init Database", command=initialize_database)
-        dbm.add_command(label="Upgrade Database", command=upgrade_database)
-        menu.add_cascade(label="Database", menu=dbm)
+        self.database_menu = tk.Menu(self.menu, tearoff=0)
+        self.database_menu.add_command(label="Manage Spells", state="disabled")
+        self.database_menu.add_command(label="Manage Creatures", command=self.show_creature_list)
+        self.database_menu.add_command(label="Manage NPCs", command=self.show_npc_list)
+        self.database_menu.add_separator()
+        self.database_menu.add_command(label="Initialize Database", command=initialize_database, state="disabled")
+        self.menu.add_cascade(label="Database", menu=self.database_menu)
 
-        help_menu = tk.Menu(menu, tearoff=0)
-        help_menu.add_command(label="About", command=self.show_about_dialog)
-        menu.add_cascade(label="Help", menu=help_menu)
+        self.help_menu = tk.Menu(self.menu, tearoff=0)
+        self.help_menu.add_command(label="About", command=self.show_about_dialog)
+        self.menu.add_cascade(label="Help", menu=self.help_menu)
 
-        root.config(menu=menu)
+        root.config(menu=self.menu)
+        self.database = Database()
+
+        # Ensure the database is valid and the structure is up to date
+        # Ensure the database is valid and the structure is up to date
+        if not self.database.is_database_valid():
+            self.database_menu.entryconfig("Initialize Database", state="normal")
+        else:
+            self.database.verify_database_version()
 
     # Function to display the "About" dialog box
     def show_about_dialog(self):
@@ -86,7 +86,7 @@ class CreatureBarn:
         about_message.pack(pady=20, padx=10)
 
         # Add an OK button to close the dialog
-        ok_button = tk.Button(about_box, text="OK", command=about_box.destroy)
+        ok_button = ttk.Button(about_box, text="OK", command=about_box.destroy)
         ok_button.pack(pady=10)
 
     def show_creature_list(self):
