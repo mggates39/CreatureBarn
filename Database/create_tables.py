@@ -17,6 +17,13 @@ def drop_tables():
     Base.metadata.drop_all(bind=engine)
     print("Tables dropped")
 
+def initialize_repository(force_init):
+    database = Database()
+    database.connect()
+    if not database.is_database_valid() or force_init:
+        drop_tables()
+        create_tables()
+    database.verify_database_version()
+
 if __name__ == "__main__":
-    drop_tables()
-    create_tables()
+    initialize_repository()
