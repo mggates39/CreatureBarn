@@ -446,9 +446,9 @@ class CreatureForm:
         self.description_entry.grid(row=row_count, column=1, columnspan=12, sticky=W)
 
         row_count += 1
-        self.save_npc_button = ttk.Button(mainframe, text='Save NPC', command=self.on_save)
+        self.save_npc_button = ttk.Button(mainframe, text='Save NPC', command=self.on_save_npc)
         self.save_npc_button.grid(row=0, column=0)
-        self.save_creature_button = ttk.Button(mainframe, text='Save Creature', command=self.on_save)
+        self.save_creature_button = ttk.Button(mainframe, text='Save Creature', command=self.on_save_creature)
         self.save_creature_button.grid(row=0, column=1)
         self.update_button = ttk.Button(mainframe, text='Update', command=self.on_save)
         self.update_button.grid(row=0, column=2)
@@ -680,6 +680,14 @@ class CreatureForm:
 
         except ValueError:
             pass
+
+    def on_save_npc(self):
+        self.creature.barn_type = "NPC"
+        self.on_save()
+
+    def on_save_creature(self):
+        self.creature.barn_type = "Creature"
+        self.on_save()
 
     def on_save(self):
         if not self.creature.id:

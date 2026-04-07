@@ -26,4 +26,4 @@ def initialize_repository(force_init):
     database.verify_database_version()
 
 if __name__ == "__main__":
-    initialize_repository()
+    initialize_repository(True)
