@@ -5,9 +5,14 @@ from Database.models import Creature, CreatureLanguages, CreatureFeats, Creature
     CreatureDefenseAbilities, CreatureSpecialAbilities, CreatureGearItems
 import re
 
-def _normalize_case(text: str) -> str:
+
+def _normalize_mixed_case(text: str) -> str:
     parts = [p.strip() for p in text.split(",")]
     return ", ".join(p[:1].upper() + p[1:] for p in parts)
+
+def _normalize_lower_case(text: str) -> str:
+    parts = [p.strip() for p in text.split(",")]
+    return ", ".join(p.lower() for p in parts)
 
 def transition_skip(fsm_obj):
     pass
@@ -80,7 +85,7 @@ def transition_parse_initiative(fsm_obj):
 
         senses_match = re.search(r"Senses\s+(.*)", part, re.IGNORECASE)
         if senses_match:
-            senses = _normalize_case(senses_match.group(1)).split(",")
+            senses = _normalize_mixed_case(senses_match.group(1)).split(",")
             for sense in senses:
                 perceptions_match = re.search(r"Perception ([+\d]+)", sense, re.IGNORECASE)
                 if perceptions_match:
@@ -152,7 +157,7 @@ def transition_parse_fortitude(fsm_obj):
 def transition_parse_weakness(fsm_obj):
     weakness_match = re.search(r"Weaknesses\s+(.+)", fsm_obj.current_line, re.IGNORECASE)
     if weakness_match:
-        for weakness in _normalize_case(weakness_match.group(1)).split(","):
+        for weakness in _normalize_mixed_case(weakness_match.group(1)).split(","):
             creature_weakness = CreatureWeaknesses()
             creature_weakness.weakness = weakness.strip()
             fsm_obj.creature.weaknesses.append(creature_weakness)
@@ -170,7 +175,7 @@ def transition_parse_damage_resistance(fsm_obj):
 
         defence_ability_match = re.search(r"Defensive Abilities\s+(.+)", part, re.IGNORECASE)
         if defence_ability_match:
-            abilities = _normalize_case(defence_ability_match.group(1)).split(",")
+            abilities = _normalize_mixed_case(defence_ability_match.group(1)).split(",")
             for ability in abilities:
                 creature_defense_ability = CreatureDefenseAbilities()
                 creature_defense_ability.ability = ability.strip()
@@ -178,7 +183,7 @@ def transition_parse_damage_resistance(fsm_obj):
 
         immunity_match = re.search(r"Immune\s+(.+)", part, re.IGNORECASE)
         if immunity_match:
-            immunities = _normalize_case(immunity_match.group(1)).split(",")
+            immunities = _normalize_mixed_case(immunity_match.group(1)).split(",")
             for immunity in immunities:
                 creature_immunity = CreatureImmuneModifiers()
                 creature_immunity.immune_to = immunity.strip()
@@ -186,7 +191,7 @@ def transition_parse_damage_resistance(fsm_obj):
 
         resist_match = re.search(r"Resist\s+(.+)", part, re.IGNORECASE)
         if resist_match:
-            resists = _normalize_case(resist_match.group(1)).split(",")
+            resists = _normalize_mixed_case(resist_match.group(1)).split(",")
             for resist in resists:
                 resistance_match = re.search(r"(.+)\s(\d+)", resist)
                 if resistance_match:
@@ -291,10 +296,10 @@ def transition_parse_sk_spells(fsm_obj):
         for spells in re.split(R_SPLIT_COMMA_OUTSIDE_PARENS, spell_known_match.group(3)):
             spells_match = re.search(r"(.+)\((.+)\)", spells)
             if spells_match:
-                name = spells_match.group(1).strip()
+                name = spells_match.group(1).strip().lower()
                 modifiers = spells_match.group(2).strip()
             else:
-                name = spells.strip()
+                name = spells.strip().lower()
                 modifiers = ""
             creature_known_spell = CreatureKnownSpells()
             creature_known_spell.spell_level = spell_level
@@ -317,10 +322,10 @@ def transition_parse_sp_spells(fsm_obj):
         for spells in re.split(R_SPLIT_COMMA_OUTSIDE_PARENS, spell_prepared_match.group(2)):
             spells_match = re.search(r"(.+)\((.+)\)", spells)
             if spells_match:
-                name = spells_match.group(1).strip()
+                name = spells_match.group(1).strip().lower()
                 modifiers = spells_match.group(2).strip()
             else:
-                name = spells.strip()
+                name = spells.strip().lower()
                 modifiers = ""
             creature_prepared_spell = CreaturePreparedSpells()
             creature_prepared_spell.spell_level = spell_level
@@ -367,7 +372,7 @@ def transition_parse_base_attack(fsm_obj):
 def transition_parse_feats(fsm_obj):
     feat_match = re.search(r"Feats\s+(.+)", fsm_obj.current_line, re.IGNORECASE)
     if feat_match:
-        for feat in _normalize_case(feat_match.group(1)).split(","):
+        for feat in _normalize_mixed_case(feat_match.group(1)).split(","):
             creature_feat = CreatureFeats()
             creature_feat.feat = feat.strip()
             fsm_obj.creature.feats.append(creature_feat)
@@ -381,7 +386,7 @@ def transition_parse_skills(fsm_obj):
             if racial_match:
                 fsm_obj.creature.racial_modifiers = racial_match.group(1).strip()
             else:
-                skills = _normalize_case(part).split(",")
+                skills = _normalize_mixed_case(part).split(",")
                 for skill in skills:
                     skill_match = re.search(r"(.+)\s([+\-]?\d+)", skill, re.IGNORECASE)
                     if skill_match:
@@ -393,7 +398,7 @@ def transition_parse_skills(fsm_obj):
 def transition_parse_languages(fsm_obj):
     language_match = re.search(r"Languages\s+(.+)", fsm_obj.current_line, re.IGNORECASE)
     if language_match:
-        for language in _normalize_case(language_match.group(1)).split(","):
+        for language in _normalize_mixed_case(language_match.group(1)).split(","):
             creature_language = CreatureLanguages()
             creature_language.language = language.strip()
             fsm_obj.creature.languages.append(creature_language)
@@ -401,7 +406,7 @@ def transition_parse_languages(fsm_obj):
 def transition_parse_special_qualities(fsm_obj):
     special_qualities_match = re.search(r"SQ\s+(.+)", fsm_obj.current_line, re.IGNORECASE)
     if special_qualities_match:
-        for special_quality in _normalize_case(special_qualities_match.group(1)).split(","):
+        for special_quality in _normalize_mixed_case(special_qualities_match.group(1)).split(","):
             creature_special_quality = CreatureSpecialQualities()
             creature_special_quality.special_quality = special_quality.strip()
             fsm_obj.creature.special_qualities.append(creature_special_quality)
@@ -463,17 +468,17 @@ def transition_parse_save_special_ability(fsm_obj):
 def transition_parse_environment(fsm_obj):
     environment_match = re.search(r"Environment\s+(.+)", fsm_obj.current_line, re.IGNORECASE)
     if environment_match:
-        fsm_obj.creature.environment = _normalize_case(environment_match.group(1)).strip()
+        fsm_obj.creature.environment = _normalize_mixed_case(environment_match.group(1)).strip()
 
 def transition_parse_organization(fsm_obj):
     organization_match = re.search(r"Organization\s+(.+)", fsm_obj.current_line, re.IGNORECASE)
     if organization_match:
-        fsm_obj.creature.organization = _normalize_case(organization_match.group(1)).strip()
+        fsm_obj.creature.organization = _normalize_mixed_case(organization_match.group(1)).strip()
 
 def transition_parse_treasure(fsm_obj):
     treasure_match = re.search(r"Treasure\s+(.+)", fsm_obj.current_line, re.IGNORECASE)
     if treasure_match:
-        fsm_obj.creature.treasure = _normalize_case(treasure_match.group(1)).strip()
+        fsm_obj.creature.treasure = _normalize_mixed_case(treasure_match.group(1)).strip()
 
 
 T_SKIP = transition_skip
