@@ -7,7 +7,7 @@ class AboutBox(customtkinter.CTkToplevel):
         self.title(title)
 
         # Specify the width and height (e.g., 300x200 pixels)
-        self.geometry("450x360")
+        self.geometry("400x250")
 
         # Make the window non-resizable
         self.resizable(False, False)
@@ -17,9 +17,8 @@ class AboutBox(customtkinter.CTkToplevel):
         self.grab_set()     # Makes the dialog modal (forces user interaction)
 
         # Add content (e.g., Labels, Buttons)
-        # Use a Message widget for multi-line text that wraps properly
         message_text = "This is a simple creature barn to manage creature and NPC definitions.\n\nVersion {}, Database {}".format(app_version, db_version)
-        about_message = customtkinter.CTkLabel(self, text=message_text, justify="center", width=400)  # width in character units
+        about_message = customtkinter.CTkLabel(self, text=message_text, justify="center", wraplength=300, width=300)  # width in character units
         about_message.pack(pady=20, padx=10)
 
         # Add an OK button to close the dialog
