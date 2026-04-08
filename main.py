@@ -8,7 +8,9 @@ from tkinter import ttk
 from tkinter import filedialog, messagebox
 from pathlib import Path
 from ttkthemes import ThemedTk
+import customtkinter
 from Forms.creatures import CreatureForm, CreatureList
+from Widgets.AboutBox import AboutBox
 from Parsers.CreatureParser import ParseCreature
 from Database.database import DATABASE_VERSION, Database
 from Database.create_tables import initialize_repository
@@ -22,20 +24,20 @@ def initialize_database():
         messagebox.showinfo("Database", "Database Initialized")
 
 
-class CreatureBarn:
-    def __init__(self, root):
-        self.root = root
+class CreatureBarn(customtkinter.CTk):
+    def __init__(self):
+        super().__init__()
         self.newWindow = None
         self.app = None
-        self.root.title("Creature Stat Block Parser")
-        self.text = tk.Text(root, wrap="word", width=120, height=45)
+        self.title("Creature Stat Block Parser")
+        self.text = tk.Text(self, wrap="word", width=120, height=45)
         self.text.pack(expand=True, fill="both")
 
-        self.menu = tk.Menu(root)
+        self.menu = tk.Menu(self)
         self.file_menu = tk.Menu(self.menu, tearoff=0)
         self.file_menu.add_command(label="Open and Parse", command=self.load)
         self.file_menu.add_command(label="Parse", command=self.parse_screen)
-        self.file_menu.add_command(label="Exit", command=root.quit)
+        self.file_menu.add_command(label="Exit", command=self.quit)
         self.menu.add_cascade(label="File", menu=self.file_menu)
 
         self.database_menu = tk.Menu(self.menu, tearoff=0)
@@ -50,7 +52,7 @@ class CreatureBarn:
         self.help_menu.add_command(label="About", command=self.show_about_dialog)
         self.menu.add_cascade(label="Help", menu=self.help_menu)
 
-        root.config(menu=self.menu)
+        self.config(menu=self.menu)
         self.database = Database()
 
         # Ensure the database is valid and the structure is up to date
@@ -62,43 +64,44 @@ class CreatureBarn:
 
     # Function to display the "About" dialog box
     def show_about_dialog(self):
+        about = AboutBox(self, 'About', APPLICATION_VERSION, DATABASE_VERSION)
         """Creates and displays a custom about dialog with specified dimensions."""
 
-        # Create the Toplevel window
-        about_box = tk.Toplevel(self.root)
-        about_box.title("About")
-
-        # Specify the width and height (e.g., 300x200 pixels)
-        about_box.geometry("450x360")
-
-        # Make the window non-resizable
-        about_box.resizable(False, False)
-
-        # Center the dialog over the parent window (optional, but good practice)
-        about_box.transient(self.root) # Makes the dialog box a transient window of the root window
-        about_box.grab_set()     # Makes the dialog modal (forces user interaction)
-
-        # Add content (e.g., Labels, Buttons)
-        # Use a Message widget for multi-line text that wraps properly
-        message_text = "This is a simple creature barn to manage creature and NPC definitions.\n\nVersion {}, Database {}".format(APPLICATION_VERSION, DATABASE_VERSION)
-        about_message = tk.Message(about_box, text=message_text, justify=tk.CENTER,
-                                   width=400)  # width in character units
-        about_message.pack(pady=20, padx=10)
-
-        # Add an OK button to close the dialog
-        ok_button = ttk.Button(about_box, text="OK", command=about_box.destroy)
-        ok_button.pack(pady=10)
+        # # Create the Toplevel window
+        # about_box = tk.Toplevel(self)
+        # about_box.title("About")
+        #
+        # # Specify the width and height (e.g., 300x200 pixels)
+        # about_box.geometry("450x360")
+        #
+        # # Make the window non-resizable
+        # about_box.resizable(False, False)
+        #
+        # # Center the dialog over the parent window (optional, but good practice)
+        # about_box.transient(self) # Makes the dialog box a transient window of the root window
+        # about_box.grab_set()     # Makes the dialog modal (forces user interaction)
+        #
+        # # Add content (e.g., Labels, Buttons)
+        # # Use a Message widget for multi-line text that wraps properly
+        # message_text = "This is a simple creature barn to manage creature and NPC definitions.\n\nVersion {}, Database {}".format(APPLICATION_VERSION, DATABASE_VERSION)
+        # about_message = tk.Message(about_box, text=message_text, justify=tk.CENTER,
+        #                            width=400)  # width in character units
+        # about_message.pack(pady=20, padx=10)
+        #
+        # # Add an OK button to close the dialog
+        # ok_button = ttk.Button(about_box, text="OK", command=about_box.destroy)
+        # ok_button.pack(pady=10)
 
     def show_creature_list(self):
-        self.newWindow = tk.Toplevel(self.root)
+        self.newWindow = tk.Toplevel(self)
         self.app = CreatureList(self.newWindow, "Creature")
 
     def show_npc_list(self):
-        self.newWindow = tk.Toplevel(self.root)
+        self.newWindow = tk.Toplevel(self)
         self.app = CreatureList(self.newWindow, "NPC")
 
     def show_parsed_creature(self, creature):
-        self.newWindow = tk.Toplevel(self.root)
+        self.newWindow = tk.Toplevel(self)
         self.app = CreatureForm(self.newWindow)
         self.app.on_load(creature)
 
@@ -125,6 +128,5 @@ class CreatureBarn:
 
 
 if __name__ == "__main__":
-    rootWidget = ThemedTk(theme='winxpblue')
-    app = CreatureBarn(rootWidget)
-    rootWidget.mainloop()
+    app = CreatureBarn()
+    app.mainloop()
