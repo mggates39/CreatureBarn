@@ -8,7 +8,8 @@ from tkinter import filedialog, messagebox
 import customtkinter
 from pathlib import Path
 import platform
-from Forms.creatures import CreatureForm, CreatureList
+from Forms.CreatureForm import CreatureForm
+from Forms.CreatureList import CreatureList
 from Widgets.AboutBox import AboutBox
 from Parsers.CreatureParser import ParseCreature
 from Database.database import DATABASE_VERSION, Database
@@ -70,16 +71,13 @@ class CreatureBarn(customtkinter.CTk):
         about = AboutBox(self, 'About', APPLICATION_VERSION, DATABASE_VERSION)
 
     def show_creature_list(self):
-        self.newWindow = tk.Toplevel(self)
-        self.app = CreatureList(self.newWindow, "Creature")
+        self.app = CreatureList(self, "Creature")
 
     def show_npc_list(self):
-        self.newWindow = tk.Toplevel(self)
-        self.app = CreatureList(self.newWindow, "NPC")
+        self.app = CreatureList(self, "NPC")
 
     def show_parsed_creature(self, creature):
-        self.newWindow = tk.Toplevel(self)
-        self.app = CreatureForm(self.newWindow)
+        self.app = CreatureForm(self)
         self.app.on_load(creature)
 
     def load(self):
