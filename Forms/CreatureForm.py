@@ -67,7 +67,7 @@ class CreatureForm(customtkinter.CTkToplevel):
         customtkinter.CTkLabel(mainframe, text="XP").grid(row=row_count, column=0, sticky=E)
         self.experience_points = StringVar()
         experience_points_entry = customtkinter.CTkEntry(mainframe, width=100, textvariable=self.experience_points)
-        experience_points_entry.grid(row=row_count, column=1, sticky=W)
+        experience_points_entry.grid(row=row_count, column=1, columnspan=11, sticky=W)
 
         row_count += 1
         customtkinter.CTkLabel(mainframe, text="Alignment").grid(row=row_count, column=0, sticky=E)
@@ -84,7 +84,7 @@ class CreatureForm(customtkinter.CTkToplevel):
         customtkinter.CTkLabel(mainframe, text="Age").grid(row=row_count, column=0, sticky=E)
         self.age = StringVar()
         age_entry = customtkinter.CTkEntry(mainframe, width=60, textvariable=self.age)
-        age_entry.grid(row=row_count, column=1, sticky=W)
+        age_entry.grid(row=row_count, column=1, columnspan=11, sticky=W)
 
         row_count += 1
         customtkinter.CTkLabel(mainframe, text="Type").grid(row=row_count, column=0, sticky=E)
@@ -101,7 +101,7 @@ class CreatureForm(customtkinter.CTkToplevel):
         customtkinter.CTkLabel(mainframe, text="Race").grid(row=row_count, column=0, sticky=E)
         self.race = StringVar()
         race_entry = customtkinter.CTkEntry(mainframe, width=160, textvariable=self.race)
-        race_entry.grid(row=row_count, column=1, sticky=W)
+        race_entry.grid(row=row_count, column=1, columnspan=2, sticky=W)
 
         customtkinter.CTkLabel(mainframe, text="Class").grid(row=row_count, column=2, sticky=E)
         self.char_class = StringVar()
@@ -111,19 +111,19 @@ class CreatureForm(customtkinter.CTkToplevel):
         customtkinter.CTkLabel(mainframe, text=" / Level").grid(row=row_count, column=4, sticky=E)
         self.level = StringVar()
         level_entry = customtkinter.CTkEntry(mainframe, width=160, textvariable=self.level)
-        level_entry.grid(row=row_count, column=5, sticky=W)
+        level_entry.grid(row=row_count, column=5, columnspan=11, sticky=W)
 
         row_count += 1
         customtkinter.CTkLabel(mainframe, text="Init").grid(row=row_count, column=0, sticky=E)
         self.initiative = StringVar()
         initiative_entry = customtkinter.CTkEntry(mainframe, width=160, textvariable=self.initiative)
-        initiative_entry.grid(row=row_count, column=1, sticky=W)
+        initiative_entry.grid(row=row_count, column=1, columnspan=11, sticky=W)
 
         row_count += 1
         customtkinter.CTkLabel(mainframe, text="PM").grid(row=row_count, column=0, sticky=E)
         self.perception_modifier = StringVar()
         perception_modifier_entry = customtkinter.CTkEntry(mainframe, width=160, textvariable=self.perception_modifier)
-        perception_modifier_entry.grid(row=row_count, column=1, sticky=W)
+        perception_modifier_entry.grid(row=row_count, column=1, columnspan=11, sticky=W)
 
         row_count += 1
         customtkinter.CTkLabel(mainframe, text="Senses").grid(row=row_count, column=0, sticky=NE)
@@ -190,13 +190,13 @@ class CreatureForm(customtkinter.CTkToplevel):
         customtkinter.CTkLabel(mainframe, text="DR").grid(row=row_count, column=0, sticky=E)
         self.damage_reduction = StringVar()
         damage_reduction_entry = customtkinter.CTkEntry(mainframe, width=160, textvariable=self.damage_reduction)
-        damage_reduction_entry.grid(row=row_count, column=1, sticky=W)
+        damage_reduction_entry.grid(row=row_count, column=1, columnspan=11, sticky=W)
 
         row_count += 1
         customtkinter.CTkLabel(mainframe, text="SR").grid(row=row_count, column=0, sticky=E)
         self.spell_resistence = StringVar()
         spell_resistence_entry = customtkinter.CTkEntry(mainframe, width=160, textvariable=self.spell_resistence)
-        spell_resistence_entry.grid(row=row_count, column=1, sticky=W)
+        spell_resistence_entry.grid(row=row_count, column=1, columnspan=11, sticky=W)
 
         row_count += 1
         customtkinter.CTkLabel(mainframe, text="Immunities").grid(row=row_count, column=0, sticky=NE)
@@ -241,7 +241,7 @@ class CreatureForm(customtkinter.CTkToplevel):
         customtkinter.CTkLabel(mainframe, text="Reach").grid(row=row_count, column=2, sticky=E)
         self.reach = StringVar()
         reach_entry = customtkinter.CTkEntry(mainframe, width=200, textvariable=self.reach)
-        reach_entry.grid(row=row_count, column=3, sticky=W)
+        reach_entry.grid(row=row_count, column=3, columnspan=11, sticky=W)
 
         row_count += 1
         customtkinter.CTkLabel(mainframe, text="Melee").grid(row=row_count, column=0, sticky=NE)
@@ -417,19 +417,19 @@ class CreatureForm(customtkinter.CTkToplevel):
         row_count += 1
         customtkinter.CTkLabel(mainframe, text="Environment").grid(row=row_count, column=0, sticky=E)
         self.environment = StringVar()
-        environment_entry = customtkinter.CTkEntry(mainframe, width=30, textvariable=self.environment)
+        environment_entry = customtkinter.CTkEntry(mainframe, width=300, textvariable=self.environment)
         environment_entry.grid(row=row_count, column=1, columnspan=11, sticky=W)
 
         row_count += 1
         customtkinter.CTkLabel(mainframe, text="Organization").grid(row=row_count, column=0, sticky=E)
         self.organization = StringVar()
-        organization_entry = customtkinter.CTkEntry(mainframe, width=30, textvariable=self.organization)
+        organization_entry = customtkinter.CTkEntry(mainframe, width=300, textvariable=self.organization)
         organization_entry.grid(row=row_count, column=1, columnspan=11, sticky=W)
 
         row_count += 1
         customtkinter.CTkLabel(mainframe, text="Treasure").grid(row=row_count, column=0, sticky=E)
         self.treasure = StringVar()
-        treasure_entry = customtkinter.CTkEntry(mainframe, width=30, textvariable=self.treasure)
+        treasure_entry = customtkinter.CTkEntry(mainframe, width=300, textvariable=self.treasure)
         treasure_entry.grid(row=row_count, column=1, columnspan=11, sticky=W)
 
         row_count += 1
