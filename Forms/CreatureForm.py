@@ -56,12 +56,12 @@ class CreatureForm(customtkinter.CTkToplevel):
         customtkinter.CTkLabel(mainframe, text="Common Name").grid(row=row_count, column=0, sticky=E)
         self.common_name = StringVar()
         common_name_entry = customtkinter.CTkEntry(mainframe, width=500, textvariable=self.common_name)
-        common_name_entry.grid(row=row_count, column=1, columnspan=6, sticky=W)
+        common_name_entry.grid(row=row_count, column=1, columnspan=4, sticky=W)
 
-        customtkinter.CTkLabel(mainframe, text="CR").grid(row=row_count, column=4, sticky=E)
+        customtkinter.CTkLabel(mainframe, text="CR").grid(row=row_count, column=5, sticky=E)
         self.challenge_rating = StringVar()
         challenge_rating_entry = customtkinter.CTkEntry(mainframe, width=70, textvariable=self.challenge_rating)
-        challenge_rating_entry.grid(row=row_count, column=5, sticky=W)
+        challenge_rating_entry.grid(row=row_count, column=6, sticky=W)
 
         row_count += 1
         customtkinter.CTkLabel(mainframe, text="XP").grid(row=row_count, column=0, sticky=E)
@@ -90,12 +90,12 @@ class CreatureForm(customtkinter.CTkToplevel):
         customtkinter.CTkLabel(mainframe, text="Type").grid(row=row_count, column=0, sticky=E)
         self.type = StringVar()
         type_entry = customtkinter.CTkEntry(mainframe, width=160, textvariable=self.type)
-        type_entry.grid(row=row_count, column=1, sticky=W)
+        type_entry.grid(row=row_count, column=1, columnspan=2, sticky=W)
 
         customtkinter.CTkLabel(mainframe, text=" / Sub-Type").grid(row=row_count, column=2, sticky=E)
         self.sub_type = StringVar()
         sub_type_entry = customtkinter.CTkEntry(mainframe, width=400, textvariable=self.sub_type)
-        sub_type_entry.grid(row=row_count, column=3, columnspan=11, sticky=W)
+        sub_type_entry.grid(row=row_count, column=3, columnspan=10, sticky=W)
 
         row_count += 1
         customtkinter.CTkLabel(mainframe, text="Race").grid(row=row_count, column=0, sticky=E)
@@ -170,12 +170,12 @@ class CreatureForm(customtkinter.CTkToplevel):
         customtkinter.CTkLabel(mainframe, text="Fort").grid(row=row_count, column=0, sticky=E)
         self.fortitude = StringVar()
         fortitude_entry = customtkinter.CTkEntry(mainframe, width=160, textvariable=self.fortitude)
-        fortitude_entry.grid(row=row_count, column=1, sticky=W)
+        fortitude_entry.grid(row=row_count, column=1, columnspan=2, sticky=W)
 
         customtkinter.CTkLabel(mainframe, text="Ref").grid(row=row_count, column=2, sticky=E)
         self.reflex = StringVar()
         reflex_entry = customtkinter.CTkEntry(mainframe, width=160, textvariable=self.reflex)
-        reflex_entry.grid(row=row_count, column=3, sticky=W)
+        reflex_entry.grid(row=row_count, column=3, columnspan=2, sticky=W)
 
         customtkinter.CTkLabel(mainframe, text="Will").grid(row=row_count, column=4, sticky=E)
         self.will = StringVar()
@@ -245,17 +245,17 @@ class CreatureForm(customtkinter.CTkToplevel):
 
         row_count += 1
         customtkinter.CTkLabel(mainframe, text="Melee").grid(row=row_count, column=0, sticky=NE)
-        self.melee_entry = customtkinter.CTkTextbox(mainframe)
+        self.melee_entry = customtkinter.CTkTextbox(mainframe, width=300)
         self.melee_entry.grid(row=row_count, column=1, columnspan=11, sticky=W)
 
         row_count += 1
         customtkinter.CTkLabel(mainframe, text="Ranged").grid(row=row_count, column=0, sticky=NE)
-        self.ranged_entry = customtkinter.CTkTextbox(mainframe)
+        self.ranged_entry = customtkinter.CTkTextbox(mainframe, width=300)
         self.ranged_entry.grid(row=row_count, column=1, columnspan=11, sticky=W)
 
         row_count += 1
         customtkinter.CTkLabel(mainframe, text="Special Attacks").grid(row=row_count, column=0, sticky=NE)
-        self.special_attacks_entry = customtkinter.CTkTextbox(mainframe)
+        self.special_attacks_entry = customtkinter.CTkTextbox(mainframe, width=300)
         self.special_attacks_entry.grid(row=row_count, column=1, columnspan=11, sticky=W)
 
         row_count += 1
@@ -267,7 +267,7 @@ class CreatureForm(customtkinter.CTkToplevel):
         casting_level_entry.grid(row=row_count, column=1, columnspan=11, sticky=W)
 
         row_count += 1
-        self.spell_like_abilities_entry = customtkinter.CTkTextbox(mainframe)
+        self.spell_like_abilities_entry = customtkinter.CTkTextbox(mainframe, width=300)
         self.spell_like_abilities_entry.grid(row=row_count, column=1, columnspan=11, sticky=W)
 
         row_count += 1
@@ -279,7 +279,7 @@ class CreatureForm(customtkinter.CTkToplevel):
         known_casting_level_entry.grid(row=row_count, column=1, columnspan=11, sticky=W)
 
         row_count += 1
-        self.known_spells_entry = customtkinter.CTkTextbox(mainframe)
+        self.known_spells_entry = customtkinter.CTkTextbox(mainframe, width=300)
         self.known_spells_entry.grid(row=row_count, column=1, columnspan=11, sticky=W)
 
         row_count += 1
@@ -291,7 +291,7 @@ class CreatureForm(customtkinter.CTkToplevel):
         prepared_casting_level_entry.grid(row=row_count, column=1, columnspan=11, sticky=W)
 
         row_count += 1
-        self.prepared_spells_entry = customtkinter.CTkTextbox(mainframe)
+        self.prepared_spells_entry = customtkinter.CTkTextbox(mainframe, width=300)
         self.prepared_spells_entry.grid(row=row_count, column=1, columnspan=11, sticky=W)
 
         row_count += 1
@@ -491,7 +491,7 @@ class CreatureForm(customtkinter.CTkToplevel):
             self.reach.set(safe_copy(getattr(self.creature, 'reach')))
 
             self.ac_modifier_entry.delete("1.0", END)
-            self.ac_modifier_entry.configure(height=len(self.creature.ac_modifiers)*10)
+            self.ac_modifier_entry.configure(height=len(self.creature.ac_modifiers)*20                      )
             for ac_modifier in self.creature.ac_modifiers:
                 self.ac_modifier_entry.insert(END, getattr(ac_modifier, 'modifier_amount') + " " + getattr(ac_modifier, 'modifier_type') + "\n")
 
@@ -503,17 +503,17 @@ class CreatureForm(customtkinter.CTkToplevel):
             self.damage_reduction.set(safe_copy(getattr(self.creature, 'damage_reduction')))
 
             self.immune_entry.delete("1.0", END)
-            self.immune_entry.configure(height=len(self.creature.immune_modifiers)*10)
+            self.immune_entry.configure(height=len(self.creature.immune_modifiers)*20)
             for immunity in self.creature.immune_modifiers:
                 self.immune_entry.insert(END, getattr(immunity, 'immune_to') + "\n")
 
             self.defense_action_entry.delete("1.0", END)
-            self.defense_action_entry.configure(height=len(self.creature.immune_modifiers)*10)
+            self.defense_action_entry.configure(height=len(self.creature.immune_modifiers)*20)
             for defense_action in self.creature.defensive_abilities:
                 self.defense_action_entry.insert(END, getattr(defense_action, 'ability') + "\n")
 
             self.resist_entry.delete("1.0", END)
-            self.resist_entry.configure(height=len(self.creature.immune_modifiers)*10)
+            self.resist_entry.configure(height=len(self.creature.immune_modifiers)*20)
             for resist in self.creature.sr_modifiers:
                 resist_item = "{} {}\n".format(getattr(resist, 'resists'), getattr(resist, 'resist_amount'))
                 self.resist_entry.insert(END, resist_item)
@@ -601,17 +601,17 @@ class CreatureForm(customtkinter.CTkToplevel):
                 self.speed_modifiers_entry.insert(END, getattr(speed_modifier, 'speed_modifier') + "\n")
 
             self.melee_entry.delete("1.0", END)
-            self.melee_entry.configure(height=len(self.creature.melee_attacks))
+            self.melee_entry.configure(height=len(self.creature.melee_attacks)*20)
             for melee in self.creature.melee_attacks:
                 self.melee_entry.insert(END, getattr(melee, 'attack') + "\n")
 
             self.ranged_entry.delete("1.0", END)
-            self.ranged_entry.configure(height=len(self.creature.ranged_attacks)*10)
+            self.ranged_entry.configure(height=len(self.creature.ranged_attacks)*20)
             for ranged in self.creature.ranged_attacks:
                 self.ranged_entry.insert(END, getattr(ranged, 'attack') + "\n")
 
             self.special_attacks_entry.delete("1.0", END)
-            self.special_attacks_entry.configure(height=len(self.creature.special_attacks)*10)
+            self.special_attacks_entry.configure(height=len(self.creature.special_attacks)*20)
             for attack in self.creature.special_attacks:
                 self.special_attacks_entry.insert(END, getattr(attack, 'attack') + "\n")
 
