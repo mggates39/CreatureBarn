@@ -25,9 +25,8 @@ def initialize_database():
 
 
 class CreatureBarn(customtkinter.CTk):
-    def __init__(self):
-        super().__init__()
-        self.newWindow = None
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
         self.app = None
         customtkinter.set_default_color_theme("dark-blue")
         if "Linux" == platform.system():
@@ -40,7 +39,7 @@ class CreatureBarn(customtkinter.CTk):
 
         self.menu = tk.Menu(self)
         self.file_menu = tk.Menu(self.menu, tearoff=0)
-        self.file_menu.add_command(label="Open and Parse", command=self.load)
+        self.file_menu.add_command(label="Open and Parse", command=self.load_and_parse)
         self.file_menu.add_command(label="Parse", command=self.parse_screen)
         self.file_menu.add_command(label="Exit", command=self.quit)
         self.menu.add_cascade(label="File", menu=self.file_menu)
@@ -69,7 +68,7 @@ class CreatureBarn(customtkinter.CTk):
 
     # Function to display the "About" dialog box
     def show_about_dialog(self):
-        about = AboutBox(self, 'About', APPLICATION_VERSION, DATABASE_VERSION)
+        about = AboutBox(self, 'About Creature Barn', APPLICATION_VERSION, DATABASE_VERSION)
 
     def show_creature_list(self):
         self.app = CreatureList(self, "Creature")
@@ -81,7 +80,7 @@ class CreatureBarn(customtkinter.CTk):
         self.app = CreatureForm(self)
         self.app.on_load(creature)
 
-    def load(self):
+    def load_and_parse(self):
         path = filedialog.askopenfilename(filetypes=[("Text Files", "*.txt")])
         if not path:
             return
