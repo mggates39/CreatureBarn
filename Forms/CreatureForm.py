@@ -43,279 +43,279 @@ class CreatureForm(customtkinter.CTkToplevel):
         self.grid_rowconfigure(0, weight=1)
         self.grid_columnconfigure(0, weight=1)
 
-        mainframe = customtkinter.CTkScrollableFrame(master=self, width=300, height=200, corner_radius=0, fg_color="transparent")
-        mainframe.grid(row=0, column=0, sticky="nsew")
+        self.mainframe = customtkinter.CTkScrollableFrame(master=self, width=300, height=200, corner_radius=0, fg_color="transparent", label_text="Data Sheet")
+        self.mainframe.grid(row=0, column=0, sticky="nsew")
 
         row_count = 1
-        customtkinter.CTkLabel(mainframe, text="Formal Name").grid(row=row_count, column=0, sticky=E)
+        customtkinter.CTkLabel(self.mainframe, text="Formal Name").grid(row=row_count, column=0, sticky=E)
         self.formal_name = StringVar()
-        formal_name_entry = customtkinter.CTkEntry(mainframe, width=500, textvariable=self.formal_name)
+        formal_name_entry = customtkinter.CTkEntry(self.mainframe, width=500, textvariable=self.formal_name)
         formal_name_entry.grid(row=row_count, column=1, columnspan=11, sticky=W)
 
         row_count += 1
-        customtkinter.CTkLabel(mainframe, text="Common Name").grid(row=row_count, column=0, sticky=E)
+        customtkinter.CTkLabel(self.mainframe, text="Common Name").grid(row=row_count, column=0, sticky=E)
         self.common_name = StringVar()
-        common_name_entry = customtkinter.CTkEntry(mainframe, width=500, textvariable=self.common_name)
+        common_name_entry = customtkinter.CTkEntry(self.mainframe, width=500, textvariable=self.common_name)
         common_name_entry.grid(row=row_count, column=1, columnspan=4, sticky=W)
 
-        customtkinter.CTkLabel(mainframe, text="CR").grid(row=row_count, column=5, sticky=E)
+        customtkinter.CTkLabel(self.mainframe, text="CR").grid(row=row_count, column=5, sticky=E)
         self.challenge_rating = StringVar()
-        challenge_rating_entry = customtkinter.CTkEntry(mainframe, width=70, textvariable=self.challenge_rating)
+        challenge_rating_entry = customtkinter.CTkEntry(self.mainframe, width=70, textvariable=self.challenge_rating)
         challenge_rating_entry.grid(row=row_count, column=6, sticky=W)
 
         row_count += 1
-        customtkinter.CTkLabel(mainframe, text="XP").grid(row=row_count, column=0, sticky=E)
+        customtkinter.CTkLabel(self.mainframe, text="XP").grid(row=row_count, column=0, sticky=E)
         self.experience_points = StringVar()
-        experience_points_entry = customtkinter.CTkEntry(mainframe, width=100, textvariable=self.experience_points)
+        experience_points_entry = customtkinter.CTkEntry(self.mainframe, width=100, textvariable=self.experience_points)
         experience_points_entry.grid(row=row_count, column=1, columnspan=11, sticky=W)
 
         row_count += 1
-        customtkinter.CTkLabel(mainframe, text="Alignment").grid(row=row_count, column=0, sticky=E)
-        self.alignment_entry = PairTupleCombobox(mainframe, p_list_pair_tuple = alignment_tuples, p_default_key = 'N')
+        customtkinter.CTkLabel(self.mainframe, text="Alignment").grid(row=row_count, column=0, sticky=E)
+        self.alignment_entry = PairTupleCombobox(self.mainframe, p_list_pair_tuple = alignment_tuples, p_default_key = 'N')
         self.alignment_entry.grid(row=row_count, column=1, columnspan=11, sticky=W)
 
         row_count += 1
-        customtkinter.CTkLabel(mainframe, text="Size").grid(row=row_count, column=0, sticky=E)
+        customtkinter.CTkLabel(self.mainframe, text="Size").grid(row=row_count, column=0, sticky=E)
         self.size = StringVar()
-        size_entry = ttk.Combobox(mainframe, values=creature_sizes, textvariable=self.size)
+        size_entry = ttk.Combobox(self.mainframe, values=creature_sizes, textvariable=self.size)
         size_entry.grid(row=row_count, column=1, columnspan=11, sticky=W)
 
         row_count += 1
-        customtkinter.CTkLabel(mainframe, text="Age").grid(row=row_count, column=0, sticky=E)
+        customtkinter.CTkLabel(self.mainframe, text="Age").grid(row=row_count, column=0, sticky=E)
         self.age = StringVar()
-        age_entry = customtkinter.CTkEntry(mainframe, width=60, textvariable=self.age)
+        age_entry = customtkinter.CTkEntry(self.mainframe, width=60, textvariable=self.age)
         age_entry.grid(row=row_count, column=1, columnspan=11, sticky=W)
 
         row_count += 1
-        customtkinter.CTkLabel(mainframe, text="Type").grid(row=row_count, column=0, sticky=E)
+        customtkinter.CTkLabel(self.mainframe, text="Type").grid(row=row_count, column=0, sticky=E)
         self.type = StringVar()
-        type_entry = customtkinter.CTkEntry(mainframe, width=160, textvariable=self.type)
+        type_entry = customtkinter.CTkEntry(self.mainframe, width=160, textvariable=self.type)
         type_entry.grid(row=row_count, column=1, columnspan=2, sticky=W)
 
-        customtkinter.CTkLabel(mainframe, text=" / Sub-Type").grid(row=row_count, column=2, sticky=E)
+        customtkinter.CTkLabel(self.mainframe, text=" / Sub-Type").grid(row=row_count, column=2, sticky=E)
         self.sub_type = StringVar()
-        sub_type_entry = customtkinter.CTkEntry(mainframe, width=400, textvariable=self.sub_type)
+        sub_type_entry = customtkinter.CTkEntry(self.mainframe, width=400, textvariable=self.sub_type)
         sub_type_entry.grid(row=row_count, column=3, columnspan=10, sticky=W)
 
         row_count += 1
-        customtkinter.CTkLabel(mainframe, text="Race").grid(row=row_count, column=0, sticky=E)
+        customtkinter.CTkLabel(self.mainframe, text="Race").grid(row=row_count, column=0, sticky=E)
         self.race = StringVar()
-        race_entry = customtkinter.CTkEntry(mainframe, width=160, textvariable=self.race)
+        race_entry = customtkinter.CTkEntry(self.mainframe, width=160, textvariable=self.race)
         race_entry.grid(row=row_count, column=1, columnspan=2, sticky=W)
 
-        customtkinter.CTkLabel(mainframe, text="Class").grid(row=row_count, column=2, sticky=E)
+        customtkinter.CTkLabel(self.mainframe, text="Class").grid(row=row_count, column=2, sticky=E)
         self.char_class = StringVar()
-        char_class_entry = customtkinter.CTkEntry(mainframe, width=160, textvariable=self.char_class)
+        char_class_entry = customtkinter.CTkEntry(self.mainframe, width=160, textvariable=self.char_class)
         char_class_entry.grid(row=row_count, column=3, sticky=W)
 
-        customtkinter.CTkLabel(mainframe, text=" / Level").grid(row=row_count, column=4, sticky=E)
+        customtkinter.CTkLabel(self.mainframe, text=" / Level").grid(row=row_count, column=4, sticky=E)
         self.level = StringVar()
-        level_entry = customtkinter.CTkEntry(mainframe, width=160, textvariable=self.level)
+        level_entry = customtkinter.CTkEntry(self.mainframe, width=160, textvariable=self.level)
         level_entry.grid(row=row_count, column=5, columnspan=11, sticky=W)
 
         row_count += 1
-        customtkinter.CTkLabel(mainframe, text="Init").grid(row=row_count, column=0, sticky=E)
+        customtkinter.CTkLabel(self.mainframe, text="Init").grid(row=row_count, column=0, sticky=E)
         self.initiative = StringVar()
-        initiative_entry = customtkinter.CTkEntry(mainframe, width=160, textvariable=self.initiative)
+        initiative_entry = customtkinter.CTkEntry(self.mainframe, width=160, textvariable=self.initiative)
         initiative_entry.grid(row=row_count, column=1, columnspan=11, sticky=W)
 
         row_count += 1
-        customtkinter.CTkLabel(mainframe, text="PM").grid(row=row_count, column=0, sticky=E)
+        customtkinter.CTkLabel(self.mainframe, text="PM").grid(row=row_count, column=0, sticky=E)
         self.perception_modifier = StringVar()
-        perception_modifier_entry = customtkinter.CTkEntry(mainframe, width=160, textvariable=self.perception_modifier)
+        perception_modifier_entry = customtkinter.CTkEntry(self.mainframe, width=160, textvariable=self.perception_modifier)
         perception_modifier_entry.grid(row=row_count, column=1, columnspan=11, sticky=W)
 
         row_count += 1
-        customtkinter.CTkLabel(mainframe, text="Senses").grid(row=row_count, column=0, sticky=NE)
-        self.senses_entry = customtkinter.CTkTextbox(mainframe)
+        customtkinter.CTkLabel(self.mainframe, text="Senses").grid(row=row_count, column=0, sticky=NE)
+        self.senses_entry = customtkinter.CTkTextbox(self.mainframe)
         self.senses_entry.grid(row=row_count, column=1, columnspan=11, sticky=W)
 
         row_count += 1
-        customtkinter.CTkLabel(mainframe, text="Auras").grid(row=row_count, column=0, sticky=NE)
-        self.auras_entry = customtkinter.CTkTextbox(mainframe)
+        customtkinter.CTkLabel(self.mainframe, text="Auras").grid(row=row_count, column=0, sticky=NE)
+        self.auras_entry = customtkinter.CTkTextbox(self.mainframe)
         self.auras_entry.grid(row=row_count, column=1, columnspan=11, sticky=W)
 
         row_count += 1
-        defense_frame = SectionBorder(mainframe, title="\nDefense\n", fg_color="transparent")
+        defense_frame = SectionBorder(self.mainframe, title="\nDefense\n", fg_color="transparent")
         defense_frame.grid(row=row_count, column=0, columnspan=12)
 
         row_count += 1
-        customtkinter.CTkLabel(mainframe, text="AC").grid(row=row_count, column=0, sticky=E)
+        customtkinter.CTkLabel(self.mainframe, text="AC").grid(row=row_count, column=0, sticky=E)
         self.base_ac = StringVar()
-        base_ac_entry = customtkinter.CTkEntry(mainframe, width=40, textvariable=self.base_ac)
+        base_ac_entry = customtkinter.CTkEntry(self.mainframe, width=40, textvariable=self.base_ac)
         base_ac_entry.grid(row=row_count, column=1, sticky=W)
 
-        customtkinter.CTkLabel(mainframe, text="Touch").grid(row=row_count, column=2, sticky=E)
+        customtkinter.CTkLabel(self.mainframe, text="Touch").grid(row=row_count, column=2, sticky=E)
         self.touch_ac = StringVar()
-        touch_ac_entry = customtkinter.CTkEntry(mainframe, width=40, textvariable=self.touch_ac)
+        touch_ac_entry = customtkinter.CTkEntry(self.mainframe, width=40, textvariable=self.touch_ac)
         touch_ac_entry.grid(row=row_count, column=3, sticky=W)
 
-        customtkinter.CTkLabel(mainframe, text="Flat-Footed").grid(row=row_count, column=4, sticky=E)
+        customtkinter.CTkLabel(self.mainframe, text="Flat-Footed").grid(row=row_count, column=4, sticky=E)
         self.flat_footed_ac = StringVar()
-        flat_footed_ac_entry = customtkinter.CTkEntry(mainframe, width=40, textvariable=self.flat_footed_ac)
+        flat_footed_ac_entry = customtkinter.CTkEntry(self.mainframe, width=40, textvariable=self.flat_footed_ac)
         flat_footed_ac_entry.grid(row=row_count, column=5, sticky=W)
 
         row_count += 1
-        customtkinter.CTkLabel(mainframe, text="AC Modifiers").grid(row=row_count, column=0, sticky=NE)
-        self.ac_modifier_entry = customtkinter.CTkTextbox(mainframe)
+        customtkinter.CTkLabel(self.mainframe, text="AC Modifiers").grid(row=row_count, column=0, sticky=NE)
+        self.ac_modifier_entry = customtkinter.CTkTextbox(self.mainframe)
         self.ac_modifier_entry.grid(row=row_count, column=1, columnspan=11, sticky=W)
 
         row_count += 1
-        customtkinter.CTkLabel(mainframe, text="HP").grid(row=row_count, column=0, sticky=E)
+        customtkinter.CTkLabel(self.mainframe, text="HP").grid(row=row_count, column=0, sticky=E)
         self.hit_points = StringVar()
-        hit_points_entry = customtkinter.CTkEntry(mainframe, width=200, textvariable=self.hit_points)
+        hit_points_entry = customtkinter.CTkEntry(self.mainframe, width=200, textvariable=self.hit_points)
         hit_points_entry.grid(row=row_count, column=1, columnspan=11, sticky=W)
 
         row_count += 1
-        customtkinter.CTkLabel(mainframe, text="Fort").grid(row=row_count, column=0, sticky=E)
+        customtkinter.CTkLabel(self.mainframe, text="Fort").grid(row=row_count, column=0, sticky=E)
         self.fortitude = StringVar()
-        fortitude_entry = customtkinter.CTkEntry(mainframe, width=160, textvariable=self.fortitude)
+        fortitude_entry = customtkinter.CTkEntry(self.mainframe, width=160, textvariable=self.fortitude)
         fortitude_entry.grid(row=row_count, column=1, columnspan=2, sticky=W)
 
-        customtkinter.CTkLabel(mainframe, text="Ref").grid(row=row_count, column=2, sticky=E)
+        customtkinter.CTkLabel(self.mainframe, text="Ref").grid(row=row_count, column=2, sticky=E)
         self.reflex = StringVar()
-        reflex_entry = customtkinter.CTkEntry(mainframe, width=160, textvariable=self.reflex)
+        reflex_entry = customtkinter.CTkEntry(self.mainframe, width=160, textvariable=self.reflex)
         reflex_entry.grid(row=row_count, column=3, columnspan=2, sticky=W)
 
-        customtkinter.CTkLabel(mainframe, text="Will").grid(row=row_count, column=4, sticky=E)
+        customtkinter.CTkLabel(self.mainframe, text="Will").grid(row=row_count, column=4, sticky=E)
         self.will = StringVar()
-        will_entry = customtkinter.CTkEntry(mainframe, width=160, textvariable=self.will)
+        will_entry = customtkinter.CTkEntry(self.mainframe, width=160, textvariable=self.will)
         will_entry.grid(row=row_count, column=5, sticky=W)
 
         self.will_modifier = StringVar()
-        will_entry = customtkinter.CTkEntry(mainframe, width=200, textvariable=self.will_modifier)
+        will_entry = customtkinter.CTkEntry(self.mainframe, width=200, textvariable=self.will_modifier)
         will_entry.grid(row=row_count, column=6, sticky=W)
 
         row_count += 1
-        customtkinter.CTkLabel(mainframe, text="DR").grid(row=row_count, column=0, sticky=E)
+        customtkinter.CTkLabel(self.mainframe, text="DR").grid(row=row_count, column=0, sticky=E)
         self.damage_reduction = StringVar()
-        damage_reduction_entry = customtkinter.CTkEntry(mainframe, width=160, textvariable=self.damage_reduction)
+        damage_reduction_entry = customtkinter.CTkEntry(self.mainframe, width=160, textvariable=self.damage_reduction)
         damage_reduction_entry.grid(row=row_count, column=1, columnspan=11, sticky=W)
 
         row_count += 1
-        customtkinter.CTkLabel(mainframe, text="SR").grid(row=row_count, column=0, sticky=E)
+        customtkinter.CTkLabel(self.mainframe, text="SR").grid(row=row_count, column=0, sticky=E)
         self.spell_resistence = StringVar()
-        spell_resistence_entry = customtkinter.CTkEntry(mainframe, width=160, textvariable=self.spell_resistence)
+        spell_resistence_entry = customtkinter.CTkEntry(self.mainframe, width=160, textvariable=self.spell_resistence)
         spell_resistence_entry.grid(row=row_count, column=1, columnspan=11, sticky=W)
 
         row_count += 1
-        customtkinter.CTkLabel(mainframe, text="Immunities").grid(row=row_count, column=0, sticky=NE)
-        self.immune_entry = customtkinter.CTkTextbox(mainframe)
+        customtkinter.CTkLabel(self.mainframe, text="Immunities").grid(row=row_count, column=0, sticky=NE)
+        self.immune_entry = customtkinter.CTkTextbox(self.mainframe)
         self.immune_entry.grid(row=row_count, column=1, columnspan=11, sticky=W)
 
         row_count += 1
-        customtkinter.CTkLabel(mainframe, text="Resistance").grid(row=row_count, column=0, sticky=NE)
-        self.resist_entry = customtkinter.CTkTextbox(mainframe)
+        customtkinter.CTkLabel(self.mainframe, text="Resistance").grid(row=row_count, column=0, sticky=NE)
+        self.resist_entry = customtkinter.CTkTextbox(self.mainframe)
         self.resist_entry.grid(row=row_count, column=1, columnspan=11, sticky=W)
 
         row_count += 1
-        customtkinter.CTkLabel(mainframe, text="Weaknesses").grid(row=row_count, column=0, sticky=NE)
-        self.weakness_entry = customtkinter.CTkTextbox(mainframe)
+        customtkinter.CTkLabel(self.mainframe, text="Weaknesses").grid(row=row_count, column=0, sticky=NE)
+        self.weakness_entry = customtkinter.CTkTextbox(self.mainframe)
         self.weakness_entry.grid(row=row_count, column=1, columnspan=11, sticky=W)
 
         row_count += 1
-        customtkinter.CTkLabel(mainframe, text="Defensive Abilities").grid(row=row_count, column=0, sticky=NE)
-        self.defense_action_entry = customtkinter.CTkTextbox(mainframe)
+        customtkinter.CTkLabel(self.mainframe, text="Defensive Abilities").grid(row=row_count, column=0, sticky=NE)
+        self.defense_action_entry = customtkinter.CTkTextbox(self.mainframe)
         self.defense_action_entry.grid(row=row_count, column=1, columnspan=11, sticky=W)
 
         row_count += 1
-        offense_frame = SectionBorder(mainframe, title="\nOffense\n", fg_color="transparent")
+        offense_frame = SectionBorder(self.mainframe, title="\nOffense\n", fg_color="transparent")
         offense_frame.grid(row=row_count, column=0, columnspan=12)
 
         row_count += 1
-        customtkinter.CTkLabel(mainframe, text="Speed").grid(row=row_count, column=0, sticky=NE)
+        customtkinter.CTkLabel(self.mainframe, text="Speed").grid(row=row_count, column=0, sticky=NE)
         self.speed = StringVar()
-        speed_entry = customtkinter.CTkEntry(mainframe, width=300, textvariable=self.speed)
+        speed_entry = customtkinter.CTkEntry(self.mainframe, width=300, textvariable=self.speed)
         speed_entry.grid(row=row_count, column=1, columnspan=11, sticky=W)
 
         row_count += 1
-        self.speed_modifiers_entry = customtkinter.CTkTextbox(mainframe)
+        self.speed_modifiers_entry = customtkinter.CTkTextbox(self.mainframe)
         self.speed_modifiers_entry.grid(row=row_count, column=1, columnspan=11, sticky=W)
 
         row_count += 1
-        customtkinter.CTkLabel(mainframe, text="Space").grid(row=row_count, column=0, sticky=E)
+        customtkinter.CTkLabel(self.mainframe, text="Space").grid(row=row_count, column=0, sticky=E)
         self.space = StringVar()
-        space_entry = customtkinter.CTkEntry(mainframe, width=100, textvariable=self.space)
+        space_entry = customtkinter.CTkEntry(self.mainframe, width=100, textvariable=self.space)
         space_entry.grid(row=row_count, column=1, sticky=W)
 
-        customtkinter.CTkLabel(mainframe, text="Reach").grid(row=row_count, column=2, sticky=E)
+        customtkinter.CTkLabel(self.mainframe, text="Reach").grid(row=row_count, column=2, sticky=E)
         self.reach = StringVar()
-        reach_entry = customtkinter.CTkEntry(mainframe, width=200, textvariable=self.reach)
+        reach_entry = customtkinter.CTkEntry(self.mainframe, width=200, textvariable=self.reach)
         reach_entry.grid(row=row_count, column=3, columnspan=11, sticky=W)
 
         row_count += 1
-        customtkinter.CTkLabel(mainframe, text="Melee").grid(row=row_count, column=0, sticky=NE)
-        self.melee_entry = customtkinter.CTkTextbox(mainframe, width=300)
+        customtkinter.CTkLabel(self.mainframe, text="Melee").grid(row=row_count, column=0, sticky=NE)
+        self.melee_entry = customtkinter.CTkTextbox(self.mainframe, width=300)
         self.melee_entry.grid(row=row_count, column=1, columnspan=11, sticky=W)
 
         row_count += 1
-        customtkinter.CTkLabel(mainframe, text="Ranged").grid(row=row_count, column=0, sticky=NE)
-        self.ranged_entry = customtkinter.CTkTextbox(mainframe, width=300)
+        customtkinter.CTkLabel(self.mainframe, text="Ranged").grid(row=row_count, column=0, sticky=NE)
+        self.ranged_entry = customtkinter.CTkTextbox(self.mainframe, width=300)
         self.ranged_entry.grid(row=row_count, column=1, columnspan=11, sticky=W)
 
         row_count += 1
-        customtkinter.CTkLabel(mainframe, text="Special Attacks").grid(row=row_count, column=0, sticky=NE)
-        self.special_attacks_entry = customtkinter.CTkTextbox(mainframe, width=300)
+        customtkinter.CTkLabel(self.mainframe, text="Special Attacks").grid(row=row_count, column=0, sticky=NE)
+        self.special_attacks_entry = customtkinter.CTkTextbox(self.mainframe, width=300)
         self.special_attacks_entry.grid(row=row_count, column=1, columnspan=11, sticky=W)
 
         row_count += 1
         self.spell_like_label = StringVar()
         self.spell_like_label.set("Spell-Like Abilities")
-        customtkinter.CTkLabel(mainframe, textvariable=self.spell_like_label).grid(row=row_count, column=0, sticky=NE)
+        customtkinter.CTkLabel(self.mainframe, textvariable=self.spell_like_label).grid(row=row_count, column=0, sticky=NE)
         self.spell_like_caster_level = StringVar()
-        casting_level_entry = customtkinter.CTkEntry(mainframe, width=300, textvariable=self.spell_like_caster_level)
+        casting_level_entry = customtkinter.CTkEntry(self.mainframe, width=300, textvariable=self.spell_like_caster_level)
         casting_level_entry.grid(row=row_count, column=1, columnspan=11, sticky=W)
 
         row_count += 1
-        self.spell_like_abilities_entry = customtkinter.CTkTextbox(mainframe, width=300)
+        self.spell_like_abilities_entry = customtkinter.CTkTextbox(self.mainframe, width=300)
         self.spell_like_abilities_entry.grid(row=row_count, column=1, columnspan=11, sticky=W)
 
         row_count += 1
         self.known_spells_label = StringVar()
         self.known_spells_label.set("Known Spells")
-        customtkinter.CTkLabel(mainframe, textvariable=self.known_spells_label).grid(row=row_count, column=0, sticky=NE)
+        customtkinter.CTkLabel(self.mainframe, textvariable=self.known_spells_label).grid(row=row_count, column=0, sticky=NE)
         self.known_caster_level = StringVar()
-        known_casting_level_entry = customtkinter.CTkEntry(mainframe, width=300, textvariable=self.known_caster_level)
+        known_casting_level_entry = customtkinter.CTkEntry(self.mainframe, width=300, textvariable=self.known_caster_level)
         known_casting_level_entry.grid(row=row_count, column=1, columnspan=11, sticky=W)
 
         row_count += 1
-        self.known_spells_entry = customtkinter.CTkTextbox(mainframe, width=300)
+        self.known_spells_entry = customtkinter.CTkTextbox(self.mainframe, width=300)
         self.known_spells_entry.grid(row=row_count, column=1, columnspan=11, sticky=W)
 
         row_count += 1
         self.prepared_spells_label = StringVar()
         self.prepared_spells_label.set("Prepared Spells")
-        customtkinter.CTkLabel(mainframe, textvariable=self.prepared_spells_label).grid(row=row_count, column=0, sticky=NE)
+        customtkinter.CTkLabel(self.mainframe, textvariable=self.prepared_spells_label).grid(row=row_count, column=0, sticky=NE)
         self.prepared_caster_level = StringVar()
-        prepared_casting_level_entry = customtkinter.CTkEntry(mainframe, width=300, textvariable=self.prepared_caster_level)
+        prepared_casting_level_entry = customtkinter.CTkEntry(self.mainframe, width=300, textvariable=self.prepared_caster_level)
         prepared_casting_level_entry.grid(row=row_count, column=1, columnspan=11, sticky=W)
 
         row_count += 1
-        self.prepared_spells_entry = customtkinter.CTkTextbox(mainframe, width=300)
+        self.prepared_spells_entry = customtkinter.CTkTextbox(self.mainframe, width=300)
         self.prepared_spells_entry.grid(row=row_count, column=1, columnspan=11, sticky=W)
 
         row_count += 1
-        tactics_frame = SectionBorder(mainframe, title="\nTactics\n", fg_color="transparent")
+        tactics_frame = SectionBorder(self.mainframe, title="\nTactics\n", fg_color="transparent")
         tactics_frame.grid(row=row_count, column=0, columnspan=12)
 
         row_count += 1
-        self.tactics_entry = customtkinter.CTkTextbox(mainframe, wrap="word", width=600, height=1)
+        self.tactics_entry = customtkinter.CTkTextbox(self.mainframe, wrap="word", width=600, height=1)
         self.tactics_entry.grid(row=row_count, column=1, columnspan=12, sticky=W)
 
         row_count += 1
-        customtkinter.CTkLabel(mainframe, text="Gear").grid(row=row_count, column=0, sticky=NE)
-        self.gear_entry = scrolledtext.ScrolledText(mainframe, wrap="word", width=60, height=1)
+        customtkinter.CTkLabel(self.mainframe, text="Gear").grid(row=row_count, column=0, sticky=NE)
+        self.gear_entry = scrolledtext.ScrolledText(self.mainframe, wrap="word", width=60, height=1)
         self.gear_entry.grid(row=row_count, column=1, columnspan=11, sticky=W)
 
         row_count += 1
-        offense_frame = SectionBorder(mainframe, title="\nStatistics\n", fg_color="transparent")
+        offense_frame = SectionBorder(self.mainframe, title="\nStatistics\n", fg_color="transparent")
         offense_frame.grid(row=row_count, column=0, columnspan=12)
 
         row_count += 1
-        stat_frame = customtkinter.CTkFrame(mainframe, fg_color="transparent")
+        stat_frame = customtkinter.CTkFrame(self.mainframe, fg_color="transparent")
         stat_frame.grid(row=row_count, column=1, columnspan=11, sticky=EW)
 
-        customtkinter.CTkLabel(mainframe, text="STR").grid(row=row_count, column=0, sticky=E)
+        customtkinter.CTkLabel(self.mainframe, text="STR").grid(row=row_count, column=0, sticky=E)
         self.strength = StringVar()
         strength_entry = customtkinter.CTkEntry(stat_frame, width=40, textvariable=self.strength)
         strength_entry.grid(row=0, column=1, padx=5, sticky=W)
@@ -346,10 +346,10 @@ class CreatureForm(customtkinter.CTkToplevel):
         charisma_entry.grid(row=0, column=11, padx = 5, sticky=W)
 
         row_count += 1
-        bonus_frame = customtkinter.CTkFrame(mainframe, fg_color="transparent")
+        bonus_frame = customtkinter.CTkFrame(self.mainframe, fg_color="transparent")
         bonus_frame.grid(row=row_count, column=1, columnspan=11, sticky=EW)
 
-        customtkinter.CTkLabel(mainframe, text="BAB").grid(row=row_count, column=0, sticky=E)
+        customtkinter.CTkLabel(self.mainframe, text="BAB").grid(row=row_count, column=0, sticky=E)
         self.base_attack = StringVar()
         base_attack_entry = customtkinter.CTkEntry(bonus_frame, width=40, textvariable=self.base_attack)
         base_attack_entry.grid(row=0, column=1, padx=5, sticky=W)
@@ -365,97 +365,97 @@ class CreatureForm(customtkinter.CTkToplevel):
         combat_maneuver_defense_entry.grid(row=0, column=5, padx=5, sticky=W)
 
         row_count += 1
-        customtkinter.CTkLabel(mainframe, text="Feats").grid(row=row_count, column=0, sticky=NE)
-        self.feats_entry = customtkinter.CTkTextbox(mainframe)
+        customtkinter.CTkLabel(self.mainframe, text="Feats").grid(row=row_count, column=0, sticky=NE)
+        self.feats_entry = customtkinter.CTkTextbox(self.mainframe)
         self.feats_entry.grid(row=row_count, column=1, columnspan=11, sticky=W)
 
         row_count += 1
-        customtkinter.CTkLabel(mainframe, text="Skills").grid(row=row_count, column=0, sticky=NE)
-        self.skills_entry = customtkinter.CTkTextbox(mainframe)
+        customtkinter.CTkLabel(self.mainframe, text="Skills").grid(row=row_count, column=0, sticky=NE)
+        self.skills_entry = customtkinter.CTkTextbox(self.mainframe)
         self.skills_entry.grid(row=row_count, column=1, columnspan=11, sticky=W)
 
         row_count += 1
-        customtkinter.CTkLabel(mainframe, text="Racial Modifiers").grid(row=row_count, column=0, sticky=E)
+        customtkinter.CTkLabel(self.mainframe, text="Racial Modifiers").grid(row=row_count, column=0, sticky=E)
         self.racial_modifiers = StringVar()
-        racial_modifiers_entry = customtkinter.CTkEntry(mainframe, width=30, textvariable=self.racial_modifiers)
+        racial_modifiers_entry = customtkinter.CTkEntry(self.mainframe, width=30, textvariable=self.racial_modifiers)
         racial_modifiers_entry.grid(row=row_count, column=1, columnspan=11, sticky=W)
 
         row_count += 1
-        customtkinter.CTkLabel(mainframe, text="Languages").grid(row=row_count, column=0, sticky=NE)
-        self.language_entry = customtkinter.CTkTextbox(mainframe)
+        customtkinter.CTkLabel(self.mainframe, text="Languages").grid(row=row_count, column=0, sticky=NE)
+        self.language_entry = customtkinter.CTkTextbox(self.mainframe)
         self.language_entry.grid(row=row_count, column=1, columnspan=11, sticky=W)
 
         row_count += 1
-        customtkinter.CTkLabel(mainframe, text="Special Qualities").grid(row=row_count, column=0, sticky=NE)
-        self.special_qualities_entry = scrolledtext.ScrolledText(mainframe, width=30, height=1)
+        customtkinter.CTkLabel(self.mainframe, text="Special Qualities").grid(row=row_count, column=0, sticky=NE)
+        self.special_qualities_entry = scrolledtext.ScrolledText(self.mainframe, width=30, height=1)
         self.special_qualities_entry.grid(row=row_count, column=1, columnspan=11, sticky=W)
 
         row_count += 1
-        special_ability_frame = SectionBorder(mainframe, title="\nSpecial Abilities\n", fg_color="transparent")
+        special_ability_frame = SectionBorder(self.mainframe, title="\nSpecial Abilities\n", fg_color="transparent")
         special_ability_frame.grid(row=row_count, column=0, columnspan=12)
 
         row_count += 1
-        customtkinter.CTkLabel(mainframe, text="Special Abilities").grid(row=row_count, column=0, sticky=NE)
-        self.special_abilities_entry = scrolledtext.ScrolledText(mainframe, wrap="word", width=70, height=1)
+        customtkinter.CTkLabel(self.mainframe, text="Special Abilities").grid(row=row_count, column=0, sticky=NE)
+        self.special_abilities_entry = scrolledtext.ScrolledText(self.mainframe, wrap="word", width=70, height=1)
         self.special_abilities_entry.grid(row=row_count, column=1, columnspan=11, sticky=W)
         self.special_abilities_entry.tag_configure("bold_tag", font=("Arial", 10, "bold"))
 
         row_count += 1
-        unique_gear_frame = SectionBorder(mainframe, title="\nGear\n", fg_color="transparent")
+        unique_gear_frame = SectionBorder(self.mainframe, title="\nGear\n", fg_color="transparent")
         unique_gear_frame.grid(row=row_count, column=0, columnspan=12)
 
         row_count += 1
-        customtkinter.CTkLabel(mainframe, text="Unique Items").grid(row=row_count, column=0, sticky=NE)
-        self.special_gear_entry = scrolledtext.ScrolledText(mainframe, wrap="word", width=70, height=1)
+        customtkinter.CTkLabel(self.mainframe, text="Unique Items").grid(row=row_count, column=0, sticky=NE)
+        self.special_gear_entry = scrolledtext.ScrolledText(self.mainframe, wrap="word", width=70, height=1)
         self.special_gear_entry.grid(row=row_count, column=1, columnspan=11, sticky=W)
         self.special_gear_entry.tag_configure("bold_tag", font=("Arial", 10, "bold"))
 
         row_count += 1
-        ecology_frame = SectionBorder(mainframe, title="\nEcology\n", fg_color="transparent")
+        ecology_frame = SectionBorder(self.mainframe, title="\nEcology\n", fg_color="transparent")
         ecology_frame.grid(row=row_count, column=0, columnspan=12)
 
         row_count += 1
-        customtkinter.CTkLabel(mainframe, text="Environment").grid(row=row_count, column=0, sticky=E)
+        customtkinter.CTkLabel(self.mainframe, text="Environment").grid(row=row_count, column=0, sticky=E)
         self.environment = StringVar()
-        environment_entry = customtkinter.CTkEntry(mainframe, width=300, textvariable=self.environment)
+        environment_entry = customtkinter.CTkEntry(self.mainframe, width=300, textvariable=self.environment)
         environment_entry.grid(row=row_count, column=1, columnspan=11, sticky=W)
 
         row_count += 1
-        customtkinter.CTkLabel(mainframe, text="Organization").grid(row=row_count, column=0, sticky=E)
+        customtkinter.CTkLabel(self.mainframe, text="Organization").grid(row=row_count, column=0, sticky=E)
         self.organization = StringVar()
-        organization_entry = customtkinter.CTkEntry(mainframe, width=300, textvariable=self.organization)
+        organization_entry = customtkinter.CTkEntry(self.mainframe, width=300, textvariable=self.organization)
         organization_entry.grid(row=row_count, column=1, columnspan=11, sticky=W)
 
         row_count += 1
-        customtkinter.CTkLabel(mainframe, text="Treasure").grid(row=row_count, column=0, sticky=E)
+        customtkinter.CTkLabel(self.mainframe, text="Treasure").grid(row=row_count, column=0, sticky=E)
         self.treasure = StringVar()
-        treasure_entry = customtkinter.CTkEntry(mainframe, width=300, textvariable=self.treasure)
+        treasure_entry = customtkinter.CTkEntry(self.mainframe, width=300, textvariable=self.treasure)
         treasure_entry.grid(row=row_count, column=1, columnspan=11, sticky=W)
 
         row_count += 1
-        offense_frame = SectionBorder(mainframe, title="\nAbout\n", fg_color="transparent")
+        offense_frame = SectionBorder(self.mainframe, title="\nAbout\n", fg_color="transparent")
         offense_frame.grid(row=row_count, column=0, columnspan=12)
 
         row_count += 1
-        self.description_entry = scrolledtext.Text(mainframe, wrap="word", width=90, height=1)
+        self.description_entry = scrolledtext.Text(self.mainframe, wrap="word", width=90, height=1)
         self.description_entry.grid(row=row_count, column=1, columnspan=12, sticky=W)
 
         row_count += 1
-        self.save_npc_button = customtkinter.CTkButton(mainframe, text='Save NPC', command=self.on_save_npc)
+        self.save_npc_button = customtkinter.CTkButton(self.mainframe, text='Save NPC', command=self.on_save_npc)
         self.save_npc_button.grid(row=0, column=0)
-        self.save_creature_button = customtkinter.CTkButton(mainframe, text='Save Creature', command=self.on_save_creature)
+        self.save_creature_button = customtkinter.CTkButton(self.mainframe, text='Save Creature', command=self.on_save_creature)
         self.save_creature_button.grid(row=0, column=1)
-        self.update_button = customtkinter.CTkButton(mainframe, text='Update', command=self.on_save)
+        self.update_button = customtkinter.CTkButton(self.mainframe, text='Update', command=self.on_save)
         self.update_button.grid(row=0, column=2)
-        self.delete_button = customtkinter.CTkButton(mainframe, text='Delete', command=self.on_delete)
+        self.delete_button = customtkinter.CTkButton(self.mainframe, text='Delete', command=self.on_delete)
         self.delete_button.grid(row=0, column=3)
-        self.export_button = customtkinter.CTkButton(mainframe, text='Export', command=self.on_export)
+        self.export_button = customtkinter.CTkButton(self.mainframe, text='Export', command=self.on_export)
         self.export_button.grid(row=0, column=4)
 
         # root.columnconfigure(0, weight=1)
         # root.rowconfigure(0, weight=1)
-        # mainframe.columnconfigure(2, weight=1)
-        for child in mainframe.winfo_children():
+        # self.mainframe.columnconfigure(2, weight=1)
+        for child in self.mainframe.winfo_children():
             child.grid_configure(padx=2, pady=2)
 
         for child in stat_frame.winfo_children():
@@ -469,6 +469,8 @@ class CreatureForm(customtkinter.CTkToplevel):
             self.creature = creature
             if self.creature.barn_type == "NPC":
                 self.title("NPC Details")
+
+            self.mainframe.configure(label_text=getattr(self.creature, 'formal_name'))
 
             self.formal_name.set(safe_copy(getattr(self.creature, 'formal_name')))
             self.common_name.set(safe_copy(getattr(self.creature, 'common_name')))
