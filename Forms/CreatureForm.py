@@ -56,12 +56,12 @@ class CreatureForm(customtkinter.CTkToplevel):
         customtkinter.CTkLabel(mainframe, text="Common Name").grid(row=row_count, column=0, sticky=E)
         self.common_name = StringVar()
         common_name_entry = customtkinter.CTkEntry(mainframe, width=500, textvariable=self.common_name)
-        common_name_entry.grid(row=row_count, column=1, columnspan=4, sticky=W)
+        common_name_entry.grid(row=row_count, column=1, columnspan=6, sticky=W)
 
-        customtkinter.CTkLabel(mainframe, text="CR").grid(row=row_count, column=5, sticky=E)
+        customtkinter.CTkLabel(mainframe, text="CR").grid(row=row_count, column=4, sticky=E)
         self.challenge_rating = StringVar()
         challenge_rating_entry = customtkinter.CTkEntry(mainframe, width=70, textvariable=self.challenge_rating)
-        challenge_rating_entry.grid(row=row_count, column=6, sticky=W)
+        challenge_rating_entry.grid(row=row_count, column=5, sticky=W)
 
         row_count += 1
         customtkinter.CTkLabel(mainframe, text="XP").grid(row=row_count, column=0, sticky=E)
@@ -184,7 +184,7 @@ class CreatureForm(customtkinter.CTkToplevel):
 
         self.will_modifier = StringVar()
         will_entry = customtkinter.CTkEntry(mainframe, width=200, textvariable=self.will_modifier)
-        will_entry.grid(row=row_count, column=6, sticky=W)
+        will_entry.grid(row=row_count, column=6, columnspan=5, sticky=W)
 
         row_count += 1
         customtkinter.CTkLabel(mainframe, text="DR").grid(row=row_count, column=0, sticky=E)
@@ -236,7 +236,7 @@ class CreatureForm(customtkinter.CTkToplevel):
         customtkinter.CTkLabel(mainframe, text="Space").grid(row=row_count, column=0, sticky=E)
         self.space = StringVar()
         space_entry = customtkinter.CTkEntry(mainframe, width=100, textvariable=self.space)
-        space_entry.grid(row=row_count, column=1, sticky=W)
+        space_entry.grid(row=row_count, column=1, columnspan=2, sticky=W)
 
         customtkinter.CTkLabel(mainframe, text="Reach").grid(row=row_count, column=2, sticky=E)
         self.reach = StringVar()
@@ -313,7 +313,7 @@ class CreatureForm(customtkinter.CTkToplevel):
 
         row_count += 1
         stat_frame = customtkinter.CTkFrame(mainframe, fg_color="transparent")
-        stat_frame.grid(row=row_count, column=1, columnspan=11, sticky=EW)
+        stat_frame.grid(row=row_count, column=1, columnspan=12, sticky=EW)
 
         customtkinter.CTkLabel(mainframe, text="STR").grid(row=row_count, column=0, sticky=E)
         self.strength = StringVar()
@@ -347,7 +347,7 @@ class CreatureForm(customtkinter.CTkToplevel):
 
         row_count += 1
         bonus_frame = customtkinter.CTkFrame(mainframe, fg_color="transparent")
-        bonus_frame.grid(row=row_count, column=1, columnspan=11, sticky=EW)
+        bonus_frame.grid(row=row_count, column=1, columnspan=12, sticky=EW)
 
         customtkinter.CTkLabel(mainframe, text="BAB").grid(row=row_count, column=0, sticky=E)
         self.base_attack = StringVar()
