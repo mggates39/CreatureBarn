@@ -106,7 +106,7 @@ class CreatureForm(customtkinter.CTkToplevel):
         customtkinter.CTkLabel(self.mainframe, text="Class").grid(row=row_count, column=2, sticky=E)
         self.char_class = StringVar()
         char_class_entry = customtkinter.CTkEntry(self.mainframe, width=160, textvariable=self.char_class)
-        char_class_entry.grid(row=row_count, column=3, sticky=W)
+        char_class_entry.grid(row=row_count, column=3, columnspan=2, sticky=W)
 
         customtkinter.CTkLabel(self.mainframe, text=" / Level").grid(row=row_count, column=4, sticky=E)
         self.level = StringVar()
@@ -236,7 +236,7 @@ class CreatureForm(customtkinter.CTkToplevel):
         customtkinter.CTkLabel(self.mainframe, text="Space").grid(row=row_count, column=0, sticky=E)
         self.space = StringVar()
         space_entry = customtkinter.CTkEntry(self.mainframe, width=100, textvariable=self.space)
-        space_entry.grid(row=row_count, column=1, columnspan=2,, sticky=W)
+        space_entry.grid(row=row_count, column=1, columnspan=2, sticky=W)
 
         customtkinter.CTkLabel(self.mainframe, text="Reach").grid(row=row_count, column=2, sticky=E)
         self.reach = StringVar()
