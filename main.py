@@ -68,7 +68,7 @@ class CreatureBarn(customtkinter.CTk):
 
     # Function to display the "About" dialog box
     def show_about_dialog(self):
-        about = AboutBox(self, 'About Creature Barn', APPLICATION_VERSION, DATABASE_VERSION)
+        AboutBox(self, 'About Creature Barn', APPLICATION_VERSION, DATABASE_VERSION)
 
     def show_creature_list(self):
         self.app = CreatureList(self, "Creature")
