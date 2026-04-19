@@ -1,0 +1,40 @@
+Kobold Bomber (CR 1)
+
+Kobold Bomber CR 1
+
+Kobold tricksters are experts at crafting deadly traps—both magical and mundane—and at striking from concealment while their enemies are distracted by the traps’ effects.
+
+XP 400
+Kobold alchemist (alchemical trapper) 2
+LE Small humanoid (reptilian)
+Init +3; Senses darkvision 60 ft.; Perception +3
+
+DEFENSE
+
+AC 19, touch 14, flat-footed 16 (+4 armor, +3 Dex, +1 natural, +1 size)
+hp 12 (2d8)
+Fort +2, Ref +6, Will +1; +2 vs. poison
+Weaknesses light sensitivity
+
+OFFENSE
+
+Speed 30 ft.
+Melee mwk spear +2 (1d6–1/×3)
+Ranged sling +5 (1d3–1)
+Special Attacks bomb 6/day (1d6+2 fire, DC 13), bomb trap*
+Alchemist Extracts Prepared (CL 2nd)
+
+1st—adjuring step, endure elements, shield
+TACTICS
+
+During Combat The kobold uses her mutagen and extracts to strengthen her defense, and throws bombs at her enemies.
+
+STATISTICS
+
+Str 8, Dex 16, Con 8, Int 15, Wis 13, Cha 8
+Base Atk +1; CMB –1; CMD 12
+Feats Brew Potion, Extra Bombs, Throw Anything
+Skills Acrobatics +3, Craft (trapmaking) +9, Disable Device +6, Escape Artist +3, Knowledge (engineering) +4, Perception +3, Profession (miner) +3, Stealth +10; Racial Modifiers +2 Craft (trapmaking), +2 Perception, +2 Profession (miner)
+Languages Common, Draconic, Gnome, Goblin
+SQ alchemy (alchemy crafting +2, identify potions), crafty, mutagen (+4/–2, +2 natural, 20 minutes), poison use
+Gear potion of invisibility, acid, alchemist’s fire (3), chain shirt, mwk spear, sling, 8 gp

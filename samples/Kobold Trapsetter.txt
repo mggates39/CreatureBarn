@@ -1,0 +1,44 @@
+Kobold Trapsetter (CR 1)
+
+Kobold Trapsetter CR 1
+
+XP 400
+Kobold slayer 2
+LE Small humanoid (reptilian)
+Init +5; Senses darkvision 60 ft.; Perception +8
+
+DEFENSE
+
+AC 20, touch 16, flat-footed 15 (+3 armor, +5 Dex, +1 natural, +1 size)
+hp 15 (2d10)
+Fort +3, Ref +8, Will +0
+Weaknesses light sensitivity
+
+OFFENSE
+
+Speed 30 ft.
+Melee dagger +3 (1d3/19–20)
+Ranged shortbow +9 (1d4/×3)
+Special Attacks studied target +1 (1st, move action)
+
+TACTICS
+
+Before Combat The slayer drinks the potion of cat’s grace and hides near previously laid traps.
+
+During Combat The slayer studies a target and will use the shortbow to draw the target into traps they have missed.
+
+Base Statistics Without the potion of cat’s grace and studied target, the slayer has the following stats: AC 18, touch 14 (+3 armor, +3 Dex, +1 natural, +1 size); Ref +6; Melee dagger +2 (1d3–1/19–20); Ranged shortbow +6 (1d4–1/×3); Dex 17; CMB +0; CMD 13; Skills Acrobatics +8, Bluff +4, Disable Device +11, Knowledge (dungeoneering) +7, Perception +7, Sense Motive +5, Stealth +12.
+
+STATISTICS
+
+Str 9, Dex 21, Con 10, Int 14, Wis 10, Cha 8
+Base Atk +2; CMB +1; CMD 15
+Feats Skill Focus (Craft [traps])
+Skills Acrobatics +10, Bluff +5, Climb +4, Craft (traps) +14, Disable Device +13, Knowledge (dungeoneering) +8, Perception +8, Sense Motive +6, Stealth +14; Racial Modifiers +2 Craft (traps), +2 Perception
+Languages Common, Draconic, Undercommon
+SQ crafty, slayer talent (trapfinding), track +1, trapfinding +1
+Gear oil of magic weapon, potion of cat’s grace, potion of cure light wounds, mwk studded leather, arrows (20), dagger, shortbow, masterwork thieves’ tools, masterwork trapmaking tools, 17 gp
+
+ABOUT
+
+Some kobolds are not stupid. A rare few are quite clever, and kobold trapsetters are among the cleverest of their lot. They know that the much larger folk want to exterminate them, so these kobolds make their traps extra deadly, using others of their clan as bait. On rare occasions, their traps manage to kill an adventurer, which makes for a good day indeed.

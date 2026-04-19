@@ -1,0 +1,33 @@
+Kobold Monster Wrangler (CR 1)
+
+Kobold Monster Wrangler CR 1
+
+The boldest kobolds enjoy riding bizarre beasts into battle.
+
+XP 400
+Kobold cavalier 2
+LE Small humanoid (reptilian)
+Init +3; Senses darkvision 60 ft.; Perception +2
+
+DEFENSE
+
+AC 22, touch 14, flat-footed 19 (+5 armor, +3 Dex, +1 natural, +2 shield, +1 size)
+hp 17 (2d10+2)
+Fort +3, Ref +3, Will +0
+Weaknesses light sensitivity
+
+OFFENSE
+
+Speed 20 ft.
+Melee mwk lance +4 (1d6/×3)
+Special Attacks challenge (+2, +1, 1/day)
+
+STATISTICS
+
+Str 11, Dex 16, Con 10, Int 8, Wis 10, Cha 13
+Base Atk +2; CMB +1; CMD 14
+Feats Paired Opportunists, Slurk Rider
+Skills Craft (trapmaking) +1, Handle Animal +9, Intimidate +6, Perception +2, Profession (miner) +2, Ride +4
+Languages Common, Draconic
+SQ crafty, mount (cave salamander or slurkb2), order of the lion (lion’s call), tactician (1/day, 4 rounds, standard action)
+Gear liquid ice, potion of cure light wounds, mwk scale mail, mwk heavy steel shield, mwk lance, 10 gp
