@@ -2,7 +2,8 @@
 CreatureStatBlockParser – version 1.00
 Robust Pathfinder stat-block parser.
 """
-
+import argparse
+from pathlib import Path
 import tkinter as tk
 from tkinter import ttk
 from tkinter import filedialog, messagebox
@@ -13,7 +14,7 @@ from Parsers.CreatureParser import ParseCreature
 from Database.database import DATABASE_VERSION, Database
 from Database.create_tables import initialize_repository
 
-APPLICATION_VERSION = '1.0.0'
+APPLICATION_VERSION = '1.1.0'
 
 def initialize_database():
     if messagebox.askyesno("Initialize Database", message="Do you really want to initialize the database?",
@@ -23,7 +24,8 @@ def initialize_database():
 
 
 class CreatureBarn:
-    def __init__(self, root):
+    def __init__(self, root, args):
+        self.args = args
         self.root = root
         self.newWindow = None
         self.app = None
@@ -59,6 +61,10 @@ class CreatureBarn:
             self.database_menu.entryconfig("Initialize Database", state="normal")
         else:
             self.database.verify_database_version()
+
+        if args.batch:
+            self.process_batch()
+            self.root.destroy()
 
     # Function to display the "About" dialog box
     def show_about_dialog(self):
@@ -103,16 +109,22 @@ class CreatureBarn:
         self.app.on_load(creature)
 
     def load(self):
-        path = filedialog.askopenfilename(filetypes=[("Text Files", "*.txt")])
-        if not path:
+        file_list = filedialog.askopenfilenames(filetypes=[("Text Files", "*.txt")], initialdir="./samples")
+        if not file_list:
             return
-        raw = Path(path).read_text(encoding="utf-8")
-        parser = ParseCreature(raw)
-        parser.run()
+        if len(file_list) == 1:
+            raw = Path(file_list[0]).read_text(encoding="utf-8")
+            parser = ParseCreature(raw)
+            parser.run()
 
-        self.text.delete("1.0", tk.END)
-        self.text.insert(tk.END, raw)
-        self.show_parsed_creature(parser.creature)
+            self.text.delete("1.0", tk.END)
+            self.text.insert(tk.END, raw)
+            self.show_parsed_creature(parser.creature)
+        else:
+            self.text.delete("1.0", tk.END)
+            self.text.insert(tk.END, "Processing selected files:\n")
+            for file in file_list:
+                self.parse_and_export_file(file, True)
 
     def parse_screen(self):
         text = self.text.get("1.0", tk.END)
@@ -123,8 +135,52 @@ class CreatureBarn:
         else:
             messagebox.showwarning("No Data", "No text to parse!")
 
+    def process_batch(self):
+        print( "Processing files in {}".format(self.args.path))
+        for file in Path(self.args.path).glob("*.txt"):
+            self.parse_and_export_file(file, False)
+
+    def parse_and_export_file(self, file, log_to_screen=False):
+        if log_to_screen:
+            self.text.insert(tk.END, file + "\n")
+        else:
+            print(file)
+
+        raw = Path(file).read_text(encoding="utf-8")
+        parser = ParseCreature(raw)
+        parser.run()
+        parser.creature.barn_type = "NPC"
+        self.show_parsed_creature(parser.creature)
+        self.app.on_export()
+        self.app.root.destroy()
+        self.app = None
+
+
+def init_argparse() -> argparse.ArgumentParser:
+    parser = argparse.ArgumentParser(
+        description="Simple Creature and NPC Stat Parser and Storage"
+    )
+    parser.add_argument(
+        "-v", "--version", action="version",
+        version = f"{parser.prog} version {APPLICATION_VERSION}"
+    )
+    parser.add_argument(
+        "-p", "--path", default='./source', type=str,
+        help="Directory to batch process, defaults to ./source"
+    )
+    parser.add_argument(
+        "-b", "--batch", action='store_true',
+        help="Batch process all files in path"
+    )
+    return parser
+
+
+def main() -> None:
+    parser = init_argparse()
+    args = parser.parse_args()
+    root_widget = ThemedTk(theme='winxpblue')
+    app = CreatureBarn(root_widget, args)
+    root_widget.mainloop()
 
 if __name__ == "__main__":
-    rootWidget = ThemedTk(theme='winxpblue')
-    app = CreatureBarn(rootWidget)
-    rootWidget.mainloop()
+    main()
