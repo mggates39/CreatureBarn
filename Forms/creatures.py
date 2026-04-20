@@ -456,6 +456,8 @@ class CreatureForm:
         self.delete_button.grid(row=0, column=3)
         self.export_button = ttk.Button(mainframe, text='Export', command=self.on_export)
         self.export_button.grid(row=0, column=4)
+        self.export_label = ttk.Label(mainframe, text="")
+        self.export_label.grid(row=0, column=5)
 
         # root.columnconfigure(0, weight=1)
         # root.rowconfigure(0, weight=1)
@@ -971,6 +973,7 @@ class CreatureForm:
             with open(file_path, 'w', encoding='utf-8') as file:
                 file.write("{#TAB}".join(output_fields))
             print(f"File '{file_path}' written successfully in write mode.")
+            self.export_label.configure(text=file_path)
         except IOError as e:
             print(f"Error writing to file: {e}")
 
