@@ -1,0 +1,39 @@
+Kobold Scalecaster (CR 1/2)
+
+Kobold Scalecaster CR 1/2
+
+Kobolds see sorcery as proof of their draconic heritage.
+
+XP 200
+Kobold sorcerer 1
+LN Small humanoid (reptilian)
+Init +7; Senses darkvision 60 ft.; Perception +3
+
+DEFENSE
+
+AC 15, touch 14, flat-footed 12 (+3 Dex, +1 natural, +1 size)
+hp 7 (1d6+1)
+Fort +0, Ref +3, Will +3
+Weaknesses light sensitivity
+
+OFFENSE
+
+Speed 60 ft.
+Melee 2 claws –2 (1d3–3)
+Ranged light crossbow +4 (1d6/19–20)
+Special Attacks claws (1d3–3, 5 rounds/day)
+Sorcerer Spells Known (CL 1st; concentration +3)
+
+1st (4/day)—burning hands (DC 13), charm person (DC 13)
+0th (at will)—dancing lights, detect magic, flare (DC 12), ray of frost
+Bloodline draconic (gold)
+
+STATISTICS
+
+Str 4, Dex 16, Con 10, Int 10, Wis 13, Cha 15
+Base Atk +0; CMB –4; CMD 9
+Feats Eschew Materials, Improved Initiative
+Skills Craft (trapmaking) +2, Perception +3, Profession (miner) +3, Stealth +11, Use Magic Device +6
+Languages Draconic
+SQ bloodline arcana (fire spells deal +1 damage per die), crafty
+Gear scroll of mage armor, scroll of vanish, caltrops, silversheen, light crossbow, 54 gp
