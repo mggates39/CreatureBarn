@@ -123,11 +123,11 @@ class CreatureBarn(customtkinter.CTk):
         raw = Path(file).read_text(encoding="utf-8")
         parser = ParseCreature(raw)
         parser.run()
-        # parser.creature.barn_type = "NPC"
-        # self.show_parsed_creature(parser.creature)
-        # self.app.on_export()
-        # self.app.destroy()
-        # self.app = None
+        parser.creature.barn_type = "NPC"
+        self.show_parsed_creature(parser.creature)
+        self.app.on_export()
+        self.app.destroy()
+        self.app = None
 
 
 def init_argparse() -> argparse.ArgumentParser:
