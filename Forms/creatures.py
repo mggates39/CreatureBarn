@@ -972,7 +972,7 @@ class CreatureForm:
             file_path = "output/" + self.creature.formal_name + '.txt'
             with open(file_path, 'w', encoding='utf-8') as file:
                 file.write("{#TAB}".join(output_fields))
-            print(f"File '{file_path}' written successfully in write mode.")
+            print(f"File '{file_path}' written successfully.")
             self.export_label.configure(text=file_path)
         except IOError as e:
             print(f"Error writing to file: {e}")
@@ -994,7 +994,7 @@ class CreatureList:
         self.creature_list = Listbox(mainframe, height=10, width=60, listvariable=self.creature_choices_var)
         self.creature_list.grid(row=0, column=0, columnspan=2, sticky="nsew")
 
-        load_button = ttk.Button(mainframe, text="load", command=self.show_creature)
+        load_button = ttk.Button(mainframe, text="Load", command=self.show_creature)
         load_button.grid(row=1, column=0, sticky="w")
         new_button = ttk.Button(mainframe, text="New")
         new_button.grid(row=1, column=2, sticky="e")

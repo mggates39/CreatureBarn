@@ -65,6 +65,9 @@ class CreatureBarn:
         if args.batch:
             self.process_batch()
             self.root.destroy()
+        elif self.args.file:
+            self.process_single_file()
+            self.root.destroy()
 
     # Function to display the "About" dialog box
     def show_about_dialog(self):
@@ -124,7 +127,7 @@ class CreatureBarn:
             self.text.delete("1.0", tk.END)
             self.text.insert(tk.END, "Processing selected files:\n")
             for file in file_list:
-                self.parse_and_export_file(file, True)
+                self.parse_and_process_file(file, True)
 
     def parse_screen(self):
         text = self.text.get("1.0", tk.END)
@@ -138,9 +141,13 @@ class CreatureBarn:
     def process_batch(self):
         print( "Processing files in {}".format(self.args.path))
         for file in Path(self.args.path).glob("*.txt"):
-            self.parse_and_export_file(file, False)
+            self.parse_and_process_file(file, False)
 
-    def parse_and_export_file(self, file, log_to_screen=False):
+    def process_single_file(self):
+        print("Processing file {}".format(self.args.file))
+        self.parse_and_process_file(self.args.file, False)
+
+    def parse_and_process_file(self, file, log_to_screen=False):
         if log_to_screen:
             self.text.insert(tk.END, file + "\n")
         else:
@@ -149,9 +156,17 @@ class CreatureBarn:
         raw = Path(file).read_text(encoding="utf-8")
         parser = ParseCreature(raw)
         parser.run()
-        parser.creature.barn_type = "NPC"
+        parser.creature.barn_type = self.args.type
         self.show_parsed_creature(parser.creature)
-        self.app.on_export()
+
+        if self.args.action == "export":
+            self.app.on_export()
+        elif self.args.action == "save":
+            self.app.on_save()
+        elif self.args.action == "both":
+            self.app.on_export()
+            self.app.on_save()
+
         self.app.root.destroy()
         self.app = None
 
@@ -171,6 +186,18 @@ def init_argparse() -> argparse.ArgumentParser:
     parser.add_argument(
         "-b", "--batch", action='store_true',
         help="Batch process all files in path"
+    )
+    parser.add_argument(
+        "-f", "--file", type=str,
+        help="file to process"
+    )
+    parser.add_argument(
+        "-t", "--type", choices=['NPC', 'Creature'], default='NPC',
+        help="Type of the file or files in the path, default is NPC"
+    )
+    parser.add_argument(
+        "-a", "--action", choices=['export', 'save', 'both'], default='export',
+        help="Action to perform on the batch or file, defaults to export"
     )
     return parser
 
