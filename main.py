@@ -130,6 +130,7 @@ class CreatureBarn(customtkinter.CTk):
         self.app = None
 
 
+
 def init_argparse() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         description="Simple Creature and NPC Stat Parser and Storage"
