@@ -760,7 +760,7 @@ class CreatureForm(customtkinter.CTkToplevel):
         if self.creature.sr_modifiers:
             resistance_list = []
             for resist in self.creature.sr_modifiers:
-                resistance_list.append(resist.resists + " " + resist.resist_amount)
+                resistance_list.append("{} {}".format(resist.resists,resist.resist_amount))
             resistance = ", ".join(resistance_list)
         else:
             resistance = ""
