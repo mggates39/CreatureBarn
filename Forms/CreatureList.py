@@ -23,7 +23,7 @@ class CreatureList(customtkinter.CTkToplevel):
         self.creature_list = Listbox(mainframe, height=10, width=70, listvariable=self.creature_choices_var)
         self.creature_list.grid(row=0, column=0, columnspan=2, sticky="nsew")
 
-        load_button = customtkinter.CTkButton(mainframe, text="load", command=self.show_creature)
+        load_button = customtkinter.CTkButton(mainframe, text="Load", command=self.show_creature)
         load_button.grid(row=1, column=0, sticky="w")
         new_button = customtkinter.CTkButton(mainframe, text="New")
         new_button.grid(row=1, column=1, sticky="e")
