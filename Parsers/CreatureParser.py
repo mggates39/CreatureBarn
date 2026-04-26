@@ -684,6 +684,7 @@ FSM_MAP = [
     {'src': S_FOUND_LANGUAGES, 'dst': S_FOUND_ECOLOGY_HEADER, 'cond': r"^ECOLOGY",  'callback': T_SKIP},
     {'src': S_FOUND_SPECIAL_QUALITIES, 'dst': S_FOUND_GEAR_LINE, 'cond': R_GEAR_LIST, 'callback': T_PARSE_GEAR_LIST},
     {'src': S_FOUND_SPECIAL_QUALITIES, 'dst': S_FOUND_SPECIAL_ABILITIES_HEADER, 'cond': r"^SPECIAL ABILITIES", 'callback': T_SKIP},
+    {'src': S_FOUND_SPECIAL_QUALITIES, 'dst': S_FOUND_ECOLOGY_HEADER, 'cond': r"^ECOLOGY",  'callback': T_SKIP},
     {'src': S_FOUND_GEAR_LINE, 'dst': S_FOUND_SPECIAL_ABILITIES_HEADER, 'cond': r"^SPECIAL ABILITIES",  'callback': T_SKIP},
     {'src': S_FOUND_GEAR_LINE, 'dst': S_FOUND_GEAR_LINE, 'cond': R_GEAR_LIST, 'callback': T_PARSE_GEAR_LIST},
     {'src': S_FOUND_GEAR_LINE, 'dst': S_FOUND_ECOLOGY_HEADER, 'cond': r"^ECOLOGY", 'callback': T_SKIP},
