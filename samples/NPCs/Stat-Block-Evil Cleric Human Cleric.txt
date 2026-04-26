@@ -1,0 +1,45 @@
+Evil Cleric (Human Cleric 6)
+
+Cleric CR 5
+
+XP 1,600
+Male human cleric 6
+LN Medium humanoid (human)
+Init –1; Senses Perception +6
+
+DEFENSE
+
+AC 14, touch 9, flat-footed 14 (+5 armor, –1 Dex)
+hp 27 (6d8)
+Fort +6, Ref +2, Will +10
+
+OFFENSE
+
+Speed 30 ft.
+Melee mwk heavy mace +3 (1d8–2)
+Ranged hand of the acolyte (mwk heavy mace) +9 (1d8–2)
+Special Attacks channel negative energy 7/day (DC 15, 3d6), hand of the acolyte (7/day)
+Domain Spell-Like Abilities (CL 6th; concentration +10)
+7/day—copycat (6 rounds)
+
+Spells Prepared (CL 6th; concentration +10)
+3rd— dispel magic D, invisibility purge, locate object, protection from energy
+2nd— hold person (DC 16), invisibility D , status, zone of truth (DC 16, 2)
+1st— bless, cure light wounds (2), disguise self D , sanctuary (DC 15), summon monster I
+0 (at will)— detect magic, detect poison, light, stabilize
+
+D domain spell; Domains Magic, Trickery
+
+Tactics
+Before Combat If he expects combat, he uses his copycat ability and casts bless on his allies.
+During Combat He uses support spells on his allies, casts hold person, and attempts to dispel ongoing enemy spell effects.
+Morale If brought below 10 hit points, or if his allies are killed, he casts invisibility and flees.
+
+STATISTICS
+
+Str 7, Dex 9, Con 11, Int 15, Wis 19, Cha 14
+Base Atk +4; CMB +2; CMD 11
+Feats Alertness, Combat Casting, Extra Channel, Selective Channeling
+Skills Appraise +9, Diplomacy +11, Heal +9, Knowledge (arcana) +7, Knowledge (geography) +4, Knowledge (history) +7, Knowledge (local) +4, Knowledge (nobility) +7, Knowledge (planes) +7, Knowledge (religion) +7, Linguistics +6, Perception +6, Sense Motive +15, Spellcraft +8
+SQ aura
+Combat Gear wand of cure moderate wounds (15 charges); Other Gear +1 chain shirt, masterwork heavy mace, cloak of resistance +1, holy symbol, 736 gp
