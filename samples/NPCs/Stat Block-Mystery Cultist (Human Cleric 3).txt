@@ -1,0 +1,52 @@
+Mystery Cultist (Human Cleric 3)
+
+Every step this fashionable cultist takes seems like part of a dance, her dozens of strange baubles tinkling with her every movement.
+
+Mystery Cultist CR 2
+
+XP 600
+Female human cleric 3
+CG Medium humanoid (human)
+Init +2; Senses Perception +3
+
+DEFENSE
+
+AC 14, touch 13, flat-footed 11 (+1 armor, +2 Dex, +1 dodge)
+hp 20 (3d8+3)
+Fort +3, Ref +3, Will +6
+
+OFFENSE
+
+Speed 30 ft.
+Melee mwk bladed scarf +5 (1d6+1) or dagger +4 (1d4+1/19–20)
+Ranged light crossbow +4 (1d8/19–20)
+Special Attacks channel positive energy 4/day (DC 12, 2d6)
+Domain Spell-Like Abilities (CL 3rd; concentration +6)
+
+6/day—touch of darkness (1 rounds)
+6/day—touch of good (+1)
+
+Cleric Spells Prepared (CL 3rd; concentration +6)
+
+2nd—blindness/deafnessD (DC 15), lesser restoration
+1st—command (DC 14), detect undead, faerie fireD, magic weapon
+0th (at will)—detect magic, guidance, light, purify food and drink
+
+D Domain spell; Domains Good, Moon
+
+STATISTICS
+
+Str 12, Dex 14, Con 10, Int 8, Wis 17, Cha 13
+Base Atk +2; CMB +3; CMD 16
+Feats Dodge, Mobility, Weapon Finesse
+Skills Diplomacy +6, Heal +8, Knowledge (religion) +4
+Languages Common, +1 additional
+SQ aura
+
+ECOLOGY
+
+Environment any
+Organization solitary, ensemble (2–4), or cult (5–9)
+Treasure NPC gear (masterwork bladed scarf, light crossbow with 20 bolts, dagger, bracers of armor +1, potion of cure light wounds, other treasure)
+
+Other dwellers of the city have likewise devoted themselves to holy figures, including angels, azatas, and agathions. Called “mystery cultists” by most because of their small numbers and esoteric manner of worship, the dedicated followers of the empyreal lords keep to themselves and rarely proselytize. Most mystery cults hold at least one of numerous monuments in high esteem, whether for their importance in local traditions or their part in legends. Although the cults’ gatherings can occasionally be disruptive to the flow of traffic throughout the city, city leaders do little to dissuade the cults’ practices, which are almost wholly harmless and serve to promote life, freedom, and other righteous virtues.
