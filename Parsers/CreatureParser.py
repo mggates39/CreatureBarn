@@ -593,8 +593,8 @@ R_SPLIT_COMMA_OUTSIDE_PARENS = r',\s*(?![^()]*\))'
 
 FSM_MAP = [
     #  {'src':, 'dst':, 'condition':, 'callback': },
-    {'src': S_INITIAL_LOAD, 'dst': S_FOUND_FORMAL_NAME, 'cond': R_ANYTHING, 'callback': T_PARSE_FORMAL_NAME},  # 1
     {'src': S_INITIAL_LOAD, 'dst': S_FOUND_COMMON_NAME, 'cond': R_COMMON_NAME, 'callback': T_PARSE_COMMON_NAME},  # 2
+    {'src': S_INITIAL_LOAD, 'dst': S_FOUND_FORMAL_NAME, 'cond': R_ANYTHING, 'callback': T_PARSE_FORMAL_NAME},  # 1
     {'src': S_FOUND_FORMAL_NAME, 'dst': S_FOUND_COMMON_NAME, 'cond': R_COMMON_NAME, 'callback': T_PARSE_COMMON_NAME},  # 3
     {'src': S_FOUND_FORMAL_NAME, 'dst': S_FOUND_DESCRIPTION, 'cond': R_ANYTHING, 'callback': T_PARSE_DESCRIPTION},  # 4
     {'src': S_FOUND_DESCRIPTION, 'dst': S_FOUND_COMMON_NAME, 'cond': R_COMMON_NAME, 'callback': T_PARSE_COMMON_NAME},  # 5
