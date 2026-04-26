@@ -28,6 +28,9 @@ creature_sizes = [
 def safe_copy(data):
     return data if data else ""
 
+def safe_stat_copy(data):
+    return data if data else "&amp;Mdash;"
+
 
 class CreatureForm(customtkinter.CTkToplevel):
 
@@ -943,14 +946,14 @@ class CreatureForm(customtkinter.CTkToplevel):
             spell_like_abilities,
             known_spells,
             prepared_spells,
-            self.creature.strength,
-            self.creature.dexterity,
-            self.creature.constitution,
-            self.creature.intelligence,
-            self.creature.wisdom,
-            self.creature.charisma,
-            safe_copy( self.creature.base_attack),
-            safe_copy( self.creature.combat_maneuver_bonus),
+            safe_stat_copy(self.creature.strength),
+            safe_stat_copy(self.creature.dexterity),
+            safe_stat_copy(self.creature.constitution),
+            safe_stat_copy(self.creature.intelligence),
+            safe_stat_copy(self.creature.wisdom),
+            safe_stat_copy(self.creature.charisma),
+            safe_copy(self.creature.base_attack),
+            safe_copy(self.creature.combat_maneuver_bonus),
             safe_copy(self.creature.combat_maneuver_defense),
             feats,
             skills,
