@@ -76,8 +76,8 @@ class CreatureForm(customtkinter.CTkToplevel):
 
         row_count += 1
         customtkinter.CTkLabel(self.mainframe, text="Size").grid(row=row_count, column=0, sticky=E)
-        self.size = StringVar()
-        size_entry = ttk.Combobox(self.mainframe, values=creature_sizes, textvariable=self.size)
+        self.size =  customtkinter.StringVar(value="Small")
+        size_entry = customtkinter.CTkComboBox(self.mainframe, values=creature_sizes, variable=self.size)
         size_entry.grid(row=row_count, column=1, columnspan=11, sticky=W)
 
         row_count += 1
@@ -495,7 +495,7 @@ class CreatureForm(customtkinter.CTkToplevel):
             self.reach.set(safe_copy(getattr(self.creature, 'reach')))
 
             self.ac_modifier_entry.delete("1.0", END)
-            self.ac_modifier_entry.configure(height=len(self.creature.ac_modifiers)*20                      )
+            self.ac_modifier_entry.configure(height=len(self.creature.ac_modifiers)*25)
             for ac_modifier in self.creature.ac_modifiers:
                 self.ac_modifier_entry.insert(END, getattr(ac_modifier, 'modifier_amount') + " " + getattr(ac_modifier, 'modifier_type') + "\n")
 
@@ -507,17 +507,17 @@ class CreatureForm(customtkinter.CTkToplevel):
             self.damage_reduction.set(safe_copy(getattr(self.creature, 'damage_reduction')))
 
             self.immune_entry.delete("1.0", END)
-            self.immune_entry.configure(height=len(self.creature.immune_modifiers)*20)
+            self.immune_entry.configure(height=len(self.creature.immune_modifiers)*25)
             for immunity in self.creature.immune_modifiers:
                 self.immune_entry.insert(END, getattr(immunity, 'immune_to') + "\n")
 
             self.defense_action_entry.delete("1.0", END)
-            self.defense_action_entry.configure(height=len(self.creature.immune_modifiers)*20)
+            self.defense_action_entry.configure(height=len(self.creature.immune_modifiers)*25)
             for defense_action in self.creature.defensive_abilities:
                 self.defense_action_entry.insert(END, getattr(defense_action, 'ability') + "\n")
 
             self.resist_entry.delete("1.0", END)
-            self.resist_entry.configure(height=len(self.creature.immune_modifiers)*20)
+            self.resist_entry.configure(height=len(self.creature.immune_modifiers)*25)
             for resist in self.creature.sr_modifiers:
                 resist_item = "{} {}\n".format(getattr(resist, 'resists'), getattr(resist, 'resist_amount'))
                 self.resist_entry.insert(END, resist_item)
@@ -600,22 +600,22 @@ class CreatureForm(customtkinter.CTkToplevel):
             self.speed.set(safe_copy(getattr(self.creature, 'speed')))
 
             self.speed_modifiers_entry.delete("1.0", END)
-            self.speed_modifiers_entry.configure(height=len(self.creature.speed_modifiers))
+            self.speed_modifiers_entry.configure(height=len(self.creature.speed_modifiers*25))
             for speed_modifier in self.creature.speed_modifiers:
                 self.speed_modifiers_entry.insert(END, getattr(speed_modifier, 'speed_modifier') + "\n")
 
             self.melee_entry.delete("1.0", END)
-            self.melee_entry.configure(height=len(self.creature.melee_attacks)*20)
+            self.melee_entry.configure(height=len(self.creature.melee_attacks)*25)
             for melee in self.creature.melee_attacks:
                 self.melee_entry.insert(END, getattr(melee, 'attack') + "\n")
 
             self.ranged_entry.delete("1.0", END)
-            self.ranged_entry.configure(height=len(self.creature.ranged_attacks)*20)
+            self.ranged_entry.configure(height=len(self.creature.ranged_attacks)*25)
             for ranged in self.creature.ranged_attacks:
                 self.ranged_entry.insert(END, getattr(ranged, 'attack') + "\n")
 
             self.special_attacks_entry.delete("1.0", END)
-            self.special_attacks_entry.configure(height=len(self.creature.special_attacks)*20)
+            self.special_attacks_entry.configure(height=len(self.creature.special_attacks)*25)
             for attack in self.creature.special_attacks:
                 self.special_attacks_entry.insert(END, getattr(attack, 'attack') + "\n")
 
