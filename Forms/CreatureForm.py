@@ -568,9 +568,12 @@ class CreatureForm(customtkinter.CTkToplevel):
 
             gear_items = safe_copy(getattr(self.creature, 'gear'))
             self.gear_entry.delete("1.0", END)
-            self.gear_entry.configure(height=((len(gear_items) / 6) + 1))
+            gear_count = 0
             for gear_item in gear_items.split(';'):
-                self.gear_entry.insert(END, gear_item.strip() + "\n")
+                for gear_object in gear_item.split(','):
+                    self.gear_entry.insert(END, gear_object.strip() + "\n")
+                    gear_count += 1
+            self.gear_entry.configure(height=(gear_count + 1))
 
 
             self.tactics_entry.delete("1.0", END)
