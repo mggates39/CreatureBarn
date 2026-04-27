@@ -210,7 +210,7 @@ class CreatureImmuneModifiers(Base):
 
 
 class CreatureDomains(Base):
-    __tablename__ = 'creature_domainss'
+    __tablename__ = 'creature_domains'
     id = Column(Integer, primary_key=True)
     domain = Column(String)
 
