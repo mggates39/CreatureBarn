@@ -10,7 +10,7 @@ from sqlalchemy.orm import sessionmaker, declarative_base
 # For SQLite (file-based)
 DATABASE_NAME = 'creature_barn.db'
 DATABASE_URL = "sqlite:///./"+DATABASE_NAME
-DATABASE_VERSION = '1'
+DATABASE_VERSION = '2'
 
 # Create the engine
 engine = create_engine(
@@ -140,8 +140,8 @@ class Database:
         if actual_version < expected_version:
             print("Updating from version {} to version {}".format(actual_version, expected_version))
             # @TODO: Update the data structures
-            # if actual_version < 2:
-            #     #self.upgrade_from_1_to_2()
+            if actual_version < '2':
+                self.upgrade_from_1_to_2()
             # Then update version number in the database
             self.update_database_version(expected_version)
         elif actual_version > expected_version:
@@ -149,3 +149,8 @@ class Database:
             exit(-1)
         else:
             print("Database version {} is current.".format(actual_version))
+
+    def upgrade_from_1_to_2(self):
+        self.create_cursor()
+        self.cur.execute('ALTER TABLE creature_domainss RENAME TO creature_domains' )
+        self.commit()
