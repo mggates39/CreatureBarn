@@ -42,11 +42,12 @@ Feats Dodge, Mobility, Weapon Finesse
 Skills Diplomacy +6, Heal +8, Knowledge (religion) +4
 Languages Common, +1 additional
 SQ aura
+Gear masterwork bladed scarf, light crossbow with 20 bolts, dagger, bracers of armor +1, potion of cure light wounds
 
 ECOLOGY
 
 Environment any
 Organization solitary, ensemble (2–4), or cult (5–9)
-Treasure NPC gear (masterwork bladed scarf, light crossbow with 20 bolts, dagger, bracers of armor +1, potion of cure light wounds, other treasure)
+Treasure NPC gear and other treasure
 
 Other dwellers of the city have likewise devoted themselves to holy figures, including angels, azatas, and agathions. Called “mystery cultists” by most because of their small numbers and esoteric manner of worship, the dedicated followers of the empyreal lords keep to themselves and rarely proselytize. Most mystery cults hold at least one of numerous monuments in high esteem, whether for their importance in local traditions or their part in legends. Although the cults’ gatherings can occasionally be disruptive to the flow of traffic throughout the city, city leaders do little to dissuade the cults’ practices, which are almost wholly harmless and serve to promote life, freedom, and other righteous virtues.
