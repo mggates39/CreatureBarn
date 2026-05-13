@@ -154,10 +154,10 @@ class CreatureBarn:
             print(file)
 
         raw = Path(file).read_text(encoding="utf-8")
-        parser = ParseCreature(raw)
-        parser.run()
-        parser.creature.barn_type = self.args.type
-        self.show_parsed_creature(parser.creature)
+        creature_parser = ParseCreature(raw)
+        creature_parser.run()
+        creature_parser.creature.barn_type = self.args.type
+        self.show_parsed_creature(creature_parser.creature)
 
         if self.args.action == "export":
             self.app.on_export()
@@ -172,40 +172,40 @@ class CreatureBarn:
 
 
 def init_argparse() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(
+    arg_parser = argparse.ArgumentParser(
         description="Simple Creature and NPC Stat Parser and Storage"
     )
-    parser.add_argument(
+    arg_parser.add_argument(
         "-v", "--version", action="version",
-        version = f"{parser.prog} version {APPLICATION_VERSION}"
+        version = f"{arg_parser.prog} version {APPLICATION_VERSION}"
     )
-    parser.add_argument(
+    arg_parser.add_argument(
         "-p", "--path", default='./source', type=str,
         help="Directory to batch process, defaults to ./source"
     )
-    parser.add_argument(
+    arg_parser.add_argument(
         "-b", "--batch", action='store_true',
         help="Batch process all files in path"
     )
-    parser.add_argument(
+    arg_parser.add_argument(
         "-f", "--file", type=str,
         help="file to process"
     )
-    parser.add_argument(
+    arg_parser.add_argument(
         "-t", "--type", choices=['NPC', 'Creature'], default='NPC',
         help="Type of the file or files in the path, default is NPC"
     )
-    parser.add_argument(
+    arg_parser.add_argument(
         "-a", "--action", choices=['export', 'save', 'both'], default='export',
         help="Action to perform on the batch or file, defaults to export"
     )
-    return parser
+    return arg_parser
 
 
 def main() -> None:
-    parser = init_argparse()
-    args = parser.parse_args()
-    root_widget = ThemedTk(theme='winxpblue')
+    arg_parser = init_argparse()
+    args = arg_parser.parse_args()
+    root_widget = ThemedTk(theme='Black')
     app = CreatureBarn(root_widget, args)
     root_widget.mainloop()
 

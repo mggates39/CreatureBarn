@@ -1,4 +1,4 @@
-greenlet==3.4.0
+greenlet==3.5.0
 pillow==12.2.0
 SQLAlchemy==2.1.0b1
 ttkthemes==3.3.0
