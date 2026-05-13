@@ -2,6 +2,17 @@
 This application allows the user to collect and manage monster and NPC character sheets in a local SQLite database.
 
 ## Installation
+Ensure TCL/tk is installed:
+
+Ubuntu
+```angular2html
+sudo apt update
+udo apt install python3-tk
+```
+Fedora
+```
+sudo dnf install python3-tkinter
+```
 Create a python virtual environment
 ```commandline
 python -m venv myenv.
