@@ -716,6 +716,7 @@ FSM_MAP = [
     {'src': S_FOUND_TREASURE, 'dst': S_FOUND_ABOUT_DETAILS, 'cond': R_ANYTHING, 'callback': T_PARSE_DESCRIPTION},
     {'src': S_FOUND_ABOUT_HEADER, 'dst': S_FOUND_ABOUT_DETAILS, 'cond': R_ANYTHING, 'callback': T_PARSE_DESCRIPTION},
     {'src': S_FOUND_ABOUT_DETAILS, 'dst': S_FOUND_COPYRIGHT, 'cond': r"Copyright", 'callback': T_SKIP},
+    {'src': S_FOUND_ABOUT_DETAILS, 'dst': S_FOUND_COPYRIGHT, 'cond': r"Section 15", 'callback': T_SKIP},
     {'src': S_FOUND_ABOUT_DETAILS, 'dst': S_FOUND_ABOUT_DETAILS, 'cond': R_ANYTHING, 'callback': T_PARSE_DESCRIPTION}
 ]
 
