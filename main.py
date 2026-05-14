@@ -32,9 +32,9 @@ class CreatureBarn(customtkinter.CTk):
         self.args = my_args
         self.app = None
         customtkinter.set_default_color_theme("dark-blue")
-        if "Linux" == platform.system():
-            customtkinter.set_widget_scaling(2.0)  # widget dimensions and text size
-            customtkinter.set_window_scaling(2.0)  # window geometry dimensions
+        # if "Linux" == platform.system():
+        #     customtkinter.set_widget_scaling(1.25)  # widget dimensions and text size
+        #     customtkinter.set_window_scaling(1.25)  # window geometry dimensions
 
         self.title("Creature Stat Block Parser")
         self.text = tk.Text(self, wrap="word", width=120, height=45)
