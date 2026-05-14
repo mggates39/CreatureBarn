@@ -248,12 +248,12 @@ class CreatureForm(customtkinter.CTkToplevel):
 
         row_count += 1
         customtkinter.CTkLabel(self.mainframe, text="Melee").grid(row=row_count, column=0, sticky=NE)
-        self.melee_entry = customtkinter.CTkTextbox(self.mainframe, width=300)
+        self.melee_entry = customtkinter.CTkTextbox(self.mainframe, width=400)
         self.melee_entry.grid(row=row_count, column=1, columnspan=11, sticky=W)
 
         row_count += 1
         customtkinter.CTkLabel(self.mainframe, text="Ranged").grid(row=row_count, column=0, sticky=NE)
-        self.ranged_entry = customtkinter.CTkTextbox(self.mainframe, width=300)
+        self.ranged_entry = customtkinter.CTkTextbox(self.mainframe, width=400)
         self.ranged_entry.grid(row=row_count, column=1, columnspan=11, sticky=W)
 
         row_count += 1
