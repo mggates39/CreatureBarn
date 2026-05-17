@@ -1,6 +1,6 @@
 customtkinter==5.2.2
 darkdetect==0.8.0
-greenlet==3.4.0
+greenlet==3.5.0
 packaging==26.2
 pillow==12.2.0
 SQLAlchemy==2.1.0b1
