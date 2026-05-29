@@ -36,6 +36,8 @@ Run the main code
 python main.py
 ```
 Now initialize the database from within the application.
+
+### Usage @@@
 ```
 usage: main.py [-h] [-v] [-p PATH] [-b] [-f FILE] [-t {NPC,Creature}]
                [-a {export,save,both}]
