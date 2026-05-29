@@ -5,12 +5,12 @@ This application allows the user to collect and manage monster and NPC character
 Ensure TCL/tk is installed:
 
 Ubuntu
-```angular2html
+```commandline
 sudo apt update
-udo apt install python3-tk
+sudo apt install python3-tk
 ```
 Fedora
-```
+```commandline
 sudo dnf install python3-tkinter
 ```
 Create a python virtual environment
