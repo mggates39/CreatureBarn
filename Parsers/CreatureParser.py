@@ -721,7 +721,7 @@ FSM_MAP = [
 ]
 
 for map_item in FSM_MAP:
-    map_item['condition_re_compiled'] = re.compile(map_item['cond'])
+    map_item['condition_re_compiled'] = re.compile(map_item['cond'], re.IGNORECASE)
 
 class ParseCreature:
     def __init__(self, raw_input):
