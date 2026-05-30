@@ -14,7 +14,7 @@ from Parsers.CreatureParser import ParseCreature
 from Database.database import DATABASE_VERSION, Database
 from Database.create_tables import initialize_repository
 
-APPLICATION_VERSION = '1.1.0'
+APPLICATION_VERSION = '1.2.0'
 
 def initialize_database():
     if messagebox.askyesno("Initialize Database", message="Do you really want to initialize the database?",
