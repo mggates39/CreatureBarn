@@ -4,6 +4,11 @@ This application allows the user to collect and manage monster and NPC character
 ## Installation
 Ensure TCL/tk is installed:
 
+Windows
+```commandline
+TK-Inter is fully installed with the base windwos python installation
+```
+
 Ubuntu
 ```commandline
 sudo apt update
