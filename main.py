@@ -29,7 +29,10 @@ class CreatureBarn:
         self.root = root
         self.newWindow = None
         self.app = None
-        self.root.title("Creature Stat Block Parser")
+        if self.args.hero:
+            self.root.title("Creature Hero Lab Stat Block Parser")
+        else:
+            self.root.title("Creature R20 Stat Block Parser")
         self.text = tk.Text(root, wrap="word", width=120, height=45)
         self.text.pack(expand=True, fill="both")
 
@@ -117,7 +120,7 @@ class CreatureBarn:
             return
         if len(file_list) == 1:
             raw = Path(file_list[0]).read_text(encoding="utf-8")
-            parser = ParseCreature(raw)
+            parser = ParseCreature(raw, self.args.hero)
             parser.run()
 
             self.text.delete("1.0", tk.END)
@@ -132,7 +135,7 @@ class CreatureBarn:
     def parse_screen(self):
         text = self.text.get("1.0", tk.END)
         if len(text) > 5:
-            parser = ParseCreature(text)
+            parser = ParseCreature(text, self.args.hero)
             parser.run()
             self.show_parsed_creature(parser.creature)
         else:
@@ -154,7 +157,7 @@ class CreatureBarn:
             print(file)
 
         raw = Path(file).read_text(encoding="utf-8")
-        creature_parser = ParseCreature(raw)
+        creature_parser = ParseCreature(raw, self.args.Hero)
         creature_parser.run()
         creature_parser.creature.barn_type = self.args.type
         self.show_parsed_creature(creature_parser.creature)
@@ -186,6 +189,10 @@ def init_argparse() -> argparse.ArgumentParser:
     arg_parser.add_argument(
         "-b", "--batch", action='store_true',
         help="Batch process all files in path"
+    )
+    arg_parser.add_argument(
+        "-e", "--hero", action='store_true',
+        help="Expect Hero Labs formated Stat Bloc"
     )
     arg_parser.add_argument(
         "-f", "--file", type=str,
