@@ -67,10 +67,14 @@ def transition_parse_alignment(fsm_obj):
                 fsm_obj.creature.type = matches.group(1)
 
 def transition_parse_race(fsm_obj):
-    parts = fsm_obj.current_line.split(' ')
-    fsm_obj.creature.level = parts[-1]
-    fsm_obj.creature.char_class = parts[-2]
-    fsm_obj.creature.race = " ".join(parts[:-2])
+    if fsm_obj.is_hero:
+        parts = fsm_obj.current_line.split('(')
+        fsm_obj.creature.race = parts[0]
+    else:
+        parts = fsm_obj.current_line.split(' ')
+        fsm_obj.creature.level = parts[-1]
+        fsm_obj.creature.char_class = parts[-2]
+        fsm_obj.creature.race = " ".join(parts[:-2])
 
 def transition_parse_initiative(fsm_obj):
     parts = fsm_obj.current_line.split(';')
@@ -377,6 +381,14 @@ def transition_parse_feats(fsm_obj):
             creature_feat.feat = feat.strip()
             fsm_obj.creature.feats.append(creature_feat)
 
+def transition_parse_tricks(fsm_obj):
+    trick_match = re.search(r"tricks\s+(.+)", fsm_obj.current_line, re.IGNORECASE)
+    if trick_match:
+        for trick in _normalize_mixed_case(fsm_obj.current_line).split(","):
+            creature_feat = CreatureFeats()
+            creature_feat.feat = trick.strip()
+            fsm_obj.creature.feats.append(creature_feat)
+
 def transition_parse_skills(fsm_obj):
     skills_match = re.search(r"Skills\s+(.+)", fsm_obj.current_line, re.IGNORECASE)
     if skills_match:
@@ -455,6 +467,16 @@ def transition_parse_special_ability_name(fsm_obj):
         fsm_obj.special_ability.ability = special_ability_match.group(1).strip()
         fsm_obj.special_ability.type = special_ability_match.group(2).strip()
 
+def transition_parse_hero_special_ability(fsm_obj):
+    special_ability_match = re.search(r"(.+) (\(.+\)) (.*)", fsm_obj.current_line, re.IGNORECASE)
+    if special_ability_match:
+        if fsm_obj.special_ability:
+            fsm_obj.creature.special_abilities.append(fsm_obj.special_ability)
+        fsm_obj.special_ability = CreatureSpecialAbilities()
+        fsm_obj.special_ability.ability = special_ability_match.group(1).strip()
+        fsm_obj.special_ability.type = special_ability_match.group(2).strip()
+        fsm_obj.special_ability.description = special_ability_match.group(3).strip()
+
 def transition_parse_special_ability_description(fsm_obj):
     special_ability_match = re.search(R_ANYTHING,fsm_obj.current_line, re.IGNORECASE)
     if special_ability_match:
@@ -510,6 +532,7 @@ T_PARSE_TACTICS = transition_parse_tactics
 T_PARSE_STRENGTH = transition_parse_strength
 T_PARSE_BASE_ATTACK = transition_parse_base_attack
 T_PARSE_FEATS = transition_parse_feats
+T_PARSE_TRICKS = transition_parse_tricks
 T_PARSE_SKILLS = transition_parse_skills
 T_PARSE_LANGUAGES = transition_parse_languages
 T_PARSE_SPECIAL_QUALITIES = transition_parse_special_qualities
@@ -517,6 +540,7 @@ T_PARSE_GEAR_LIST = transition_parse_gear_list
 T_PARSE_GEAR_ITEM = transition_parse_gear_item
 T_PARSE_GEAR_DESCRIPTION = transition_parse_gear_description
 T_PARSE_SAVE_GEAR_ITEM = transition_parse_save_gear_item
+T_PARSE_HERO_SPECIAL_ABILITY = transition_parse_hero_special_ability
 T_PARSE_SPECIAL_ABILITY_NAME = transition_parse_special_ability_name
 T_PARSE_SPECIAL_ABILITY_DESCRIPTION = transition_parse_special_ability_description
 T_PARSE_SAVE_SPECIAL_ABILITY = transition_parse_save_special_ability
@@ -557,6 +581,7 @@ S_FOUND_STATISTICS_HEADER = "STATE: FOUND STATISTICS HEADER"
 S_FOUND_STRENGTH = "STATE: FOUND STRENGTH"
 S_FOUND_BASE_ATTACK = "STATE: FOUND BASE ATTACK"
 S_FOUND_FEATS = "STATE: FOUND FEATS"
+S_FOUND_TRICKS = "STATE: FOUND TRICKS"
 S_FOUND_SKILLS = "STATE: FOUND SKILLS"
 S_FOUND_LANGUAGES = "STATE: FOUND LANGUAGES"
 S_FOUND_SPECIAL_QUALITIES = "STATE: FOUND SPECIAL QUALITIES"
@@ -590,6 +615,7 @@ R_SPACE = r"^Space\s+(.+)"
 R_REACH = r"Reach\s+(.+)"
 R_GEAR_LIST =  r"(.* )*Gear (.+)"
 R_SPLIT_COMMA_OUTSIDE_PARENS = r',\s*(?![^()]*\))'
+R_SEPERATOR = r'—————'
 
 R20_FSM_MAP = [
     #  {'src':, 'dst':, 'condition':, 'callback': },
@@ -726,6 +752,7 @@ HERO_FSM_MAP = [
     {'src': S_INITIAL_LOAD, 'dst': S_FOUND_DESCRIPTION, 'cond': R_ANYTHING, 'callback': T_PARSE_DESCRIPTION},  # 4
     {'src': S_FOUND_DESCRIPTION, 'dst': S_FOUND_COMMON_NAME, 'cond': R_COMMON_NAME, 'callback': T_PARSE_COMMON_NAME},  # 5
     {'src': S_FOUND_DESCRIPTION, 'dst': S_FOUND_XP, 'cond': R_EXPERIENCE, 'callback': T_PARSE_EXPERIENCE_POINTS}, #6
+    {'src': S_FOUND_DESCRIPTION, 'dst': S_FOUND_DESCRIPTION, 'cond': R_SEPERATOR, 'callback': T_SKIP},  #7
     {'src': S_FOUND_DESCRIPTION, 'dst': S_FOUND_DESCRIPTION, 'cond': R_ANYTHING, 'callback': T_PARSE_DESCRIPTION},  #7
     {'src': S_FOUND_COMMON_NAME, 'dst': S_FOUND_XP, 'cond': R_EXPERIENCE, 'callback': T_PARSE_EXPERIENCE_POINTS}, #8
     {'src': S_FOUND_COMMON_NAME, 'dst': S_FOUND_DESCRIPTION, 'cond': R_ANYTHING, 'callback': T_PARSE_DESCRIPTION}, #9
@@ -796,11 +823,17 @@ HERO_FSM_MAP = [
     {'src': S_FOUND_BASE_ATTACK, 'dst': S_FOUND_SPECIAL_QUALITIES, 'cond': r"^SQ\s", 'callback': T_PARSE_SPECIAL_QUALITIES},
     {'src': S_FOUND_BASE_ATTACK, 'dst': S_FOUND_GEAR_LINE, 'cond': R_GEAR_LIST, 'callback': T_PARSE_GEAR_LIST},
     {'src': S_FOUND_BASE_ATTACK, 'dst': S_FOUND_SPECIAL_ABILITIES_HEADER, 'cond': r"^SPECIAL ABILITIES",  'callback': T_SKIP},
+    {'src': S_FOUND_FEATS, 'dst': S_FOUND_TRICKS, 'cond': r"^Tricks\s", 'callback': T_PARSE_TRICKS},
     {'src': S_FOUND_FEATS, 'dst': S_FOUND_SKILLS, 'cond': r"^Skills\s", 'callback': T_PARSE_SKILLS},
     {'src': S_FOUND_FEATS, 'dst': S_FOUND_LANGUAGES, 'cond': r"^Languages\s", 'callback': T_PARSE_LANGUAGES},
     {'src': S_FOUND_FEATS, 'dst': S_FOUND_SPECIAL_QUALITIES, 'cond': r"^SQ\s", 'callback': T_PARSE_SPECIAL_QUALITIES},
     {'src': S_FOUND_FEATS, 'dst': S_FOUND_GEAR_LINE, 'cond': R_GEAR_LIST, 'callback': T_PARSE_GEAR_LIST},
     {'src': S_FOUND_FEATS, 'dst': S_FOUND_SPECIAL_ABILITIES_HEADER, 'cond': r"^SPECIAL ABILITIES",  'callback': T_SKIP},
+    {'src': S_FOUND_TRICKS, 'dst': S_FOUND_SKILLS, 'cond': r"^Skills\s", 'callback': T_PARSE_SKILLS},
+    {'src': S_FOUND_TRICKS, 'dst': S_FOUND_LANGUAGES, 'cond': r"^Languages\s", 'callback': T_PARSE_LANGUAGES},
+    {'src': S_FOUND_TRICKS, 'dst': S_FOUND_SPECIAL_QUALITIES, 'cond': r"^SQ\s", 'callback': T_PARSE_SPECIAL_QUALITIES},
+    {'src': S_FOUND_TRICKS, 'dst': S_FOUND_GEAR_LINE, 'cond': R_GEAR_LIST, 'callback': T_PARSE_GEAR_LIST},
+    {'src': S_FOUND_TRICKS, 'dst': S_FOUND_SPECIAL_ABILITIES_HEADER, 'cond': r"^SPECIAL ABILITIES", 'callback': T_SKIP},
     {'src': S_FOUND_SKILLS, 'dst': S_FOUND_LANGUAGES, 'cond': r"^Languages\s", 'callback': T_PARSE_LANGUAGES},
     {'src': S_FOUND_SKILLS, 'dst': S_FOUND_SPECIAL_QUALITIES, 'cond': r"^SQ\s", 'callback': T_PARSE_SPECIAL_QUALITIES},
     {'src': S_FOUND_SKILLS, 'dst': S_FOUND_GEAR_LINE, 'cond': R_GEAR_LIST, 'callback': T_PARSE_GEAR_LIST},
@@ -862,8 +895,9 @@ class ParseCreature:
         self.gear_item = None
         self.special_ability = None
         self.input_str = raw_input
+        self.is_hero = is_hero
         self.fsm_map = R20_FSM_MAP
-        if is_hero:
+        if self.is_hero:
             self.fsm_map = HERO_FSM_MAP
         self.current_state = S_INITIAL_LOAD
         self.current_line = ""
