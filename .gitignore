@@ -12,6 +12,7 @@ venv/
 
 # IDE/Tools
 .idea/
+.idea/*
 .vscode/
 .ipynb_checkpoints
 
