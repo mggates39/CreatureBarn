@@ -1,0 +1,33 @@
+This small dog has a rough coat and a hungry look in its dark brown eyes.
+—————
+Dog CR 1/3
+XP 135
+Male dog ( Pathfinder RPG Bestiary 87)
+N Small animal
+Init +1; Senses low-light vision, scent; Perception +8
+—————
+Defense
+—————
+AC 13, touch 12, flat-footed 12 (+1 Dex, +1 natural, +1 size)
+hp 6 (1d8+2)
+Fort +4, Ref +3, Will +1
+—————
+Offense
+—————
+Speed 40 ft.
+Melee bite +2 (1d4+1)
+—————
+Statistics
+—————
+Str 13, Dex 13, Con 15, Int 2, Wis 12, Cha 6
+Base Atk +0; CMB +0; CMD 11 (15 vs. trip)
+Feats Skill Focus (Perception)
+Tricks Attack, Down, Fighting, Stay
+Skills Acrobatics +1 (+9 to jump), Perception +8, Survival +1 (+5 when tracking by scent); Racial Modifiers +4 Survival when tracking by scent
+SQ fighting
+—————
+Special Abilities
+—————
+Fighting [Trick] The animal has been trained to fight.
+Low-Light Vision See twice as far as a human in dim light, distinguishing color and detail.
+Scent (Ex) Detect oppon

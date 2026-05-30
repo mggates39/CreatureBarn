@@ -591,7 +591,7 @@ R_REACH = r"Reach\s+(.+)"
 R_GEAR_LIST =  r"(.* )*Gear (.+)"
 R_SPLIT_COMMA_OUTSIDE_PARENS = r',\s*(?![^()]*\))'
 
-FSM_MAP = [
+R20_FSM_MAP = [
     #  {'src':, 'dst':, 'condition':, 'callback': },
     {'src': S_INITIAL_LOAD, 'dst': S_FOUND_COMMON_NAME, 'cond': R_COMMON_NAME, 'callback': T_PARSE_COMMON_NAME},  # 2
     {'src': S_INITIAL_LOAD, 'dst': S_FOUND_FORMAL_NAME, 'cond': R_ANYTHING, 'callback': T_PARSE_FORMAL_NAME},  # 1
@@ -720,17 +720,151 @@ FSM_MAP = [
     {'src': S_FOUND_ABOUT_DETAILS, 'dst': S_FOUND_ABOUT_DETAILS, 'cond': R_ANYTHING, 'callback': T_PARSE_DESCRIPTION}
 ]
 
-for map_item in FSM_MAP:
+HERO_FSM_MAP = [
+    #  {'src':, 'dst':, 'condition':, 'callback': },
+    {'src': S_INITIAL_LOAD, 'dst': S_FOUND_COMMON_NAME, 'cond': R_COMMON_NAME, 'callback': T_PARSE_COMMON_NAME},  # 3
+    {'src': S_INITIAL_LOAD, 'dst': S_FOUND_DESCRIPTION, 'cond': R_ANYTHING, 'callback': T_PARSE_DESCRIPTION},  # 4
+    {'src': S_FOUND_DESCRIPTION, 'dst': S_FOUND_COMMON_NAME, 'cond': R_COMMON_NAME, 'callback': T_PARSE_COMMON_NAME},  # 5
+    {'src': S_FOUND_DESCRIPTION, 'dst': S_FOUND_XP, 'cond': R_EXPERIENCE, 'callback': T_PARSE_EXPERIENCE_POINTS}, #6
+    {'src': S_FOUND_DESCRIPTION, 'dst': S_FOUND_DESCRIPTION, 'cond': R_ANYTHING, 'callback': T_PARSE_DESCRIPTION},  #7
+    {'src': S_FOUND_COMMON_NAME, 'dst': S_FOUND_XP, 'cond': R_EXPERIENCE, 'callback': T_PARSE_EXPERIENCE_POINTS}, #8
+    {'src': S_FOUND_COMMON_NAME, 'dst': S_FOUND_DESCRIPTION, 'cond': R_ANYTHING, 'callback': T_PARSE_DESCRIPTION}, #9
+    {'src': S_FOUND_XP, 'dst': S_FOUND_ALIGNMENT, 'cond': R_ALIGNMENT, 'callback': T_PARSE_ALIGNMENT}, #10
+    {'src': S_FOUND_XP, 'dst': S_FOUND_RACE, 'cond': R_ANYTHING, 'callback': T_PARSE_RACE}, #11
+    {'src': S_FOUND_RACE, 'dst': S_FOUND_ALIGNMENT, 'cond': R_ALIGNMENT, 'callback': T_PARSE_ALIGNMENT},  # 12
+    {'src': S_FOUND_ALIGNMENT, 'dst': S_FOUND_INITIATIVE, 'cond': R_INITIATIVE, 'callback': T_PARSE_INITIATIVE},  # 13
+    {'src': S_FOUND_INITIATIVE, 'dst': S_FOUND_AURAS, 'cond': R_AURA, 'callback': T_PARSE_AURAS}, # 14
+    {'src': S_FOUND_INITIATIVE, 'dst': S_FOUND_DEFENSE_HEADER, 'cond':R_DEFENCE_HEADER, 'callback': T_SKIP}, # 15
+    {'src': S_FOUND_AURAS, 'dst': S_FOUND_DEFENSE_HEADER, 'cond':R_DEFENCE_HEADER, 'callback': T_SKIP},  # 16
+    {'src': S_FOUND_DEFENSE_HEADER, 'dst': S_FOUND_AC, 'cond': r"^AC\s(\d+)", 'callback': T_PARSE_AC},  # 17
+    {'src': S_FOUND_AC, 'dst': S_FOUND_HP, 'cond': r"^[HPhp]{2}\s(\d+)", 'callback': T_PARSE_HP},  # 18
+    {'src': S_FOUND_HP, 'dst': S_FOUND_FORTITUDE, 'cond': r"^Fort\s", 'callback': T_PARSE_FORTITUDE},  # 19
+    {'src': S_FOUND_FORTITUDE, 'dst': S_FOUND_DR, 'cond': r"^DR\s(\d+)", 'callback': T_PARSE_DAMAGE_RESISTANCE},  # 20
+    {'src': S_FOUND_FORTITUDE, 'dst': S_FOUND_OFFENSE_HEADER, 'cond': r"^OFFENSE", 'callback': T_PARSE_DAMAGE_RESISTANCE},  # 20
+    {'src': S_FOUND_DR, 'dst': S_FOUND_WEAKNESS, 'cond': r"^Weaknesses\s", 'callback': T_PARSE_WEAKNESS},  # 21
+    {'src': S_FOUND_DR, 'dst': S_FOUND_OFFENSE_HEADER, 'cond': r"^OFFENSE", 'callback': T_SKIP},  # 22
+    {'src': S_FOUND_WEAKNESS, 'dst': S_FOUND_OFFENSE_HEADER, 'cond': r"^OFFENSE", 'callback': T_SKIP},  # 23
+    {'src': S_FOUND_OFFENSE_HEADER, 'dst': S_FOUND_SPEED, 'cond': R_SPEED, 'callback': T_PARSE_SPEED},  # 24
+    {'src': S_FOUND_SPEED, 'dst': S_FOUND_MELEE, 'cond': R_MELEE, 'callback': T_PARSE_MELEE},  # 25
+    {'src': S_FOUND_MELEE, 'dst': S_FOUND_RANGED, 'cond': R_RANGED, 'callback': T_PARSE_RANGED},  # 26
+    {'src': S_FOUND_MELEE, 'dst': S_FOUND_SPACE, 'cond': R_SPACE, 'callback': T_PARSE_SPACE},  # 26
+    {'src': S_FOUND_MELEE, 'dst': S_FOUND_SPECIAL_ATTACKS, 'cond': r"^Special Attacks\s", 'callback': T_PARSE_SPECIAL_ATTACKS},  # 27
+    {'src': S_FOUND_MELEE, 'dst': S_FOUND_SPELLS_KNOWN, 'cond': R_KNOWN_SPELLS, 'callback': T_PARSE_SPELLS_KNOWN},  # 29
+    {'src': S_FOUND_MELEE, 'dst': S_FOUND_SPELLS_PREPARED, 'cond': r".*Spells\sPrepared\s", 'callback': T_PARSE_SPELLS_PREPARED},  # 29
+    {'src': S_FOUND_MELEE, 'dst': S_FOUND_STATISTICS_HEADER, 'cond': r"^STATISTICS", 'callback': T_SKIP},  # 28
+    {'src': S_FOUND_MELEE, 'dst': S_FOUND_TACTICS_HEADER, 'cond': r"^TACTICS", 'callback': T_SKIP},  # 28
+    {'src': S_FOUND_RANGED, 'dst': S_FOUND_SPECIAL_ATTACKS, 'cond': r"^Special Attacks\s", 'callback': T_PARSE_SPECIAL_ATTACKS},  # 27
+    {'src': S_FOUND_RANGED, 'dst': S_FOUND_SPACE, 'cond': R_SPACE, 'callback': T_PARSE_SPACE},  # 26
+    {'src': S_FOUND_RANGED, 'dst': S_FOUND_SPELLS_KNOWN, 'cond': R_KNOWN_SPELLS, 'callback': T_PARSE_SPELLS_KNOWN},  # 29
+    {'src': S_FOUND_RANGED, 'dst': S_FOUND_SPELLS_PREPARED, 'cond': r".*Spells\sPrepared\s", 'callback': T_PARSE_SPELLS_PREPARED},  # 29
+    {'src': S_FOUND_RANGED, 'dst': S_FOUND_STATISTICS_HEADER, 'cond': r"^STATISTICS", 'callback': T_SKIP},  # 28
+    {'src': S_FOUND_RANGED, 'dst': S_FOUND_TACTICS_HEADER, 'cond': r"^TACTICS", 'callback': T_SKIP},  # 28
+    {'src': S_FOUND_SPACE, 'dst': S_FOUND_SPECIAL_ATTACKS, 'cond': r"^Special Attacks\s", 'callback': T_PARSE_SPECIAL_ATTACKS},  # 27
+    {'src': S_FOUND_SPACE, 'dst': S_FOUND_SPELLS_KNOWN, 'cond': R_KNOWN_SPELLS, 'callback': T_PARSE_SPELLS_KNOWN},  # 29
+    {'src': S_FOUND_SPACE, 'dst': S_FOUND_SPELLS_PREPARED, 'cond': r".*Spells\sPrepared\s", 'callback': T_PARSE_SPELLS_PREPARED},  # 29
+    {'src': S_FOUND_SPACE, 'dst': S_FOUND_STATISTICS_HEADER, 'cond': r"^STATISTICS", 'callback': T_SKIP},  # 28
+    {'src': S_FOUND_SPACE, 'dst': S_FOUND_TACTICS_HEADER, 'cond': r"^TACTICS", 'callback': T_SKIP},  # 28
+    {'src': S_FOUND_SPECIAL_ATTACKS, 'dst': S_FOUND_STATISTICS_HEADER, 'cond': r"^STATISTICS", 'callback': T_SKIP},  # 29
+    {'src': S_FOUND_SPECIAL_ATTACKS, 'dst': S_FOUND_TACTICS_HEADER, 'cond': r"^TACTICS", 'callback': T_SKIP},  # 29
+    {'src': S_FOUND_SPECIAL_ATTACKS, 'dst': S_FOUND_SPELL_LIKE_ABILITIES, 'cond': r".*Spell\-Like\sAbilities\s", 'callback': T_PARSE_SPELL_LIKE_ABILITIES},  # 29
+    {'src': S_FOUND_SPECIAL_ATTACKS, 'dst': S_FOUND_SPELLS_KNOWN, 'cond': R_KNOWN_SPELLS, 'callback': T_PARSE_SPELLS_KNOWN},  # 29
+    {'src': S_FOUND_SPECIAL_ATTACKS, 'dst': S_FOUND_SPELLS_PREPARED, 'cond': r".*Spells\sPrepared\s", 'callback': T_PARSE_SPELLS_PREPARED},  # 29
+    {'src': S_FOUND_SPELL_LIKE_ABILITIES, 'dst': S_FOUND_SLA_SPELLS, 'cond': r"(.+)—(.+)", 'callback': T_PARSE_SLA_SPELLS},
+    {'src': S_FOUND_SLA_SPELLS, 'dst': S_FOUND_STATISTICS_HEADER, 'cond': r"^STATISTICS", 'callback': T_SKIP},
+    {'src': S_FOUND_SLA_SPELLS, 'dst': S_FOUND_TACTICS_HEADER, 'cond': r"^TACTICS", 'callback': T_SKIP},  # 29
+    {'src': S_FOUND_SLA_SPELLS, 'dst': S_FOUND_SPELLS_KNOWN, 'cond': R_KNOWN_SPELLS, 'callback': T_PARSE_SPELLS_KNOWN},  # 29
+    {'src': S_FOUND_SLA_SPELLS, 'dst': S_FOUND_SPELLS_PREPARED, 'cond': r".*Spells\sPrepared\s", 'callback': T_PARSE_SPELLS_PREPARED},  # 29
+    {'src': S_FOUND_SLA_SPELLS, 'dst': S_FOUND_SLA_SPELLS, 'cond': r"(.+)—(.+)", 'callback': T_PARSE_SLA_SPELLS},
+    {'src': S_FOUND_SPELLS_KNOWN, 'dst': S_FOUND_SK_SPELLS, 'cond': r"(.+) (\(.+\))?—(.+)", 'callback': T_PARSE_SK_SPELLS},
+    {'src': S_FOUND_SK_SPELLS, 'dst': S_FOUND_STATISTICS_HEADER, 'cond': r"^STATISTICS", 'callback': T_SKIP},
+    {'src': S_FOUND_SK_SPELLS, 'dst': S_FOUND_TACTICS_HEADER, 'cond': r"^TACTICS", 'callback': T_SKIP},  # 29
+    {'src': S_FOUND_SK_SPELLS, 'dst': S_FOUND_SPELLS_PREPARED, 'cond': r".*Spells\sPrepared\s", 'callback': T_PARSE_SPELLS_PREPARED},  # 29
+    {'src': S_FOUND_SK_SPELLS, 'dst': S_FOUND_SK_SPELLS, 'cond': r"(.+) (\(.+\))?—(.+)", 'callback': T_PARSE_SK_SPELLS},
+    {'src': S_FOUND_SPELLS_PREPARED, 'dst': S_FOUND_SP_SPELLS, 'cond': r"(.+)—(.+)", 'callback': T_PARSE_SP_SPELLS},
+    {'src': S_FOUND_SP_SPELLS, 'dst': S_FOUND_STATISTICS_HEADER, 'cond': r"^STATISTICS", 'callback': T_SKIP},
+    {'src': S_FOUND_SP_SPELLS, 'dst': S_FOUND_TACTICS_HEADER, 'cond': r"^TACTICS", 'callback': T_SKIP},
+    {'src': S_FOUND_SP_SPELLS, 'dst': S_FOUND_SP_SPELLS, 'cond': r"(.+)—(.+)", 'callback': T_PARSE_SP_SPELLS},
+    {'src': S_FOUND_TACTICS_HEADER, 'dst': S_FOUND_STATISTICS_HEADER, 'cond': r"^STATISTICS", 'callback': T_SKIP},
+    {'src': S_FOUND_TACTICS_HEADER, 'dst': S_FOUND_TACTICS_DETAIL, 'cond': R_ANYTHING, 'callback': T_PARSE_TACTICS},
+    {'src': S_FOUND_TACTICS_DETAIL, 'dst': S_FOUND_STATISTICS_HEADER, 'cond': r"^STATISTICS", 'callback': T_SKIP},
+    {'src': S_FOUND_TACTICS_DETAIL, 'dst': S_FOUND_TACTICS_DETAIL, 'cond': R_ANYTHING, 'callback': T_PARSE_TACTICS},
+    {'src': S_FOUND_STATISTICS_HEADER, 'dst': S_FOUND_STRENGTH, 'cond': r"^Str\s(\d+)", 'callback': T_PARSE_STRENGTH},
+    {'src': S_FOUND_STRENGTH, 'dst': S_FOUND_BASE_ATTACK, 'cond': r"^Base Atk\s", 'callback': T_PARSE_BASE_ATTACK},
+    {'src': S_FOUND_BASE_ATTACK, 'dst': S_FOUND_FEATS, 'cond': r"^Feats\s", 'callback': T_PARSE_FEATS},
+    {'src': S_FOUND_BASE_ATTACK, 'dst': S_FOUND_SKILLS, 'cond': r"^Skills\s", 'callback': T_PARSE_SKILLS},
+    {'src': S_FOUND_BASE_ATTACK, 'dst': S_FOUND_LANGUAGES, 'cond': r"^Languages\s", 'callback': T_PARSE_LANGUAGES},
+    {'src': S_FOUND_BASE_ATTACK, 'dst': S_FOUND_SPECIAL_QUALITIES, 'cond': r"^SQ\s", 'callback': T_PARSE_SPECIAL_QUALITIES},
+    {'src': S_FOUND_BASE_ATTACK, 'dst': S_FOUND_GEAR_LINE, 'cond': R_GEAR_LIST, 'callback': T_PARSE_GEAR_LIST},
+    {'src': S_FOUND_BASE_ATTACK, 'dst': S_FOUND_SPECIAL_ABILITIES_HEADER, 'cond': r"^SPECIAL ABILITIES",  'callback': T_SKIP},
+    {'src': S_FOUND_FEATS, 'dst': S_FOUND_SKILLS, 'cond': r"^Skills\s", 'callback': T_PARSE_SKILLS},
+    {'src': S_FOUND_FEATS, 'dst': S_FOUND_LANGUAGES, 'cond': r"^Languages\s", 'callback': T_PARSE_LANGUAGES},
+    {'src': S_FOUND_FEATS, 'dst': S_FOUND_SPECIAL_QUALITIES, 'cond': r"^SQ\s", 'callback': T_PARSE_SPECIAL_QUALITIES},
+    {'src': S_FOUND_FEATS, 'dst': S_FOUND_GEAR_LINE, 'cond': R_GEAR_LIST, 'callback': T_PARSE_GEAR_LIST},
+    {'src': S_FOUND_FEATS, 'dst': S_FOUND_SPECIAL_ABILITIES_HEADER, 'cond': r"^SPECIAL ABILITIES",  'callback': T_SKIP},
+    {'src': S_FOUND_SKILLS, 'dst': S_FOUND_LANGUAGES, 'cond': r"^Languages\s", 'callback': T_PARSE_LANGUAGES},
+    {'src': S_FOUND_SKILLS, 'dst': S_FOUND_SPECIAL_QUALITIES, 'cond': r"^SQ\s", 'callback': T_PARSE_SPECIAL_QUALITIES},
+    {'src': S_FOUND_SKILLS, 'dst': S_FOUND_GEAR_LINE, 'cond': R_GEAR_LIST, 'callback': T_PARSE_GEAR_LIST},
+    {'src': S_FOUND_SKILLS, 'dst': S_FOUND_SPECIAL_ABILITIES_HEADER, 'cond': r"^SPECIAL ABILITIES",  'callback': T_SKIP},
+    {'src': S_FOUND_LANGUAGES, 'dst': S_FOUND_SPECIAL_QUALITIES, 'cond': r"^SQ\s", 'callback': T_PARSE_SPECIAL_QUALITIES},
+    {'src': S_FOUND_LANGUAGES, 'dst': S_FOUND_GEAR_LINE, 'cond': R_GEAR_LIST, 'callback': T_PARSE_GEAR_LIST},
+    {'src': S_FOUND_LANGUAGES, 'dst': S_FOUND_SPECIAL_ABILITIES_HEADER, 'cond': r"^SPECIAL ABILITIES",  'callback': T_SKIP},
+    {'src': S_FOUND_LANGUAGES, 'dst': S_FOUND_ECOLOGY_HEADER, 'cond': r"^ECOLOGY",  'callback': T_SKIP},
+    {'src': S_FOUND_SPECIAL_QUALITIES, 'dst': S_FOUND_GEAR_LINE, 'cond': R_GEAR_LIST, 'callback': T_PARSE_GEAR_LIST},
+    {'src': S_FOUND_SPECIAL_QUALITIES, 'dst': S_FOUND_SPECIAL_ABILITIES_HEADER, 'cond': r"^SPECIAL ABILITIES", 'callback': T_SKIP},
+    {'src': S_FOUND_SPECIAL_QUALITIES, 'dst': S_FOUND_ECOLOGY_HEADER, 'cond': r"^ECOLOGY",  'callback': T_SKIP},
+    {'src': S_FOUND_GEAR_LINE, 'dst': S_FOUND_SPECIAL_ABILITIES_HEADER, 'cond': r"^SPECIAL ABILITIES",  'callback': T_SKIP},
+    {'src': S_FOUND_GEAR_LINE, 'dst': S_FOUND_GEAR_LINE, 'cond': R_GEAR_LIST, 'callback': T_PARSE_GEAR_LIST},
+    {'src': S_FOUND_GEAR_LINE, 'dst': S_FOUND_ECOLOGY_HEADER, 'cond': r"^ECOLOGY", 'callback': T_SKIP},
+    {'src': S_FOUND_GEAR_LINE, 'dst': S_FOUND_ABOUT_HEADER, 'cond': r"^(ABOUT|DESCRIPTION)", 'callback': T_SKIP},
+    {'src': S_FOUND_SPECIAL_ABILITIES_HEADER, 'dst': S_FOUND_SPECIAL_ABILITY_NAME, 'cond': r"^(.+) \((.+)\)", 'callback': T_PARSE_SPECIAL_ABILITY_NAME},
+    {'src': S_FOUND_SPECIAL_ABILITY_NAME, 'dst': S_FOUND_SPECIAL_ABILITY_DESCRIPTION, 'cond': R_ANYTHING, 'callback': T_PARSE_SPECIAL_ABILITY_DESCRIPTION},
+    {'src': S_FOUND_SPECIAL_ABILITY_DESCRIPTION, 'dst': S_FOUND_ECOLOGY_HEADER, 'cond': r"^ECOLOGY", 'callback': T_PARSE_SAVE_SPECIAL_ABILITY},
+    {'src': S_FOUND_SPECIAL_ABILITY_DESCRIPTION, 'dst': S_FOUND_ECOLOGY_HEADER, 'cond': r"^Ecology", 'callback': T_PARSE_SAVE_SPECIAL_ABILITY},
+    {'src': S_FOUND_SPECIAL_ABILITY_DESCRIPTION, 'dst': S_FOUND_GEAR_HEADER, 'cond': r"^GEAR", 'callback': T_PARSE_SAVE_SPECIAL_ABILITY},
+    {'src': S_FOUND_SPECIAL_ABILITY_DESCRIPTION, 'dst': S_FOUND_ABOUT_HEADER, 'cond': r"^(ABOUT|DESCRIPTION)", 'callback': T_PARSE_SAVE_SPECIAL_ABILITY},
+    {'src': S_FOUND_SPECIAL_ABILITY_DESCRIPTION, 'dst': S_FOUND_SPECIAL_ABILITY_NAME, 'cond': r"^(.+) \((.+)\)", 'callback': T_PARSE_SPECIAL_ABILITY_NAME},
+    {'src': S_FOUND_SPECIAL_ABILITY_DESCRIPTION, 'dst': S_FOUND_SPECIAL_ABILITY_DESCRIPTION, 'cond': R_ANYTHING, 'callback': T_PARSE_SPECIAL_ABILITY_DESCRIPTION},
+    {'src': S_FOUND_GEAR_HEADER, 'dst': S_FOUND_GEAR_ITEM, 'cond': r"^(.* )Item: (.+)", 'callback': T_PARSE_GEAR_ITEM},
+    {'src': S_FOUND_GEAR_ITEM, 'dst': S_FOUND_GEAR_DESCRIPTION, 'cond': R_ANYTHING, 'callback': T_PARSE_GEAR_DESCRIPTION},
+    {'src': S_FOUND_GEAR_DESCRIPTION, 'dst': S_FOUND_ECOLOGY_HEADER, 'cond': r"^ECOLOGY", 'callback': T_PARSE_SAVE_GEAR_ITEM},
+    {'src': S_FOUND_GEAR_DESCRIPTION, 'dst': S_FOUND_ABOUT_HEADER, 'cond': r"^(ABOUT|DESCRIPTION)", 'callback': T_PARSE_SAVE_GEAR_ITEM},
+    {'src': S_FOUND_GEAR_DESCRIPTION, 'dst': S_FOUND_GEAR_DESCRIPTION, 'cond': R_ANYTHING, 'callback': T_PARSE_GEAR_DESCRIPTION},
+    {'src': S_FOUND_ECOLOGY_HEADER, 'dst': S_FOUND_ENVIRONMENT, 'cond': r"^Environment\s+(.+)", 'callback': T_PARSE_ENVIRONMENT},
+    {'src': S_FOUND_ECOLOGY_HEADER, 'dst': S_FOUND_ORGANIZATION, 'cond': r"^Organization\s+(.+)", 'callback': T_PARSE_ORGANIZATION},
+    {'src': S_FOUND_ECOLOGY_HEADER, 'dst': S_FOUND_TREASURE, 'cond': r"^Treasure\s+(.+)", 'callback': T_PARSE_TREASURE},
+    {'src': S_FOUND_ECOLOGY_HEADER, 'dst': S_FOUND_GEAR_HEADER, 'cond': r"^GEAR", 'callback': T_SKIP},
+    {'src': S_FOUND_ENVIRONMENT, 'dst': S_FOUND_ORGANIZATION, 'cond': r"^Organization\s+(.+)", 'callback': T_PARSE_ORGANIZATION},
+    {'src': S_FOUND_ENVIRONMENT, 'dst': S_FOUND_TREASURE, 'cond': r"^Treasure\s+(.+)", 'callback': T_PARSE_TREASURE},
+    {'src': S_FOUND_ENVIRONMENT, 'dst': S_FOUND_GEAR_HEADER, 'cond': r"^GEAR", 'callback': T_SKIP},
+    {'src': S_FOUND_ORGANIZATION, 'dst': S_FOUND_TREASURE, 'cond': r"^Treasure\s+(.+)", 'callback': T_PARSE_TREASURE},
+    {'src': S_FOUND_ORGANIZATION, 'dst': S_FOUND_GEAR_HEADER, 'cond': r"^GEAR", 'callback': T_SKIP},
+    {'src': S_FOUND_TREASURE, 'dst': S_FOUND_GEAR_HEADER, 'cond': r"^GEAR", 'callback': T_SKIP},
+    {'src': S_FOUND_TREASURE, 'dst': S_FOUND_ABOUT_HEADER, 'cond': r"^(ABOUT|DESCRIPTION)", 'callback': T_SKIP},
+    {'src': S_FOUND_TREASURE, 'dst': S_FOUND_ABOUT_DETAILS, 'cond': R_ANYTHING, 'callback': T_PARSE_DESCRIPTION},
+    {'src': S_FOUND_ABOUT_HEADER, 'dst': S_FOUND_ABOUT_DETAILS, 'cond': R_ANYTHING, 'callback': T_PARSE_DESCRIPTION},
+    {'src': S_FOUND_ABOUT_DETAILS, 'dst': S_FOUND_COPYRIGHT, 'cond': r"Copyright", 'callback': T_SKIP},
+    {'src': S_FOUND_ABOUT_DETAILS, 'dst': S_FOUND_COPYRIGHT, 'cond': r"Section 15", 'callback': T_SKIP},
+    {'src': S_FOUND_ABOUT_DETAILS, 'dst': S_FOUND_ABOUT_DETAILS, 'cond': R_ANYTHING, 'callback': T_PARSE_DESCRIPTION}
+]
+
+for map_item in R20_FSM_MAP:
+    map_item['condition_re_compiled'] = re.compile(map_item['cond'], re.IGNORECASE)
+
+for map_item in HERO_FSM_MAP:
     map_item['condition_re_compiled'] = re.compile(map_item['cond'], re.IGNORECASE)
 
 class ParseCreature:
-    def __init__(self, raw_input):
+    def __init__(self, raw_input, is_hero):
         self.creature = Creature()
+        self.creature.formal_name = ''
         self.creature.space = '5 ft.'
         self.creature.reach = '5 ft.'
         self.gear_item = None
         self.special_ability = None
         self.input_str = raw_input
+        self.fsm_map = R20_FSM_MAP
+        if is_hero:
+            self.fsm_map = HERO_FSM_MAP
         self.current_state = S_INITIAL_LOAD
         self.current_line = ""
 
@@ -752,7 +886,7 @@ class ParseCreature:
     def process_next(self, line):
         self.current_line = line
         frozen_state = self.current_state
-        for transition in FSM_MAP:
+        for transition in self.fsm_map:
             if transition['src'] == frozen_state:
                 if self.iterate_re_evaluators(line, transition):
                     return True
