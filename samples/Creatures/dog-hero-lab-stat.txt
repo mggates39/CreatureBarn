@@ -28,6 +28,9 @@ SQ fighting
 —————
 Special Abilities
 —————
-Fighting [Trick] The animal has been trained to fight.
-Low-Light Vision See twice as far as a human in dim light, distinguishing color and detail.
-Scent (Ex) Detect oppon
+Fighting [Trick] (Ex)
+The animal has been trained to fight.
+Low-Light Vision (Ex)
+See twice as far as a human in dim light, distinguishing color and detail.
+Scent (Ex)
+Detect opponents within 15+ ft. by sense of smell.
