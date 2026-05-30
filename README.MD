@@ -55,7 +55,7 @@ Now initialize the database from within the application.
 
 ### Usage 
 ```
-usage: main.py [-h] [-v] [-p PATH] [-b] [-f FILE] [-t {NPC,Creature}]
+usage: main.py [-h] [-v] [-p PATH] [-b] [-e] [-f FILE] [-t {NPC,Creature}]
                [-a {export,save,both}]
 
 Simple Creature and NPC Stat Parser and Storage
@@ -63,12 +63,14 @@ Simple Creature and NPC Stat Parser and Storage
 options:
   -h, --help            show this help message and exit
   -v, --version         show program's version number and exit
-  -p PATH, --path PATH  Directory to batch process, defaults to ./source
+  -p, --path PATH       Directory to batch process, defaults to ./source
   -b, --batch           Batch process all files in path
-  -f FILE, --file FILE  file to process
-  -t {NPC,Creature}, --type {NPC,Creature}
+  -e, --hero            Expect Hero Labs formated Stat Bloc
+  -f, --file FILE       file to process
+  -t, --type {NPC,Creature}
                         Type of the file or files in the path, default is NPC
-  -a {export,save,both}, --action {export,save,both}
+  -a, --action {export,save,both}
                         Action to perform on the batch or file, defaults to
                         export
+
 ```
