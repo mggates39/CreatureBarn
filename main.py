@@ -10,11 +10,11 @@ from tkinter import filedialog, messagebox
 from pathlib import Path
 from ttkthemes import ThemedTk
 from Forms.creatures import CreatureForm, CreatureList
+from Forms.AboutBox import AboutBox
 from Parsers.CreatureParser import ParseCreature
 from Database.database import DATABASE_VERSION, Database
 from Database.create_tables import initialize_repository
-
-APPLICATION_VERSION = '1.2.0'
+from Application.Options import APPLICATION_VERSION, SystemOptions
 
 def initialize_database():
     if messagebox.askyesno("Initialize Database", message="Do you really want to initialize the database?",
@@ -24,12 +24,12 @@ def initialize_database():
 
 
 class CreatureBarn:
-    def __init__(self, root, args):
-        self.args = args
+    def __init__(self, root, options):
+        self.options = options
         self.root = root
         self.newWindow = None
         self.app = None
-        if self.args.hero:
+        if self.options.is_hero():
             self.root.title("Creature Hero Lab Stat Block Parser")
         else:
             self.root.title("Creature R20 Stat Block Parser")
@@ -65,41 +65,17 @@ class CreatureBarn:
         else:
             self.database.verify_database_version()
 
-        if args.batch:
+        if self.options.is_batch():
             self.process_batch()
             self.root.destroy()
-        elif self.args.file:
+        elif self.options.has_file():
             self.process_single_file()
             self.root.destroy()
 
     # Function to display the "About" dialog box
     def show_about_dialog(self):
         """Creates and displays a custom about dialog with specified dimensions."""
-
-        # Create the Toplevel window
-        about_box = tk.Toplevel(self.root)
-        about_box.title("About")
-
-        # Specify the width and height (e.g., 300x200 pixels)
-        about_box.geometry("450x360")
-
-        # Make the window non-resizable
-        about_box.resizable(False, False)
-
-        # Center the dialog over the parent window (optional, but good practice)
-        about_box.transient(self.root) # Makes the dialog box a transient window of the root window
-        about_box.grab_set()     # Makes the dialog modal (forces user interaction)
-
-        # Add content (e.g., Labels, Buttons)
-        # Use a Message widget for multi-line text that wraps properly
-        message_text = "This is a simple creature barn to manage creature and NPC definitions.\n\nVersion {}, Database {}".format(APPLICATION_VERSION, DATABASE_VERSION)
-        about_message = tk.Message(about_box, text=message_text, justify=tk.CENTER,
-                                   width=400)  # width in character units
-        about_message.pack(pady=20, padx=10)
-
-        # Add an OK button to close the dialog
-        ok_button = ttk.Button(about_box, text="OK", command=about_box.destroy)
-        ok_button.pack(pady=10)
+        about_box = AboutBox(self.root)
 
     def show_creature_list(self):
         self.newWindow = tk.Toplevel(self.root)
@@ -120,7 +96,7 @@ class CreatureBarn:
             return
         if len(file_list) == 1:
             raw = Path(file_list[0]).read_text(encoding="utf-8")
-            parser = ParseCreature(raw, self.args.hero)
+            parser = ParseCreature(raw, self.options.is_hero())
             parser.run()
 
             self.text.delete("1.0", tk.END)
@@ -135,20 +111,20 @@ class CreatureBarn:
     def parse_screen(self):
         text = self.text.get("1.0", tk.END)
         if len(text) > 5:
-            parser = ParseCreature(text, self.args.hero)
+            parser = ParseCreature(text, self.options.is_hero())
             parser.run()
             self.show_parsed_creature(parser.creature)
         else:
             messagebox.showwarning("No Data", "No text to parse!")
 
     def process_batch(self):
-        print( "Processing files in {}".format(self.args.path))
-        for file in Path(self.args.path).glob("*.txt"):
+        print( "Processing files in {}".format(self.options.get_path()))
+        for file in Path(self.options.get_path()).glob("*.txt"):
             self.parse_and_process_file(file, False)
 
     def process_single_file(self):
-        print("Processing file {}".format(self.args.file))
-        self.parse_and_process_file(self.args.file, False)
+        print("Processing file {}".format(self.options.get_file()))
+        self.parse_and_process_file(self.options.get_file(), False)
 
     def parse_and_process_file(self, file, log_to_screen=False):
         if log_to_screen:
@@ -157,17 +133,15 @@ class CreatureBarn:
             print(file)
 
         raw = Path(file).read_text(encoding="utf-8")
-        creature_parser = ParseCreature(raw, self.args.Hero)
+        creature_parser = ParseCreature(raw, self.options.is_Hero())
         creature_parser.run()
-        creature_parser.creature.barn_type = self.args.type
+        creature_parser.creature.barn_type = self.options.get_type()
         self.show_parsed_creature(creature_parser.creature)
 
-        if self.args.action == "export":
+        if self.options.do_export():
             self.app.on_export()
-        elif self.args.action == "save":
-            self.app.on_save()
-        elif self.args.action == "both":
-            self.app.on_export()
+
+        if self.options.is_save():
             self.app.on_save()
 
         self.app.root.destroy()
@@ -176,11 +150,11 @@ class CreatureBarn:
 
 def init_argparse() -> argparse.ArgumentParser:
     arg_parser = argparse.ArgumentParser(
-        description="Simple Creature and NPC Stat Parser and Storage"
+        description="Simple Creature and NPC Stat Parser and Storage System"
     )
     arg_parser.add_argument(
         "-v", "--version", action="version",
-        version = f"{arg_parser.prog} version {APPLICATION_VERSION}"
+        version = f"{arg_parser.prog} version {APPLICATION_VERSION} Database {DATABASE_VERSION}"
     )
     arg_parser.add_argument(
         "-p", "--path", default='./source', type=str,
@@ -191,8 +165,12 @@ def init_argparse() -> argparse.ArgumentParser:
         help="Batch process all files in path"
     )
     arg_parser.add_argument(
-        "-e", "--hero", action='store_true',
-        help="Expect Hero Labs formated Stat Bloc"
+        "-i", "--input",  choices=['R20', 'Hero', 'XML', 'JSON'],  default='R20',
+        help="Input file format, default R20"
+    )
+    arg_parser.add_argument(
+        "-o", "--output",  choices=['V1', 'V2'], default='V2',
+        help="Output format R20 V1 or V2, default V2"
     )
     arg_parser.add_argument(
         "-f", "--file", type=str,
@@ -213,7 +191,9 @@ def main() -> None:
     arg_parser = init_argparse()
     args = arg_parser.parse_args()
     root_widget = ThemedTk(theme='Black')
-    app = CreatureBarn(root_widget, args)
+    options = SystemOptions()
+    options.load_from_args(args)
+    app = CreatureBarn(root_widget, options)
     root_widget.mainloop()
 
 if __name__ == "__main__":
