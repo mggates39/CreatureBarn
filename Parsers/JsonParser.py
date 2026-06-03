@@ -51,6 +51,28 @@ class CreatureJsonParser:
             creature_language.language = language["@name"].strip()
             self.creature.languages.append(creature_language)
 
+        for attribute in character["attributes"]["attribute"]:
+            stat_name = attribute["@name"]
+            if stat_name == "Strength":
+                self.creature.strength = attribute["attrvalue"]["@text"]
+            elif stat_name == "Dexterity":
+                self.creature.dexterity = attribute["attrvalue"]["@text"]
+            elif stat_name == "Constitution":
+                self.creature.constitution = attribute["attrvalue"]["@text"]
+            elif stat_name == "Intelligence":
+                self.creature.intelligence = attribute["attrvalue"]["@text"]
+            elif stat_name == "Wisdom":
+                self.creature.wisdom = attribute["attrvalue"]["@text"]
+            elif stat_name == "Charisma":
+                self.creature.charisma = attribute["attrvalue"]["@text"]
 
+        for save in character["saves"]["save"]:
+            save_name = save["@name"]
+            if save_name == "Fortitude Save":
+                self.creature.fortitude = save["@save"]
+            elif save_name == "Reflex Save":
+                self.creature.reflex = save["@save"]
+            elif save_name == "Will Save":
+                self.creature.will = save["@save"]
 
         print(self.creature)
