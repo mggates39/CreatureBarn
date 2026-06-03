@@ -11,7 +11,8 @@ from pathlib import Path
 from ttkthemes import ThemedTk
 from Forms.creatures import CreatureForm, CreatureList
 from Forms.AboutBox import AboutBox
-from Parsers.CreatureParser import ParseCreature
+from Parsers.CreatureParser import CreatureTextParser
+from Parsers.JsonParser import CreatureJsonParser
 from Database.database import DATABASE_VERSION, Database
 from Database.create_tables import initialize_repository
 from Application.Options import APPLICATION_VERSION, SystemOptions
@@ -96,7 +97,7 @@ class CreatureBarn:
             return
         if len(file_list) == 1:
             raw = Path(file_list[0]).read_text(encoding="utf-8")
-            parser = ParseCreature(raw, self.options.is_hero())
+            parser = CreatureTextParser(raw, self.options.is_hero())
             parser.run()
 
             self.text.delete("1.0", tk.END)
@@ -111,7 +112,7 @@ class CreatureBarn:
     def parse_screen(self):
         text = self.text.get("1.0", tk.END)
         if len(text) > 5:
-            parser = ParseCreature(text, self.options.is_hero())
+            parser = CreatureTextParser(text, self.options.is_hero())
             parser.run()
             self.show_parsed_creature(parser.creature)
         else:
@@ -133,7 +134,7 @@ class CreatureBarn:
             print(file)
 
         raw = Path(file).read_text(encoding="utf-8")
-        creature_parser = ParseCreature(raw, self.options.is_Hero())
+        creature_parser = CreatureTextParser(raw, self.options.is_Hero())
         creature_parser.run()
         creature_parser.creature.barn_type = self.options.get_type()
         self.show_parsed_creature(creature_parser.creature)

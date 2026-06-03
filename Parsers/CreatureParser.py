@@ -886,7 +886,7 @@ for map_item in R20_FSM_MAP:
 for map_item in HERO_FSM_MAP:
     map_item['condition_re_compiled'] = re.compile(map_item['cond'], re.IGNORECASE)
 
-class ParseCreature:
+class CreatureTextParser:
     def __init__(self, raw_input, is_hero):
         self.creature = Creature()
         self.creature.formal_name = ''
