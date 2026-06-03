@@ -40,6 +40,7 @@ class CreatureBarn:
         self.menu = tk.Menu(root)
         self.file_menu = tk.Menu(self.menu, tearoff=0)
         self.file_menu.add_command(label="Open and Parse", command=self.load)
+        self.file_menu.add_command(label="Open and Parse JSON", command=self.load_json)
         self.file_menu.add_command(label="Parse", command=self.parse_screen)
         self.file_menu.add_command(label="Exit", command=root.quit)
         self.menu.add_cascade(label="File", menu=self.file_menu)
@@ -90,6 +91,19 @@ class CreatureBarn:
         self.newWindow = tk.Toplevel(self.root)
         self.app = CreatureForm(self.newWindow)
         self.app.on_load(creature)
+
+    def load_json(self):
+        file_list = filedialog.askopenfilenames(filetypes=[("JSON Files", "*.json")], initialdir="./samples")
+        if not file_list:
+            return
+        if len(file_list) == 1:
+            raw = Path(file_list[0]).read_text(encoding="utf-8")
+            parser = CreatureJsonParser(raw, self.options)
+            parser.run()
+
+            self.text.delete("1.0", tk.END)
+            self.text.insert(tk.END, raw)
+            self.show_parsed_creature(parser.creature)
 
     def load(self):
         file_list = filedialog.askopenfilenames(filetypes=[("Text Files", "*.txt")], initialdir="./samples")
