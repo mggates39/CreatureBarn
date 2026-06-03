@@ -1,5 +1,6 @@
 import json
 import re
+from Parsers.CreatureParser import _normalize_mixed_case
 from Database.models import Creature, CreatureLanguages, CreatureFeats, CreatureSkills, CreatureSenses, CreatureAuras, \
     CreatureACModifiers, CreatureWeaknesses, CreatureImmuneModifiers, CreatureSpellResistenceModifiers, \
     CreatureSpellLikeAbilities, CreatureKnownSpells, CreaturePreparedSpells, CreatureSpeedModifiers, \
@@ -27,7 +28,7 @@ class CreatureJsonParser:
         if cr_match:
             self.creature.challenge_rating = cr_match.group(1)
         self.creature.experience_points = character["xpaward"]["@value"]
-        self.creature.race = character["race"]["@name"]
+        self.creature.race = _normalize_mixed_case(character["race"]["@name"])
         alignment = character["alignment"]["@name"]
         if alignment == "True Neutral":
             alignment = "Neutral"
@@ -44,5 +45,12 @@ class CreatureJsonParser:
 
         self.creature.type = character["types"]["type"]["@name"]
         self.creature.sub_type = character["subtypes"]["subtype"]["@name"]
+
+        for language in character["languages"]["language"]:
+            creature_language = CreatureLanguages()
+            creature_language.language = language["@name"].strip()
+            self.creature.languages.append(creature_language)
+
+
 
         print(self.creature)
