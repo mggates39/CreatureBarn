@@ -39,17 +39,20 @@ class CreatureJsonParser:
         self.creature.space = size["space"]["@value"] + " ft"
         self.creature.reach = size["reach"]["@value"] + " ft"
 
-        class_info = character["classes"]["class"]
-        self.creature.char_class = class_info["@name"]
-        self.creature.level = class_info["@level"]
+        if  character["classes"]["@summary"]:
+            class_info = character["classes"]["class"]
+            self.creature.char_class = class_info["@name"]
+            self.creature.level = class_info["@level"]
 
         self.creature.type = character["types"]["type"]["@name"]
-        self.creature.sub_type = character["subtypes"]["subtype"]["@name"]
+        if character["subtypes"]:
+            self.creature.sub_type = character["subtypes"]["subtype"]["@name"]
 
-        for language in character["languages"]["language"]:
-            creature_language = CreatureLanguages()
-            creature_language.language = language["@name"].strip()
-            self.creature.languages.append(creature_language)
+        if character["languages"]:
+            for language in character["languages"]["language"]:
+                creature_language = CreatureLanguages()
+                creature_language.language = language["@name"].strip()
+                self.creature.languages.append(creature_language)
 
         for attribute in character["attributes"]["attribute"]:
             stat_name = attribute["@name"]
