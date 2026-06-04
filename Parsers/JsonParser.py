@@ -78,4 +78,12 @@ class CreatureJsonParser:
             elif save_name == "Will Save":
                 self.creature.will = save["@save"]
 
+        self.creature.hit_points = character["health"]["@hitpoints"]
+        self.creature.hit_dice = character["health"]["@hitdice"]
+
+        for sense in character["senses"]["special"]:
+            creature_senses = CreatureSenses()
+            creature_senses.sense = sense["@shortname"].strip()
+            self.creature.senses.append(creature_senses)
+
         print(self.creature)
