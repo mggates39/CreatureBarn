@@ -253,7 +253,7 @@ class CreatureForm:
 
         row_count += 1
         ttk.Label(mainframe, text="Melee").grid(row=row_count, column=0, sticky=NE)
-        self.melee_entry = Text(mainframe, width=40, height=1)
+        self.melee_entry = Text(mainframe, width=60, height=1)
         self.melee_entry.grid(row=row_count, column=1, columnspan=11, sticky=W)
 
         row_count += 1
@@ -977,7 +977,7 @@ class CreatureForm:
         print("{#TAB}".join(output_fields))
 
         try:
-            file_path = "output/" + self.creature.formal_name + '.txt'
+            file_path = "output/" + self.creature.formal_name.replace(' ', '_') + '.txt'
             with open(file_path, 'w', encoding='utf-8') as file:
                 file.write("{#TAB}".join(output_fields))
             print(f"File '{file_path}' written successfully.")
