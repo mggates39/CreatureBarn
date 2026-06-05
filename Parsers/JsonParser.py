@@ -48,8 +48,17 @@ class CreatureJsonParser:
         if character["subtypes"]:
             self.creature.sub_type = character["subtypes"]["subtype"]["@name"]
 
+        personal = character["personal"]
+        self.creature.age = personal["@age"]
+
         if character["languages"]:
-            for language in character["languages"]["language"]:
+            if type(character["languages"]["language"]) is list:
+                for language in character["languages"]["language"]:
+                    creature_language = CreatureLanguages()
+                    creature_language.language = language["@name"].strip()
+                    self.creature.languages.append(creature_language)
+            else:
+                language = character["languages"]["language"]
                 creature_language = CreatureLanguages()
                 creature_language.language = language["@name"].strip()
                 self.creature.languages.append(creature_language)
@@ -81,9 +90,63 @@ class CreatureJsonParser:
         self.creature.hit_points = character["health"]["@hitpoints"]
         self.creature.hit_dice = character["health"]["@hitdice"]
 
-        for sense in character["senses"]["special"]:
-            creature_senses = CreatureSenses()
-            creature_senses.sense = sense["@shortname"].strip()
-            self.creature.senses.append(creature_senses)
+        if character["senses"]:
+            if type(character["senses"]["special"]) is list:
+                for sense in character["senses"]["special"]:
+                    creature_senses = CreatureSenses()
+                    creature_senses.sense = sense["@name"].strip()
+                    self.creature.senses.append(creature_senses)
+            else:
+                sense = character["senses"]["special"]
+                creature_senses = CreatureSenses()
+                creature_senses.sense = sense["@name"].strip()
+                self.creature.senses.append(creature_senses)
+
+        armor_class = character["armorclass"]
+        self.creature.base_armor_class = armor_class["@ac"]
+        self.creature.touch_armor_class = armor_class["@touch"]
+        self.creature.flat_footed_armor_class = armor_class["@flatfooted"]
+
+        for name, value in armor_class.items():
+            if value and "from" in name:
+                creature_ac_modifiers = CreatureACModifiers()
+                creature_ac_modifiers.modifier_amount = value.strip()
+                creature_ac_modifiers.modifier_type = name.replace('@from','').strip()
+                self.creature.ac_modifiers.append(creature_ac_modifiers)
+
+        # +3 armor
+        # +3 Dex
+
+        maneuvers = character["maneuvers"]
+        self.creature.combat_maneuver_bonus = maneuvers["@cmb"]
+        self.creature.combat_maneuver_defense = maneuvers["@cmd"]
+
+        self.creature.base_attack = character["attack"]["@baseattack"]
+
+        self.creature.initiative = character["initiative"]["@total"]
+
+        self.creature.speed = "{} ft.".format(character["movement"]["speed"]["@value"])
+
+        if character["melee"]:
+            if type(character["melee"]["weapon"]) is list:
+                for melee in character["melee"]["weapon"]:
+                    creature_melee = CreatureMeleeAttacks()
+                    creature_melee.attack = "{} {} ({}/{})".format(
+                        melee["@name"].strip(),
+                        melee["@attack"].strip(),
+                        melee["@damage"].strip(),
+                        melee["@crit"].strip())
+                    self.creature.melee_attacks.append(creature_melee)
+            else:
+                melee = character["melee"]["weapon"]
+                creature_melee = CreatureMeleeAttacks()
+                creature_melee.attack = "{} {} ({}/{})".format(
+                    melee["@name"].strip(),
+                    melee["@attack"].strip(),
+                    melee["@damage"].strip(),
+                    melee["@crit"].strip())
+                self.creature.melee_attacks.append(creature_melee)
+
+
 
         print(self.creature)
