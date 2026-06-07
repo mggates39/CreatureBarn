@@ -1,18 +1,22 @@
 import json
 import xmltodict
+from Parsers.JsonParser import CreatureJsonParser
+from Database.models import Creature
 
 
 class CreatureXmlParser:
     def __init__(self, xml_input, options):
-        self.creature = Creature()
-        self.creature.formal_name = ''
-        self.creature.space = '5 ft.'
-        self.creature.reach = '5 ft.'
-        self.gear_item = None
-        self.special_ability = None
+        self.creature = None
         self.input_xml = xml_input.replace("–", "-").replace("×", "x").replace("°", " degrees")
         self.options = options
 
     def run(self):
+        # 2. Parse XML string to a Python dictionary
+        data_dict = xmltodict.parse(self.input_xml)
 
-        print(self.creature)
+        # 3. Convert the dictionary into a JSON string/object
+        json_data = json.dumps(data_dict, indent=4)
+
+        parser = CreatureJsonParser(json_data, self.options)
+        parser.run()
+        self.creature = parser.creature
