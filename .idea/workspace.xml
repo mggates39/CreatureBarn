@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="71c3a291-103e-4653-a4fd-d79cf3183176" name="Changes" comment="Cleaned up database version management so upgrades happen automatically.">
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+    <list default="true" id="71c3a291-103e-4653-a4fd-d79cf3183176" name="Changes" comment="Add Ranged Attacks">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Parsers/JsonParser.py" beforeDir="false" afterPath="$PROJECT_DIR$/Parsers/JsonParser.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,7 +32,7 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/mggates39/CreatureBarn.git&quot;,
-    &quot;accountId&quot;: &quot;6cd66d8f-1146-45fd-9deb-65056a6dbfab&quot;
+    &quot;accountId&quot;: &quot;db85de67-aef5-4188-8832-331d5158fbe4&quot;
   }
 }</component>
   <component name="McpProjectServerCommands">
@@ -46,54 +47,61 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "Python.CreatureParser.executor": "Run",
-    "Python.create_tables.executor": "Run",
-    "Python.creatures.executor": "Run",
-    "Python.database.executor": "Run",
-    "Python.first.ph.executor": "Run",
-    "Python.main.executor": "Run",
-    "Python.parser_test.executor": "Run",
-    "Python.scroll_test.executor": "Run",
-    "Python.test_background.executor": "Run",
-    "Python.test_form.executor": "Run",
-    "Python.test_grid.executor": "Run",
-    "Python.test_multi.executor": "Run",
-    "Python.test_re.executor": "Run",
-    "Python.test_regex.executor": "Run",
-    "Python.test_scroll.executor": "Run",
-    "Python.test_themes.executor": "Run",
-    "RunOnceActivity.MCP Project settings loaded": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "ai.playground.ignore.import.keys.banner.in.settings": "true",
-    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "Hero-Labs-Parser",
-    "junie.onboarding.icon.badge.shown": "true",
-    "last_opened_file_path": "/home/mggates/Dev/TinkerTest",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "reference.settingsdialog.IDE.editor.colors.com.intellij.openapi.options.colors.pages.GeneralColorsPage",
-    "to.speed.mode.migration.done": "true",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Python.CreatureParser.executor&quot;: &quot;Run&quot;,
+    &quot;Python.create_tables.executor&quot;: &quot;Run&quot;,
+    &quot;Python.creatures.executor&quot;: &quot;Run&quot;,
+    &quot;Python.database.executor&quot;: &quot;Run&quot;,
+    &quot;Python.first.ph.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;Python.parser_test.executor&quot;: &quot;Run&quot;,
+    &quot;Python.scroll_test.executor&quot;: &quot;Run&quot;,
+    &quot;Python.test_background.executor&quot;: &quot;Run&quot;,
+    &quot;Python.test_form.executor&quot;: &quot;Run&quot;,
+    &quot;Python.test_grid.executor&quot;: &quot;Run&quot;,
+    &quot;Python.test_multi.executor&quot;: &quot;Run&quot;,
+    &quot;Python.test_re.executor&quot;: &quot;Run&quot;,
+    &quot;Python.test_regex.executor&quot;: &quot;Run&quot;,
+    &quot;Python.test_scroll.executor&quot;: &quot;Run&quot;,
+    &quot;Python.test_themes.executor&quot;: &quot;Run&quot;,
+    &quot;Python.test_utf.executor&quot;: &quot;Run&quot;,
+    &quot;Python.test_xml.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;ai.playground.ignore.import.keys.banner.in.settings&quot;: &quot;true&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Hero-Labs-Parser&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/mggates/Dev/TinkerTest&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.IDE.editor.colors.com.intellij.openapi.options.colors.pages.GeneralColorsPage&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "sqlite"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;sqlite&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/samples/JSON" />
+      <recent name="$PROJECT_DIR$/samples/Text" />
+      <recent name="$PROJECT_DIR$/Application" />
       <recent name="$PROJECT_DIR$/Database" />
     </key>
   </component>
@@ -141,7 +149,7 @@
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="RUN_TOOL" value="" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
-      <option name="PARAMETERS" value="--hero" />
+      <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -162,7 +170,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-python-sdk-1cd77e80b48f-6d6dccd035ac-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-253.32098.74" />
+        <option value="bundled-python-sdk-024ed6589d45-c2ffad84badb-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-261.23567.174" />
       </set>
     </attachedChunks>
   </component>
@@ -185,94 +193,9 @@
       <workItem from="1772032385936" duration="29398000" />
       <workItem from="1772077327502" duration="2373000" />
       <workItem from="1772114223255" duration="75649000" />
-    </task>
-    <task id="LOCAL-00078" summary="refactored if else &quot;&quot; into function">
-      <option name="closed" value="true" />
-      <created>1772766182475</created>
-      <option name="number" value="00078" />
-      <option name="presentableId" value="LOCAL-00078" />
-      <option name="project" value="LOCAL" />
-      <updated>1772766182475</updated>
-    </task>
-    <task id="LOCAL-00079" summary="refactored if else &quot;&quot; into function">
-      <option name="closed" value="true" />
-      <created>1772830469370</created>
-      <option name="number" value="00079" />
-      <option name="presentableId" value="LOCAL-00079" />
-      <option name="project" value="LOCAL" />
-      <updated>1772830469370</updated>
-    </task>
-    <task id="LOCAL-00080" summary="Processed new NPCs">
-      <option name="closed" value="true" />
-      <created>1772830756160</created>
-      <option name="number" value="00080" />
-      <option name="presentableId" value="LOCAL-00080" />
-      <option name="project" value="LOCAL" />
-      <updated>1772830756160</updated>
-    </task>
-    <task id="LOCAL-00081" summary="Corrected issues in Export">
-      <option name="closed" value="true" />
-      <created>1772849876851</created>
-      <option name="number" value="00081" />
-      <option name="presentableId" value="LOCAL-00081" />
-      <option name="project" value="LOCAL" />
-      <updated>1772849876851</updated>
-    </task>
-    <task id="LOCAL-00082" summary="Re-exported all the current npcs">
-      <option name="closed" value="true" />
-      <created>1772850342376</created>
-      <option name="number" value="00082" />
-      <option name="presentableId" value="LOCAL-00082" />
-      <option name="project" value="LOCAL" />
-      <updated>1772850342376</updated>
-    </task>
-    <task id="LOCAL-00083" summary="Fixed some more export issues">
-      <option name="closed" value="true" />
-      <created>1772855143554</created>
-      <option name="number" value="00083" />
-      <option name="presentableId" value="LOCAL-00083" />
-      <option name="project" value="LOCAL" />
-      <updated>1772855143557</updated>
-    </task>
-    <task id="LOCAL-00084" summary="Re-exported the level one NPCs">
-      <option name="closed" value="true" />
-      <created>1772855183025</created>
-      <option name="number" value="00084" />
-      <option name="presentableId" value="LOCAL-00084" />
-      <option name="project" value="LOCAL" />
-      <updated>1772855183027</updated>
-    </task>
-    <task id="LOCAL-00085" summary="Re-exported all NPCs">
-      <option name="closed" value="true" />
-      <created>1772857219180</created>
-      <option name="number" value="00085" />
-      <option name="presentableId" value="LOCAL-00085" />
-      <option name="project" value="LOCAL" />
-      <updated>1772857219180</updated>
-    </task>
-    <task id="LOCAL-00086" summary="Made more changes in export format">
-      <option name="closed" value="true" />
-      <created>1772857446039</created>
-      <option name="number" value="00086" />
-      <option name="presentableId" value="LOCAL-00086" />
-      <option name="project" value="LOCAL" />
-      <updated>1772857446039</updated>
-    </task>
-    <task id="LOCAL-00087" summary="Fix cleanup of special abilities and gear items in short files">
-      <option name="closed" value="true" />
-      <created>1773189993217</created>
-      <option name="number" value="00087" />
-      <option name="presentableId" value="LOCAL-00087" />
-      <option name="project" value="LOCAL" />
-      <updated>1773189993217</updated>
-    </task>
-    <task id="LOCAL-00088" summary="Add a couple more stat block files and their exports">
-      <option name="closed" value="true" />
-      <created>1773190056631</created>
-      <option name="number" value="00088" />
-      <option name="presentableId" value="LOCAL-00088" />
-      <option name="project" value="LOCAL" />
-      <updated>1773190056631</updated>
+      <workItem from="1780150720749" duration="13764000" />
+      <workItem from="1780273013631" duration="4326000" />
+      <workItem from="1780354797454" duration="2684000" />
     </task>
     <task id="LOCAL-00089" summary="Strip trailing spaces from the export">
       <option name="closed" value="true" />
@@ -578,7 +501,95 @@
       <option name="project" value="LOCAL" />
       <updated>1775275858323</updated>
     </task>
-    <option name="localTasksCounter" value="127" />
+    <task id="LOCAL-00127" summary="Add initial XML parser framework">
+      <option name="closed" value="true" />
+      <created>1780456481134</created>
+      <option name="number" value="00127" />
+      <option name="presentableId" value="LOCAL-00127" />
+      <option name="project" value="LOCAL" />
+      <updated>1780456481135</updated>
+    </task>
+    <task id="LOCAL-00128" summary="Rename Creature Parser to include type in the name">
+      <option name="closed" value="true" />
+      <created>1780456556004</created>
+      <option name="number" value="00128" />
+      <option name="presentableId" value="LOCAL-00128" />
+      <option name="project" value="LOCAL" />
+      <updated>1780456556011</updated>
+    </task>
+    <task id="LOCAL-00129" summary="Start JSON parser and wire in a test hook">
+      <option name="closed" value="true" />
+      <created>1780456618519</created>
+      <option name="number" value="00129" />
+      <option name="presentableId" value="LOCAL-00129" />
+      <option name="project" value="LOCAL" />
+      <updated>1780456618519</updated>
+    </task>
+    <task id="LOCAL-00130" summary="Fix Race Name capitalization and add languages">
+      <option name="closed" value="true" />
+      <created>1780457546312</created>
+      <option name="number" value="00130" />
+      <option name="presentableId" value="LOCAL-00130" />
+      <option name="project" value="LOCAL" />
+      <updated>1780457546312</updated>
+    </task>
+    <task id="LOCAL-00131" summary="Add saves and stats to JSON parser">
+      <option name="closed" value="true" />
+      <created>1780515765545</created>
+      <option name="number" value="00131" />
+      <option name="presentableId" value="LOCAL-00131" />
+      <option name="project" value="LOCAL" />
+      <updated>1780515765548</updated>
+    </task>
+    <task id="LOCAL-00132" summary="add conditionals around some data">
+      <option name="closed" value="true" />
+      <created>1780544093020</created>
+      <option name="number" value="00132" />
+      <option name="presentableId" value="LOCAL-00132" />
+      <option name="project" value="LOCAL" />
+      <updated>1780544093020</updated>
+    </task>
+    <task id="LOCAL-00133" summary="add hit points hit dice and senses">
+      <option name="closed" value="true" />
+      <created>1780544133112</created>
+      <option name="number" value="00133" />
+      <option name="presentableId" value="LOCAL-00133" />
+      <option name="project" value="LOCAL" />
+      <updated>1780544133112</updated>
+    </task>
+    <task id="LOCAL-00134" summary="Increase size of melee field display and add underscores for spaces in export file names.">
+      <option name="closed" value="true" />
+      <created>1780626265682</created>
+      <option name="number" value="00134" />
+      <option name="presentableId" value="LOCAL-00134" />
+      <option name="project" value="LOCAL" />
+      <updated>1780626265685</updated>
+    </task>
+    <task id="LOCAL-00135" summary="Add more data to JSON parser">
+      <option name="closed" value="true" />
+      <created>1780626336978</created>
+      <option name="number" value="00135" />
+      <option name="presentableId" value="LOCAL-00135" />
+      <option name="project" value="LOCAL" />
+      <updated>1780626336978</updated>
+    </task>
+    <task id="LOCAL-00136" summary="Add more JSON and ZML sample files">
+      <option name="closed" value="true" />
+      <created>1780626382262</created>
+      <option name="number" value="00136" />
+      <option name="presentableId" value="LOCAL-00136" />
+      <option name="project" value="LOCAL" />
+      <updated>1780626382262</updated>
+    </task>
+    <task id="LOCAL-00137" summary="Add Ranged Attacks">
+      <option name="closed" value="true" />
+      <created>1780804339559</created>
+      <option name="number" value="00137" />
+      <option name="presentableId" value="LOCAL-00137" />
+      <option name="project" value="LOCAL" />
+      <updated>1780804339560</updated>
+    </task>
+    <option name="localTasksCounter" value="138" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -602,17 +613,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Improved section header display" />
-    <MESSAGE value="Made longer text areas scrollable" />
-    <MESSAGE value="Improved special abilities layout" />
-    <MESSAGE value="Improved overall form layout" />
-    <MESSAGE value="Tweaked form width" />
-    <MESSAGE value="Removed old parser, added database init and cleaned up parse screen code" />
-    <MESSAGE value="Improved gear listing" />
-    <MESSAGE value="Removed unused code and cleaned up menu creation" />
-    <MESSAGE value="Removed unused code" />
-    <MESSAGE value="Updated export to use formal name for export file name" />
-    <MESSAGE value="Cleaned up None in empty fields" />
     <MESSAGE value="Renamed Folders to be consistant" />
     <MESSAGE value="Tweaked the form layout" />
     <MESSAGE value="Added support for themes" />
@@ -627,7 +627,18 @@
     <MESSAGE value="refactor into a single initialize repository function" />
     <MESSAGE value="Cleaned up database version management so upgrades happen automatically." />
     <MESSAGE value="Updated requirements.txt" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated requirements.txt" />
+    <MESSAGE value="Add initial XML parser framework" />
+    <MESSAGE value="Rename Creature Parser to include type in the name" />
+    <MESSAGE value="Start JSON parser and wire in a test hook" />
+    <MESSAGE value="Fix Race Name capitalization and add languages" />
+    <MESSAGE value="Add saves and stats to JSON parser" />
+    <MESSAGE value="add conditionals around some data" />
+    <MESSAGE value="add hit points hit dice and senses" />
+    <MESSAGE value="Increase size of melee field display and add underscores for spaces in export file names." />
+    <MESSAGE value="Add more data to JSON parser" />
+    <MESSAGE value="Add more JSON and ZML sample files" />
+    <MESSAGE value="Add Ranged Attacks" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add Ranged Attacks" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -637,14 +648,25 @@
           <line>79</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/main.py</url>
+          <line>4</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Parsers/XmlParser.py</url>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/CreatureBarn$CreatureParser.coverage" NAME="CreatureParser Coverage Results" MODIFIED="1772142878006" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/parsers" />
+    <SUITE FILE_PATH="coverage/CreatureBarn$test_xml.coverage" NAME="test_xml Coverage Results" MODIFIED="1780282660669" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/CreatureBarn$creatures.coverage" NAME="creatures Coverage Results" MODIFIED="1772072654456" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/forms" />
-    <SUITE FILE_PATH="coverage/CreatureBarn$main.coverage" NAME="main Coverage Results" MODIFIED="1780110614532" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/CreatureBarn$main.coverage" NAME="main Coverage Results" MODIFIED="1780270051152" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/CreatureBarn$test_form.coverage" NAME="test_form Coverage Results" MODIFIED="1772071106587" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/CreatureBarn$test_utf.coverage" NAME="test_utf Coverage Results" MODIFIED="1780282201464" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/CreatureBarn$test_multi.coverage" NAME="test_multi Coverage Results" MODIFIED="1771251586258" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/CreatureBarn$test_re.coverage" NAME="test_re Coverage Results" MODIFIED="1771810287507" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/CreatureBarn$database.coverage" NAME="database Coverage Results" MODIFIED="1768856737518" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
