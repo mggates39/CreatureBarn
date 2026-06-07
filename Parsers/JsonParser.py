@@ -114,8 +114,10 @@ class CreatureJsonParser:
                 creature_ac_modifiers.modifier_type = name.replace('@from','').strip()
                 self.creature.ac_modifiers.append(creature_ac_modifiers)
 
-        # +3 armor
-        # +3 Dex
+        skills = character["skills"]
+        for skill in skills["skill"]:
+            if skill["@name"] == "Perception":
+                self.creature.perception_modifier = skill["@value"]
 
         maneuvers = character["maneuvers"]
         self.creature.combat_maneuver_bonus = maneuvers["@cmb"]
@@ -147,6 +149,50 @@ class CreatureJsonParser:
                     melee["@crit"].strip())
                 self.creature.melee_attacks.append(creature_melee)
 
+        if character["attack"]["special"]:
+            if type(character["attack"]["special"]) is list:
+                for attack in character["attack"]["special"]:
+                    creature_sp_attack = CreatureSpecialAttacks()
+                    creature_sp_attack.attack = attack["@name"].strip()
+                    self.creature.special_attacks.append(creature_sp_attack)
+            else:
+                attack = character["attack"]["special"]
+                creature_sp_attack = CreatureSpecialAttacks()
+                creature_sp_attack.attack = attack["@name"].strip()
+                self.creature.special_attacks.append(creature_sp_attack)
+
+
+        if character["skills"]:
+            if type(character["skills"]["skill"]) is list:
+                for skill in character["skills"]["skill"]:
+                    if skill["@value"] != '0':
+                        valid = True
+                        if "@usable" in skill:
+                            valid = False if skill["@usable"] == "no" else True
+                        if valid:
+                            creature_skill = CreatureSkills()
+                            creature_skill.skill = skill["@name"].strip()
+                            creature_skill.modifier = skill["@value"].strip()
+                            self.creature.skills.append(creature_skill)
+            else:
+                skill = character["skills"]["skill"]
+                if skill["@value"] != '0':
+                    creature_skill = CreatureSkills()
+                    creature_skill.skill = skill["@name"].strip()
+                    creature_skill.modifier = skill["@value"].strip()
+                    self.creature.skills.append(creature_skill)
+
+        if character["feats"]["feat"]:
+            if type(character["feats"]["feat"]) is list:
+                for feat in character["feats"]["feat"]:
+                    creature_feat = CreatureFeats()
+                    creature_feat.feat = feat["@name"].strip()
+                    self.creature.feats.append(creature_feat)
+            else:
+                feat = character["feats"]["feat"]
+                creature_feat = CreatureFeats()
+                creature_feat.feat = feat["@name"].strip()
+                self.creature.feats.append(creature_feat)
 
 
         print(self.creature)
