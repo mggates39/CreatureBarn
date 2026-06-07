@@ -149,6 +149,26 @@ class CreatureJsonParser:
                     melee["@crit"].strip())
                 self.creature.melee_attacks.append(creature_melee)
 
+        if character["ranged"]:
+            if type(character["ranged"]["weapon"]) is list:
+                for ranged in character["melee"]["weapon"]:
+                    creature_ranged = CreatureRangedAttacks()
+                    creature_ranged.attack = "{} {} ({}/{})".format(
+                        ranged["@name"].strip(),
+                        ranged["@attack"].strip(),
+                        ranged["@damage"].strip(),
+                        ranged["@crit"].strip())
+                    self.creature.ranged_attacks.append(creature_ranged)
+            else:
+                ranged = character["ranged"]["weapon"]
+                creature_ranged = CreatureRangedAttacks()
+                creature_ranged.attack = "{} {} ({}/{})".format(
+                    ranged["@name"].strip(),
+                    ranged["@attack"].strip(),
+                    ranged["@damage"].strip(),
+                    ranged["@crit"].strip())
+                self.creature.ranged_attacks.append(creature_ranged)
+
         if character["attack"]["special"]:
             if type(character["attack"]["special"]) is list:
                 for attack in character["attack"]["special"]:
