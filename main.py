@@ -13,6 +13,7 @@ from Forms.creatures import CreatureForm, CreatureList
 from Forms.AboutBox import AboutBox
 from Parsers.CreatureParser import CreatureTextParser
 from Parsers.JsonParser import CreatureJsonParser
+from Parsers.XmlParser import CreatureXmlParser
 from Database.database import DATABASE_VERSION, Database
 from Database.create_tables import initialize_repository
 from Application.Options import APPLICATION_VERSION, SystemOptions
@@ -41,6 +42,7 @@ class CreatureBarn:
         self.file_menu = tk.Menu(self.menu, tearoff=0)
         self.file_menu.add_command(label="Open and Parse", command=self.load)
         self.file_menu.add_command(label="Open and Parse JSON", command=self.load_json)
+        self.file_menu.add_command(label="Open and Parse XML", command=self.load_xml)
         self.file_menu.add_command(label="Parse", command=self.parse_screen)
         self.file_menu.add_command(label="Exit", command=root.quit)
         self.menu.add_cascade(label="File", menu=self.file_menu)
@@ -99,6 +101,19 @@ class CreatureBarn:
         if len(file_list) == 1:
             raw = Path(file_list[0]).read_text(encoding="utf-8")
             parser = CreatureJsonParser(raw, self.options)
+            parser.run()
+
+            self.text.delete("1.0", tk.END)
+            self.text.insert(tk.END, raw)
+            self.show_parsed_creature(parser.creature)
+
+    def load_xml(self):
+        file_list = filedialog.askopenfilenames(filetypes=[("XML Files", "*.xml")], initialdir="./samples")
+        if not file_list:
+            return
+        if len(file_list) == 1:
+            raw = Path(file_list[0]).read_text(encoding="utf-8")
+            parser = CreatureXmlParser(raw, self.options)
             parser.run()
 
             self.text.delete("1.0", tk.END)
