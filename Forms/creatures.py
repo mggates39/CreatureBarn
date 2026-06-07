@@ -258,12 +258,12 @@ class CreatureForm:
 
         row_count += 1
         ttk.Label(mainframe, text="Ranged").grid(row=row_count, column=0, sticky=NE)
-        self.ranged_entry = Text(mainframe, width=40, height=1)
+        self.ranged_entry = Text(mainframe, width=60, height=1)
         self.ranged_entry.grid(row=row_count, column=1, columnspan=11, sticky=W)
 
         row_count += 1
         ttk.Label(mainframe, text="Special Attacks").grid(row=row_count, column=0, sticky=NE)
-        self.special_attacks_entry = Text(mainframe, width=40, height=1)
+        self.special_attacks_entry = Text(mainframe, width=60, height=1)
         self.special_attacks_entry.grid(row=row_count, column=1, columnspan=11, sticky=W)
 
         row_count += 1
@@ -374,12 +374,12 @@ class CreatureForm:
 
         row_count += 1
         ttk.Label(mainframe, text="Feats").grid(row=row_count, column=0, sticky=NE)
-        self.feats_entry = Text(mainframe, width=30, height=1)
+        self.feats_entry = Text(mainframe, width=40, height=1)
         self.feats_entry.grid(row=row_count, column=1, columnspan=11, sticky=W)
 
         row_count += 1
         ttk.Label(mainframe, text="Skills").grid(row=row_count, column=0, sticky=NE)
-        self.skills_entry = Text(mainframe, width=30, height=1)
+        self.skills_entry = Text(mainframe, width=40, height=1)
         self.skills_entry.grid(row=row_count, column=1, columnspan=11, sticky=W)
 
         row_count += 1
