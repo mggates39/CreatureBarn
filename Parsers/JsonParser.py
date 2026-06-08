@@ -151,7 +151,7 @@ class CreatureJsonParser:
 
         if character["ranged"]:
             if type(character["ranged"]["weapon"]) is list:
-                for ranged in character["melee"]["weapon"]:
+                for ranged in character["ranged"]["weapon"]:
                     creature_ranged = CreatureRangedAttacks()
                     creature_ranged.attack = "{} {} ({}/{})".format(
                         ranged["@name"].strip(),
@@ -169,7 +169,7 @@ class CreatureJsonParser:
                     ranged["@crit"].strip())
                 self.creature.ranged_attacks.append(creature_ranged)
 
-        if character["attack"]["special"]:
+        if "special" in character["attack"]:
             if type(character["attack"]["special"]) is list:
                 for attack in character["attack"]["special"]:
                     creature_sp_attack = CreatureSpecialAttacks()
@@ -213,6 +213,89 @@ class CreatureJsonParser:
                 creature_feat = CreatureFeats()
                 creature_feat.feat = feat["@name"].strip()
                 self.creature.feats.append(creature_feat)
+
+        if character["gear"]:
+            gear_list = ""
+            gear_seperator = ""
+            if type(character["gear"]["item"]) is list:
+                for gear in character["gear"]["item"]:
+                    gear_list += gear_seperator + gear["@name"].strip()
+                    gear_seperator = "; "
+            else:
+                gear = character["gear"]["item"]
+                gear_list += gear_seperator + gear["@name"].strip()
+
+            self.creature.gear = gear_list
+
+        if character["magicitems"]:
+            if type(character["magicitems"]["item"]) is list:
+                for gear in character["magicitems"]["item"]:
+                    gear_item = CreatureGearItems()
+                    gear_item.name = gear["@name"].strip()
+                    gear_item.description = gear["description"].strip()
+                    self.creature.gear_items.append(gear_item)
+            else:
+                gear = character["magicitems"]["item"]
+                gear_item = CreatureGearItems()
+                gear_item.name = gear["@name"].strip()
+                gear_item.description = gear["description"].strip()
+                self.creature.gear_items.append(gear_item)
+
+        if character["otherspecials"]:
+            if type(character["otherspecials"]["special"]) is list:
+                for special_ability in character["otherspecials"]["special"]:
+                    creature_special_ability = CreatureSpecialAbilities()
+                    special_ability_match = re.search(r"(.+) (\(.+\))", special_ability["@name"].strip(), re.IGNORECASE)
+                    if special_ability_match:
+                        creature_special_ability.ability = special_ability_match.group(1).strip()
+                        creature_special_ability.type = special_ability_match.group(2).strip()
+                    else:
+                        creature_special_ability.ability = special_ability["@name"].strip()
+                    creature_special_ability.description = special_ability["description"].strip()
+                    self.creature.special_abilities.append(creature_special_ability)
+            else:
+                special_ability = character["otherspecials"]["special"]
+                creature_special_ability = CreatureSpecialAbilities()
+                special_ability_match = re.search(r"(.+) (\(.+\))", special_ability["@name"].strip(), re.IGNORECASE)
+                if special_ability_match:
+                    creature_special_ability.ability = special_ability_match.group(1).strip()
+                    creature_special_ability.type = special_ability_match.group(2).strip()
+                else:
+                    creature_special_ability.ability = special_ability["@name"].strip()
+                creature_special_ability.description = special_ability["description"].strip()
+                self.creature.special_abilities.append(creature_special_ability)
+
+        if character["spellsknown"]:
+            if "class" in character["classes"]:
+                 self.creature.spell_known_type = character["classes"]["class"]["@castersource"].strip()
+                 self.creature.spell_known_caster_level = "(CL {}; Concentration {})".format(
+                     character["classes"]["class"]["@casterlevel"].strip(),
+                     character["classes"]["class"]["@concentrationcheck"].strip())
+
+            if type(character["spellsknown"]["spell"]) is list:
+                for spell in character["spellsknown"]["spell"]:
+                    spell_item = CreatureKnownSpells()
+                    spell_item.spell_level = spell["@level"].strip()
+                    if spell_item.spell_level == "0":
+                        spell_item.rate = "(at will)"
+                    else:
+                        spell_item.rate = ""
+                    spell_item.name = spell["@name"].strip()
+                    if spell["@resisttext"].strip() == "Yes":
+                        spell_item.modifiers = spell["@save"].strip()
+                    self.creature.known_spells.append(spell_item)
+            else:
+                spell = character["spellsknown"]["spell"]
+                spell_item = CreatureKnownSpells()
+                spell_item.spell_level = spell["@level"].strip()
+                if spell_item.spell_level == "0":
+                    spell_item.rate = "(at will)"
+                else:
+                    spell_item.rate = ""
+                spell_item.name = spell["@name"].strip()
+                if spell["@resisttext"].strip() == "Yes":
+                    spell_item.modifiers = spell["@save"].strip()
+                self.creature.known_spells.append(spell_item)
 
 
         print(self.creature)
