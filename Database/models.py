@@ -83,8 +83,8 @@ class Creature(Base):
     special_attacks = relationship("CreatureSpecialAttacks", back_populates="creature", cascade="all, delete-orphan")
     spell_like_abilities = relationship("CreatureSpellLikeAbilities", back_populates="creature",
                                         cascade="all, delete-orphan")
-    known_spells = relationship("CreatureKnownSpells", back_populates="creature", cascade="all, delete-orphan")
-    prepared_spells = relationship("CreaturePreparedSpells", back_populates="creature", cascade="all, delete-orphan")
+    known_spells = relationship("CreatureKnownSpells", back_populates="creature", cascade="all, delete-orphan", order_by='desc(CreatureKnownSpells.spell_level)')
+    prepared_spells = relationship("CreaturePreparedSpells", back_populates="creature", cascade="all, delete-orphan", order_by='desc(CreaturePreparedSpells.spell_level)')
     cleric_domains = relationship("CreatureDomains", back_populates="creature", cascade="all, delete-orphan")
     feats = relationship("CreatureFeats", back_populates="creature", cascade="all, delete-orphan")
     skills = relationship("CreatureSkills", back_populates="creature", cascade="all, delete-orphan")
