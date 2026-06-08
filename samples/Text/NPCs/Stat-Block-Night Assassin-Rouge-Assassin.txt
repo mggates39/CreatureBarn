@@ -1,0 +1,39 @@
+Night Assassin (Half-Elf Rogue 5/Assassin 1)
+
+This lithe half-elven woman wields a hand crossbow and is bedecked in dark leather that blends in with the shadows.
+
+Night Assassin CR 5
+
+XP 1,600
+Female half-elf rogue 5/assassin 1
+NE Medium humanoid (elf, human)
+Init +3; Senses low-light vision; Perception +11
+
+DEFENSE
+
+AC 17, touch 13, flat-footed 14 (+4 armor, +3 Dex)
+hp 34 (6 HD; 5d8+1d4+6)
+Fort +2, Ref +7, Will +1; +2 vs. enchantments
+Defensive Abilities evasion, trap sense +1, uncanny dodge
+
+OFFENSE
+
+Speed 30 ft.
+Melee short sword +4 (1d6+1/19–20) or dagger +4 (1d4+1/19–20)
+Ranged +1 hand crossbow +8 (1d4+1/19–20) or dagger +6 (1d4+2/19–20)
+Special Attacks death attack (DC 13), sneak attack +4d6
+
+STATISTICS
+
+Str 13, Dex 16, Con 12, Int 14, Wis 10, Cha 10
+Base Atk +3; CMB +4; CMD 17
+Feats Point-Blank Shot, Rapid Reload (hand crossbow), Skill Focus (Stealth)B, Weapon Focus (hand crossbow)
+Skills Acrobatics +12, Bluff +9, Climb +10, Disable Device +12, Disguise +9, Escape Artist +12, Intimidate +8, Perception +11, Sleight of Hand +12, Stealth +15; Racial Modifiers +2 Perception
+Languages Common, Elven, two others
+SQ elf blood, poison use, rogue talents (bleeding attack +3, lasting poison), trapfinding +2
+
+ECOLOGY
+
+Environment any urban
+Organization solitary
+Treasure NPC gear (+1 studded leather, +1 hand crossbow, daggers (5), short sword, potion of cure moderate wounds, potions of invisibility [2], shadow essence, other treasure)
