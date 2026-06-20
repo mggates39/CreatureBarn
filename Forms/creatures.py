@@ -923,6 +923,8 @@ class CreatureForm:
         if self.creature.level:
             creature_class += " " + self.creature.level
 
+        creature_class = safe_copy(self.creature.char_class)
+
         output_fields = [
             self.creature.common_name,
             "CR " + self.creature.challenge_rating,
