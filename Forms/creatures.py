@@ -316,8 +316,8 @@ class CreatureForm:
         self.gear_entry.grid(row=row_count, column=1, columnspan=11, sticky=W)
 
         row_count += 1
-        offense_frame = SectionBorder(mainframe, title="\nStatistics\n")
-        offense_frame.grid(row=row_count, column=0, columnspan=12)
+        statistics_frame = SectionBorder(mainframe, title="\nStatistics\n")
+        statistics_frame.grid(row=row_count, column=0, columnspan=12)
 
         row_count += 1
         stat_frame = ttk.Frame(mainframe)
@@ -441,10 +441,16 @@ class CreatureForm:
         treasure_entry.grid(row=row_count, column=1, columnspan=11, sticky=W)
 
         row_count += 1
-        offense_frame = SectionBorder(mainframe, title="\nAbout\n")
-        offense_frame.grid(row=row_count, column=0, columnspan=12)
+        about_frame = SectionBorder(mainframe, title="\nAbout\n")
+        about_frame.grid(row=row_count, column=0, columnspan=12)
 
         row_count += 1
+        ttk.Label(mainframe, text="Boon").grid(row=row_count, column=0, sticky=NE)
+        self.boon_entry = scrolledtext.ScrolledText(mainframe, wrap="word", width=70, height=1)
+        self.boon_entry.grid(row=row_count, column=1, columnspan=11, sticky=W)
+
+        row_count += 1
+        ttk.Label(mainframe, text="Description").grid(row=row_count, column=0, sticky=NE)
         self.description_entry = scrolledtext.ScrolledText(mainframe, wrap="word", width=90, height=1)
         self.description_entry.grid(row=row_count, column=1, columnspan=12, sticky=W)
 
@@ -670,6 +676,11 @@ class CreatureForm:
             for skill in self.creature.skills:
                 self.skills_entry.insert(END, getattr(skill, 'skill') + " " + getattr(skill, 'modifier') + "\n")
 
+            self.boon_entry.delete("1.0", END)
+            if self.creature.boon:
+                self.boon_entry.insert(END, self.creature.boon + "\n")
+                self.boon_entry['height'] = 5
+
             self.description_entry.delete("1.0", END)
             if self.creature.description:
                 description_lines = self.creature.description.split("\n")
@@ -869,8 +880,13 @@ class CreatureForm:
 
         if self.creature.description:
             description = re.sub(r"\n", " ", self.creature.description)
+            if self.creature.boon:
+                description += ' ' + self.creature.boon
         else:
             description = ""
+            if self.creature.boon:
+                description = self.creature.boon
+
 
         if self.creature.special_qualities:
             special_quality_list = []

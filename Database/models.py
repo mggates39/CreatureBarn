@@ -64,6 +64,7 @@ class Creature(Base):
     treasure = Column(String)
     content = Column(String)
     barn_type = Column(String)
+    boon = Column(String)
 
     # Relationships (one-to-many)
     senses = relationship("CreatureSenses", back_populates="creature", cascade="all, delete-orphan")
