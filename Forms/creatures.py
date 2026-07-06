@@ -880,12 +880,8 @@ class CreatureForm:
 
         if self.creature.description:
             description = re.sub(r"\n", " ", self.creature.description)
-            if self.creature.boon:
-                description += ' ' + self.creature.boon
         else:
             description = ""
-            if self.creature.boon:
-                description = self.creature.boon
 
         if self.creature.special_qualities:
             special_quality_list = []
@@ -926,13 +922,19 @@ class CreatureForm:
         else:
             special_abilities_and_content += description.strip()
 
+        if self.creature.boon:
+            boon = self.creature.boon.strip()
+            seperator = "Boon "
+            if special_abilities_and_content:
+                V = "{#ENTER}" + seperator
+            special_abilities_and_content += (seperator + boon)
+
         if self.creature.tactics:
             seperator = "TACTICS{#ENTER}"
             tactics = re.sub(r"\n", "{#ENTER}", self.creature.tactics)
             if special_abilities_and_content:
-                seperator = "{#ENTER}TACTICS{#ENTER}"
+                V = "{#ENTER}" + seperator
             special_abilities_and_content += (seperator + tactics)
-
 
         creature_class = ""
         if self.creature.race:
