@@ -928,14 +928,14 @@ class CreatureForm:
             boon = self.creature.boon.strip()
             seperator = "Boon "
             if special_abilities_and_content:
-                V = "{#ENTER}" + seperator
+                seperator = "{#ENTER}" + seperator
             special_abilities_and_content += (seperator + boon)
 
         if self.creature.tactics:
             seperator = "TACTICS{#ENTER}"
             tactics = re.sub(r"\n", "{#ENTER}", self.creature.tactics)
             if special_abilities_and_content:
-                V = "{#ENTER}" + seperator
+                seperator = "{#ENTER}" + seperator
             special_abilities_and_content += (seperator + tactics)
 
         creature_class = ""
