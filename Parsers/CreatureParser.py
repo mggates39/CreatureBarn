@@ -622,7 +622,7 @@ FSM_MAP = [
     {'src': S_FOUND_HP, 'dst': S_FOUND_FORTITUDE, 'cond': r"^Fort\s", 'callback': T_PARSE_FORTITUDE},  # 19
     {'src': S_FOUND_FORTITUDE, 'dst': S_FOUND_DR, 'cond': r"^DR\s(\d+)", 'callback': T_PARSE_DAMAGE_RESISTANCE},  # 20
     {'src': S_FOUND_FORTITUDE, 'dst': S_FOUND_OFFENSE_HEADER, 'cond': r"^OFFENSE", 'callback': T_PARSE_DAMAGE_RESISTANCE},  # 20
-    {'src': S_FOUND_DR, 'dst': S_FOUND_WEAKNESS, 'cond': r"^Weaknesses\s", 'callback': T_PARSE_WEAKNESS},  # 21
+    {'src': S_FOUND_FORTITUDE, 'dst': S_FOUND_WEAKNESS, 'cond': r"^Weaknesses\s", 'callback': T_PARSE_WEAKNESS},  # 21
     {'src': S_FOUND_DR, 'dst': S_FOUND_OFFENSE_HEADER, 'cond': r"^OFFENSE", 'callback': T_SKIP},  # 22
     {'src': S_FOUND_WEAKNESS, 'dst': S_FOUND_OFFENSE_HEADER, 'cond': r"^OFFENSE", 'callback': T_SKIP},  # 23
     {'src': S_FOUND_OFFENSE_HEADER, 'dst': S_FOUND_SPEED, 'cond': R_SPEED, 'callback': T_PARSE_SPEED},  # 24
