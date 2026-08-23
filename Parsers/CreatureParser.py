@@ -621,8 +621,12 @@ FSM_MAP = [
     {'src': S_FOUND_AC, 'dst': S_FOUND_HP, 'cond': r"^[HPhp]{2}\s(\d+)", 'callback': T_PARSE_HP},  # 18
     {'src': S_FOUND_HP, 'dst': S_FOUND_FORTITUDE, 'cond': r"^Fort\s", 'callback': T_PARSE_FORTITUDE},  # 19
     {'src': S_FOUND_FORTITUDE, 'dst': S_FOUND_DR, 'cond': r"^DR\s(\d+)", 'callback': T_PARSE_DAMAGE_RESISTANCE},  # 20
-    {'src': S_FOUND_FORTITUDE, 'dst': S_FOUND_OFFENSE_HEADER, 'cond': r"^OFFENSE", 'callback': T_PARSE_DAMAGE_RESISTANCE},  # 20
+    {'src': S_FOUND_FORTITUDE, 'dst': S_FOUND_DR, 'cond': r"^Defensive Abilities\s+(.+)", 'callback': T_PARSE_DAMAGE_RESISTANCE},  # 20
+    {'src': S_FOUND_FORTITUDE, 'dst': S_FOUND_DR, 'cond': r"^Immune\s+(.+)", 'callback': T_PARSE_DAMAGE_RESISTANCE},  # 20
+    {'src': S_FOUND_FORTITUDE, 'dst': S_FOUND_DR, 'cond': r"^Resist\s+(.+)", 'callback': T_PARSE_DAMAGE_RESISTANCE},  # 20
+    {'src': S_FOUND_FORTITUDE, 'dst': S_FOUND_OFFENSE_HEADER, 'cond': r"^OFFENSE", 'callback': T_SKIP},  # 20
     {'src': S_FOUND_FORTITUDE, 'dst': S_FOUND_WEAKNESS, 'cond': r"^Weaknesses\s", 'callback': T_PARSE_WEAKNESS},  # 21
+    {'src': S_FOUND_DR, 'dst': S_FOUND_WEAKNESS, 'cond': r"^Weaknesses\s", 'callback': T_PARSE_WEAKNESS},  # 21
     {'src': S_FOUND_DR, 'dst': S_FOUND_OFFENSE_HEADER, 'cond': r"^OFFENSE", 'callback': T_SKIP},  # 22
     {'src': S_FOUND_WEAKNESS, 'dst': S_FOUND_OFFENSE_HEADER, 'cond': r"^OFFENSE", 'callback': T_SKIP},  # 23
     {'src': S_FOUND_OFFENSE_HEADER, 'dst': S_FOUND_SPEED, 'cond': R_SPEED, 'callback': T_PARSE_SPEED},  # 24
@@ -723,8 +727,10 @@ FSM_MAP = [
     {'src': S_FOUND_ENVIRONMENT, 'dst': S_FOUND_ORGANIZATION, 'cond': r"^Organization\s+(.+)", 'callback': T_PARSE_ORGANIZATION},
     {'src': S_FOUND_ENVIRONMENT, 'dst': S_FOUND_TREASURE, 'cond': r"^Treasure\s+(.+)", 'callback': T_PARSE_TREASURE},
     {'src': S_FOUND_ENVIRONMENT, 'dst': S_FOUND_GEAR_HEADER, 'cond': r"^GEAR", 'callback': T_SKIP},
+    {'src': S_FOUND_ENVIRONMENT, 'dst': S_FOUND_ABOUT_DETAILS, 'cond': R_ANYTHING, 'callback': T_PARSE_DESCRIPTION},
     {'src': S_FOUND_ORGANIZATION, 'dst': S_FOUND_TREASURE, 'cond': r"^Treasure\s+(.+)", 'callback': T_PARSE_TREASURE},
     {'src': S_FOUND_ORGANIZATION, 'dst': S_FOUND_GEAR_HEADER, 'cond': r"^GEAR", 'callback': T_SKIP},
+    {'src': S_FOUND_ORGANIZATION, 'dst': S_FOUND_ABOUT_DETAILS, 'cond': R_ANYTHING, 'callback': T_PARSE_DESCRIPTION},
     {'src': S_FOUND_TREASURE, 'dst': S_FOUND_GEAR_HEADER, 'cond': r"^GEAR", 'callback': T_SKIP},
     {'src': S_FOUND_TREASURE, 'dst': S_FOUND_ABOUT_HEADER, 'cond': r"^(ABOUT|DESCRIPTION)", 'callback': T_SKIP},
     {'src': S_FOUND_TREASURE, 'dst': S_FOUND_ABOUT_DETAILS, 'cond': R_ANYTHING, 'callback': T_PARSE_DESCRIPTION},
