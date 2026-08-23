@@ -79,7 +79,7 @@ def transition_parse_initiative(fsm_obj):
         if init_match:
             fsm_obj.creature.initiative = init_match.group(1).strip()
 
-        perceptions_match = re.search(r"Perception ([+\d]+)", part, re.IGNORECASE)
+        perceptions_match = re.search(r"Perception ([+\-]?[\d]+)", part, re.IGNORECASE)
         if perceptions_match:
             fsm_obj.creature.perception_modifier = perceptions_match.group(1).strip()
 
