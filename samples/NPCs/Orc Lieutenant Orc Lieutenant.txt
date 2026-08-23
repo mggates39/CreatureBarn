@@ -1,0 +1,29 @@
+Orc Lieutenant
+Orc Lieutenant CR 4
+XP 1,200
+Orc fighter 5
+CE Medium humanoid (orc)
+Init +3; Senses darkvision 60 ft.; Perception -2
+Defense
+AC 17, touch 13, flat-footed 14 (+4 armor, +3 Dex)
+hp 42 (5d10+10)
+Fort +8, Ref +5, Will +0 (+1 vs. fear)
+Defensive Abilities bravery +1, ferocity
+Weaknesses light sensitivity
+Offense
+Speed 30 ft.
+Melee falchion +8 (2d4+4/18–20)
+Ranged composite longbow +9/+9 (1d8+4/×3)
+Special Attacks weapon training (bows +1)
+Statistics
+Str 17, Dex 16, Con 12, Int 8, Wis 6, Cha 12
+Base Atk +5; CMB +8; CMD 21
+Feats Deadly Aim, Great Fortitude, Point-Blank Shot, Precise Shot, Rapid Shot, Weapon Focus (composite longbow)
+Skills Intimidate +9
+Languages Common, Orc
+SQ armor training 1, weapon familiarity
+Combat Gear +1 dwarf-bane arrows (2), potion of cure moderate wounds; Other Gear mwk hide armor, composite longbow (+3 Str) with 20 arrows, falchion, cloak of resistance +1, 127 gp
+Ecology
+Environment temperate hills, mountains, or underground
+Description
+The leaders of small orc warbands aren’t much smarter or more cunning than the rank-and-file orc warriors they lead—but just a small advantage in strength is enough to let them take the best shares of treasure and slaves and lord their dominance over their fellow orcs. Orc commanders enforce discipline through intimidation and are not afraid to lead underlings to their deaths.
