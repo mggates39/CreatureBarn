@@ -1,0 +1,39 @@
+Orc Shaman (Orc Adept 3)
+Orc Shaman CR 1
+
+XP 400
+Orc adept 3
+CE Medium humanoid (orc)
+Init –1; Senses darkvision 60 ft.; Perception +2
+
+DEFENSE
+
+AC 13, touch 9, flat-footed 13 (+4 armor, –1 Dex)
+hp 19 (3d6+9)
+Fort +2, Ref +0, Will +3
+Defensive Abilities ferocity
+Weaknesses light sensitivity
+
+OFFENSE
+
+Speed 30 ft.
+Melee mwk morningstar +4 (1d8+2)
+Ranged javelin +0 (1d6+2)
+Spells Prepared (CL 3rd; concentration +3)
+
+1st–bless, cause fear (DC 11)
+0–create water, guidance, touch of fatigue (DC 10)
+
+STATISTICS
+
+Str 15,Dex 9, Con 12, Int 6, Wis 11, Cha 8
+Base Atk +1; CMB +3; CMD 12
+Feats Alertness, Light Armor Proficiency, Persuasive
+Skills Diplomacy +0, Heal +4, Intimidate +5, Knowledge (history) +2
+Languages Common, Orc
+SQ Summon familiar (toad), weapon familiarity
+Gear potions of cure light wounds (2), masterwork chain shirt, javelins (2), masterwork morningstar, spirit fetishes.
+
+ABOUT
+
+The orcs worship a variety of “gods,” and the shaman is the agent of these entities. They fill the roles of Healers, advisors, and battle-casters among Orc tribes.

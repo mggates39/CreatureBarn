@@ -1,0 +1,31 @@
+Orc Worg Rider (Orc Fighter 2)
+Orc worg Rider CR 1
+
+XP 400
+Orc fighter 2
+NE Medium humanoid (orc)
+Init +2; Senses darkvision 60 ft.; Perception +1
+
+DEFENSE
+
+
+AC 18, touch 12, flat-footed 16 (+4 armor, +2 Dex, +2 shield)
+hp 13 (2d10+2)
+Fort +2, Ref +2, Will +1; +1 vs. Fear
+Defensive Abilities bravery +1, Ferocity
+Weaknesses light sensitivity
+
+OFFENSE
+
+Speed 20 ft.
+Melee mwk battleaxe +6 (1d8+2/x3)
+Ranged shortbow +4 (1d6/x3)
+
+STATISTICS
+Str 14, Dex 15, Con 13, Int 10, Wis 12, Cha 6
+Base Atk +2; CMB +4; CMD 16
+Feats Animal Affinity, Mounted Combat, Weapon Focus (battleaxe)
+Skills Handle Animal +4, Knowledge (geography) +1, Ride +6, Survival +6
+Languages Common, Orc
+SQ weapon familiarity
+Gear masterwork hide armor, masterwork heavy wooden shield, masterwork battleaxe, shortbow with 20 arrows, exotic military saddle

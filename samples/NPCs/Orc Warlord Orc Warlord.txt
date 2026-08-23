@@ -1,0 +1,40 @@
+Orc Warlord
+Orc Warlord CR 6
+
+Leadership of an orc tribe or horde falls not to the smartest or most canny, but to the strongest.
+
+
+XP 2,400
+Orc barbarian 7
+CE Medium humanoid (orc)
+Init +2; Senses darkvision 60 ft.; Perception +8
+
+DEFENSE
+
+AC 15, touch 11, flat-footed 13 (+4 armor, +1 deflection, +2 Dex, –2 rage)
+hp 86 (7d12+35)
+Fort +9, Ref +4, Will +2
+Defensive Abilities ferocity, improved uncanny dodge, trap sense +2; DR 1/—
+Weaknesses light sensitivity
+
+OFFENSE
+
+Speed 30 ft.
+Melee +1 falchion +14/+9 (2d4+10/18–20), bite +8 (1d4+3) or mwk shortspear +14/+9 (1d6+9)
+Ranged javelin +9/+4 (1d6+6)
+Special Attacks rage (18 rounds/day), rage powers (animal fury, intimidating glare, strength surge +7)
+
+TACTICS
+
+Before Combat The warlord rages before combat.
+
+STATISTICS
+
+Str 23, Dex 14, Con 18, Int 8, Wis 6, Cha 10
+Base Atk +7; CMB +13; CMD 24
+Feats Ferocious Action, Intimidating Prowess, Quick Draw, Resolute Rager
+Skills Intimidate +16, Perception +8, Sense Motive +5
+Languages Common, Orc
+SQ fast movement, weapon familiarity
+Gear potion of bull’s strength, potion of cure serious wounds, mwk hide armor, +1 falchion, javelins (10), mwk shortspear, ring of protection +1, 99 gp
+
