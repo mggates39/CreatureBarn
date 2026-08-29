@@ -524,12 +524,12 @@ class CreatureForm:
                 self.immune_entry.insert(END, getattr(immunity, 'immune_to') + "\n")
 
             self.defense_action_entry.delete("1.0", END)
-            self.defense_action_entry['height'] = len(self.creature.immune_modifiers)
+            self.defense_action_entry['height'] = len(self.creature.defensive_abilities)
             for defense_action in self.creature.defensive_abilities:
                 self.defense_action_entry.insert(END, getattr(defense_action, 'ability') + "\n")
 
             self.resist_entry.delete("1.0", END)
-            self.resist_entry['height'] = len(self.creature.immune_modifiers)
+            self.resist_entry['height'] = len(self.creature.sr_modifiers)
             for resist in self.creature.sr_modifiers:
                 resist_item = "{} {}\n".format(getattr(resist, 'resists'), getattr(resist, 'resist_amount'))
                 self.resist_entry.insert(END, resist_item)
@@ -729,6 +729,7 @@ class CreatureForm:
         self.root.destroy()
 
     def on_export(self):
+
         if self.creature.senses:
             senses_list = []
             for sense in self.creature.senses:
