@@ -94,6 +94,10 @@ def transition_parse_initiative(fsm_obj):
                     creature_senses = CreatureSenses()
                     creature_senses.sense = sense.strip()
                     fsm_obj.creature.senses.append(creature_senses)
+            if not fsm_obj.creature.senses:
+                creature_senses = CreatureSenses()
+                creature_senses.sense = "Normal"
+                fsm_obj.creature.senses.append(creature_senses)
 
         aura_match = re.search(r"Aura\s+(.+)", part, re.IGNORECASE)
         if aura_match:
