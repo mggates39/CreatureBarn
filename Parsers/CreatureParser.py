@@ -359,15 +359,22 @@ def transition_parse_strength(fsm_obj):
             fsm_obj.creature.charisma = val
 
 def transition_parse_base_attack(fsm_obj):
-    match_attack = re.findall(r"(Base Atk|CMB|CMD)\s*([+\-]?\d+)", fsm_obj.current_line, re.IGNORECASE)
-    for stat, val in match_attack:
-        stat_name = stat.capitalize()
-        if stat_name == "Base atk":
-            fsm_obj.creature.base_attack = val
-        elif stat_name == "Cmb":
-            fsm_obj.creature.combat_maneuver_bonus = val
-        elif stat_name == "Cmd":
-            fsm_obj.creature.combat_maneuver_defense = val
+    parts = fsm_obj.current_line.split(';')
+    for part in parts:
+        match_attack = re.findall(r"(Base Atk|CMB|CMD)\s*([+\-]?\d+)(.*)", part, re.IGNORECASE)
+        for stat, val, modifier in match_attack:
+            stat_name = stat.capitalize()
+            print(stat_name+': '+val+' '+modifier);
+            if stat_name == "Base atk":
+                fsm_obj.creature.base_attack = val
+            elif stat_name == "Cmb":
+                fsm_obj.creature.combat_maneuver_bonus = val
+                if modifier:
+                    fsm_obj.creature.combat_maneuver_bonus_modifier = modifier
+            elif stat_name == "Cmd":
+                fsm_obj.creature.combat_maneuver_defense = val
+                if modifier:
+                    fsm_obj.creature.combat_maneuver_defense_modifier = modifier
 
 def transition_parse_feats(fsm_obj):
     feat_match = re.search(r"Feats\s+(.+)", fsm_obj.current_line, re.IGNORECASE)

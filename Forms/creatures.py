@@ -364,12 +364,12 @@ class CreatureForm:
 
         ttk.Label(bonus_frame, text="CMB").grid(row=0, column=2, padx=5, sticky=E)
         self.combat_maneuver_bonus = StringVar()
-        combat_maneuver_bonus_entry = ttk.Entry(bonus_frame, width=4, textvariable=self.combat_maneuver_bonus)
+        combat_maneuver_bonus_entry = ttk.Entry(bonus_frame, width=20, textvariable=self.combat_maneuver_bonus)
         combat_maneuver_bonus_entry.grid(row=0, column=3, padx=5, sticky=W)
 
         ttk.Label(bonus_frame, text="CMD").grid(row=0, column=4, padx=5, sticky=E)
         self.combat_maneuver_defense = StringVar()
-        combat_maneuver_defense_entry = ttk.Entry(bonus_frame, width=4, textvariable=self.combat_maneuver_defense)
+        combat_maneuver_defense_entry = ttk.Entry(bonus_frame, width=20, textvariable=self.combat_maneuver_defense)
         combat_maneuver_defense_entry.grid(row=0, column=5, padx=5, sticky=W)
 
         row_count += 1
@@ -600,8 +600,8 @@ class CreatureForm:
             self.wisdom.set(safe_copy(getattr(self.creature, 'wisdom')))
             self.charisma.set(safe_copy(getattr(self.creature, 'charisma')))
             self.base_attack.set(safe_copy(getattr(self.creature, 'base_attack')))
-            self.combat_maneuver_bonus.set(safe_copy(getattr(self.creature, 'combat_maneuver_bonus')))
-            self.combat_maneuver_defense.set(safe_copy(getattr(self.creature, 'combat_maneuver_defense')))
+            self.combat_maneuver_bonus.set(safe_copy(getattr(self.creature, 'combat_maneuver_bonus'))+' '+safe_copy(self.creature.combat_maneuver_bonus_modifier))
+            self.combat_maneuver_defense.set(safe_copy(getattr(self.creature, 'combat_maneuver_defense'))+' '+safe_copy(self.creature.combat_maneuver_defense_modifier))
             self.racial_modifiers.set(safe_copy(getattr(self.creature, 'racial_modifiers')))
             self.environment.set(safe_copy(getattr(self.creature, 'environment')))
             self.organization.set(safe_copy(getattr(self.creature, 'organization')))
@@ -987,8 +987,8 @@ class CreatureForm:
             safe_stat_copy(self.creature.wisdom),
             safe_stat_copy(self.creature.charisma),
             safe_copy(self.creature.base_attack),
-            safe_copy(self.creature.combat_maneuver_bonus),
-            safe_copy(self.creature.combat_maneuver_defense),
+            safe_copy(self.creature.combat_maneuver_bonus)+' '+safe_copy(self.creature.combat_maneuver_bonus_modifier),
+            safe_copy(self.creature.combat_maneuver_defense)+' '+safe_copy(self.creature.combat_maneuver_defense_modifier),
             feats,
             skills,
             safe_copy(self.creature.racial_modifiers),
