@@ -364,7 +364,6 @@ def transition_parse_base_attack(fsm_obj):
         match_attack = re.findall(r"(Base Atk|CMB|CMD)\s*([+\-]?\d+)(.*)", part, re.IGNORECASE)
         for stat, val, modifier in match_attack:
             stat_name = stat.capitalize()
-            print(stat_name+': '+val+' '+modifier);
             if stat_name == "Base atk":
                 fsm_obj.creature.base_attack = val
             elif stat_name == "Cmb":
