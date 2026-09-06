@@ -605,7 +605,7 @@ R_MELEE = r"^Melee\s+(.+)"
 R_RANGED = r"^Ranged\s+(.+)"
 R_SPACE = r"^Space\s+(.+)"
 R_REACH = r"Reach\s+(.+)"
-R_GEAR_LIST = r"(.* )*Gear (.+)"
+R_GEAR_LIST = r"(.*)\s*Gear (.+)"
 R_BOON_LINE = r"^Boon\s+(.*)"
 R_SPLIT_COMMA_OUTSIDE_PARENS = r',\s*(?![^()]*\))'
 
